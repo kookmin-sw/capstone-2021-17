@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GamePlay.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/MultiTest/TstMulti_Ingame.unity
+    guid: 45839ef3d618b93489ebf474e3919252
+  - enabled: 1
+    path: Assets/Scenes/MultiTest/TstMulti_Start.unity
+    guid: 53b083ddf3bd54d4bb959840d8e19169
+  - enabled: 1
+    path: Assets/Scenes/MultiTest/TstMulti_WatingRoom.unity
+    guid: 602ef281e200516408eb3b3fcdb7ac70
   m_configObjects: {}
