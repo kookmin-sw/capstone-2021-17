@@ -1,0 +1,19 @@
+Shift - Complete Sci-Fi UI (v1.0.8)
+
+• Import TextMesh Pro and its essentials from Package Manager if you haven't already!
+• You can gain more editor performance by unchecking 'Update Values' on Shift UI Manager.
+   Do not forget to enable it while changing stuff on Shift UI Manager.
+
+Contact me via:
+E-mail: support@michsky.com
+Website: https://www.michsky.com
+Discord: https://discord.gg/VXpHyUt
+Twitter: https://twitter.com/michskyHQ
+YouTube: https://www.youtube.com/c/michsky
+Reddit: https://www.reddit.com/user/michsky
+Steam: https://steamcommunity.com/id/geezjesus
+
+Special thanks to:
+freepik
+moose
+pmsfx
