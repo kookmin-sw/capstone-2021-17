@@ -958,6 +958,7 @@ MonoBehaviour:
   _allPlayersReady: 0
   roomSlots: []
   clientIndex: 0
+  nameField: {fileID: 1019292415}
 --- !u!114 &695530852
 MonoBehaviour:
   m_ObjectHideFlags: 0
