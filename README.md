@@ -18,27 +18,30 @@
 프로젝트 소개하는 영상을 추가하세요
 
 ### 3. 팀 소개
-(사진)
+![KakaoTalk_20210220_105520501](https://user-images.githubusercontent.com/28583561/108721128-00c52980-7565-11eb-8cec-b41c80da7f26.jpg)
 ```
 권순민
 적 디자인, 추적 AI 담당
 ```
-(사진)
+![KakaoTalk_20210222_214226176](https://user-images.githubusercontent.com/28583561/108721137-028eed00-7565-11eb-8b42-59d31da88338.jpg)
 ```
 김승중
 맵 디자인, 맵 아이템, 맵 모델링 담당
 ```
-(사진)
+![profile-img-sample (1)](https://user-images.githubusercontent.com/28583561/108721745-b55f4b00-7565-11eb-83ec-138bcdfb730c.png)
+
 ```
 김주연
 플레이어 디자인, 카메라 움직임 담당
 ```
-(사진)
+![KakaoTalk_20210222_215628488](https://user-images.githubusercontent.com/28583561/108721139-0458b080-7565-11eb-9c0a-24303d9e9ab4.jpg)
+
 ```
 안희운
-멀티플레이어 담당
+멀티플레이어 담당 , 조장
 ```
-(사진)
+![profile-img-sample (1)](https://user-images.githubusercontent.com/28583561/108721745-b55f4b00-7565-11eb-83ec-138bcdfb730c.png)
+
 ```
 이가희
 UI 담당
@@ -51,6 +54,15 @@ UI 담당
 ### 5. 기타
 
 추가적인 내용은 자유롭게 작성하세요.
+
+
+
+
+
+
+
+
+
 
 ## 팀소개 및 페이지를 꾸며주세요.
 
