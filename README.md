@@ -18,12 +18,13 @@
 프로젝트 소개하는 영상을 추가하세요
 
 ### 3. 팀 소개
-![KakaoTalk_20210220_105520501](https://user-images.githubusercontent.com/28583561/108721128-00c52980-7565-11eb-8cec-b41c80da7f26.jpg)
+
+![KakaoTalk_20210222_214226176](https://user-images.githubusercontent.com/28583561/108721137-028eed00-7565-11eb-8b42-59d31da88338.jpg)
 ```
 권순민
 적 디자인, 추적 AI 담당
 ```
-![KakaoTalk_20210222_214226176](https://user-images.githubusercontent.com/28583561/108721137-028eed00-7565-11eb-8b42-59d31da88338.jpg)
+![KakaoTalk_20210220_105520501](https://user-images.githubusercontent.com/28583561/108721128-00c52980-7565-11eb-8cec-b41c80da7f26.jpg)
 ```
 김승중
 맵 디자인, 맵 아이템, 맵 모델링 담당
