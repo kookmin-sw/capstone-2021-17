@@ -27,25 +27,25 @@
 ![KakaoTalk_20210220_105520501](https://user-images.githubusercontent.com/28583561/108721128-00c52980-7565-11eb-8cec-b41c80da7f26.jpg)
 ```
 김승중
-맵 디자인, 맵 아이템, 맵 모델링 담당
+맵 디자인, 맵 아이템, 맵 오브젝트 담당
 ```
 ![profile-img-sample (1)](https://user-images.githubusercontent.com/28583561/108721745-b55f4b00-7565-11eb-83ec-138bcdfb730c.png)
 
 ```
 김주연
-플레이어 디자인, 카메라 움직임 담당
+플레이어 디자인, 플레이어 움직임, 카메라 움직임 담당
 ```
 ![KakaoTalk_20210222_215628488](https://user-images.githubusercontent.com/28583561/108721139-0458b080-7565-11eb-9c0a-24303d9e9ab4.jpg)
 
 ```
 안희운
-멀티플레이어 담당 , 조장
+멀티플레이어 담당, 조장
 ```
 ![profile-img-sample (1)](https://user-images.githubusercontent.com/28583561/108721745-b55f4b00-7565-11eb-83ec-138bcdfb730c.png)
 
 ```
 이가희
-UI 담당
+게임 UI 담당
 ```
 
 ### 4. 사용법
