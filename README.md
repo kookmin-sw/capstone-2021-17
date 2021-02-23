@@ -29,7 +29,7 @@
 김승중
 맵 디자인, 맵 아이템, 맵 오브젝트 담당
 ```
-![profile-img-sample (1)](https://user-images.githubusercontent.com/28583561/108721745-b55f4b00-7565-11eb-83ec-138bcdfb730c.png)
+![KakaoTalk_20210223_115253474](https://user-images.githubusercontent.com/28583561/108797260-233f5d00-75ce-11eb-82c7-f127b7a517bd.jpg)
 
 ```
 김주연
