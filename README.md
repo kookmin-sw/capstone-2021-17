@@ -41,7 +41,7 @@
 안희운
 멀티플레이어 담당, 조장
 ```
-![profile-img-sample (1)](https://user-images.githubusercontent.com/28583561/108721745-b55f4b00-7565-11eb-83ec-138bcdfb730c.png)
+![KakaoTalk_20210223_100355213](https://user-images.githubusercontent.com/28583561/108791023-719a2f00-75c1-11eb-996b-729d10f46f62.jpg)
 
 ```
 이가희
