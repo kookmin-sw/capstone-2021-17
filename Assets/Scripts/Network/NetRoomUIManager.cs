@@ -5,14 +5,15 @@ using UnityEngine.UI;
 using TMPro;
 using Mirror;
 
-public class NetworkRoomUIManager : MonoBehaviour
+public class NetRoomUIManager : MonoBehaviour
 {
-    public CustomNetworkRoomManager networkManager;
+    /*
+     public NetManager netManager;
 
     public string Ready_MSG = "READY";
     public string Unready_MSG = "UNREADY";
     public string Waiting_MSG = "Wating...";
-    private static int PLAYER_MAXNUM = CustomNetworkRoomManager.PLAYER_MAXNUM;
+    private static int PLAYER_MAXNUM = NetManager.PLAYER_MAXNUM;
 
     public TMP_Text[] nicknames = new TMP_Text[PLAYER_MAXNUM];
     public Image[] images = new Image[PLAYER_MAXNUM];
@@ -20,23 +21,26 @@ public class NetworkRoomUIManager : MonoBehaviour
 
     private void Awake()
     {
-        networkManager = CustomNetworkRoomManager.instance;
-        networkManager.RoomUIManager = this;
+        netManager = NetManager.instance;
+        netManager.RoomUIManager = this;
+        UpdateRoomUI();
     }
 
     public void UpdateRoomUI()
     {
         Debug.Log("UPDATE ROOM UI!");
-        List<NetworkRoomPlayer> RoomPlayers = networkManager.roomSlots;
-        Debug.Log(RoomPlayers.Count);
-        if (RoomPlayers.Count == 0)
+        GameObject[] g = GameObject.FindGameObjectsWithTag("RoomPlayer");
+        Debug.Log(g.Length);
+
+        NetworkRoomPlayer[] RoomPlayers = GetComponents<NetRoomPlayer>();
+        if (RoomPlayers.Length == 0)
         {
             Debug.LogError("No Player Detected in Room Scene");
         }
         else
         {
             bool[] is_exist = new bool[PLAYER_MAXNUM];
-            foreach(CustomNetworkRoomPlayer player in RoomPlayers)
+            foreach(NetRoomPlayer player in RoomPlayers)
             {
                 int index = player.index;
                 is_exist[index] = true;
@@ -61,7 +65,7 @@ public class NetworkRoomUIManager : MonoBehaviour
     
 
 
-
+    */
 
 
 

@@ -4,17 +4,17 @@ using UnityEngine;
 using TMPro;
 using Mirror;
 
-public class CustomNetworkRoomManager : NetworkRoomManager
+public class NetManager : NetworkRoomManager
 {
     public static int PLAYER_MAXNUM = 4;
 
     public static string serverAddress;
-    public static CustomNetworkRoomManager instance;
+    public static NetManager instance;
     private string player_nickname;
 
     public TMP_InputField nameField;
 
-    public NetworkRoomUIManager RoomUIManager;
+    
 
     public override void Awake() 
     {
@@ -36,7 +36,7 @@ public class CustomNetworkRoomManager : NetworkRoomManager
 
     private void SetNicknameAtRoomPlayer()
     {
-        roomPlayerPrefab.GetComponent<CustomNetworkRoomPlayer>().nickname = nameField.text;   
+        roomPlayerPrefab.GetComponent<NetRoomPlayer>().nickname = nameField.text;   
     }
     public override void OnRoomStartClient()
     {
@@ -48,10 +48,13 @@ public class CustomNetworkRoomManager : NetworkRoomManager
         SetNicknameAtRoomPlayer();
     }
 
-    public override void OnRoomServerAddPlayer(NetworkConnection conn)
+
+    public override void OnRoomClientConnect(NetworkConnection conn)
     {
-        Debug.Log("On Room server ADD PLAYER ");
-        RoomUIManager.UpdateRoomUI();
+        base.OnRoomClientConnect(conn);
+        
+        
+
     }
 
 
