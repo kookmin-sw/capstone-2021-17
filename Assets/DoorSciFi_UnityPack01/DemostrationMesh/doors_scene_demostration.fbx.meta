@@ -1,0 +1,222 @@
+fileFormatVersion: 2
+guid: e77b497839bf50149acece9f7140b1fc
+timeCreated: 1490249207
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: mColumns01
+    100004: mFloor01
+    100006: mRoof01
+    100008: mWall01
+    100010: UCX_mFloor01
+    100012: UCX_mWall01_1
+    100014: UCX_mWall01_10
+    100016: UCX_mWall01_11
+    100018: UCX_mWall01_12
+    100020: UCX_mWall01_13
+    100022: UCX_mWall01_14
+    100024: UCX_mWall01_15
+    100026: UCX_mWall01_16
+    100028: UCX_mWall01_17
+    100030: UCX_mWall01_18
+    100032: UCX_mWall01_19
+    100034: UCX_mWall01_2
+    100036: UCX_mWall01_20
+    100038: UCX_mWall01_21
+    100040: UCX_mWall01_22
+    100042: UCX_mWall01_23
+    100044: UCX_mWall01_24
+    100046: UCX_mWall01_3
+    100048: UCX_mWall01_4
+    100050: UCX_mWall01_5
+    100052: UCX_mWall01_6
+    100054: UCX_mWall01_7
+    100056: UCX_mWall01_8
+    100058: UCX_mWall01_9
+    400000: //RootNode
+    400002: mColumns01
+    400004: mFloor01
+    400006: mRoof01
+    400008: mWall01
+    400010: UCX_mFloor01
+    400012: UCX_mWall01_1
+    400014: UCX_mWall01_10
+    400016: UCX_mWall01_11
+    400018: UCX_mWall01_12
+    400020: UCX_mWall01_13
+    400022: UCX_mWall01_14
+    400024: UCX_mWall01_15
+    400026: UCX_mWall01_16
+    400028: UCX_mWall01_17
+    400030: UCX_mWall01_18
+    400032: UCX_mWall01_19
+    400034: UCX_mWall01_2
+    400036: UCX_mWall01_20
+    400038: UCX_mWall01_21
+    400040: UCX_mWall01_22
+    400042: UCX_mWall01_23
+    400044: UCX_mWall01_24
+    400046: UCX_mWall01_3
+    400048: UCX_mWall01_4
+    400050: UCX_mWall01_5
+    400052: UCX_mWall01_6
+    400054: UCX_mWall01_7
+    400056: UCX_mWall01_8
+    400058: UCX_mWall01_9
+    2300000: mColumns01
+    2300002: mFloor01
+    2300004: mRoof01
+    2300006: mWall01
+    2300008: UCX_mFloor01
+    2300010: UCX_mWall01_1
+    2300012: UCX_mWall01_10
+    2300014: UCX_mWall01_11
+    2300016: UCX_mWall01_12
+    2300018: UCX_mWall01_13
+    2300020: UCX_mWall01_14
+    2300022: UCX_mWall01_15
+    2300024: UCX_mWall01_16
+    2300026: UCX_mWall01_17
+    2300028: UCX_mWall01_18
+    2300030: UCX_mWall01_19
+    2300032: UCX_mWall01_2
+    2300034: UCX_mWall01_20
+    2300036: UCX_mWall01_21
+    2300038: UCX_mWall01_22
+    2300040: UCX_mWall01_23
+    2300042: UCX_mWall01_24
+    2300044: UCX_mWall01_3
+    2300046: UCX_mWall01_4
+    2300048: UCX_mWall01_5
+    2300050: UCX_mWall01_6
+    2300052: UCX_mWall01_7
+    2300054: UCX_mWall01_8
+    2300056: UCX_mWall01_9
+    3300000: mColumns01
+    3300002: mFloor01
+    3300004: mRoof01
+    3300006: mWall01
+    3300008: UCX_mFloor01
+    3300010: UCX_mWall01_1
+    3300012: UCX_mWall01_10
+    3300014: UCX_mWall01_11
+    3300016: UCX_mWall01_12
+    3300018: UCX_mWall01_13
+    3300020: UCX_mWall01_14
+    3300022: UCX_mWall01_15
+    3300024: UCX_mWall01_16
+    3300026: UCX_mWall01_17
+    3300028: UCX_mWall01_18
+    3300030: UCX_mWall01_19
+    3300032: UCX_mWall01_2
+    3300034: UCX_mWall01_20
+    3300036: UCX_mWall01_21
+    3300038: UCX_mWall01_22
+    3300040: UCX_mWall01_23
+    3300042: UCX_mWall01_24
+    3300044: UCX_mWall01_3
+    3300046: UCX_mWall01_4
+    3300048: UCX_mWall01_5
+    3300050: UCX_mWall01_6
+    3300052: UCX_mWall01_7
+    3300054: UCX_mWall01_8
+    3300056: UCX_mWall01_9
+    4300000: mRoof01
+    4300002: mColumns01
+    4300004: mFloor01
+    4300006: mWall01
+    4300008: UCX_mWall01_1
+    4300010: UCX_mWall01_2
+    4300012: UCX_mWall01_3
+    4300014: UCX_mWall01_4
+    4300016: UCX_mWall01_5
+    4300018: UCX_mWall01_6
+    4300020: UCX_mWall01_7
+    4300022: UCX_mWall01_8
+    4300024: UCX_mWall01_9
+    4300026: UCX_mWall01_10
+    4300028: UCX_mWall01_11
+    4300030: UCX_mWall01_12
+    4300032: UCX_mWall01_13
+    4300034: UCX_mWall01_14
+    4300036: UCX_mWall01_15
+    4300038: UCX_mWall01_16
+    4300040: UCX_mWall01_17
+    4300042: UCX_mWall01_18
+    4300044: UCX_mWall01_19
+    4300046: UCX_mWall01_20
+    4300048: UCX_mWall01_21
+    4300050: UCX_mWall01_22
+    4300052: UCX_mWall01_23
+    4300054: UCX_mWall01_24
+    4300056: UCX_mFloor01
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

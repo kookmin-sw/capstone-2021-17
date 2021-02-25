@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.PostProcessing;
-using MinAttribute = UnityEngine.PostProcessing.MinAttribute; // 아래 한줄을 에러때문에 추가했습니다
 
 namespace UnityEditor.PostProcessing
 {

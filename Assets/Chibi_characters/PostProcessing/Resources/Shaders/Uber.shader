@@ -11,6 +11,7 @@ Shader "Hidden/Post FX/Uber Shader"
         _UserLut ("", 2D) = "" {}
         _Vignette_Mask ("", 2D) = "" {}
         _ChromaticAberration_Spectrum ("", 2D) = "" {}
+        _DitheringTex ("", 2D) = "" {}
     }
 
     CGINCLUDE
@@ -18,19 +19,19 @@ Shader "Hidden/Post FX/Uber Shader"
         #pragma target 3.0
 
         #pragma multi_compile __ UNITY_COLORSPACE_GAMMA
-        #pragma multi_compile __ EYE_ADAPTATION
         #pragma multi_compile __ CHROMATIC_ABERRATION
         #pragma multi_compile __ DEPTH_OF_FIELD DEPTH_OF_FIELD_COC_VIEW
-        #pragma multi_compile __ BLOOM
-        #pragma multi_compile __ BLOOM_LENS_DIRT
+        #pragma multi_compile __ BLOOM BLOOM_LENS_DIRT
         #pragma multi_compile __ COLOR_GRADING COLOR_GRADING_LOG_VIEW
         #pragma multi_compile __ USER_LUT
         #pragma multi_compile __ GRAIN
-        #pragma multi_compile __ VIGNETTE_CLASSIC VIGNETTE_ROUND VIGNETTE_MASKED
+        #pragma multi_compile __ VIGNETTE_CLASSIC VIGNETTE_MASKED
+        #pragma multi_compile __ DITHERING
 
         #include "UnityCG.cginc"
         #include "Bloom.cginc"
         #include "ColorGrading.cginc"
+        #include "UberSecondPass.cginc"
 
         // Auto exposure / eye adaptation
         sampler2D _AutoExposure;
@@ -62,15 +63,10 @@ Shader "Hidden/Post FX/Uber Shader"
         sampler2D _UserLut;
         half4 _UserLut_Params; // @see _LogLut_Params
 
-        // Grain
-        half2 _Grain_Params1; // x: lum_contrib, y: intensity
-        half4 _Grain_Params2; // x: xscale, h: yscale, z: xoffset, w: yoffset
-        sampler2D _GrainTex;
-
         // Vignette
         half3 _Vignette_Color;
         half2 _Vignette_Center; // UV space
-        half3 _Vignette_Settings; // x: intensity, y: smoothness, z: roundness
+        half4 _Vignette_Settings; // x: intensity, y: smoothness, z: roundness, w: rounded
         sampler2D _Vignette_Mask;
         half _Vignette_Opacity; // [0;1]
 
@@ -104,14 +100,7 @@ Shader "Hidden/Post FX/Uber Shader"
         half4 FragUber(VaryingsFlipped i) : SV_Target
         {
             float2 uv = i.uv;
-            half autoExposure = 1.0;
-
-            // Store the auto exposure value for later
-            #if EYE_ADAPTATION
-            {
-                autoExposure = tex2D(_AutoExposure, uv).r;
-            }
-            #endif
+            half autoExposure = tex2D(_AutoExposure, uv).r;
 
             half3 color = (0.0).xxx;
             #if DEPTH_OF_FIELD && CHROMATIC_ABERRATION
@@ -220,7 +209,7 @@ Shader "Hidden/Post FX/Uber Shader"
             #endif
 
             // HDR Bloom
-            #if BLOOM
+            #if BLOOM || BLOOM_LENS_DIRT
             {
                 half3 bloom = UpsampleFilter(_BloomTex, i.uvFlippedSPR, _BloomTex_TexelSize.xy, _Bloom_Settings.x) * _Bloom_Settings.y;
                 color += bloom;
@@ -238,16 +227,8 @@ Shader "Hidden/Post FX/Uber Shader"
             #if VIGNETTE_CLASSIC
             {
                 half2 d = abs(uv - _Vignette_Center) * _Vignette_Settings.x;
+                d.x *= lerp(1.0, _ScreenParams.x / _ScreenParams.y, _Vignette_Settings.w);
                 d = pow(d, _Vignette_Settings.z); // Roundness
-                half vfactor = pow(saturate(1.0 - dot(d, d)), _Vignette_Settings.y);
-                color *= lerp(_Vignette_Color, (1.0).xxx, vfactor);
-            }
-
-            // Perfectly round vignette
-            #elif VIGNETTE_ROUND
-            {
-                half2 d = abs(uv - _Vignette_Center) * _Vignette_Settings.x;
-                d.x *= _ScreenParams.x / _ScreenParams.y;
                 half vfactor = pow(saturate(1.0 - dot(d, d)), _Vignette_Settings.y);
                 color *= lerp(_Vignette_Color, (1.0).xxx, vfactor);
             }
@@ -282,19 +263,6 @@ Shader "Hidden/Post FX/Uber Shader"
 
             color = saturate(color);
 
-            // Grain
-            #if (GRAIN)
-            {
-                float3 grain = tex2D(_GrainTex, uv * _Grain_Params2.xy + _Grain_Params2.zw).rgb;
-
-                // Noisiness response curve based on scene luminance
-                float lum = 1.0 - sqrt(AcesLuminance(color));
-                lum = lerp(1.0, lum, _Grain_Params1.x);
-
-                color += color * grain * _Grain_Params1.y * lum;
-            }
-            #endif
-
             // Back to gamma space if needed
             #if UNITY_COLORSPACE_GAMMA
             {
@@ -322,6 +290,8 @@ Shader "Hidden/Post FX/Uber Shader"
                 color = lerp(color, colorGraded, _UserLut_Params.w);
             }
             #endif
+
+            color = UberSecondPass(color, uv);
 
             // Done !
             return half4(color, 1.0);

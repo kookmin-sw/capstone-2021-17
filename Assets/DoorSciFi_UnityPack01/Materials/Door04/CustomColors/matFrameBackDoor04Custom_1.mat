@@ -1,0 +1,244 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: matFrameBackDoor04Custom_1
+  m_Shader: {fileID: 4800000, guid: f959db1bb186785479bbf88af1dbcccd, type: 3}
+  m_ShaderKeywords: _EMISSION
+  m_LightmapFlags: 1
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _BumpMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _CompTex
+      second:
+        m_Texture: {fileID: 2800000, guid: f0b1e3fade625114ead9cc6f72a913d6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _DetailAlbedoMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _DetailMask
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _DetailNormalMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _EmissionMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MaskEm
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MaskTex
+      second:
+        m_Texture: {fileID: 2800000, guid: 33d345effc93443419948f3229af158f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MaskTex02
+      second:
+        m_Texture: {fileID: 2800000, guid: 8040867033f27754380506a5421ccf8c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MetallicGlossMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _NormalTex
+      second:
+        m_Texture: {fileID: 2800000, guid: 090d961315280fb4b993f5efa67d4f72, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _OcclusionMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _ParallaxMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: _BumpScale
+      second: 1
+    - first:
+        name: _Cutoff
+      second: 0.5
+    - first:
+        name: _DetailNormalMapScale
+      second: 1
+    - first:
+        name: _DstBlend
+      second: 0
+    - first:
+        name: _GlossMapScale
+      second: 1
+    - first:
+        name: _Glossiness
+      second: 0.5
+    - first:
+        name: _GlossyReflections
+      second: 1
+    - first:
+        name: _Metallic
+      second: 0
+    - first:
+        name: _Mode
+      second: 0
+    - first:
+        name: _OcclusionStrength
+      second: 1
+    - first:
+        name: _Parallax
+      second: 0.02
+    - first:
+        name: _SmoothnessTextureChannel
+      second: 0
+    - first:
+        name: _SpecularHighlights
+      second: 1
+    - first:
+        name: _SrcBlend
+      second: 1
+    - first:
+        name: _UVSec
+      second: 0
+    - first:
+        name: _ZWrite
+      second: 1
+    - first:
+        name: _gAO
+      second: 0
+    - first:
+        name: _gBlueMk
+      second: 0.5
+    - first:
+        name: _gBorderDamaged
+      second: 1
+    - first:
+        name: _gCianMk
+      second: 0.5
+    - first:
+        name: _gDirty
+      second: 0
+    - first:
+        name: _gGreenMk
+      second: 1
+    - first:
+        name: _gMagentaMk
+      second: 0.5
+    - first:
+        name: _gRedMk
+      second: 0.5
+    - first:
+        name: _gYellowMk
+      second: 0.5
+    - first:
+        name: _iAO
+      second: 1
+    - first:
+        name: _iBorderDamaged
+      second: 1.18
+    - first:
+        name: _iDirty
+      second: 0.26
+    - first:
+        name: _iLight
+      second: 0
+    - first:
+        name: _iNormalMap
+      second: 1
+    - first:
+        name: _mBlueMk
+      second: 0
+    - first:
+        name: _mCianMk
+      second: 0
+    - first:
+        name: _mGreenMk
+      second: 0.657
+    - first:
+        name: _mMagentaMk
+      second: 0
+    - first:
+        name: _mRedMk
+      second: 0
+    - first:
+        name: _mYellowMk
+      second: 0
+    m_Colors:
+    - first:
+        name: _Color
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _EmissionColor
+      second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _cBlue
+      second: {r: 0.83823526, g: 0.83823526, b: 0.83823526, a: 1}
+    - first:
+        name: _cBorderDamaged
+      second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - first:
+        name: _cCian
+      second: {r: 0.5441177, g: 0.5441177, b: 0.5441177, a: 1}
+    - first:
+        name: _cDirty
+      second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - first:
+        name: _cGreen
+      second: {r: 0.6985294, g: 0.6985294, b: 0.6985294, a: 1}
+    - first:
+        name: _cLight
+      second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _cMagenta
+      second: {r: 0.2720588, g: 0.2720588, b: 0.2720588, a: 1}
+    - first:
+        name: _cRed
+      second: {r: 0.2720588, g: 0.2720588, b: 0.2720588, a: 1}
+    - first:
+        name: _cYellow
+      second: {r: 0, g: 0, b: 0, a: 1}
