@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 using Mirror;
 
@@ -62,10 +63,18 @@ public class NetRoomPlayer : NetworkRoomPlayer
 
     public override void OnClientExitRoom()
     {
-        base.OnClientExitRoom();
-        playerSpace.SetActive(true);
-        Debug.Log("Client Exit!");
-        UpdateUI();
+        if (SceneManager.GetActiveScene().path == netManager.RoomScene)
+        {
+            base.OnClientExitRoom();
+            playerSpace.SetActive(true);
+            UpdateUI();
+        }
+
+        if (SceneManager.GetActiveScene().path == netManager.GameplayScene)
+        {
+            Rect_Trans.gameObject.SetActive(false);
+            Debug.Log(gameObject);
+        }
     }
 
 
@@ -116,7 +125,6 @@ public class NetRoomPlayer : NetworkRoomPlayer
         {
             Readystatus_txt.text = NotReady_msg;
         }
-
 
     }
 

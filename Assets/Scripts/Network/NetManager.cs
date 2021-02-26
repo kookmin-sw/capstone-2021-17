@@ -15,6 +15,9 @@ public class NetManager : NetworkRoomManager
 
     public List<NetRoomPlayer> RoomPlayers { get; } = new List<NetRoomPlayer>();
 
+    
+    public GameObject startBtn;
+
 
     public override void Awake() 
     {
@@ -64,12 +67,12 @@ public class NetManager : NetworkRoomManager
 
     public override void OnRoomServerPlayersReady()
     {
-        //start button appeared
+        startBtn.SetActive(true);
         
     }
     public override void OnRoomServerPlayersNotReady()
     {
-        //start button disappeared
+        startBtn.SetActive(false);
     }
 
 
