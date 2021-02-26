@@ -10,11 +10,11 @@ public class NetManager : NetworkRoomManager
 
     public static string serverAddress;
     public static NetManager instance;
-    private string player_nickname;
 
     public TMP_InputField nameField;
 
-    
+    public List<NetRoomPlayer> RoomPlayers { get; } = new List<NetRoomPlayer>();
+
 
     public override void Awake() 
     {
@@ -34,33 +34,38 @@ public class NetManager : NetworkRoomManager
     }
 
 
-    private void SetNicknameAtRoomPlayer()
+    
+    public override GameObject OnRoomServerCreateRoomPlayer(NetworkConnection conn)
     {
-        roomPlayerPrefab.GetComponent<NetRoomPlayer>().nickname = nameField.text;   
-    }
-    public override void OnRoomStartClient()
-    {
-        SetNicknameAtRoomPlayer();
-    }
+        NetRoomPlayer newPlayer = (NetRoomPlayer)Instantiate(roomPlayerPrefab);
+        newPlayer.nickname = PlayerPrefs.GetString("nickname");
+        Debug.Log(newPlayer.nickname + "," + nameField.text);
 
-    public override void OnRoomStartServer()
-    {
-        SetNicknameAtRoomPlayer();
+
+        return newPlayer.gameObject;
     }
 
-
-    public override void OnRoomClientConnect(NetworkConnection conn)
+    
+    public void SaveNickName()
     {
-        base.OnRoomClientConnect(conn);
-        
-        
+        PlayerPrefs.SetString("nickname", nameField.text);
+    }
 
+    public override void OnRoomServerDisconnect(NetworkConnection conn)
+    {
+        NetRoomPlayer disconnectedPlayer = conn.identity.GetComponent<NetRoomPlayer>();
+        disconnectedPlayer.playerSpace.SetActive(true);
+        foreach (NetRoomPlayer player in roomSlots)
+        {
+            player.UpdateUI();
+        }
     }
 
 
     public override void OnRoomServerPlayersReady()
     {
         //start button appeared
+        
     }
     public override void OnRoomServerPlayersNotReady()
     {

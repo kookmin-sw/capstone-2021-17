@@ -11,7 +11,9 @@ public class NetRoomPlayer : NetworkRoomPlayer
     public Image profile_image;
     public TMP_Text readyTxt;*/
 
+    [SyncVar]
     public string nickname;
+
     public bool isReady;
 
     public TMP_Text Nickname_txt; // 에디터 내에서 지정
@@ -22,19 +24,82 @@ public class NetRoomPlayer : NetworkRoomPlayer
 
     public string playerSpaceObjectName = "PlayerSpace";
 
+    public string NotReady_msg = "Not Ready";
+    public string Ready_msg = "Ready";
 
-    private GameObject playerSpace;
+    private NetManager netManager;
 
-    public void Init()
+    [HideInInspector]
+    public GameObject playerSpace;
+
+    private void Awake()
     {
+        netManager = NetManager.instance;
+    }
+
+    public override void OnStartClient()
+    {
+        Nickname_txt.text = nickname;
+    }
+    public override void IndexChanged(int oldIndex, int newIndex)
+    {
+        base.IndexChanged(oldIndex, newIndex);
+
+        Debug.Log("index changed" + oldIndex + "," + newIndex);
+        UpdateUI();
+    }
+    public override void ReadyStateChanged(bool _, bool newReadyState)
+    {
+        base.ReadyStateChanged(_, newReadyState);
+        Debug.Log("ready changed");
+        UpdateUI();
+    }
+    // 바뀌었을 때 ui가 바뀌는거
+    // 
+    public override void OnClientEnterRoom()
+    {
+        base.OnClientEnterRoom();
+        UpdateUI();
+    }
+
+    public override void OnClientExitRoom()
+    {
+        base.OnClientExitRoom();
+        playerSpace.SetActive(true);
+        Debug.Log("Client Exit!");
+        UpdateUI();
+    }
+
+
+
+    public void UpdateUI()
+
+    {
+        /*if (!hasAuthority)
+        {
+            foreach (var player in netManager.RoomPlayers)
+            {
+                if (player.hasAuthority)
+                {
+                    player.ChangeUI();
+                    break;
+                }
+            }
+
+            return;
+        }*/
+        if (playerSpace == null)
+        {
+            GameObject tryFind = GameObject.Find(playerSpaceObjectName + index); // 효율저하 Refactoring  필요
+            if (tryFind == null)
+            {
+                return;
+            }
+
+            playerSpace = tryFind;
+        }
         
-        playerSpace = GameObject.Find(playerSpaceObjectName+ index); // ex) playerspace0
-
-
-        Debug.Log(index);
         RectTransform playerSpaceRectTrans = playerSpace.GetComponentInChildren<RectTransform>();
-
-
         if (playerSpaceRectTrans == null)
         {
             Debug.LogError("PlayerSpace must get Rect Transform! - heeunAn");
@@ -42,18 +107,24 @@ public class NetRoomPlayer : NetworkRoomPlayer
         }
 
         Rect_Trans.localPosition = playerSpaceRectTrans.localPosition;
-
         playerSpace.SetActive(false);
-
-
-        UpdateUI();
-    }
-
-    public void UpdateUI()
-    {
         Nickname_txt.text = nickname;
-        Readystatus_txt.text = "Not Ready";
+        
+        if (readyToBegin)
+        {
+            Readystatus_txt.text = Ready_msg;
+        }
+        else
+        {
+            Readystatus_txt.text = NotReady_msg;
+        }
+
+
     }
 
+
+
+    
+    
 
 }
