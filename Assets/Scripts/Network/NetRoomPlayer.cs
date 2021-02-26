@@ -14,8 +14,6 @@ public class NetRoomPlayer : NetworkRoomPlayer
     [SyncVar]
     public string nickname;
 
-    public bool isReady;
-
     public TMP_Text Nickname_txt; // 에디터 내에서 지정
     public Image Profile_image; // 에디터 내에서 지정
     public TMP_Text Readystatus_txt; // 에디터 내에서 지정
