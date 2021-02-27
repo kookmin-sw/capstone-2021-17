@@ -36,66 +36,49 @@ public class NetRoomPlayer : NetworkRoomPlayer
         netManager = NetManager.instance;
     }
 
-    public override void OnStartClient()
+    public override void OnStartClient() //CallBack 함수
     {
         Nickname_txt.text = nickname;
     }
-    public override void IndexChanged(int oldIndex, int newIndex)
+    public override void IndexChanged(int oldIndex, int newIndex) // [Syncvar] index hook
     {
         base.IndexChanged(oldIndex, newIndex);
 
         UpdateUI();
     }
-    public override void ReadyStateChanged(bool _, bool newReadyState)
+    public override void ReadyStateChanged(bool _, bool newReadyState) // [Syncvar] readyToBegin hook
     {
         base.ReadyStateChanged(_, newReadyState);
         UpdateUI();
     }
-    // 바뀌었을 때 ui가 바뀌는거
-    // 
-    public override void OnClientEnterRoom()
+    public override void OnClientEnterRoom() // CallBack 함수
     {
         base.OnClientEnterRoom();
         UpdateUI();
     }
-
-    public override void OnClientExitRoom()
+    public override void OnClientExitRoom() // CallBack 함수
     {
-        if (SceneManager.GetActiveScene().path == netManager.RoomScene)
-        {
-            base.OnClientExitRoom();
-            playerSpace.SetActive(true);
-            UpdateUI();
-        }
-
+        //GamePlay Scene으로 넘어갔을시 Roomplayer가 남아있던 문제를 해결
         if (SceneManager.GetActiveScene().path == netManager.GameplayScene)
         {
             Rect_Trans.gameObject.SetActive(false);
-            Debug.Log(gameObject);
         }
     }
 
 
-
+    /*  Player의 UI를 변경함.
+     *  PlayerSpace 라는 게임오브젝트를 Find 한뒤에
+     *  ||  GameObject tryFind = GameObject.Find(playerSpaceObjectName + index);
+     *  
+     *  PlayerSpace의 UI를 RoomPlayerPrefab의 UI가 대체하는 방식임.
+     *  ||  playerSpace.SetActive(true or false);
+     */
     public void UpdateUI()
 
     {
-        /*if (!hasAuthority)
-        {
-            foreach (var player in netManager.RoomPlayers)
-            {
-                if (player.hasAuthority)
-                {
-                    player.ChangeUI();
-                    break;
-                }
-            }
-
-            return;
-        }*/
         if (playerSpace == null)
         {
-            GameObject tryFind = GameObject.Find(playerSpaceObjectName + index); // 효율저하 Refactoring  필요
+            GameObject tryFind = GameObject.Find(playerSpaceObjectName + index);
             if (tryFind == null)
             {
                 return;
@@ -125,10 +108,4 @@ public class NetRoomPlayer : NetworkRoomPlayer
         }
 
     }
-
-
-
-    
-    
-
 }
