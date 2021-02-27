@@ -56,11 +56,14 @@ public class NetManager : NetworkRoomManager
 
     public override void OnRoomServerDisconnect(NetworkConnection conn)
     {
-        NetRoomPlayer disconnectedPlayer = conn.identity.GetComponent<NetRoomPlayer>();
-        disconnectedPlayer.playerSpace.SetActive(true);
-        foreach (NetRoomPlayer player in roomSlots)
+        if (conn.identity != null)
         {
-            player.UpdateUI();
+            NetRoomPlayer disconnectedPlayer = conn.identity.GetComponent<NetRoomPlayer>();
+            disconnectedPlayer.playerSpace.SetActive(true);
+            foreach (NetRoomPlayer player in roomSlots)
+            {
+                player.UpdateUI();
+            }
         }
     }
 

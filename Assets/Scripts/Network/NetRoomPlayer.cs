@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,9 +15,9 @@ public class NetRoomPlayer : NetworkRoomPlayer
     [SyncVar]
     public string nickname;
 
-    public TMP_Text Nickname_txt; // ¿¡µğÅÍ ³»¿¡¼­ ÁöÁ¤
-    public Image Profile_image; // ¿¡µğÅÍ ³»¿¡¼­ ÁöÁ¤
-    public TMP_Text Readystatus_txt; // ¿¡µğÅÍ ³»¿¡¼­ ÁöÁ¤
+    public TMP_Text Nickname_txt; // ì—ë””í„° ë‚´ì—ì„œ ì§€ì •
+    public Image Profile_image; // ì—ë””í„° ë‚´ì—ì„œ ì§€ì •
+    public TMP_Text Readystatus_txt; // ì—ë””í„° ë‚´ì—ì„œ ì§€ì •
 
     public RectTransform Rect_Trans;
 
@@ -44,16 +44,14 @@ public class NetRoomPlayer : NetworkRoomPlayer
     {
         base.IndexChanged(oldIndex, newIndex);
 
-        Debug.Log("index changed" + oldIndex + "," + newIndex);
         UpdateUI();
     }
     public override void ReadyStateChanged(bool _, bool newReadyState)
     {
         base.ReadyStateChanged(_, newReadyState);
-        Debug.Log("ready changed");
         UpdateUI();
     }
-    // ¹Ù²î¾úÀ» ¶§ ui°¡ ¹Ù²î´Â°Å
+    // ë°”ë€Œì—ˆì„ ë•Œ uiê°€ ë°”ë€ŒëŠ”ê±°
     // 
     public override void OnClientEnterRoom()
     {
@@ -97,7 +95,7 @@ public class NetRoomPlayer : NetworkRoomPlayer
         }*/
         if (playerSpace == null)
         {
-            GameObject tryFind = GameObject.Find(playerSpaceObjectName + index); // È¿À²ÀúÇÏ Refactoring  ÇÊ¿ä
+            GameObject tryFind = GameObject.Find(playerSpaceObjectName + index); // íš¨ìœ¨ì €í•˜ Refactoring  í•„ìš”
             if (tryFind == null)
             {
                 return;
