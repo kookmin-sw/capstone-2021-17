@@ -11,10 +11,10 @@ public class Move_Object_Test : MonoBehaviour
     void Start()
     {
         ani = GetComponent<Animator>();
-        Check_HasP = GameObject.FindGameObjectWithTag("Player").GetComponent<Enemy_Chase>();
+        Check_HasP = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_Chase>();
     }
 
-    // Update is called once per frame
+    // 경로가 있으면 애니메이션 시작.
     void Update()
     {
         if (Check_HasP.hasP)
