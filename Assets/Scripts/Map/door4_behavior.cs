@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class door02_behavior : MonoBehaviour
+public class door4_behavior : MonoBehaviour
 {
 
     // Public Variables

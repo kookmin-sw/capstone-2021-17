@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class door02_behavior : MonoBehaviour
+public class door1_behavior : MonoBehaviour
 {
 
     // Public Variables
@@ -50,7 +50,7 @@ public class door02_behavior : MonoBehaviour
     void Update()
     {
 
-        GameObject gameObject = GameObject.Find("LeverController_Prefab4");
+        GameObject gameObject = GameObject.Find("LeverController_Prefab1");
         var lever = gameObject.GetComponent<LeverController>();
         if(lever.open == true)
         {

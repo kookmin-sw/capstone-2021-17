@@ -22,6 +22,7 @@ public class LeverController : MonoBehaviour
     public GameObject limitReachedBtn;
 
     private bool resetting;
+    public bool open = false;
 
     void Start()
     {
@@ -34,6 +35,7 @@ public class LeverController : MonoBehaviour
         {
             readyBtn.GetComponent<Renderer>().material.color = Color.red;
             limitReachedBtn.GetComponent<Renderer>().material.color = Color.green;
+            open = true;
         }
     }
 
