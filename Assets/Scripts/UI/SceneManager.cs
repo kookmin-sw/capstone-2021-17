@@ -32,10 +32,14 @@ public class SceneManager : MonoBehaviour
     //버튼 onoff
     public void OnOff(){
         
-        onoff = !onoff;
-        onoff2 = !onoff2;
-        HowTo.SetActive(onoff);
-        Name.SetActive(onoff2);
+        if(HowTo.activeSelf==true){
+            HowTo.SetActive(false);
+            Name.SetActive(true);
+        }
+        else{
+            HowTo.SetActive(true);
+            Name.SetActive(false);
+        }
 
     }
 
