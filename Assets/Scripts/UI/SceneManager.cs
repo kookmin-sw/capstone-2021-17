@@ -11,16 +11,16 @@ public class SceneManager : MonoBehaviour
     bool onoff2;
     //Start, WaitingRoom,Opening, GamePlay
     public void ChangeStartScene(){
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Start");
+        LoadingManager.LoadScene("Start");
     }
     public void ChangeWaitingRoomScene(){
-        UnityEngine.SceneManagement.SceneManager.LoadScene("WaitingRoom");
+        LoadingManager.LoadScene("Loading");
     }
     public void ChangeOpeningScene(){
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Opening");
+        LoadingManager.LoadScene("Opening");
     }
     public void ChangeGamePlayScene(){
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GamePlay");
+        LoadingManager.LoadScene("GamePlay");
     }
 
     //버튼 스크립트
