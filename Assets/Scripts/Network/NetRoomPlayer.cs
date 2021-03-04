@@ -28,7 +28,6 @@ public class NetRoomPlayer : NetworkRoomPlayer
 
     private NetManager netManager;
 
-    [HideInInspector]
     public GameObject playerSpace;
 
     private void Awake()
@@ -54,6 +53,11 @@ public class NetRoomPlayer : NetworkRoomPlayer
     public override void OnClientEnterRoom() // CallBack 함수
     {
         base.OnClientEnterRoom();
+        UpdateUI();
+        Debug.Log("Enter Room");
+    }
+    public override void OnStartServer()
+    {
         UpdateUI();
     }
     /*public override void OnClientExitRoom() // CallBack 함수

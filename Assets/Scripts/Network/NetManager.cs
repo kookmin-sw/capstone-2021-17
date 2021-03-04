@@ -8,10 +8,10 @@ public class NetManager : NetworkRoomManager
 {
     public static int PLAYER_MAXNUM = 4;
 
-    public static string serverAddress;
     public static NetManager instance;
 
     public TMP_InputField nameField;
+    public TMP_InputField addressField;
 
     public List<NetRoomPlayer> RoomPlayers { get; } = new List<NetRoomPlayer>();
 
@@ -46,6 +46,21 @@ public class NetManager : NetworkRoomManager
         PlayerPrefs.SetString("nickname", nameField.text);
     }
 
+    public void SaveAddress()
+    {
+        string address = addressField.text;
+        if (address == "") address = "localhost";
+        this.networkAddress = address;
+    }
+
+    public void JoinServer()
+    {
+        SaveAddress();
+        SaveNickName();
+        StartClient();
+
+    }
+
 
     /*
      *  -----------------------------ROOM -------------------------
@@ -75,11 +90,6 @@ public class NetManager : NetworkRoomManager
             NetRoomPlayer disconnectedPlayer = conn.identity.GetComponent<NetRoomPlayer>();
             disconnectedPlayer.playerSpace.SetActive(true); // UI 대체
 
-
-            /*foreach (NetRoomPlayer player in roomSlots)
-            {
-                player.UpdateUI();
-            }*/
         }
         
     }
