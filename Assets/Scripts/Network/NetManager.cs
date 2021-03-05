@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 using Mirror;
 
@@ -9,9 +10,6 @@ public class NetManager : NetworkRoomManager
     public static int PLAYER_MAXNUM = 4;
 
     public static NetManager instance;
-
-    public TMP_InputField nameField;
-    public TMP_InputField addressField;
 
     public List<NetRoomPlayer> RoomPlayers { get; } = new List<NetRoomPlayer>();
 
@@ -35,30 +33,6 @@ public class NetManager : NetworkRoomManager
                 instance = this; 
             }
         }
-    }
-
-
-    
-
-    // 닉네임을 저장하는 버튼을 누를때 사용
-    public void SaveNickName()
-    {
-        PlayerPrefs.SetString("nickname", nameField.text);
-    }
-
-    public void SaveAddress()
-    {
-        string address = addressField.text;
-        if (address == "") address = "localhost";
-        this.networkAddress = address;
-    }
-
-    public void JoinServer()
-    {
-        SaveAddress();
-        SaveNickName();
-        StartClient();
-
     }
 
 
