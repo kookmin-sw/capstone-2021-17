@@ -60,14 +60,14 @@ public class NetRoomPlayer : NetworkRoomPlayer
     {
         UpdateUI();
     }
-    /*public override void OnClientExitRoom() // CallBack 함수
+    public override void OnClientExitRoom() // CallBack 함수
     {
         //GamePlay Scene으로 넘어갔을시 Roomplayer가 남아있던 문제를 해결
-        if (SceneManager.GetActiveScene().path == netManager.GameplayScene)
+        if (this.gameObject != null)
         {
             Rect_Trans.gameObject.SetActive(false);
         }
-    }*/
+    }
 
 
     /*  Player의 UI를 변경함.
