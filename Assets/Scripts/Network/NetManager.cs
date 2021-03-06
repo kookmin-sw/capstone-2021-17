@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,9 +13,8 @@ public class NetManager : NetworkRoomManager
 
     public List<NetRoomPlayer> RoomPlayers { get; } = new List<NetRoomPlayer>();
 
-
-    public event Action OnRoomPlayersReady;
-    public event Action OnRoomPlayersNotReady;
+    
+    public GameObject startBtn;
 
     // Awake()할시 기존에 instance를 지우고 새로운 instance로 받을 수 있도록함 (StartScene)
 
@@ -73,13 +71,13 @@ public class NetManager : NetworkRoomManager
     // 모든 유저가 준비됐으면 StartButton준비
     public override void OnRoomServerPlayersReady()
     {
-        OnRoomPlayersReady?.Invoke();
+        startBtn.SetActive(true);
         
     }
     //준비 안됐으면 StartButton 미준비
     public override void OnRoomServerPlayersNotReady()
     {
-        OnRoomPlayersNotReady?.Invoke();
+        startBtn.SetActive(false);
     }
 
 }

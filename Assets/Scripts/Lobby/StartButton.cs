@@ -7,12 +7,10 @@ public class StartButton : MonoBehaviour
 {
     private NetManager netManager;
 
-    private void Start()
+    private void Awake()
     {
         netManager = NetManager.instance;
-        netManager.OnRoomPlayersReady += StartBtnActive;
-        netManager.OnRoomPlayersNotReady += StartBtnDeactive;
-        //netManager.startBtn = this.gameObject;
+        netManager.startBtn = this.gameObject;
         this.gameObject.SetActive(false);
     }
 
@@ -21,16 +19,8 @@ public class StartButton : MonoBehaviour
         //game start!
         netManager.ServerChangeScene(netManager.GameplayScene);
     }
-    public void StartBtnActive()
-    {
-        this.gameObject.SetActive(true);
-    }
-    public void StartBtnDeactive()
-    {
-        this.gameObject.SetActive(false);
-    }
-
-
+    
+    
 
 
 }
