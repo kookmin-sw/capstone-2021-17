@@ -53,6 +53,18 @@ public class WaitingRoom_GameManager : NetworkBehaviour
             }
         }
     }
+    public void ReplaceLeader(NetRoomPlayer roomPlayer)
+    {
+        foreach (NetRoomPlayer player in netManager.roomSlots)
+        {
+            if(player != roomPlayer && !player.isLeader)
+            {
+                player.isLeader = true;
+                player.setNicknameText();
+                break;
+            }
+        }
+    }
 
 
 

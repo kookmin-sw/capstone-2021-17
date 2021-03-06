@@ -15,6 +15,7 @@ public class NetRoomPlayer : NetworkRoomPlayer
     [SyncVar]
     public string nickname;
 
+    [SyncVar]
     public bool isLeader;
 
     public TMP_Text Nickname_txt; // 에디터 내에서 지정
@@ -39,8 +40,8 @@ public class NetRoomPlayer : NetworkRoomPlayer
 
     public override void OnStartClient() //CallBack 함수
     {
-        Nickname_txt.text = nickname;
-        setReadyMsg();
+        setNicknameText();
+        setReadyText();
         gameManager.AddPlayerToPlayerSpace(this);
     }
 
@@ -48,13 +49,16 @@ public class NetRoomPlayer : NetworkRoomPlayer
     {
         base.ReadyStateChanged(_, newReadyState);
 
-        setReadyMsg();
+        setReadyText();
 
     }
     public override void OnStopClient()
     {
         gameManager.removePlayerFromPlayerSpace(this);
-
+        if (this.isLeader)
+        {
+            gameManager.ReplaceLeader(this);
+        }
     }
 
     public override void OnClientExitRoom() // CallBack 함수
@@ -74,7 +78,7 @@ public class NetRoomPlayer : NetworkRoomPlayer
      *  PlayerSpace의 UI를 RoomPlayerPrefab의 UI가 대체하는 방식임.
      *  ||  playerSpace.SetActive(true or false);
      */
-    public void setReadyMsg()
+    public void setReadyText()
     {
         if (readyToBegin)
         {
@@ -83,6 +87,17 @@ public class NetRoomPlayer : NetworkRoomPlayer
         else
         {
             Readystatus_txt.text = NotReady_msg;
+        }
+    }
+    public void setNicknameText()
+    {  
+        if (!isLeader)
+        {
+            Nickname_txt.text = nickname;
+        }
+        else // if(isLeader)
+        {
+            Nickname_txt.text = nickname + "\n <LEADER>";
         }
     }
     public void UpdateUI()

@@ -31,6 +31,8 @@ public class StartUI_GameManager: MonoBehaviour
     {
         SaveAddress();
         SaveNickName();
+
+
         netManager.StartClient();
     }
     public void CreateRoom()
