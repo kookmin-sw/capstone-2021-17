@@ -6,7 +6,7 @@ public class BackButton : MonoBehaviour
 {
     private NetManager netManager;
 
-    private void Awake()
+    private void Start()
     {
         netManager = NetManager.instance;
     }

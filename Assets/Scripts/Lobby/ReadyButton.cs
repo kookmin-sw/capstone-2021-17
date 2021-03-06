@@ -7,7 +7,7 @@ public class ReadyButton : MonoBehaviour
 {
     private NetManager netManager;
 
-    private void Awake()
+    private void Start()
     {
         netManager = NetManager.instance;
     }
