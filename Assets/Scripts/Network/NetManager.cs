@@ -12,8 +12,6 @@ public class NetManager : NetworkRoomManager
 
     public static NetManager instance;
 
-    public List<NetRoomPlayer> RoomPlayers { get; } = new List<NetRoomPlayer>();
-
     public event Action OnRoomPlayersReady;
     public event Action OnRoomPlayersNotReady;
 
@@ -54,6 +52,7 @@ public class NetManager : NetworkRoomManager
     {
         NetRoomPlayer newPlayer = (NetRoomPlayer)Instantiate(roomPlayerPrefab);
         newPlayer.nickname = PlayerPrefs.GetString("nickname");
+        if (roomSlots.Count == 0) newPlayer.isLeader = true;
 
         return newPlayer.gameObject;
     }
@@ -65,11 +64,12 @@ public class NetManager : NetworkRoomManager
         if (conn.identity != null && IsSceneActive(RoomScene))
         {
             NetRoomPlayer disconnectedPlayer = conn.identity.GetComponent<NetRoomPlayer>();
-            disconnectedPlayer.playerSpace.SetActive(true); // UI 대체
+            //disconnectedPlayer.playerSpace.SetActive(true); // UI 대체
 
         }
         
     }
+    
 
     // 모든 유저가 준비됐으면 StartButton준비
     public override void OnRoomServerPlayersReady()

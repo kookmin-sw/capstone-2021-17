@@ -15,6 +15,8 @@ public class NetRoomPlayer : NetworkRoomPlayer
     [SyncVar]
     public string nickname;
 
+    public bool isLeader;
+
     public TMP_Text Nickname_txt; // 에디터 내에서 지정
     public Image Profile_image; // 에디터 내에서 지정
     public TMP_Text Readystatus_txt; // 에디터 내에서 지정
@@ -27,43 +29,38 @@ public class NetRoomPlayer : NetworkRoomPlayer
     public string Ready_msg = "Ready";
 
     private NetManager netManager;
-
-    public GameObject playerSpace;
+    WaitingRoom_GameManager gameManager;
 
     private void Awake()
     {
         netManager = NetManager.instance;
+        gameManager = WaitingRoom_GameManager.instance;
     }
 
     public override void OnStartClient() //CallBack 함수
     {
         Nickname_txt.text = nickname;
+        setReadyMsg();
+        gameManager.AddPlayerToPlayerSpace(this);
     }
-    public override void IndexChanged(int oldIndex, int newIndex) // [Syncvar] index hook
-    {
-        base.IndexChanged(oldIndex, newIndex);
 
-        UpdateUI();
-    }
     public override void ReadyStateChanged(bool _, bool newReadyState) // [Syncvar] readyToBegin hook
     {
         base.ReadyStateChanged(_, newReadyState);
-        UpdateUI();
+
+        setReadyMsg();
+
     }
-    public override void OnClientEnterRoom() // CallBack 함수
+    public override void OnStopClient()
     {
-        base.OnClientEnterRoom();
-        UpdateUI();
-        Debug.Log("Enter Room");
+        gameManager.removePlayerFromPlayerSpace(this);
+
     }
-    public override void OnStartServer()
-    {
-        UpdateUI();
-    }
+
     public override void OnClientExitRoom() // CallBack 함수
     {
         //GamePlay Scene으로 넘어갔을시 Roomplayer가 남아있던 문제를 해결
-        if (this.gameObject != null)
+        if (this.gameObject != null && NetManager.IsSceneActive(netManager.GameplayScene))
         {
             Rect_Trans.gameObject.SetActive(false);
         }
@@ -77,10 +74,21 @@ public class NetRoomPlayer : NetworkRoomPlayer
      *  PlayerSpace의 UI를 RoomPlayerPrefab의 UI가 대체하는 방식임.
      *  ||  playerSpace.SetActive(true or false);
      */
+    public void setReadyMsg()
+    {
+        if (readyToBegin)
+        {
+            Readystatus_txt.text = Ready_msg;
+        }
+        else
+        {
+            Readystatus_txt.text = NotReady_msg;
+        }
+    }
     public void UpdateUI()
 
     {
-        if (playerSpace == null)
+        /*if (playerSpace == null)
         {
             GameObject tryFind = GameObject.Find(playerSpaceObjectName + index);
             if (tryFind == null)
@@ -90,8 +98,10 @@ public class NetRoomPlayer : NetworkRoomPlayer
 
             playerSpace = tryFind;
         }
+        */
         
-        RectTransform playerSpaceRectTrans = playerSpace.GetComponentInChildren<RectTransform>();
+        /*
+         * RectTransform playerSpaceRectTrans = playerSpace.GetComponentInChildren<RectTransform>();
         if (playerSpaceRectTrans == null)
         {
             Debug.LogError("PlayerSpace must get Rect Transform! - heeunAn");
@@ -99,17 +109,9 @@ public class NetRoomPlayer : NetworkRoomPlayer
         }
 
         Rect_Trans.localPosition = playerSpaceRectTrans.localPosition;
-        playerSpace.SetActive(false);
+        */
         Nickname_txt.text = nickname;
         
-        if (readyToBegin)
-        {
-            Readystatus_txt.text = Ready_msg;
-        }
-        else
-        {
-            Readystatus_txt.text = NotReady_msg;
-        }
-
+        
     }
 }
