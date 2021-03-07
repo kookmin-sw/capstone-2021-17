@@ -12,11 +12,6 @@ public class NetManager : NetworkRoomManager
 
     public static NetManager instance;
 
-    public event Action OnRoomPlayersReady;
-    public event Action OnRoomPlayersNotReady;
-
-    
-
     // Awake()할시 기존에 instance를 지우고 새로운 instance로 받을 수 있도록함 (StartScene)
 
     public override void Awake() 
@@ -74,15 +69,27 @@ public class NetManager : NetworkRoomManager
     // 모든 유저가 준비됐으면 StartButton준비
     public override void OnRoomServerPlayersReady()
     {
-        if (IsSceneActive(RoomScene))
-            OnRoomPlayersReady?.Invoke();
-        
+        foreach (NetRoomPlayer player in roomSlots)
+        {
+            if (player.isLeader)
+            {
+                player.AcivateStartButton();
+                break;
+            }
+        }
     }
+
     //준비 안됐으면 StartButton 미준비
     public override void OnRoomServerPlayersNotReady()
     {
-        if (IsSceneActive(RoomScene))
-            OnRoomPlayersNotReady?.Invoke();
+        foreach (NetRoomPlayer player in roomSlots)
+        {
+            if (player.isLeader)
+            {
+                player.DeActivateStartButton();
+                break;
+            }
+        }
     }
 
 }

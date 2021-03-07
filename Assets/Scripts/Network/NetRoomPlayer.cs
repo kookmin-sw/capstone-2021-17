@@ -43,14 +43,25 @@ public class NetRoomPlayer : NetworkRoomPlayer
         setNicknameText();
         setReadyText();
         gameManager.AddPlayerToPlayerSpace(this);
+
+        
+    }
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+
+        if (isLeader)
+        {
+            gameManager.AssignLeaderAuthority(this);
+        }
+               
     }
 
     public override void ReadyStateChanged(bool _, bool newReadyState) // [Syncvar] readyToBegin hook
     {
         base.ReadyStateChanged(_, newReadyState);
 
-        setReadyText();
-
+        setReadyText();       
     }
     public override void OnStopClient()
     {
@@ -70,6 +81,17 @@ public class NetRoomPlayer : NetworkRoomPlayer
         }
     }
 
+    [TargetRpc]
+    public void AcivateStartButton()
+    {
+        gameManager.startButton.gameObject.SetActive(true);
+    }
+
+    [TargetRpc]
+    public void DeActivateStartButton()
+    {
+        gameManager.startButton.gameObject.SetActive(false);
+    }
 
     /*  Player의 UI를 변경함.
      *  PlayerSpace 라는 게임오브젝트를 Find 한뒤에
@@ -100,33 +122,5 @@ public class NetRoomPlayer : NetworkRoomPlayer
             Nickname_txt.text = nickname + "\n <LEADER>";
         }
     }
-    public void UpdateUI()
-
-    {
-        /*if (playerSpace == null)
-        {
-            GameObject tryFind = GameObject.Find(playerSpaceObjectName + index);
-            if (tryFind == null)
-            {
-                return;
-            }
-
-            playerSpace = tryFind;
-        }
-        */
-        
-        /*
-         * RectTransform playerSpaceRectTrans = playerSpace.GetComponentInChildren<RectTransform>();
-        if (playerSpaceRectTrans == null)
-        {
-            Debug.LogError("PlayerSpace must get Rect Transform! - heeunAn");
-            return;
-        }
-
-        Rect_Trans.localPosition = playerSpaceRectTrans.localPosition;
-        */
-        Nickname_txt.text = nickname;
-        
-        
-    }
+    
 }

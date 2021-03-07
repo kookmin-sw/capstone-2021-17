@@ -10,6 +10,8 @@ public class WaitingRoom_GameManager : NetworkBehaviour
     private NetManager netManager;
     public static WaitingRoom_GameManager instance;
     public PlayerSpace[] playerSpaces = new PlayerSpace[NetManager.PLAYER_MAXNUM];
+    public StartButton startButton;
+
 
     private void Awake()
     {
@@ -61,9 +63,14 @@ public class WaitingRoom_GameManager : NetworkBehaviour
             {
                 player.isLeader = true;
                 player.setNicknameText();
+                AssignLeaderAuthority(player);
                 break;
             }
         }
+    }
+    public void AssignLeaderAuthority(NetRoomPlayer player)
+    {
+        startButton.AssignAuthority(player);
     }
 
 
