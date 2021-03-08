@@ -15,6 +15,7 @@ public class NetManager : NetworkRoomManager
     public override void Awake() 
     {
         base.Awake();
+
         if(instance == null)
         {
             instance = this;
