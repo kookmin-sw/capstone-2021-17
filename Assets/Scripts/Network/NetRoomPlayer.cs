@@ -24,6 +24,8 @@ public class NetRoomPlayer : NetworkRoomPlayer
 
     public RectTransform Rect_Trans;
 
+    public string playerSpaceObjectName = "PlayerSpace";
+
     public string NotReady_msg = "Not Ready";
     public string Ready_msg = "Ready";
 
