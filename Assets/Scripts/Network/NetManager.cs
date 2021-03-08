@@ -12,22 +12,12 @@ public class NetManager : NetworkRoomManager
 
     public static NetManager instance;
 
-    // Awake()할시 기존에 instance를 지우고 새로운 instance로 받을 수 있도록함 (StartScene)
-
     public override void Awake() 
     {
-
-        if (instance == null && this.dontDestroyOnLoad) 
+        base.Awake();
+        if(instance == null)
         {
             instance = this;
-        }
-        else
-        {
-            if (this != instance)
-            {
-                Destroy(instance.gameObject);
-                instance = this; 
-            }
         }
     }
 
