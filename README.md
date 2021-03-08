@@ -33,30 +33,30 @@
 
 ![KakaoTalk_20210222_214226176](https://user-images.githubusercontent.com/28583561/108721137-028eed00-7565-11eb-8b42-59d31da88338.jpg)
 ```
-권순민
+권순민 (****1290)
 적 디자인, 추적 AI 담당
 ```
 ![KakaoTalk_20210220_105520501](https://user-images.githubusercontent.com/28583561/108721128-00c52980-7565-11eb-8cec-b41c80da7f26.jpg)
 ```
-김승중
+김승중 (****3096)
 맵 디자인, 맵 아이템, 맵 오브젝트 담당
 ```
 ![KakaoTalk_20210223_115253474](https://user-images.githubusercontent.com/28583561/108797260-233f5d00-75ce-11eb-82c7-f127b7a517bd.jpg)
 
 ```
-김주연
+김주연 (****1595)
 플레이어 디자인, 플레이어 움직임, 카메라 움직임 담당
 ```
 ![KakaoTalk_20210222_215628488](https://user-images.githubusercontent.com/28583561/108721139-0458b080-7565-11eb-9c0a-24303d9e9ab4.jpg)
 
 ```
-안희운
+안희운 (****1646)
 멀티플레이어 담당, 조장
 ```
 ![KakaoTalk_20210223_100355213](https://user-images.githubusercontent.com/28583561/108791023-719a2f00-75c1-11eb-996b-729d10f46f62.jpg)
 
 ```
-이가희
+이가희 (****3133)
 게임 UI 담당
 ```
 
