@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RaycastManager_Lever : MonoBehaviour
+public class RaycastManager : MonoBehaviour
 {
     private GameObject raycasted_obj;
 
-    private int rayLength = 10;
+    private int rayLength = 2;
     public LayerMask layerMaskInteract;
 
     public GameObject cHNormal;
@@ -32,6 +32,7 @@ public class RaycastManager_Lever : MonoBehaviour
                     raycasted_obj.GetComponentInChildren<Animator>().Play("HandlePull", -1, 0.0f);
                     raycasted_obj.GetComponent<LeverScript>().LeverNumber();
                     leverController = raycasted_obj.GetComponentInParent<LeverController>();
+                    raycasted_obj.layer = 0;
                     StartCoroutine(Timer(1.0f));
                 }
             }
@@ -54,7 +55,8 @@ public class RaycastManager_Lever : MonoBehaviour
 
                 if (Input.GetKeyDown("e"))
                 {
-
+                    //raycasted_obj.GetComponent<HealPack>().HealPlayer();
+                    raycasted_obj.SetActive(false);
                 }
             }
         }
