@@ -35,29 +35,26 @@ public class RaycastManager_Lever : MonoBehaviour
                     StartCoroutine(Timer(1.0f));
                 }
             }
-
-            else if (hit.collider.CompareTag("TestButton"))
+            else if (hit.collider.CompareTag("ItemBox"))
             {
                 raycasted_obj = hit.collider.gameObject;
                 CrosshairActive();
 
                 if (Input.GetKeyDown("e"))
                 {
-                    leverController = raycasted_obj.GetComponentInParent<LeverController>();
-                    leverController.LeverCheck();
+                    raycasted_obj.GetComponentInChildren<Animation>().Play("Crate_Open");
+                    raycasted_obj.layer = 0;
                 }
             }
 
-            else if (hit.collider.CompareTag("Reset"))
+            else if (hit.collider.CompareTag("ItemHeal"))
             {
                 raycasted_obj = hit.collider.gameObject;
                 CrosshairActive();
 
                 if (Input.GetKeyDown("e"))
                 {
-                    leverController = raycasted_obj.GetComponentInParent<LeverController>();
-                    leverController.LeverReset();
-                    StartCoroutine(Timer(1.0f));
+
                 }
             }
         }

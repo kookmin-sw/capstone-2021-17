@@ -108,5 +108,5 @@ public class LeverController : MonoBehaviour
         resettingBtn.GetComponent<Renderer>().material.color = Color.red;
         readyBtn.GetComponent<Renderer>().material.color = Color.green;
         resetting = false;
-    }
+    }    
 }
