@@ -11,6 +11,6 @@ public class NetGamePlayer : NetworkBehaviour
     {
         base.OnStartClient();
 
-        // 시작했을 때 뭘 할까
+        identity = GetComponent<NetworkIdentity>();
     }
 }

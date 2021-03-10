@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class StartUI_GameManager: MonoBehaviour
+public class Start_MultiGameManager: MonoBehaviour
 {
     public TMP_InputField nameField;
     public TMP_InputField addressField;

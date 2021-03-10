@@ -28,12 +28,12 @@ public class NetRoomPlayer : NetworkRoomPlayer
     public string Ready_msg = "Ready";
 
     private NetManager netManager;
-    WaitingRoom_GameManager gameManager;
+    WaitingRoom_MultiGameManager gameManager;
 
     private void Awake()
     {
         netManager = NetManager.instance;
-        gameManager = WaitingRoom_GameManager.instance;
+        gameManager = WaitingRoom_MultiGameManager.instance;
     }
 
     public override void OnStartClient() //CallBack 함수

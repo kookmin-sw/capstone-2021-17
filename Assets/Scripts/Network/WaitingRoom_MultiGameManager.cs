@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class WaitingRoom_GameManager : NetworkBehaviour
+public class WaitingRoom_MultiGameManager : NetworkBehaviour
 {
     private NetManager netManager;
-    public static WaitingRoom_GameManager instance;
+    public static WaitingRoom_MultiGameManager instance;
     public PlayerSpace[] playerSpaces = new PlayerSpace[NetManager.PLAYER_MAXNUM];
     public StartButton startButton;
 
