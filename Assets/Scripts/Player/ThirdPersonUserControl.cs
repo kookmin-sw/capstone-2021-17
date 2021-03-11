@@ -75,8 +75,16 @@ public class ThirdPersonUserControl : MonoBehaviour
 #endif
 
         // pass all parameters to the character control script
-        NetPlayer.MoveCharacter(m_Move, crouch, m_Jump); //m_Character.Move(m_Move, crouch, m_Jump);
         
+        if(NetPlayer != null)
+        {
+            NetPlayer.MoveCharacter(m_Move, crouch, m_Jump);
+        }
+        else
+        {
+            m_Character.Move(m_Move, crouch, m_Jump);
+        }
+
         m_Jump = false;
     }
 }
