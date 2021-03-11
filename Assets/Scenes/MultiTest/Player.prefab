@@ -685,6 +685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Cam: {fileID: 1312443698820368478}
   m_CamForward: {x: 0, y: 0, z: 0}
+  NetPlayer: {fileID: 7205702967678795861}
 --- !u!114 &1415178908684692932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2641,6 +2642,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  thirdCamera: {fileID: 1312443698820368473}
+  character: {fileID: 1415178908684692932}
+  control: {fileID: 1414365739634108562}
+  identity: {fileID: -6320412924941026497}
 --- !u!1 &1312443699970197316
 GameObject:
   m_ObjectHideFlags: 0
