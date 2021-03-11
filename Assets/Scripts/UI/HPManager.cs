@@ -11,7 +11,7 @@ public class HPManager : MonoBehaviour
     public Button button_minus;
     public GameObject gameOver; 
 
-    private float[] hp = new float[4];
+    public static float[] hp = new float[4];
     private float hp_max = 3;
     private bool isDead;
     // Start is called before the first frame update
@@ -41,9 +41,11 @@ public class HPManager : MonoBehaviour
         Set_HP(hp[num], num);
     }
 
-    public void IsDead(int num){
-        if(num==0)
-            gameOver.SetActive(true);
+    public static bool IsDead(int num){
+        if(hp[num]==0)
+            return true;
+        else
+            return false;
     }
 
     private void Set_HP(float value, int num){
@@ -56,8 +58,8 @@ public class HPManager : MonoBehaviour
         }
         bar[num].fillAmount = hp[num] / hp_max;
 
-        if(hp[num].Equals(0)){
-            IsDead(num);
+        if(IsDead(num)==true && num==0){
+            gameOver.SetActive(true);
         }
 
 
