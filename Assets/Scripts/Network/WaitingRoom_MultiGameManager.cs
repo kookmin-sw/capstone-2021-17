@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class WaitingRoom_MultiGameManager : NetworkBehaviour
+public class WaitingRoom_MultiGameManager : MonoBehaviour
 {
     private NetManager netManager;
     public static WaitingRoom_MultiGameManager instance;

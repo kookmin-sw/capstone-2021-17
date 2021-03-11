@@ -4,4 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: 459059284b0bbbc40bc7eb3e33160cca
+  - enabled: 1
+    path: Assets/Scenes/WaitingRoom.unity
+    guid: 3cc45eddb547f8146b763f1c6d42d2f6
+  - enabled: 1
+    path: Assets/Scenes/GamePlay.unity
+    guid: 480becc14b40b4441890b77f80434ee1
+  m_configObjects: {}
