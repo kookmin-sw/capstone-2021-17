@@ -8,9 +8,6 @@ using Mirror;
 
 public class NetRoomPlayer : NetworkRoomPlayer
 {
-    /*public TMP_Text nickname;
-    public Image profile_image;
-    public TMP_Text readyTxt;*/
 
     [SyncVar]
     public string nickname;
@@ -63,7 +60,7 @@ public class NetRoomPlayer : NetworkRoomPlayer
     }
     public override void OnStopClient()
     {
-        gameManager.removePlayerFromPlayerSpace(this);
+        gameManager.RemovePlayerFromPlayerSpace(this);
         if (this.isLeader)
         {
             gameManager.ReplaceLeader(this);
@@ -91,13 +88,7 @@ public class NetRoomPlayer : NetworkRoomPlayer
         gameManager.startButton.gameObject.SetActive(false);
     }
 
-    /*  Player의 UI를 변경함.
-     *  PlayerSpace 라는 게임오브젝트를 Find 한뒤에
-     *  ||  GameObject tryFind = GameObject.Find(playerSpaceObjectName + index);
-     *  
-     *  PlayerSpace의 UI를 RoomPlayerPrefab의 UI가 대체하는 방식임.
-     *  ||  playerSpace.SetActive(true or false);
-     */
+    
     public void setReadyText()
     {
         if (readyToBegin)

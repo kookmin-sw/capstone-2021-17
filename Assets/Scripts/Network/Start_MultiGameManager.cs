@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+/*
+ * NetManager를 이용합니다
+ * StartScene에서의 GameObject를 다루는 Manager 객체입니다 
+ */
 public class Start_MultiGameManager: MonoBehaviour
 {
     public TMP_InputField nameField;

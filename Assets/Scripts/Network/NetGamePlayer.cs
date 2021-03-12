@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
+/* 이 스크립트는 GamePlayer에 네트워크 기능을 다룹니다.
+ * 
+ */ 
+
 
 public class NetGamePlayer : NetworkBehaviour
 {

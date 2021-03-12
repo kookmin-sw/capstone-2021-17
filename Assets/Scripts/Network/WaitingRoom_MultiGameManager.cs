@@ -5,6 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/*  WaitingRoomScene의 게임오브젝트를 다루는 Manager 객체입니다.
+ *  NetRoomPlayer.cs가 이 스크립트의 메소드를 호출합니다
+ * 
+ */
+
 public class WaitingRoom_MultiGameManager : MonoBehaviour
 {
     private NetManager netManager;
@@ -44,7 +49,7 @@ public class WaitingRoom_MultiGameManager : MonoBehaviour
             }
         }
     }
-    public void removePlayerFromPlayerSpace(NetRoomPlayer roomPlayer)
+    public void RemovePlayerFromPlayerSpace(NetRoomPlayer roomPlayer)
     {
         foreach (PlayerSpace space in playerSpaces)
         {

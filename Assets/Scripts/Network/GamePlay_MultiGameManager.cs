@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
-
+/* GamePlay Scene에서의 게임오브젝트를 다루는 Manager 객체입니다.
+ * 약간 다른 게임매니저와는 역할이 겹칠것같아 스크립트 내용을 바꿀지 고민입니다.
+ */
 public class GamePlay_MultiGameManager : MonoBehaviour
 {
     public List<Transform> spawnpoints;
