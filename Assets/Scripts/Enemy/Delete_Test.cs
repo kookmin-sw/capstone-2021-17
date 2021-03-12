@@ -11,7 +11,8 @@ public class Delete_Test : MonoBehaviour
     public void OnTriggerEnter(Collider other)   
     {
         //태그가 플레이어면
-        if(other.CompareTag("Player")){
+        if(other.CompareTag("Player"))
+        {
             //잡았다는 걸 넘겨준다.
             Check_Catch.Check_Catched = true;
             Destroy(gameObject);
