@@ -60,7 +60,9 @@ public class door4_behavior : MonoBehaviour
         if (CharKeyOpen == true)
         {
             if ((isClosing == false) && useKeyToOpen && enterTrigger)
+            {
                 pressKey = true;
+            }
 
         }
 
@@ -144,7 +146,9 @@ public class door4_behavior : MonoBehaviour
         if (other.gameObject == GameObjectPlayer)
         {
             if (isClosing == false)
+            {
                 enterTrigger = true;
+            }
         }
     }
 
