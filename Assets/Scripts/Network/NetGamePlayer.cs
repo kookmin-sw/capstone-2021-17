@@ -30,13 +30,13 @@ public class NetGamePlayer : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            AttribMoveCharacter(move, crouch, jump);
+            CmdMoveCharacter(move, crouch, jump);
         }
             
     }
 
-    [Command]
-    public void AttribMoveCharacter(Vector3 move, bool crouch, bool jump)
+    [Command] // Server에서 실행하게끔 하는 attribute
+    public void CmdMoveCharacter(Vector3 move, bool crouch, bool jump)
     {
 
         character.Move(move, crouch, jump);
