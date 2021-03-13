@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor (typeof (Enemy_Chase))]
+[CustomEditor (typeof (EnemyChase))]
 public class SightEditor : Editor
 {
     void OnSceneGUI()
     {
-        Enemy_Chase fov = (Enemy_Chase)target;
+        EnemyChase fov = (EnemyChase)target;
         Handles.color = Color.white;
         Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.viewRadius);
 
