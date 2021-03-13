@@ -7,7 +7,7 @@ namespace keypadSystem
     public class KeypadController : MonoBehaviour
     {
         [Header("Keypad Parameters")]
-        [SerializeField] private string validCode;
+        [SerializeField] public string validCode;
         public int characterLim;
         [HideInInspector] public bool firstClick;
         
@@ -21,12 +21,12 @@ namespace keypadSystem
         [Header("Unlock Event")]
         [SerializeField] private UnityEvent unlock;
 
-
         public void CheckCode()
         {
             if (codeText.text == validCode)
             {
                 keypadModel.tag = "Untagged";
+                keypadModel.layer = 0;
                 ValidCode();
             }
 
@@ -57,6 +57,12 @@ namespace keypadSystem
         public void SingleBeep()
         {
             KPAudioManager.instance.Play("KeypadBeep");
+        }
+
+        public void SetPassword()
+        {
+            validCode = GameMgr.GeneratePassword(characterLim);
+            //Debug.Log(validCode);
         }
     }
 }

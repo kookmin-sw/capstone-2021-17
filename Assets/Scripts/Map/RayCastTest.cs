@@ -44,7 +44,6 @@ public class RayCastTest : MonoBehaviour
                 {
                     rayCastedKeypad = raycasted_obj.GetComponent<KeypadItemController>();
                     rayCastedKeypad.ShowKeypad();
-                    raycasted_obj.layer = 0;
                 }
             }
 

@@ -804,7 +804,7 @@ GameObject:
   - component: {fileID: 5900680380188813308}
   - component: {fileID: 2126348286452679832}
   m_Layer: 5
-  m_Name: Keypad_Scifi_Canvas
+  m_Name: KeypadCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1672,7 +1672,7 @@ GameObject:
   - component: {fileID: 4183703504066909969}
   - component: {fileID: 1011932981951100438}
   m_Layer: 0
-  m_Name: Keypad_Scifi_Controller
+  m_Name: KeypadController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1716,7 +1716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac90ca79327a1b340b3f25872f62ee97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  validCode: 1234
+  validCode: 
   characterLim: 4
   firstClick: 0
   codeText: {fileID: 1389558093067965031}
