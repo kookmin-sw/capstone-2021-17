@@ -62,7 +62,7 @@ namespace keypadSystem
         public void SetPassword()
         {
             validCode = GameMgr.GeneratePassword(characterLim);
-            //Debug.Log(validCode);
+            Debug.Log(validCode);
         }
     }
 }

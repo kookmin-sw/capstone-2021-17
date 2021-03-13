@@ -58,7 +58,7 @@ public class GameMgr : MonoBehaviour
         for (int i = 0; i < objCount; i++)
         {
             keypadController = itemBox.GetComponentInChildren<KeypadController>();
-            keypadController.SetPassword();
+            //keypadController.SetPassword();
             Instantiate(itemBox, spawnPoints[randomPosition[i]].position, Quaternion.identity);
             //Debug.Log(randomPosition[i] + "위치에 아이템박스 생성");
         }
