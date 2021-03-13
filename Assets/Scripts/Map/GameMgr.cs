@@ -4,21 +4,16 @@ using UnityEngine;
 
 public class GameMgr : MonoBehaviour
 {
-    public Transform[] points;
-    public GameObject itembox;
-    public int boxcount;
-    public int spawnpointcount;
+    public Transform[] spawnPoints;
+    public GameObject itemBox;
+    public int boxCount;
+    public int spawnPointCount;
 
     void Start()
     {
-        List<Transform> temp_list = new List<Transform>(points);
-        int[] idx = getRandomInt(boxcount, 0, spawnpointcount);
-        for (int i=0; i<boxcount; i++)
-        {
-            Instantiate(itembox, temp_list[idx[i]].position, Quaternion.identity);
-            Debug.Log(idx[i]+"위치에 아이템박스 생성");
-            //temp_list.Remove(temp_list[idx[i]]);
-        }
+        int[] randomIndex = GetRandomInt(boxCount, 1, spawnPointCount+1);
+        spawnPoints = GetSpwanPoints("SpawnPoint");
+        SpawnObject(boxCount, randomIndex);
     }
 
     void Update()
@@ -26,7 +21,7 @@ public class GameMgr : MonoBehaviour
 
     }
 
-    public int[] getRandomInt(int length, int min, int max)
+    public int[] GetRandomInt(int length, int min, int max)
     {
         int[] randArray = new int[length];
         bool isSame;
@@ -50,5 +45,19 @@ public class GameMgr : MonoBehaviour
             }
         }
         return randArray;
+    }
+
+    public Transform[] GetSpwanPoints(string pointsName)
+    {
+        return GameObject.Find(pointsName).GetComponentsInChildren<Transform>();
+    }
+
+    public void SpawnObject(int objCount, int [] randomPosition)
+    {
+        for (int i = 0; i < objCount; i++)
+        {
+            Instantiate(itembox, spawnPoints[randomPosition[i]].position, Quaternion.identity);
+            Debug.Log(randomPosition[i] + "위치에 아이템박스 생성");
+        }
     }
 }
