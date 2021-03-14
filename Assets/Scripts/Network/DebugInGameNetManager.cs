@@ -32,13 +32,7 @@ public class DebugInGameNetManager : NetworkManager
         gameManager = GamePlay_MultiGameManager.instance;
     }
 
-    public override void OnServerAddPlayer(NetworkConnection conn)
-    {
-        RegisterStartPosition(gameManager.GetSpawnPoint());
-        base.OnServerAddPlayer(conn);
-        
-        
-    }
+
 
     
 

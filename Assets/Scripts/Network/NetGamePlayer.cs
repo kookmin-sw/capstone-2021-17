@@ -16,7 +16,21 @@ public class NetGamePlayer : NetworkBehaviour
     public ThirdPersonUserControl control;
     public NetworkIdentity identity;
 
+    private GamePlay_MultiGameManager gameManager;
 
+    private void Awake()
+    {
+        gameManager = GamePlay_MultiGameManager.instance;
+    }
+
+    private void Start()
+    {
+        gameObject.GetComponent<Transform>().position = gameManager.GetSpawnPoint().position;
+    }
+    private void FixedUpdate()
+    {
+        Debug.Log(gameObject.GetComponent<Transform>().position);
+    }
     public override void OnStartClient()
     {
         base.OnStartClient();

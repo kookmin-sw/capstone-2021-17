@@ -7,6 +7,7 @@ using UnityEngine;
  */
 public class GamePlay_MultiGameManager : MonoBehaviour
 {
+    
     public List<Transform> spawnpoints;
 
     public static GamePlay_MultiGameManager instance;

@@ -111,6 +111,7 @@ public class NetManager : NetworkRoomManager
     }
     
 
+
     // 모든 유저가 준비됐으면 StartButton준비
     public override void OnRoomServerPlayersReady()
     {
@@ -136,5 +137,12 @@ public class NetManager : NetworkRoomManager
             }
         }
     }
+
+    public override GameObject OnRoomServerCreateGamePlayer(NetworkConnection conn, GameObject roomPlayer)
+    {
+        return base.OnRoomServerCreateGamePlayer(conn, roomPlayer);
+    }
+    
+    
 
 }
