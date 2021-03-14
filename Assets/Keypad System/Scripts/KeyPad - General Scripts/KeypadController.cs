@@ -21,6 +21,8 @@ namespace keypadSystem
         [Header("Unlock Event")]
         [SerializeField] private UnityEvent unlock;
 
+        public Text quizInfo;
+
         public void CheckCode()
         {
             if (codeText.text == validCode)
@@ -62,7 +64,43 @@ namespace keypadSystem
         public void SetPassword()
         {
             validCode = GameMgr.GeneratePassword(characterLim);
-            Debug.Log(validCode);
+            //Debug.Log(validCode);
+        }
+
+        public int GetPassword()
+        {
+            string strValue = validCode;
+            int intValue = 0;
+            int.TryParse(strValue, out intValue);
+            return intValue;
+        }
+
+        public void GenerateQuiz()
+        {
+            string quizText = null;
+            int quizInt = GetPassword();
+            int plusNum = 0;
+            int minusNum = 0;
+            int resultNum = 0;
+            int randomCase=0;
+            randomCase = Random.Range(0, 2);
+            plusNum = Random.Range(0, quizInt);
+            minusNum = Random.Range(0, 9999 - quizInt);
+            
+            switch (randomCase)
+            {
+                case 0:
+                    resultNum = quizInt - plusNum;
+                    quizText = resultNum.ToString() + " + " + plusNum.ToString() + "= 0000";
+                    break;
+                case 1:
+                    resultNum = quizInt + minusNum;
+                    quizText = resultNum.ToString() + " - " + minusNum.ToString() + "= 0000";
+                    break;
+            }
+
+            quizInfo.text = quizText;
+            Debug.Log(quizInfo.text);
         }
     }
 }

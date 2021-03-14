@@ -8,13 +8,12 @@ public class GameMgr : MonoBehaviour
     public GameObject itemBox;
     public int boxCount;
     public int spawnPointCount;
-    private KeypadController keypadController;
 
     void Start()
     {
         int[] randomIndex = GetRandomInt(boxCount, 1, spawnPointCount+1);
         spawnPoints = GetSpwanPoints("SpawnPoint");
-        SpawnObject(boxCount, randomIndex);
+        SpawnObject(itemBox, boxCount, randomIndex);
     }
 
     void Update()
@@ -53,13 +52,11 @@ public class GameMgr : MonoBehaviour
         return GameObject.Find(pointsName).GetComponentsInChildren<Transform>();
     }
     
-    public void SpawnObject(int objCount, int [] randomPosition)
+    public void SpawnObject(GameObject gameObject, int objCount, int [] randomPosition)
     {
         for (int i = 0; i < objCount; i++)
         {
-            keypadController = itemBox.GetComponentInChildren<KeypadController>();
-            //keypadController.SetPassword();
-            Instantiate(itemBox, spawnPoints[randomPosition[i]].position, Quaternion.identity);
+            Instantiate(gameObject, spawnPoints[randomPosition[i]].position, Quaternion.identity);
             //Debug.Log(randomPosition[i] + "위치에 아이템박스 생성");
         }
     }
