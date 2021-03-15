@@ -28,6 +28,7 @@ public class WaitingRoom_MultiGameManager : MonoBehaviour
 
     }
 
+    //룸플레이어가 들어올경우 룸플레이어를 룸플레이어 공간에 옮기고 롬플레이어 공간은 비활성화
     public void AddPlayerToPlayerSpace(NetRoomPlayer newPlayer)
     {
         
@@ -49,6 +50,7 @@ public class WaitingRoom_MultiGameManager : MonoBehaviour
             }
         }
     }
+    //룸 플레이어가 나갈시 플레이어 공간을 다시 활성화
     public void RemovePlayerFromPlayerSpace(NetRoomPlayer roomPlayer)
     {
         foreach (PlayerSpace space in playerSpaces)
@@ -60,6 +62,8 @@ public class WaitingRoom_MultiGameManager : MonoBehaviour
             }
         }
     }
+
+    //NetRoomPlayer의 방장을 교체함. (순서순)
     public void ReplaceLeader(NetRoomPlayer roomPlayer)
     {
         foreach (NetRoomPlayer player in netManager.roomSlots)
@@ -73,6 +77,8 @@ public class WaitingRoom_MultiGameManager : MonoBehaviour
             }
         }
     }
+
+    //StartButtom은 방장에게만 보이게 함.
     public void AssignLeaderAuthority(NetRoomPlayer player)
     {
         startButton.AssignAuthority(player);

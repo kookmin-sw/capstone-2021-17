@@ -11,9 +11,7 @@ using System;
  *  
  *  GamePlay Scene에서 디버깅용으로 생성될 예정입니다. 오직 GamePlay Scene에서만 돌아가게 될겁니다.
  *  
- *  Start - WaitingRoom - GamePlay로 넘어가게 될경우 
- *  Start에서 부터 건너온 NetManager가 이 오브젝트를 파괴합니다. (dontDestroyOnLoad 속성으로 씬전환시에도 살아있음)
- *  따라서 정상적인 게임에서는 이 오브젝트가 작동하지 않습니다.
+ *  다른씬에서 NetworkManager가 넘어오면 이 오브젝트는 파괴됩니다.
  * 
  *  GamePlay Scene에서 작동하게 될경우 GUI가 뜨게되는데
  *  
