@@ -28,19 +28,14 @@ public class NetGamePlayer : NetworkBehaviour
            
         }
     }
+    
 
+    [ClientCallback]
     public void MoveCharacter(Vector3 move, bool crouch, bool jump)
     {
-        if (isLocalPlayer)
+        if (hasAuthority && isLocalPlayer)
         {
-            CmdMoveCharacter(move, crouch, jump);
+            character.Move(move, crouch, jump);
         }
-            
-    }
-
-    
-    public void CmdMoveCharacter(Vector3 move, bool crouch, bool jump)
-    {
-        character.Move(move, crouch, jump);
     }
 }
