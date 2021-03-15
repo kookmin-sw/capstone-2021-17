@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 226177845}
+  - component: {fileID: 226177846}
   m_Layer: 0
   m_Name: Point (1)
   m_TagString: Untagged
@@ -153,6 +154,18 @@ Transform:
   m_Father: {fileID: 1737847139}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &226177846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226177844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7640382b7498d8743aa81735d0968624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &257880896
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,6 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 257880897}
+  - component: {fileID: 257880898}
   m_Layer: 0
   m_Name: Point (2)
   m_TagString: Untagged
@@ -183,6 +197,18 @@ Transform:
   m_Father: {fileID: 1737847139}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &257880898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257880896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7640382b7498d8743aa81735d0968624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &309017583
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,6 +218,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 309017584}
+  - component: {fileID: 309017585}
   m_Layer: 0
   m_Name: Point (3)
   m_TagString: Untagged
@@ -213,6 +240,18 @@ Transform:
   m_Father: {fileID: 1737847139}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &309017585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309017583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7640382b7498d8743aa81735d0968624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &866225494
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,20 +397,20 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   runInBackground: 1
   autoStartServerBuild: 1
-  showDebugMessages: 0
+  showDebugMessages: 1
   serverTickRate: 30
-  offlineScene: 
-  onlineScene: 
+  offlineScene: Assets/Scenes/MultiTest/TstMulti_Ingame.unity
+  onlineScene: Assets/Scenes/MultiTest/TstMulti_Ingame.unity
   transport: {fileID: 964878530}
   networkAddress: localhost
   maxConnections: 4
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 1312443698825900963, guid: 6b074a91c8dbece4884393baf5b90f61,
+  playerPrefab: {fileID: 4192584066156467630, guid: 7f59b2a0f5f0c0d419acdceecd75f6f5,
     type: 3}
   autoCreatePlayer: 1
-  playerSpawnMethod: 0
+  playerSpawnMethod: 1
   spawnPrefabs: []
 --- !u!4 &964878532
 Transform:
@@ -411,6 +450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1389181249}
+  - component: {fileID: 1389181250}
   m_Layer: 0
   m_Name: Point
   m_TagString: Untagged
@@ -432,6 +472,18 @@ Transform:
   m_Father: {fileID: 1737847139}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1389181250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389181248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7640382b7498d8743aa81735d0968624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1719479987
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +493,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1719479990}
-  - component: {fileID: 1719479988}
+  - component: {fileID: 1719479989}
   m_Layer: 0
   m_Name: InGameManager
   m_TagString: Untagged
@@ -449,7 +501,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1719479988
+--- !u!114 &1719479989
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -458,14 +510,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1719479987}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa35519ba38091e4eb41f2ee5ab9cec6, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnpoints:
-  - {fileID: 1389181249}
-  - {fileID: 226177845}
-  - {fileID: 257880897}
-  - {fileID: 309017584}
+  sceneId: 4292152838
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!4 &1719479990
 Transform:
   m_ObjectHideFlags: 0

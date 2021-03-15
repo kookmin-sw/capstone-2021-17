@@ -16,28 +16,17 @@ public class NetGamePlayer : NetworkBehaviour
     public ThirdPersonUserControl control;
     public NetworkIdentity identity;
 
-    private GamePlay_MultiGameManager gameManager;
-
-    private void Awake()
-    {
-        gameManager = GamePlay_MultiGameManager.instance;
-    }
-
-    private void Start()
-    {
-        gameObject.GetComponent<Transform>().position = gameManager.GetSpawnPoint().position;
-    }
-    private void FixedUpdate()
-    {
-        Debug.Log(gameObject.GetComponent<Transform>().position);
-    }
+    
     public override void OnStartClient()
     {
-        base.OnStartClient();
-
-        identity = GetComponent<NetworkIdentity>();
-        
-        
+        if (isLocalPlayer)
+        {
+            if (thirdCamera.gameObject != null)
+            {
+                thirdCamera.gameObject.SetActive(true);
+            }
+           
+        }
     }
 
     public void MoveCharacter(Vector3 move, bool crouch, bool jump)
@@ -49,10 +38,9 @@ public class NetGamePlayer : NetworkBehaviour
             
     }
 
-    [Command] // Server에서 실행하게끔 하는 attribute
+    
     public void CmdMoveCharacter(Vector3 move, bool crouch, bool jump)
     {
-
         character.Move(move, crouch, jump);
     }
 }

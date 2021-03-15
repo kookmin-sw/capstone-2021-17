@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
+using System;
 
 /*  인게임중에서의 NetManger입니다. 디버깅용입니다.
  *  
@@ -25,18 +26,6 @@ using UnityEngine;
  */ 
 public class DebugInGameNetManager : NetworkManager
 {
-    private GamePlay_MultiGameManager gameManager;
-
-    public override void OnStartClient()
-    {
-        gameManager = GamePlay_MultiGameManager.instance;
-    }
-
-
-
     
-
-    
-
 
 }

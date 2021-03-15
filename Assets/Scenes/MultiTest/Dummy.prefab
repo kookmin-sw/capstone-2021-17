@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 6302271545443291170}
   - component: {fileID: 4657407328905351682}
   - component: {fileID: 323316277240205815}
-  - component: {fileID: -5030295569311103033}
+  - component: {fileID: -3853996517822662005}
+  - component: {fileID: 1840290955398231694}
+  - component: {fileID: 3492277129019686731}
   m_Layer: 0
   m_Name: Dummy
   m_TagString: Untagged
@@ -114,7 +116,7 @@ MonoBehaviour:
   serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
---- !u!114 &-5030295569311103033
+--- !u!114 &-3853996517822662005
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,12 +125,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 4192584066156467630}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53a4f994b5b741a4f8f0b3846808079d, type: 3}
+  m_Script: {fileID: 11500000, guid: b30ab64b55b3f5f46ad71e7946b921f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  thirdCamera: {fileID: 0}
-  character: {fileID: 0}
-  control: {fileID: 0}
-  identity: {fileID: 0}
+  controller: {fileID: 3492277129019686731}
+--- !u!114 &1840290955398231694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4192584066156467630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01
+--- !u!143 &3492277129019686731
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4192584066156467630}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
