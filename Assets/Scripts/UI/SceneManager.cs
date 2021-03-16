@@ -10,37 +10,42 @@ public class SceneManager : MonoBehaviour
     bool onoff;
     bool onoff2;
     //Start, WaitingRoom,Opening, GamePlay
-    public void ChangeStartScene(){
+    public void ChangeStartScene()
+    {
         LoadingManager.LoadScene("Start");
     }
-    public void ChangeWaitingRoomScene(){
+    public void ChangeWaitingRoomScene()
+    {
         LoadingManager.LoadScene("Loading");
     }
-    public void ChangeOpeningScene(){
+    public void ChangeOpeningScene()
+    {
         LoadingManager.LoadScene("Opening");
     }
-    public void ChangeGamePlayScene(){
+    public void ChangeGamePlayScene()
+    {
         LoadingManager.LoadScene("GamePlay");
     }
 
     //버튼 스크립트
     //게임 종료
-    public void GameExit(){
+    public void GameExit()
+    {
         Debug.Log("Game Exit");
         Application.Quit();
     }
     //버튼 onoff
-    public void OnOff(){
-        
-        if(HowTo.activeSelf==true){
+    public void OnOff()
+    {
+        if(HowTo.activeSelf==true)
+        {
             HowTo.SetActive(false);
             Name.SetActive(true);
         }
-        else{
+        else
+        {
             HowTo.SetActive(true);
             Name.SetActive(false);
         }
-
     }
-
 }
