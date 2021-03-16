@@ -49,17 +49,11 @@ public class NetManager : NetworkRoomManager
      * ---------------------- Start ---------------------
      * StartScene에서의 입력 처리들은 Start_MultiGameManager가 
      * Netmanager의 메소드를 호출하는 방식으로 이루어집니다.
-     * netManager.StartClient() , netManager.StartHost() 이런 방식으로 합니다.
+     * netManager.StartClient() , netManager.StartHost()
      * 
      * Start_MultiGameManger.cs 파일 한번 참고해주시면 좋을것같습니다.
      * 참고로 Start_MultiGameManger.cs 스크립트는 MainManager 오브젝트에 달아놨습니다.
      * 
-     * 서버의 상태, 버튼을 나타내는 디버깅용 GUI가 뜰텐데 
-     * 이거 끄시려면 NetworkManager의 오브젝트에서 
-     *  . NetworkManagerHUD의 ShowGUI
-     *  . NetManager의 SHOW ROOM GUI 체크 풀으시면 됩니다.
-     *  
-     *  
 
 
 

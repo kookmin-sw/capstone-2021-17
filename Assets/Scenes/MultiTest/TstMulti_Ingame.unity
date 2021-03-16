@@ -397,7 +397,7 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   runInBackground: 1
   autoStartServerBuild: 1
-  showDebugMessages: 1
+  showDebugMessages: 0
   serverTickRate: 30
   offlineScene: Assets/Scenes/MultiTest/TstMulti_Ingame.unity
   onlineScene: Assets/Scenes/MultiTest/TstMulti_Ingame.unity
@@ -407,7 +407,7 @@ MonoBehaviour:
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 4192584066156467630, guid: 7f59b2a0f5f0c0d419acdceecd75f6f5,
+  playerPrefab: {fileID: 3304934031543033370, guid: 0f976e029d63746458b4f848e0c4aeaf,
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 1

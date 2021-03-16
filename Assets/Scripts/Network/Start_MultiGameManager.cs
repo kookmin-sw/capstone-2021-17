@@ -30,6 +30,8 @@ public class Start_MultiGameManager: MonoBehaviour
         PlayerPrefs.SetString("nickname", nameField.text);
     }
 
+
+    //클라이언트로 시작
     public void JoinRoom()
     {
         SaveAddress();
@@ -38,6 +40,8 @@ public class Start_MultiGameManager: MonoBehaviour
 
         netManager.StartClient();
     }
+
+    //호스트로 시작 (추후에 방 만드는 기능이 생기면 변화가 필요함)
     public void CreateRoom()
     {
         SaveNickName();
