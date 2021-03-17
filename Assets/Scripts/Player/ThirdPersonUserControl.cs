@@ -6,11 +6,13 @@ using UnityStandardAssets.CrossPlatformInput;
 [RequireComponent(typeof(ThirdPersonCharacter))]
 public class ThirdPersonUserControl : MonoBehaviour
 {
-    private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
-    public Transform m_Cam;                  // A reference to the main camera in the scenes transform
-    public Vector3 m_CamForward;             // The current forward direction of the camera
-    private Vector3 m_Move;
-    private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
+    private ThirdPersonCharacter Character; // A reference to the ThirdPersonCharacter on the object
+    public Transform Cam;                  // A reference to the main camera in the scenes transform
+    public Vector3 CamForward;
+    public int HealthCheck;             // The current forward direction of the camera
+    private Vector3 Move;
+    private bool Jump;
+                     // the world-relative desired move direction, calculated from the camForward and user input.
 
     [SerializeField]
     private NetGamePlayer NetPlayer;
@@ -18,21 +20,21 @@ public class ThirdPersonUserControl : MonoBehaviour
     private void Start()
     {
         // get the third person character ( this should never be null due to require component )
-        m_Character = GetComponent<ThirdPersonCharacter>();
+        Character = GetComponent<ThirdPersonCharacter>();
     }
 
     private void Update()
     {
-        if (!m_Jump)
+        if (!Jump)
         {
-            m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+            Jump = CrossPlatformInputManager.GetButtonDown("Jump");
         }
         LookAround();
     }
     private void LookAround()
     {
         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        Vector3 camAngle = m_Cam.rotation.eulerAngles;
+        Vector3 camAngle = Cam.rotation.eulerAngles;
 
         float x = camAngle.x - mouseDelta.y;
         if (x < 180f)
@@ -43,7 +45,7 @@ public class ThirdPersonUserControl : MonoBehaviour
         {
             x = Mathf.Clamp(x, 335f, 361f);
         }
-        m_Cam.rotation = Quaternion.Euler(x, camAngle.y + mouseDelta.x, camAngle.z);
+        Cam.rotation = Quaternion.Euler(x, camAngle.y + mouseDelta.x, camAngle.z);
     }
 
 
@@ -57,41 +59,53 @@ public class ThirdPersonUserControl : MonoBehaviour
         bool crouch = Input.GetKey(KeyCode.C);
 
         // calculate move direction to pass to character
-        if (m_Cam != null)
+        if (Cam != null)
         {
 
             // calculate camera relative direction to move:
             // m_CamForward = new Vector3(m_Cam.forward.x, 0, m_Cam.forward.z).normalized;
-            m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
-            m_Move = v * m_CamForward + h * m_Cam.right;
+            CamForward = Vector3.Scale(Cam.forward, new Vector3(1, 0, 1)).normalized;
+            Move = v * CamForward + h * Cam.right;
         }
         else
         {
             // we use world-relative directions in the case of no main camera
-            m_Move = v * Vector3.forward + h * Vector3.right;
+            Move = v * Vector3.forward + h * Vector3.right;
             Debug.Log(v);
 
         }
-#if !MOBILE_INPUT
+
         // walk speed multiplier
-        if (Input.GetKey(KeyCode.LeftShift)) m_Move *= 0.7f;
+        if (Input.GetKey(KeyCode.LeftShift))
+        { 
+            Move *= 0.7f;
+        }
+        if (Input.GetKeyDown(KeyCode.B)) 
+        {
+            GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().Hit();
+        }
 
-
-
-#endif
+        ChangeSpeed(HealthCheck);
 
         // pass all parameters to the character control script
         
         if(NetPlayer != null)
         {
-            NetPlayer.MoveCharacter(m_Move, crouch, m_Jump);
+            NetPlayer.MoveCharacter(Move, crouch, Jump);
         }
         else
         {
-            m_Character.Move(m_Move, crouch, m_Jump);
+            Character.Move(Move, crouch, Jump);
         }
 
-        m_Jump = false;
+        Jump = false;
+    }
+    public void ChangeSpeed(int healthcheck)
+    {
+        if(healthcheck == 1)
+        {
+            Move*=0.5f;
+        }
     }
 }
 
