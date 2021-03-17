@@ -5001,6 +5001,8 @@ MonoBehaviour:
   _allPlayersReady: 0
   roomSlots: []
   clientIndex: 0
+  loadingManagerPrefab: {fileID: 3825596481130646103, guid: f8df0c5ba34cebb4ebdc953c12376662,
+    type: 3}
 --- !u!4 &2124268454
 Transform:
   m_ObjectHideFlags: 0

@@ -9,12 +9,30 @@ public class LoadingManager : MonoBehaviour{
     [SerializeField]
     Image progressBar;
 
+    [SerializeField]
+    bool IsLoadAtStart = true;
+
+    private AsyncOperation op;
+
     private void Start()
+    {
+        if (IsLoadAtStart)
+        {
+            StartLoading();
+        }
+    }
+
+    public void StartLoading()
     {
         StartCoroutine(LoadScene());
     }
 
-//로딩씬을 다음씬과 연결
+    public void SetAsyncOperation(AsyncOperation op)
+    {
+        this.op = op;
+    }
+
+    //로딩씬을 다음씬과 연결
     public static void LoadScene(string sceneName)
     {
         nextScene = sceneName;
@@ -25,7 +43,10 @@ public class LoadingManager : MonoBehaviour{
     IEnumerator LoadScene()
     {
         yield return null;
-        AsyncOperation op = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(nextScene);
+        if (op == null)
+        {
+            op = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(nextScene);
+        }
         op.allowSceneActivation = false;
         float timer = 0.0f;
 

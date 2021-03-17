@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using UnityEngine.Serialization;
 using Mirror;
 
+using SceneMg = UnityEngine.SceneManagement;
 /*   NetManager는 NetworkRoomManager 클래스를 상속하였습니다.
  *   Start - WaitingRoom - GamePlay 씬으로 이어지는 대부분의 네트워크 과정을 처리하며
  *   씬 전환도 합니다.
@@ -34,6 +36,10 @@ public class NetManager : NetworkRoomManager
     public static int PLAYER_MAXNUM = 4;
 
     public static NetManager instance;
+
+    [SerializeField]
+    [FormerlySerializedAs("LoadingManagerPrefab")]
+    private GameObject loadingManagerPrefab;
 
 
     //singleton
@@ -136,7 +142,50 @@ public class NetManager : NetworkRoomManager
     {
         return base.OnRoomServerCreateGamePlayer(conn, roomPlayer);
     }
-    
-    
 
+
+    public override void ServerChangeScene(string newSceneName)
+    {
+        
+        NetworkServer.SetAllClientsNotReady();
+        networkSceneName = newSceneName;
+
+        OnServerChangeScene(newSceneName);
+
+        Transport.activeTransport.enabled = false;
+
+        LoadScene(newSceneName);
+
+        // ServerChangeScene can be called when stopping the server
+        // when this happens the server is not active so does not need to tell clients about the change
+        if (NetworkServer.active)
+        {
+            // notify all clients about the new scene
+            NetworkServer.SendToAll(new SceneMessage
+            {
+                sceneName = newSceneName,
+                customHandling = true
+            });
+        }
+
+        startPositionIndex = 0;
+        startPositions.Clear();
+    }
+
+    public override void OnClientChangeScene(string newSceneName, SceneOperation sceneOperation, bool customHandling)
+    {
+        //base.OnClientChangeScene(newSceneName, sceneOperation, customHandling);
+        LoadScene(newSceneName);
+
+    }
+    void LoadScene(string newSceneName)
+    {
+        LoadingManager loadingManager = Instantiate(loadingManagerPrefab).GetComponent<LoadingManager>();
+
+        loadingSceneAsync = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(newSceneName);
+
+        loadingManager.SetAsyncOperation(loadingSceneAsync);
+
+        loadingManager.StartLoading();
+    }
 }
