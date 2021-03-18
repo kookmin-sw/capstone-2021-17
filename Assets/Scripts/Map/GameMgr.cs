@@ -4,16 +4,17 @@ using keypadSystem;
 
 public class GameMgr : MonoBehaviour
 {
-    public Transform[] spawnPoints;
+    public Transform[] boxspawnPoints;
     public GameObject itemBox;
     public int boxCount;
     public int spawnPointCount;
 
     void Start()
     {
+        //아이템박스 생성
         int[] randomIndex = GetRandomInt(boxCount, 1, spawnPointCount+1);
-        spawnPoints = GetSpwanPoints("SpawnPoint");
-        SpawnObject(itemBox, boxCount, randomIndex);
+        boxspawnPoints = GetSpwanPoints("SpawnPoint");
+        SpawnObject(itemBox, boxspawnPoints, boxCount, randomIndex);
     }
 
     void Update()
@@ -52,7 +53,7 @@ public class GameMgr : MonoBehaviour
         return GameObject.Find(pointsName).GetComponentsInChildren<Transform>();
     }
     
-    public void SpawnObject(GameObject gameObject, int objCount, int [] randomPosition)
+    public void SpawnObject(GameObject gameObject, Transform[] spawnPoints, int objCount, int [] randomPosition)
     {
         for (int i = 0; i < objCount; i++)
         {

@@ -100,7 +100,7 @@ namespace keypadSystem
             }
 
             quizInfo.text = quizText;
-            Debug.Log(quizInfo.text);
+            //Debug.Log(quizInfo.text);
         }
     }
 }

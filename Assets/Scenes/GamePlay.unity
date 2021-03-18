@@ -18576,6 +18576,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1699530734}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &700185558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700185557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c9a805e76d539e4399f7741805c0342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHP: 1
+  maxHP: 2
 --- !u!1001 &710077418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28768,7 +28782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ed2f29a7ac329419292e02a3ba4198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints: []
+  boxspawnPoints: []
   itemBox: {fileID: 1038162653935764, guid: 0462052c0393d654185c9da4c8e6e072, type: 3}
   boxCount: 13
   spawnPointCount: 13
@@ -49759,7 +49773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ed2f29a7ac329419292e02a3ba4198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints: []
+  boxspawnPoints: []
   itemBox: {fileID: 0}
   boxCount: 0
   spawnPointCount: 0
