@@ -35,13 +35,15 @@ public class ThirdPersonCharacter : MonoBehaviour
     bool Crouching;
     Vector3 PresentMove;
 
+    public bool IsHit;
+    public bool IsDie;
+
     public enum State
     {
         Idle,
         Crouch,
         Move,
         Jump,
-        Attack,
         Hit,
         Die
     }
@@ -73,6 +75,14 @@ public class ThirdPersonCharacter : MonoBehaviour
         else if (jump==true)
         {
             state=State.Jump;
+        }
+        else if (IsHit==true)
+        {
+            state=State.Hit;
+        }
+        else if (IsDie==true)
+        {
+            state=State.Die;
         }
         else
         {
@@ -114,7 +124,10 @@ public class ThirdPersonCharacter : MonoBehaviour
     {
         if (IsGrounded && crouch)
         {
-            if (Crouching) return;
+            if (Crouching) 
+            {
+                return;
+            }
             Capsule.height = Capsule.height / 2f;
             Capsule.center = Capsule.center / 2f;
             Crouching = true;
@@ -156,6 +169,8 @@ public class ThirdPersonCharacter : MonoBehaviour
         //m_Animator.SetFloat("Turn", m_TurnAmount);
         PlayerAnimator.SetBool("Crouch", Crouching);
         PlayerAnimator.SetBool("OnGround", IsGrounded);
+        PlayerAnimator.SetBool("Hit", IsHit);
+        PlayerAnimator.SetBool("Die", IsDie);
         if (!IsGrounded)
         {
             PlayerAnimator.SetFloat("Jump", PlayerRigidbody.velocity.y);
@@ -236,10 +251,7 @@ public class ThirdPersonCharacter : MonoBehaviour
     void CheckGroundStatus()
     {
         RaycastHit hitInfo;
-#if UNITY_EDITOR
-        // helper to visualise the ground check ray in the scene view
         Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * GroundCheckDistance));
-#endif
         // 0.1f is a small offset to start the ray from inside the character
         // it is also good to note that the transform position in the sample assets is at the base of the character
         if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, GroundCheckDistance))

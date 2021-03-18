@@ -80,7 +80,7 @@ public class ThirdPersonUserControl : MonoBehaviour
         { 
             Move *= 0.7f;
         }
-        if (Input.GetKeyDown(KeyCode.B)) 
+        if (Input.GetKeyUp(KeyCode.B)) 
         {
             GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().Hit();
         }
@@ -102,10 +102,7 @@ public class ThirdPersonUserControl : MonoBehaviour
     }
     public void ChangeSpeed(int healthcheck)
     {
-        if(healthcheck == 1)
-        {
-            Move*=0.5f;
-        }
+
     }
 }
 

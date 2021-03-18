@@ -12,37 +12,40 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         GameObject.FindWithTag("Player").GetComponent<ThirdPersonUserControl>().HealthCheck=Health;
+        PlayerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        print(Health);
+       // print(Health);
     }
 
     public void Hit()
     {
         Health -= 1;
-        if(Health==0)
+        if(Health==1)
+        {
+            GameObject.FindWithTag("Player").GetComponent<ThirdPersonUserControl>().HealthCheck=Health;
+            GameObject.FindWithTag("Player").GetComponent<ThirdPersonCharacter>().IsHit=true;            
+        }
+        else if (Health==0)
         {
             Die();
-        }
-        GameObject.FindWithTag("Player").GetComponent<ThirdPersonUserControl>().HealthCheck=Health;
-        //IsHit=true;
-
-       // PlayerAnimator.SetBool("Hit", IsHit);
-
+        }        
     }
 
     public void Heal()
     {
         Health += 1;
         GameObject.FindWithTag("Player").GetComponent<ThirdPersonUserControl>().HealthCheck=Health;
+        GameObject.FindWithTag("Player").GetComponent<ThirdPersonCharacter>().IsHit=false;
     }
 
     public void Die()
     {
-        Health=0;
+        GameObject.FindWithTag("Player").GetComponent<ThirdPersonUserControl>().HealthCheck=Health;
+        GameObject.FindWithTag("Player").GetComponent<ThirdPersonCharacter>().IsDie=true;
 
     }
 }
