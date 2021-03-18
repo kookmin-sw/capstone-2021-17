@@ -5,6 +5,7 @@ using keypadSystem;
 public class RayCastTest : MonoBehaviour
 {
     private GameObject raycasted_obj;
+    private GameObject player_obj;
 
     private int rayLength = 2;
     public LayerMask layerMaskInteract;
@@ -19,7 +20,7 @@ public class RayCastTest : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
-
+        player_obj = transform.parent.gameObject;
         if (Physics.Raycast(transform.position, fwd, out hit, rayLength, layerMaskInteract.value))
         {
             if (hit.collider.CompareTag("Lever"))
@@ -55,6 +56,7 @@ public class RayCastTest : MonoBehaviour
                 if (Input.GetKeyDown("e"))
                 {
                     raycasted_obj.GetComponent<HealPack>().GetHealObject(raycasted_obj);
+                    raycasted_obj.GetComponent<HealPack>().GetPlayerObject(player_obj);
                     raycasted_obj.GetComponent<HealPack>().UseHealPack();
                     //raycasted_obj.SetActive(false);
                 }

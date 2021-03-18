@@ -10,7 +10,6 @@ public class HealPack : MonoBehaviour
 
     public void UseHealPack()
     {
-        testPlayer = GameObject.Find("test_player");
         playerHealth = testPlayer.GetComponent<HealTest>();
         HealPlayer();
     }
@@ -37,5 +36,10 @@ public class HealPack : MonoBehaviour
     public void GetHealObject(GameObject gameObj)
     {
         healPack = gameObj;
+    }
+
+    public void GetPlayerObject(GameObject gameObj)
+    {
+        testPlayer = gameObj;
     }
 }
