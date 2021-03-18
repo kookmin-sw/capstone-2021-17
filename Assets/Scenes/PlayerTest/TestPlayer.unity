@@ -15470,7 +15470,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526287650}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.020000458, y: 1.0100001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -54763,6 +54763,8 @@ MonoBehaviour:
   MoveSpeedMultiplier: 2
   AnimSpeedMultiplier: 1
   GroundCheckDistance: 0.3
+  IsHit: 0
+  IsDie: 0
   state: 0
 --- !u!114 &114396156466979823
 MonoBehaviour:
