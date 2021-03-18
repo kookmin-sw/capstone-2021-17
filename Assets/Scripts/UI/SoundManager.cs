@@ -6,7 +6,7 @@ public class SoundManager : MonoBehaviour
 {
 
     public AudioClip[] sound;
-    AudioSource audioSource;
+    private AudioSource audioSource;
 
     void Awake()
     {
