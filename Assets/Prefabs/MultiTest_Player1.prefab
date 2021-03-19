@@ -703,9 +703,10 @@ GameObject:
   - component: {fileID: -7007113216955557936}
   - component: {fileID: 686575068850007455}
   - component: {fileID: 1135591809798163695}
+  - component: {fileID: 2368182709319004134}
   m_Layer: 0
   m_Name: MultiTest_Player1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -758,10 +759,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  Health: 0
   thirdCamera: {fileID: 3304256032176961895}
   character: {fileID: 3192513881159015674}
   control: {fileID: 3192341749932857772}
-  identity: {fileID: 1950340411782050673}
+  playerHealth: {fileID: 2368182709319004134}
 --- !u!95 &3210892039109543904
 Animator:
   serializedVersion: 3
@@ -902,6 +904,19 @@ MonoBehaviour:
   lerpVelocityAmount: 0.5
   lerpPositionAmount: 0.5
   clientAuthority: 1
+--- !u!114 &2368182709319004134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3304934031543033370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2e389b0f3444e349992a07f4b5377eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 2
 --- !u!1 &3304934211173772148
 GameObject:
   m_ObjectHideFlags: 0

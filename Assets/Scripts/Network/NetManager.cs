@@ -91,8 +91,8 @@ public class NetManager : NetworkRoomManager
     public override GameObject OnRoomServerCreateRoomPlayer(NetworkConnection conn)
     {
         NetRoomPlayer newPlayer = (NetRoomPlayer)Instantiate(roomPlayerPrefab);
-        newPlayer.nickname = PlayerPrefs.GetString("nickname");
-        if (roomSlots.Count == 0) newPlayer.isLeader = true;
+        newPlayer.Nickname = PlayerPrefs.GetString("nickname");
+        if (roomSlots.Count == 0) newPlayer.IsLeader = true;
 
         return newPlayer.gameObject;
     }
@@ -117,7 +117,7 @@ public class NetManager : NetworkRoomManager
     {
         foreach (NetRoomPlayer player in roomSlots)
         {
-            if (player.isLeader)
+            if (player.IsLeader)
             {
                 player.AcivateStartButton();
                 break;
@@ -130,7 +130,7 @@ public class NetManager : NetworkRoomManager
     {
         foreach (NetRoomPlayer player in roomSlots)
         {
-            if (player.isLeader)
+            if (player.IsLeader)
             {
                 player.DeActivateStartButton();
                 break;
@@ -140,7 +140,17 @@ public class NetManager : NetworkRoomManager
 
     public override GameObject OnRoomServerCreateGamePlayer(NetworkConnection conn, GameObject roomPlayer)
     {
-        return base.OnRoomServerCreateGamePlayer(conn, roomPlayer);
+        Transform startPos = GetStartPosition();
+        GameObject gamePlayer = startPos != null
+            ? Instantiate(playerPrefab, startPos.position, startPos.rotation)
+            : Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+
+        NetGamePlayer netGamePlayer = gamePlayer.GetComponent<NetGamePlayer>();
+        NetRoomPlayer netRoomPlayer = roomPlayer.GetComponent<NetRoomPlayer>();
+        netGamePlayer.Nickname = netRoomPlayer.Nickname;
+        netGamePlayer.isLeader = netRoomPlayer.IsLeader;
+
+        return netGamePlayer.gameObject;
     }
 
 

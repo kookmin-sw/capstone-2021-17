@@ -10,12 +10,15 @@ public class NetRoomPlayer : NetworkRoomPlayer
 {
 
     [SyncVar]
-    public string nickname;
+    public string Nickname;
 
     [SyncVar]
-    public bool isLeader;
+    public bool IsLeader;
 
     public RectTransform Rect_Trans;
+
+    public string NotReady_msg = "Not Ready";
+    public string Ready_msg = "Ready";
 
     [SerializeField]
     private TMP_Text Nickname_txt; // 에디터 내에서 지정
@@ -24,8 +27,7 @@ public class NetRoomPlayer : NetworkRoomPlayer
     [SerializeField]
     private TMP_Text Readystatus_txt; // 에디터 내에서 지정
 
-    public string NotReady_msg = "Not Ready";
-    public string Ready_msg = "Ready";
+    
 
     private NetManager netManager;
     WaitingRoom_MultiGameManager gameManager;
@@ -45,7 +47,7 @@ public class NetRoomPlayer : NetworkRoomPlayer
         
         gameManager.AddPlayerToPlayerSpace(this);
 
-        if (isLeader)
+        if (IsLeader)
         {
             gameManager.AssignLeaderAuthority(this);
         }
@@ -69,7 +71,7 @@ public class NetRoomPlayer : NetworkRoomPlayer
         {
             gameManager.RemovePlayerFromPlayerSpace(this);
         }
-        if (this.isLeader)
+        if (this.IsLeader)
         {
             ReplaceLeader(this);
         }
@@ -88,9 +90,9 @@ public class NetRoomPlayer : NetworkRoomPlayer
     {
         foreach (NetRoomPlayer player in netManager.roomSlots)
         {
-            if (player != roomPlayer && !player.isLeader)
+            if (player != roomPlayer && !player.IsLeader)
             {
-                player.isLeader = true;
+                player.IsLeader = true;
                 player.setNicknameText();
                 
 
@@ -137,13 +139,13 @@ public class NetRoomPlayer : NetworkRoomPlayer
     }
     public void setNicknameText()
     {  
-        if (!isLeader)
+        if (!IsLeader)
         {
-            Nickname_txt.text = nickname;
+            Nickname_txt.text = Nickname;
         }
         else // if(isLeader)
         {
-            Nickname_txt.text = nickname + "\n <LEADER>";
+            Nickname_txt.text = Nickname + "\n <LEADER>";
         }
     }
 

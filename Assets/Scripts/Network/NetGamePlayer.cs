@@ -10,15 +10,40 @@ using Mirror;
 
 public class NetGamePlayer : NetworkBehaviour
 {
+    [SyncVar]
+    public int Health;
 
-    public ThirdCamera thirdCamera;
-    public ThirdPersonCharacter character;
-    public ThirdPersonUserControl control;
-    public NetworkIdentity identity;
+    [SyncVar]
+    public string Nickname;
 
-    
+    [SyncVar]
+    public bool isLeader;
+
+    [SyncVar]
+    public ThirdPersonCharacter.State State;
+
+    [SerializeField]
+    private ThirdCamera thirdCamera;
+    [SerializeField]
+    private ThirdPersonCharacter character;
+    [SerializeField]
+    private ThirdPersonUserControl control;
+    [SerializeField]
+    private PlayerHealth playerHealth;
+
+    InGame_MultiGameManager multiGameManager;
+
+    private void Awake()
+    {
+        multiGameManager = InGame_MultiGameManager.instance;
+        Health = playerHealth.Health;
+        State = character.state;
+    }
+
     public override void OnStartClient()
     {
+        multiGameManager.Players.Add(this);
+
         if (isLocalPlayer)
         {
             if (thirdCamera.gameObject != null)
@@ -38,4 +63,22 @@ public class NetGamePlayer : NetworkBehaviour
             character.Move(move, crouch, jump);
         }
     }
+
+    [Command]
+    public void CmdChangeHealth(int h)
+    {
+        Health = h;
+    }
+
+    [Command]
+    public void CmdChangeState(ThirdPersonCharacter.State state)
+    {
+        State = state;
+    }
+
+
+
+    
+
+    
 }
