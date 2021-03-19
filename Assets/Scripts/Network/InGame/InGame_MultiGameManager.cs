@@ -1,21 +1,18 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InGame_MultiGameManager : MonoBehaviour
 {
-    public List<NetGamePlayer> Players = new List<NetGamePlayer>(NetManager.PLAYER_MAXNUM);
+    public static List<NetGamePlayer> Players = new List<NetGamePlayer>(NetManager.PLAYER_MAXNUM);
 
-    public static InGame_MultiGameManager instance;
 
-    private void Awake()
-    {
-        instance = null;
-    }
 
-    /***************** µ¥ÀÌÅÍ Àü´Ş *****************/
+    /***************** ë°ì´í„° ì „ë‹¬ *****************/
 
-    public List<int> GetPlayersHealth()
+
+    // ì²´ë ¥ ì „ë‹¬
+    public static List<int> GetPlayersHealth()
     {
         List<int> healths = new List<int>();
         foreach(NetGamePlayer player in Players)
@@ -26,7 +23,8 @@ public class InGame_MultiGameManager : MonoBehaviour
         return healths;
     }
 
-    public List<string> GetPlayersNickname()
+    //ì´ë¦„ ì „ë‹¬
+    public static List<string> GetPlayersNickname()
     {
         List<string> nicknames = new List<string>();
         foreach (NetGamePlayer player in Players)
@@ -37,7 +35,9 @@ public class InGame_MultiGameManager : MonoBehaviour
         return nicknames;
     }
 
-    public List<ThirdPersonCharacter.State> GetPlayersState()
+
+    //í”Œë ˆì´ì–´ ìƒíƒœ ì „ë‹¬
+    public static List<ThirdPersonCharacter.State> GetPlayersState()
     {
         List<ThirdPersonCharacter.State> states = new List<ThirdPersonCharacter.State>();
         foreach (NetGamePlayer player in Players)
@@ -48,8 +48,8 @@ public class InGame_MultiGameManager : MonoBehaviour
     }
 
 
-    // ´©°¡ ¹æÀåÀÎÁö ¾Ë·ÁÁÖ´Â ±â´É. ÇÊ¿äÇÒÁö?
-    public bool isPlayerLeader(int index)
+    // ëˆ„ê°€ ë°©ì¥ì¸ì§€ ì•Œë ¤ì£¼ëŠ” ê¸°ëŠ¥. í•„ìš”í• ì§€?
+    public static bool isPlayerLeader(int index)
     {
         if (Players[index].isLeader)
         {

@@ -31,18 +31,15 @@ public class NetGamePlayer : NetworkBehaviour
     [SerializeField]
     private PlayerHealth playerHealth;
 
-    InGame_MultiGameManager multiGameManager;
-
     private void Awake()
     {
-        multiGameManager = InGame_MultiGameManager.instance;
         Health = playerHealth.Health;
         State = character.state;
     }
 
     public override void OnStartClient()
     {
-        multiGameManager.Players.Add(this);
+        InGame_MultiGameManager.Players.Add(this);
 
         if (isLocalPlayer)
         {
