@@ -702,7 +702,7 @@ GameObject:
   - component: {fileID: 3192513881159015674}
   - component: {fileID: -7007113216955557936}
   - component: {fileID: 686575068850007455}
-  - component: {fileID: 3601126279249997987}
+  - component: {fileID: 1135591809798163695}
   m_Layer: 0
   m_Name: MultiTest_Player1
   m_TagString: Untagged
@@ -790,7 +790,7 @@ Rigidbody:
   m_GameObject: {fileID: 3304934031543033370}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 2
+  m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -884,7 +884,7 @@ MonoBehaviour:
   syncInterval: 0.1
   clientAuthority: 1
   animator: {fileID: 3210892039109543904}
---- !u!114 &3601126279249997987
+--- !u!114 &1135591809798163695
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -893,19 +893,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3304934031543033370}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83392ae5c1b731446909f252fd494ae4, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f032128052c95a46afb0ddd97d994cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
   target: {fileID: 3250356141767815248}
+  lerpVelocityAmount: 0.5
+  lerpPositionAmount: 0.5
   clientAuthority: 1
-  syncVelocity: 1
-  clearVelocity: 0
-  velocitySensitivity: 0.1
-  syncAngularVelocity: 1
-  clearAngularVelocity: 0
-  angularVelocitySensitivity: 0.01
 --- !u!1 &3304934211173772148
 GameObject:
   m_ObjectHideFlags: 0
