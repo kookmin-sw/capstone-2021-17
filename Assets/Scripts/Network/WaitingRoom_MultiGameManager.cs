@@ -15,7 +15,9 @@ public class WaitingRoom_MultiGameManager : MonoBehaviour
     private NetManager netManager;
     public static WaitingRoom_MultiGameManager instance;
     public PlayerSpace[] playerSpaces = new PlayerSpace[NetManager.PLAYER_MAXNUM];
-    public StartButton startButton;
+
+    [SerializeField]
+    private StartButton startButton;
 
 
     private void Awake()
@@ -53,6 +55,10 @@ public class WaitingRoom_MultiGameManager : MonoBehaviour
     //룸 플레이어가 나갈시 플레이어 공간을 다시 활성화
     public void RemovePlayerFromPlayerSpace(NetRoomPlayer roomPlayer)
     {
+        if (!NetManager.IsSceneActive(netManager.RoomScene))
+        {
+            return;
+        }
         foreach (PlayerSpace space in playerSpaces)
         {
             if(space.player.gameObject == roomPlayer.gameObject)
@@ -63,28 +69,34 @@ public class WaitingRoom_MultiGameManager : MonoBehaviour
         }
     }
 
-    //NetRoomPlayer의 방장을 교체함. (순서순)
-    public void ReplaceLeader(NetRoomPlayer roomPlayer)
-    {
-        foreach (NetRoomPlayer player in netManager.roomSlots)
-        {
-            if(player != roomPlayer && !player.isLeader)
-            {
-                player.isLeader = true;
-                player.setNicknameText();
-                AssignLeaderAuthority(player);
-                break;
-            }
-        }
-    }
 
     //StartButtom은 방장에게만 보이게 함.
     public void AssignLeaderAuthority(NetRoomPlayer player)
     {
+        if(startButton == null)
+        {
+            return;
+        }
         startButton.AssignAuthority(player);
     }
 
+    public void ActivateStartButton()
+    {
+        if (startButton == null)
+        {
+            return;
+        }
+        startButton.gameObject.SetActive(true);
+    }
 
+    public void DeActivateStartButton()
+    {
+        if (startButton == null)
+        {
+            return;
+        }
+        startButton.gameObject.SetActive(false);
+    }
 
 
 

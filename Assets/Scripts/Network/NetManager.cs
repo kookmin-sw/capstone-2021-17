@@ -146,8 +146,13 @@ public class NetManager : NetworkRoomManager
 
     public override void ServerChangeScene(string newSceneName)
     {
-        
+        if (newSceneName == RoomScene)
+        {
+            OnReturnToRoom();
+        }
+
         NetworkServer.SetAllClientsNotReady();
+
         networkSceneName = newSceneName;
 
         OnServerChangeScene(newSceneName);
@@ -188,4 +193,27 @@ public class NetManager : NetworkRoomManager
 
         loadingManager.StartLoading();
     }
+    void OnReturnToRoom()
+    {
+        foreach (NetworkRoomPlayer roomPlayer in roomSlots)
+        {
+            if (roomPlayer == null)
+                continue;
+
+            // find the game-player object for this connection, and destroy it
+            NetworkIdentity identity = roomPlayer.GetComponent<NetworkIdentity>();
+
+            if (NetworkServer.active)
+            {
+                // re-add the room object
+                roomPlayer.GetComponent<NetworkRoomPlayer>().readyToBegin = false;
+                NetworkServer.ReplacePlayerForConnection(identity.connectionToClient, roomPlayer.gameObject);
+                
+            }
+        }
+
+        allPlayersReady = false;
+    }
+
+    
 }

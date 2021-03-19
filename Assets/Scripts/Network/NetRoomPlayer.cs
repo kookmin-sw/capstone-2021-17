@@ -15,11 +15,14 @@ public class NetRoomPlayer : NetworkRoomPlayer
     [SyncVar]
     public bool isLeader;
 
-    public TMP_Text Nickname_txt; // 에디터 내에서 지정
-    public Image Profile_image; // 에디터 내에서 지정
-    public TMP_Text Readystatus_txt; // 에디터 내에서 지정
-
     public RectTransform Rect_Trans;
+
+    [SerializeField]
+    private TMP_Text Nickname_txt; // 에디터 내에서 지정
+    [SerializeField]
+    private Image Profile_image; // 에디터 내에서 지정
+    [SerializeField]
+    private TMP_Text Readystatus_txt; // 에디터 내에서 지정
 
     public string NotReady_msg = "Not Ready";
     public string Ready_msg = "Ready";
@@ -33,24 +36,26 @@ public class NetRoomPlayer : NetworkRoomPlayer
         gameManager = WaitingRoom_MultiGameManager.instance;
     }
 
-    public override void OnStartClient() //CallBack 함수
+    public override void OnClientEnterRoom()
     {
         setNicknameText();
         setReadyText();
-        gameManager.AddPlayerToPlayerSpace(this);
 
+        gameManager = WaitingRoom_MultiGameManager.instance;
         
-    }
-    public override void OnStartServer()
-    {
-        base.OnStartServer();
+        gameManager.AddPlayerToPlayerSpace(this);
 
         if (isLeader)
         {
             gameManager.AssignLeaderAuthority(this);
         }
-               
+
+        if (this.gameObject != null)
+        {
+            Rect_Trans.gameObject.SetActive(true);
+        }
     }
+
 
     public override void ReadyStateChanged(bool _, bool newReadyState) // [Syncvar] readyToBegin hook
     {
@@ -60,10 +65,13 @@ public class NetRoomPlayer : NetworkRoomPlayer
     }
     public override void OnStopClient()
     {
-        gameManager.RemovePlayerFromPlayerSpace(this);
+        if (gameManager != null)
+        {
+            gameManager.RemovePlayerFromPlayerSpace(this);
+        }
         if (this.isLeader)
         {
-            gameManager.ReplaceLeader(this);
+            ReplaceLeader(this);
         }
     }
 
@@ -76,16 +84,43 @@ public class NetRoomPlayer : NetworkRoomPlayer
         }
     }
 
+    public void ReplaceLeader(NetRoomPlayer roomPlayer)
+    {
+        foreach (NetRoomPlayer player in netManager.roomSlots)
+        {
+            if (player != roomPlayer && !player.isLeader)
+            {
+                player.isLeader = true;
+                player.setNicknameText();
+                
+
+                if(gameManager!= null)
+                {
+                    gameManager.AssignLeaderAuthority(this);
+                }
+                break;
+            }
+        }
+    }
+
     [TargetRpc]
     public void AcivateStartButton()
     {
-        gameManager.startButton.gameObject.SetActive(true);
+        if(gameManager == null)
+        {
+            gameManager = WaitingRoom_MultiGameManager.instance;
+        }
+        gameManager.ActivateStartButton();
     }
 
     [TargetRpc]
     public void DeActivateStartButton()
     {
-        gameManager.startButton.gameObject.SetActive(false);
+        if (gameManager == null)
+        {
+            gameManager = WaitingRoom_MultiGameManager.instance;
+        }
+        gameManager.DeActivateStartButton();
     }
 
     
@@ -111,5 +146,6 @@ public class NetRoomPlayer : NetworkRoomPlayer
             Nickname_txt.text = nickname + "\n <LEADER>";
         }
     }
-    
+
+
 }
