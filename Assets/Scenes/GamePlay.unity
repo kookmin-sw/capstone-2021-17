@@ -9857,7 +9857,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 350397466}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e10d9b2a5ba54a044b4df4ac11dc1fd6, type: 3}
+  m_Script: {fileID: 11500000, guid: b0d3b4137c26ebc4287522efb398fead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Door: {fileID: 350397467}
@@ -19004,7 +19004,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 717710051}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df3feac6e16cd634a89d82e984630b9f, type: 3}
+  m_Script: {fileID: 11500000, guid: b0d3b4137c26ebc4287522efb398fead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Door: {fileID: 717710052}
@@ -23920,7 +23920,7 @@ GameObject:
   - component: {fileID: 908622906}
   - component: {fileID: 908622907}
   m_Layer: 0
-  m_Name: LeverController_Prefab3
+  m_Name: LeverController_Prefab
   m_TagString: LeverController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24946,7 +24946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32749d2771d6d140886652a1cdb569c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leverNumber: 2
+  leverNumber: 1
   leverController: {fileID: 1844071346}
 --- !u!65 &954335637
 BoxCollider:
@@ -32054,7 +32054,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1220049366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d965c1a7b0593964d95aee25ac1c7db3, type: 3}
+  m_Script: {fileID: 11500000, guid: b0d3b4137c26ebc4287522efb398fead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Door: {fileID: 1220049367}
@@ -35271,7 +35271,7 @@ GameObject:
   - component: {fileID: 1353658803}
   - component: {fileID: 1353658804}
   m_Layer: 0
-  m_Name: LeverController_Prefab4
+  m_Name: LeverController_Prefab
   m_TagString: LeverController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38515,7 +38515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32749d2771d6d140886652a1cdb569c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leverNumber: 1
+  leverNumber: 2
   leverController: {fileID: 1996038779}
 --- !u!65 &1464901084
 BoxCollider:
@@ -44820,7 +44820,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1729372637}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78af3444817bf4a409bb765b66700ef4, type: 3}
+  m_Script: {fileID: 11500000, guid: b0d3b4137c26ebc4287522efb398fead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Door: {fileID: 1729372638}
@@ -48638,7 +48638,7 @@ GameObject:
   - component: {fileID: 1844071346}
   - component: {fileID: 1844071347}
   m_Layer: 0
-  m_Name: LeverController_Prefab1
+  m_Name: LeverController_Prefab
   m_TagString: LeverController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52882,7 +52882,7 @@ GameObject:
   - component: {fileID: 1996038779}
   - component: {fileID: 1996038780}
   m_Layer: 0
-  m_Name: LeverController_Prefab2
+  m_Name: LeverController_Prefab
   m_TagString: LeverController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,8 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class door2_behavior : MonoBehaviour
+public class DoorController : MonoBehaviour
 {
 
     // Public Variables
@@ -27,13 +27,12 @@ public class door2_behavior : MonoBehaviour
     bool enterTrigger;
     bool isClosing;
     bool pressKey;
-    string po;
-    string lo;
-
+    LeverController lever;
 
     // Use this for initialization
     void Start()
     {
+        lever = gameObject.GetComponentInChildren<LeverController>();
         enterTrigger = false;
 
         if (KeepClosed == true)
@@ -48,15 +47,12 @@ public class door2_behavior : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-
-        GameObject gameObject = GameObject.Find("LeverController_Prefab2");
-        var lever = gameObject.GetComponent<LeverController>();
-        if(lever.open == true)
+    {        
+        if (lever.open == true)
         {
             CharKeyOpen = true;
         }
-     
+
         if (CharKeyOpen == true)
         {
             if ((isClosing == false) && useKeyToOpen && enterTrigger)
@@ -69,13 +65,11 @@ public class door2_behavior : MonoBehaviour
 
         if (KeepClosed == false)
         {
-
             if (useKeyToOpen == false)
             {
 
                 if (enterTrigger)
                 {
-
                     if (Door.transform.localPosition.x < openPosition)
                     {
                         float translation = Time.deltaTime * (openPosition - closePosition) * OpenCloseVelocity;
@@ -85,9 +79,7 @@ public class door2_behavior : MonoBehaviour
                     {
                         Door.transform.localPosition = new Vector3(openPosition, 0, 0);
                     }
-
                 }
-
             }
             else
             {
@@ -116,10 +108,8 @@ public class door2_behavior : MonoBehaviour
 
         if (KeepClosed == false && KeepDoorOpen == false)
         {
-
             if (isClosing)
             {
-
                 if (Door.transform.localPosition.x > closePosition)
                 {
                     float translation = Time.deltaTime * (openPosition - closePosition) * OpenCloseVelocity;
@@ -131,9 +121,7 @@ public class door2_behavior : MonoBehaviour
                     Door.transform.localPosition = new Vector3(closePosition, 0, 0);
                     isClosing = false;
                 }
-
             }
-
         }
 
 
