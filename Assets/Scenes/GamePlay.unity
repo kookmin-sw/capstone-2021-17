@@ -28871,7 +28871,7 @@ MonoBehaviour:
   boxspawnPoints: []
   itemBox: {fileID: 1038162653935764, guid: 0462052c0393d654185c9da4c8e6e072, type: 3}
   itemBoxSpawnPoints: {fileID: 1890902181}
-  spawnPointCount: 5
+  spawnPointCount: 13
 --- !u!1001 &1109983330
 PrefabInstance:
   m_ObjectHideFlags: 0

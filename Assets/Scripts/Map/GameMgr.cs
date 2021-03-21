@@ -1,6 +1,7 @@
 using System.Text;
 using UnityEngine;
 
+
 public class GameMgr : MonoBehaviour
 {
     public Transform[] boxspawnPoints;
@@ -44,19 +45,19 @@ public class GameMgr : MonoBehaviour
         for (int i = 0; i < objCount; i++)
         {
             Instantiate(gameObject, spawnPoints[boxCount[i]].position, Quaternion.identity);
-            Debug.Log(boxCount[i] + "위치에 아이템박스 생성");
+            //Debug.Log(boxCount[i] + "위치에 아이템박스 생성");
         }
     }
 
     public static string GeneratePassword(int length)
     {
-        StringBuilder codeSB = new StringBuilder("");
-        char[] chars = "0123456789".ToCharArray();
+        StringBuilder codeSB = new StringBuilder(10);
         char singleChar;
+        string numbers = "0123456789";
 
         while (codeSB.Length < length)
         {
-            singleChar = chars[UnityEngine.Random.Range(0, chars.Length)];
+            singleChar = numbers[UnityEngine.Random.Range(0, numbers.Length)];
             codeSB.Append(singleChar);
         }
         return codeSB.ToString();
