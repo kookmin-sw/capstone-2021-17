@@ -28870,8 +28870,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxspawnPoints: []
   itemBox: {fileID: 1038162653935764, guid: 0462052c0393d654185c9da4c8e6e072, type: 3}
-  boxCount: 13
-  spawnPointCount: 13
+  itemBoxSpawnPoints: {fileID: 1890902181}
+  spawnPointCount: 5
 --- !u!1001 &1109983330
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43991,7 +43991,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1000011063787876, guid: 0fc2137dcaba019429465545a573cf0f, type: 3}
       propertyPath: m_Name
-      value: test_player
+      value: TestPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 1000011063787876, guid: 0fc2137dcaba019429465545a573cf0f, type: 3}
       propertyPath: m_IsActive
@@ -49900,9 +49900,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1890902182}
-  - component: {fileID: 1890902183}
   m_Layer: 0
-  m_Name: SpawnPoint
+  m_Name: ItemBoxSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49935,22 +49934,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1890902183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1890902181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74ed2f29a7ac329419292e02a3ba4198, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boxspawnPoints: []
-  itemBox: {fileID: 0}
-  boxCount: 0
-  spawnPointCount: 0
 --- !u!4 &1890975431 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4480421128764206, guid: 60f64902d735c884c9e770d754ec19b7,

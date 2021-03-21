@@ -1,20 +1,20 @@
 using System.Text;
 using UnityEngine;
-using keypadSystem;
 
 public class GameMgr : MonoBehaviour
 {
     public Transform[] boxspawnPoints;
     public GameObject itemBox;
-    public int boxCount;
+    public GameObject itemBoxSpawnPoints;
     public int spawnPointCount;
+    int[] boxCount = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
 
     void Start()
     {
         //아이템박스 생성
-        int[] randomIndex = GetRandomInt(boxCount, 1, spawnPointCount+1);
-        boxspawnPoints = GetSpwanPoints("SpawnPoint");
-        SpawnObject(itemBox, boxspawnPoints, boxCount, randomIndex);
+        GetRandomInt(boxCount, boxCount.Length-1);
+        boxspawnPoints = GetSpwanPoints(itemBoxSpawnPoints);
+        SpawnObject(itemBox, boxspawnPoints, spawnPointCount);
     }
 
     void Update()
@@ -22,43 +22,29 @@ public class GameMgr : MonoBehaviour
 
     }
 
-    public int[] GetRandomInt(int length, int min, int max)
+    static void GetRandomInt(int []arr, int max)
     {
-        int[] randArray = new int[length];
-        bool isSame;
-
-        for (int i=0; i<length; i++)
+        System.Random r = new System.Random();
+        for (int i = max; i > 0; i--)
         {
-            while (true)
-            {
-                randArray[i] = Random.Range(min, max);
-                isSame = false;
-
-                for (int j=0; j<i; j++)
-                {
-                    if (randArray[j] == randArray[i])
-                    {
-                        isSame = true;
-                        break;
-                    }
-                }
-                if (!isSame) break;
-            }
+            int j = r.Next(0, i + 1);
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
         }
-        return randArray;
     }
 
-    public Transform[] GetSpwanPoints(string pointsName)
+    public Transform[] GetSpwanPoints(GameObject spawnPoinst)
     {
-        return GameObject.Find(pointsName).GetComponentsInChildren<Transform>();
+        return spawnPoinst.GetComponentsInChildren<Transform>();
     }
     
-    public void SpawnObject(GameObject gameObject, Transform[] spawnPoints, int objCount, int [] randomPosition)
+    private void SpawnObject(GameObject gameObject, Transform[] spawnPoints, int objCount)
     {
         for (int i = 0; i < objCount; i++)
         {
-            Instantiate(gameObject, spawnPoints[randomPosition[i]].position, Quaternion.identity);
-            //Debug.Log(randomPosition[i] + "위치에 아이템박스 생성");
+            Instantiate(gameObject, spawnPoints[boxCount[i]].position, Quaternion.identity);
+            Debug.Log(boxCount[i] + "위치에 아이템박스 생성");
         }
     }
 
