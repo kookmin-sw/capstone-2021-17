@@ -6,6 +6,12 @@ public class InGame_MultiGameManager : MonoBehaviour
 {
     public static List<NetGamePlayer> Players = new List<NetGamePlayer>(NetManager.PLAYER_MAXNUM);
 
+    private static List<int> healths = new List<int>();
+
+    private static List<string> names = new List<string>();
+
+    private static List<ThirdPersonCharacter.State> states = new List<ThirdPersonCharacter.State>();
+
 
 
     /***************** 데이터 전달 *****************/
@@ -14,35 +20,30 @@ public class InGame_MultiGameManager : MonoBehaviour
     // 체력 전달
     public static List<int> GetPlayersHealth()
     {
-        List<int> healths = new List<int>();
-        foreach(NetGamePlayer player in Players)
+        for(int index = 0; index < Players.Count; index++)
         {
-            healths.Add(player.Health);
+            healths[index] = Players[index].Health;
         }
-
         return healths;
     }
 
     //이름 전달
     public static List<string> GetPlayersNickname()
     {
-        List<string> nicknames = new List<string>();
-        foreach (NetGamePlayer player in Players)
+        for (int index = 0; index < Players.Count; index++)
         {
-            nicknames.Add(player.Nickname);
+            names[index] = Players[index].Nickname;
         }
-
-        return nicknames;
+        return names;
     }
 
 
     //플레이어 상태 전달
     public static List<ThirdPersonCharacter.State> GetPlayersState()
     {
-        List<ThirdPersonCharacter.State> states = new List<ThirdPersonCharacter.State>();
-        foreach (NetGamePlayer player in Players)
+        for (int index = 0; index < Players.Count; index++)
         {
-            states.Add(player.State);
+            states[index] = Players[index].State;
         }
         return states;
     }
