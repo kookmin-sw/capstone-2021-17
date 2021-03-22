@@ -1,56 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyChase : MonoBehaviour
 {
-    //적의 시야
-    public float viewRadius;
-    [Range(0, 360)]
-    public float viewAngle;
-
-    //적의 판단 근거, 장애물인지 플레이어인지
-    public LayerMask targetMask;
-    public LayerMask obstacleMask;
-
     //적의 상태들
-    enum State 
+    enum State
     {
         Idle,
-        Patrol,        
+        Patrol,
         Move,
         Attack
     }
 
-    private State state;
-
+    //적의 시야
+    public float viewRadius;
+    [Range(0, 360)]
+    public float viewAngle;
+    //Path가 있는지
+    public bool hasP = false;
+    //플레이어를 잡았는지 체크    
+    public bool isCatched = false;
     //시야에 들어온 적들의 List
     public List<Transform> visibleTargets = new List<Transform>();
     
-    // Initialize Players Position
-    GameObject[] player;
-    //has Path
-    public bool hasP = false;
-    public bool setTarget = false;
-    //플레이어를 잡았는지 체크
-    public bool isCatched = false;
-    //시야에 적이 들어왔는지 체크
-    public bool findTargetVision = false;
+    //적의 판단 근거, 장애물인지 플레이어인지
+    [SerializeField]
+    private LayerMask targetMask;
+    [SerializeField]
+    private LayerMask obstacleMask;
+
+    private Collider[] targetsInViewRadius = new Collider[4];
+    private int targetsLength;
+    private State state;    
+    //타겟을 설정했는지
+    private bool setTarget = false;    
+    //시야에 적이 들어왔는지 체크    
+    private bool findTargetVision = false;
     //순찰 중인지 체크
-    public bool isPatrol = false;
-    //순찰 위치 기억
-    public Vector3 patrolPos;
+    private bool isPatrol = false;
+    //순찰 위치 기억    
+    private Vector3 patrolPos;
+    //플레이어와의 거리
+    private float dis;
+    
+
     //AI
-    NavMeshAgent enemy;        
-    //For Sort by distance
-    Dictionary<string, float> distanceTarget;
+    private NavMeshAgent enemy;
+    //타겟의 위치
+    private Transform target;
     //WayPoint
     [SerializeField]
     private Transform[] wayPoint;
-    // target
-    public GameObject target;
 
     void Awake()
     {        
@@ -61,11 +63,11 @@ public class EnemyChase : MonoBehaviour
         //코루틴을 시작해서 FSM에 들어간다.
         StartCoroutine("Run");
     }
-
+    
     IEnumerator Run()
     {
         //항시 시야가 가동된다.
-        StartCoroutine("FindTargetsWithDelay",0f);
+        StartCoroutine("FindTargetsWithDelay");
 
         //첫 코루틴을 시작하면 끝날때까지 while문을 돈다.
         while (true)
@@ -84,17 +86,17 @@ public class EnemyChase : MonoBehaviour
                 case State.Attack:
                     yield return StartCoroutine("AttackState");
                     break;
-
             }
         }
     }
+
     //Idle State
     IEnumerator IdleState()
     {
-        yield return new WaitForSeconds(5f);
+        yield return null;
         state = State.Patrol;
     }
-  
+
     IEnumerator PatrolState()
     {
         if (!isPatrol)
@@ -105,15 +107,14 @@ public class EnemyChase : MonoBehaviour
             int random = Random.Range(0, 26);
             //순찰중인지 판단
             isPatrol = true;            
-            patrolPos = wayPoint[random].position;
-            //디버깅용 
-            Debug.Log(wayPoint[random].gameObject.name);
+            patrolPos = wayPoint[random].position;                        
             //move state로 전환
             state = State.Move;
             //순찰 시작
             enemy.SetDestination(patrolPos);            
         }
     }        
+
     IEnumerator MoveState()
     {                      
         while(state == State.Move)
@@ -145,12 +146,12 @@ public class EnemyChase : MonoBehaviour
                 isPatrol = false;
                 setTarget = false;
                 isCatched = false;
-                state = State.Idle;            
+                state = State.Idle;
             }
             else
             {
                 //계속해서 경로를 설정해서 플레이어가 움직여도 그 경로를 다시 설정한다.
-                enemy.SetDestination(target.transform.position);
+                enemy.SetDestination(target.position);
                 //타겟을 설정했으므로 타겟 설정 변수 초기화
                 setTarget = false;
                 yield return null;
@@ -164,7 +165,7 @@ public class EnemyChase : MonoBehaviour
     }
 
     //시야에 들어온 타겟을 찾는다.
-    IEnumerator FindTargetsWithDelay(float delay)
+    IEnumerator FindTargetsWithDelay()
     {
         while (true)
         {            
@@ -176,7 +177,7 @@ public class EnemyChase : MonoBehaviour
                 //그 적을 타겟으로 삼는다.
                 SetTargetWithVision();
             }
-            yield return new WaitForSeconds(delay);
+            yield return null;
         }
     }
 
@@ -185,23 +186,27 @@ public class EnemyChase : MonoBehaviour
     {
         //시야에 적이 들어왔으므로 적을 탐지하는 변수 초기화
         findTargetVision = false;
+        //타겟을 정하기 위한 인덱스 변수
+        int targetIndex = 0;
+        
+        //타겟들의 거리 값
+        dis = Vector3.Distance(transform.position, visibleTargets[0].position);
 
-        //타겟과 적의 위치를 이름에 맞게 정렬하기 위한 딕셔너리
-        distanceTarget = new Dictionary<string, float>();
-
-        //눈에 들어온 타겟만큼 딕셔너리에 추가
-        for (int i = 0; i < visibleTargets.Count; i++)
+        //가장 짧은 거리를 찾기 위한 for문
+        for (int i = 1; i < visibleTargets.Count; i++)
         {
-            distanceTarget.Add(visibleTargets[i].gameObject.name, Vector3.Distance(transform.position, visibleTargets[i].position));
-        }                        
-        //딕셔너리를 거리에 따라 정렬
-        var ordered = distanceTarget.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
-        target = GameObject.Find(ordered.First().Key);        
+            if (dis > Vector3.Distance(transform.position, visibleTargets[i].position))
+            {
+                dis = Vector3.Distance(transform.position, visibleTargets[i].position);
+                targetIndex = i;
+            }
+
+        }
+        target = visibleTargets[targetIndex];
         setTarget = true;
         hasP = true;
         state = State.Move;
     }
-    
 
     //시야에 적이 있는지 없는지 찾는다.
     void FindVisibleTargets()
@@ -209,10 +214,10 @@ public class EnemyChase : MonoBehaviour
         //시야에 들어온 타겟들을 초기화
         visibleTargets.Clear();        
         //주변 시야 범위에 들어온 타겟들을 찾는다.
-        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
-
+        targetsLength = Physics.OverlapSphereNonAlloc(transform.position, viewRadius, targetsInViewRadius, targetMask);
+        
         //타겟들의 크기만큼 for문을 돌면서 타겟을 설정하고 시야에 들어온 적들을 List에 넣는다.
-        for (int i = 0; i < targetsInViewRadius.Length; i++)
+        for (int i = 0; i < targetsLength; i++)
         {
             Transform target = targetsInViewRadius[i].transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
