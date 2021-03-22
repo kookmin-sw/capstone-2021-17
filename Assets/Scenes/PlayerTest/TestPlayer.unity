@@ -8626,7 +8626,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4269984432996821}
-  - {fileID: 526287651}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15471,12 +15470,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526287650}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.020000458, y: 1.0100001, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.025000572, y: 1.2625002, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 1423019068}
-  m_Father: {fileID: 277510367}
-  m_RootOrder: 1
+  m_Father: {fileID: 4269984432996821}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &526287652
 MonoBehaviour:
@@ -15491,9 +15490,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1803916727493721}
+  camera: {fileID: 0}
   offsetX: 0
   offsetY: 1
   offsetZ: 0
+  terrainLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  zoomAxisMin: 0
+  zoomAxisMax: 1
+  MinDistance: 0
+  MaxDistance: 30
+  Smooth: 10
+  DollyDirAdjusted: {x: 0, y: 0, z: 0}
+  Distance: 0
 --- !u!1 &529743378
 GameObject:
   m_ObjectHideFlags: 0
@@ -53939,6 +53949,7 @@ Transform:
   - {fileID: 4127105402033761}
   - {fileID: 4002313312789841}
   - {fileID: 4671657260654529}
+  - {fileID: 526287651}
   m_Father: {fileID: 277510367}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
