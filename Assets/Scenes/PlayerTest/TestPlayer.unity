@@ -8626,6 +8626,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4269984432996821}
+  - {fileID: 526287651}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15470,12 +15471,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526287650}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.025000572, y: 1.2625002, z: 0}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_LocalPosition: {x: 0.020000458, y: 1.0100001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1423019068}
-  m_Father: {fileID: 4269984432996821}
-  m_RootOrder: 3
+  m_Father: {fileID: 277510367}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &526287652
 MonoBehaviour:
@@ -15490,20 +15491,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1803916727493721}
-  camera: {fileID: 0}
+  camera: {fileID: 526287650}
   offsetX: 0
   offsetY: 1
   offsetZ: 0
-  terrainLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  zoomAxisMin: 0
-  zoomAxisMax: 1
-  MinDistance: 0
-  MaxDistance: 30
-  Smooth: 10
-  DollyDirAdjusted: {x: 0, y: 0, z: 0}
-  Distance: 0
 --- !u!1 &529743378
 GameObject:
   m_ObjectHideFlags: 0
@@ -35691,6 +35682,7 @@ GameObject:
   - component: {fileID: 1423019068}
   - component: {fileID: 1423019067}
   - component: {fileID: 1423019066}
+  - component: {fileID: 1423019069}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -35729,7 +35721,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -35763,6 +35755,18 @@ Transform:
   m_Father: {fileID: 526287651}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1423019069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423019065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4031f4f067e30b479c47add54aec8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1424727874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53949,7 +53953,6 @@ Transform:
   - {fileID: 4127105402033761}
   - {fileID: 4002313312789841}
   - {fileID: 4671657260654529}
-  - {fileID: 526287651}
   m_Father: {fileID: 277510367}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -54768,7 +54771,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovingTurnSpeed: 600
   StationaryTurnSpeed: 120
-  JumpPower: 8
+  JumpPower: 8.5
   GravityMultiplier: 2
   RunCycleLegOffset: 0.2
   MoveSpeedMultiplier: 2
