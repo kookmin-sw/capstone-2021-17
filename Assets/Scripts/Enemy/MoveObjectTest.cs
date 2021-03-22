@@ -6,12 +6,12 @@ public class MoveObjectTest : MonoBehaviour
 {
     
     //check enemy has Path
-    EnemyChase checkHasP;
+    [SerializeField]
+    private EnemyChase checkHasP;
     Animator ani;
     void Start()
     {
         ani = GetComponent<Animator>();
-        checkHasP = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyChase>();
     }
 
     // 경로가 있으면 애니메이션 시작.
