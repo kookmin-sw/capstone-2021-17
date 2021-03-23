@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Popcron.Console;
 using UnityEngine.AI;
 
 public class EnemyChase : MonoBehaviour
 {
     //적의 상태들
-    enum State
+    public enum State
     {
         Idle,
         Patrol,
@@ -33,17 +34,23 @@ public class EnemyChase : MonoBehaviour
 
     private Collider[] targetsInViewRadius = new Collider[4];
     private int targetsLength;
-    private State state;    
+    [Command("state")]
+    public State state;
     //타겟을 설정했는지
-    private bool setTarget = false;    
+    [Command("setTarget")]
+    public bool setTarget = false;
     //시야에 적이 들어왔는지 체크    
-    private bool findTargetVision = false;
+    [Command("findTargetVision")]
+    public bool findTargetVision = false;
     //순찰 중인지 체크
-    private bool isPatrol = false;
-    //순찰 위치 기억    
+    [Command("isPatrol")]
+    public bool isPatrol = false;
+    //순찰 위치 기억      
     private Vector3 patrolPos;
+
     //플레이어와의 거리
-    private float dis;
+    [Command("distance")]
+    public float dis;
     
 
     //AI
@@ -55,7 +62,8 @@ public class EnemyChase : MonoBehaviour
     private Transform[] wayPoint;
 
     void Awake()
-    {        
+    {
+        Console.IsOpen = false;
         //기본 상태
         state = State.Idle;
         //추적 시스템을 이용하기 위해 초기화
@@ -63,7 +71,16 @@ public class EnemyChase : MonoBehaviour
         //코루틴을 시작해서 FSM에 들어간다.
         StartCoroutine("Run");
     }
-    
+
+    private void OnEnable()
+    {
+        Parser.Register(this, "enemy");
+    }
+
+    private void OnDisable()
+    {
+        Parser.Unregister(this);
+    }
     IEnumerator Run()
     {
         //항시 시야가 가동된다.
