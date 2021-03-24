@@ -2138,6 +2138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  controller: {fileID: 1697348344}
 --- !u!114 &1697348343
 MonoBehaviour:
   m_ObjectHideFlags: 0

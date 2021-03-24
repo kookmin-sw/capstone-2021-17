@@ -29,6 +29,8 @@ public class DoorController : MonoBehaviour
     bool pressKey;
     LeverController lever;
 
+    DoorNetBehaviour doorNet;
+
     // Use this for initialization
     void Start()
     {
@@ -42,6 +44,13 @@ public class DoorController : MonoBehaviour
 
         isClosing = false;
         pressKey = false;
+
+        doorNet = gameObject.GetComponent<DoorNetBehaviour>();
+
+        if(doorNet != null)
+        {
+            doorNet.IsOpen = KeepDoorOpen;
+        }
     }
 
 
@@ -63,69 +72,60 @@ public class DoorController : MonoBehaviour
         }
 
 
-        if (KeepClosed == false)
+        if ((KeepClosed == false && useKeyToOpen == false && enterTrigger == true) ||
+            (KeepClosed == false && useKeyToOpen == true && pressKey == true))
         {
-            if (useKeyToOpen == false)
+            if(doorNet == null)
             {
-
-                if (enterTrigger)
-                {
-                    if (Door.transform.localPosition.x < openPosition)
-                    {
-                        float translation = Time.deltaTime * (openPosition - closePosition) * OpenCloseVelocity;
-                        Door.transform.Translate(translation, 0, 0);
-                    }
-                    else
-                    {
-                        Door.transform.localPosition = new Vector3(openPosition, 0, 0);
-                    }
-                }
+                OpenDoor();
             }
             else
             {
-                if (pressKey)
-                {
-
-                    if (Door.transform.localPosition.x < openPosition)
-                    {
-                        float translation = Time.deltaTime * (openPosition - closePosition) * OpenCloseVelocity;
-                        Door.transform.Translate(translation, 0, 0);
-                    }
-                    else
-                    {
-                        Door.transform.localPosition = new Vector3(openPosition, 0, 0);
-                        pressKey = false;
-                    }
-
-                }
-
+                doorNet.OpenDoor();
             }
-
-
+            
         }
-
-
-
-        if (KeepClosed == false && KeepDoorOpen == false)
+        
+        if (KeepClosed == false && KeepDoorOpen == false && isClosing == true)
         {
-            if (isClosing)
+            if(doorNet == null)
             {
-                if (Door.transform.localPosition.x > closePosition)
-                {
-                    float translation = Time.deltaTime * (openPosition - closePosition) * OpenCloseVelocity;
-                    Door.transform.Translate(-translation, 0, 0);
-                    isClosing = true;
-                }
-                else
-                {
-                    Door.transform.localPosition = new Vector3(closePosition, 0, 0);
-                    isClosing = false;
-                }
+                CloseDoor();
+            }
+            else
+            {
+                doorNet.CloseDoor();
             }
         }
+    }
 
+    public void OpenDoor()
+    {
+        if (Door.transform.localPosition.x < openPosition)
+        {
+            float translation = Time.deltaTime * (openPosition - closePosition) * OpenCloseVelocity;
+            Door.transform.Translate(translation, 0, 0);
+        }
+        else
+        {
+            Door.transform.localPosition = new Vector3(openPosition, 0, 0);
+            pressKey = false;
+        }
+    }
 
-
+    public void CloseDoor()
+    {
+        if (Door.transform.localPosition.x > closePosition)
+        {
+            float translation = Time.deltaTime * (openPosition - closePosition) * OpenCloseVelocity;
+            Door.transform.Translate(-translation, 0, 0);
+            isClosing = true;
+        }
+        else
+        {
+            Door.transform.localPosition = new Vector3(closePosition, 0, 0);
+            isClosing = false;
+        }
     }
 
 
