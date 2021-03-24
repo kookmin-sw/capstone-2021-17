@@ -25,12 +25,14 @@ public class EnemyChase : MonoBehaviour
     public bool isCatched = false;
     //시야에 들어온 적들의 List
     public List<Transform> visibleTargets = new List<Transform>();
-    
+
     //적의 판단 근거, 장애물인지 플레이어인지
     [SerializeField]
     private LayerMask targetMask;
     [SerializeField]
     private LayerMask obstacleMask;
+    [SerializeField]
+    private AnimationEvent animationEvent;
 
     private Collider[] targetsInViewRadius = new Collider[4];
     private int targetsLength;
@@ -42,21 +44,20 @@ public class EnemyChase : MonoBehaviour
     //시야에 적이 들어왔는지 체크    
     [Command("findTargetVision")]
     public bool findTargetVision = false;
+    [Command("findTargetSound")]
+    public bool findTargetSound = false;
     //순찰 중인지 체크
     [Command("isPatrol")]
     public bool isPatrol = false;
     //순찰 위치 기억      
     private Vector3 patrolPos;
-
     //플레이어와의 거리
     [Command("distance")]
-    public float dis;
-    
-
+    public float dis;    
     //AI
     private NavMeshAgent enemy;
     //타겟의 위치
-    private Transform target;
+    public Transform target;
     //WayPoint
     [SerializeField]
     private Transform[] wayPoint;
@@ -187,22 +188,24 @@ public class EnemyChase : MonoBehaviour
         while (true)
         {            
             FindVisibleTargets();
+            FindTargetWithSound();
             //시야에 들어온 적이 있으면
-            if (findTargetVision)
+            if (findTargetVision  || findTargetSound)
             {
                 isPatrol = false;
                 //그 적을 타겟으로 삼는다.
-                SetTargetWithVision();
-            }
+                SetTargetWithSensor();
+            }          
             yield return null;
         }
     }
 
     //시야에 새로운 적이 들어오면 들어온 적들 중 가장 가까운 타겟으로 타겟 변경
-    void SetTargetWithVision()
+    void SetTargetWithSensor()
     {
         //시야에 적이 들어왔으므로 적을 탐지하는 변수 초기화
         findTargetVision = false;
+        findTargetSound = false;
         //타겟을 정하기 위한 인덱스 변수
         int targetIndex = 0;
         
@@ -223,6 +226,15 @@ public class EnemyChase : MonoBehaviour
         setTarget = true;
         hasP = true;
         state = State.Move;
+    }
+
+    void FindTargetWithSound()
+    {
+        if (animationEvent.audioEvent)
+        {
+            Transform target = animationEvent.transform;
+            visibleTargets.Add(target);
+        }        
     }
 
     //시야에 적이 있는지 없는지 찾는다.
