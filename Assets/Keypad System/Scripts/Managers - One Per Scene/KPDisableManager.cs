@@ -8,8 +8,10 @@ namespace keypadSystem
     {
         public static KPDisableManager instance;
 
-        [SerializeField] private FirstPersonController player;
-        [SerializeField] private Image crosshair; 
+        public GameObject player;
+
+        [SerializeField] 
+        private Image crosshair; 
 
         void Awake()
         {
@@ -19,9 +21,17 @@ namespace keypadSystem
 
         public void DisablePlayer(bool disable)
         {
+            Behaviour playerBehaviour = player.GetComponent<ThirdPersonUserControl>();
+             
+            if(playerBehaviour == null)
+            {
+                playerBehaviour = player.GetComponent<FirstPersonController>();
+            }
+            
+            
             if (disable)
             {
-                player.enabled = false;
+                playerBehaviour.enabled = false;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 crosshair.enabled = false;
@@ -31,7 +41,7 @@ namespace keypadSystem
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
-                player.enabled = true;
+                playerBehaviour.enabled = true;
                 crosshair.enabled = true;
             }
         }

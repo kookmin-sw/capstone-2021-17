@@ -47,7 +47,8 @@ public class NetGamePlayer : NetworkBehaviour
             {
                 thirdCamera.gameObject.SetActive(true);
             }
-           
+
+            keypadSystem.KPDisableManager.instance.player = this.gameObject;
         }
     }
     

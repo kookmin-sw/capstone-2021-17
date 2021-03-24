@@ -44,7 +44,6 @@ public class RayCastCam : MonoBehaviour
         Debug.DrawRay(camPos, camDir * 4, Color.red);
         if (Physics.Raycast(camPos, camDir, out hit, rayLength*2, layerMaskInteract.value))
         {
-            Debug.Log(hit.collider.name);
             if (hit.collider.CompareTag("Lever"))
             {
                 raycasted_obj = hit.collider.gameObject;
