@@ -5,72 +5,63 @@ using UnityEngine.UI;
 
 public class HPManager : MonoBehaviour
 {
-    //1 : 플레이어, 2 : 팀원 1, 3 : 팀원2, 3 : 팀원3
     public Image[] bar = new Image[4];
-    public Button button_plus;
-    public Button button_minus;
     public GameObject gameOver; 
 
-    public static float[] hp = new float[4];
-    private float hp_max = 3;
+    public static List<NetGamePlayer> Players = new List<NetGamePlayer>(NetManager.PLAYER_MAXNUM);
+    private static List<int> healths = new List<int>();
+    private static List<string> names = new List<string>();
+    private static List<ThirdPersonCharacter.State> states = new List<ThirdPersonCharacter.State>();
+
+    private int hp_max = 2;
     private bool isDead;
 
-    // Start is called before the first frame update
+    // 전원 체력 2로 시작
     void Start()
     {
-        for(int i=0; i<hp.Length; i++)
+        for(int i=0; i<healths.Count; i++)
         {
-            hp[i] = hp_max;
+            healths[i] = hp_max;
         }
     }
 
-    //버튼 함수(임시)
-    public void Function_Button_Plus(int num)
-    {
-        Change_HP(+1, num);
-    }
-    public void Function_Button_Minus(int num)
-    {
-        Change_HP(-1, num);
-    }
-
-    //체력 변경
-    private void Change_HP(float _value, int num)
-    {
-        hp[num] += _value;
-        Set_HP(hp[num], num);
-    }
-
+    //플레이어 (리스트 0번) 사망 여부 확인
     public static bool IsDead(int num)
     {
-        if(hp[num]==0)
+        if(healths[num]==0)
             return true;
         else
             return false;
     }
-    //HP 바 표시
-    private void Set_HP(float value, int num)
+
+    //체력과 HP 바 연동
+    private void Set_HP()
     {
-        hp[num] = value;
-        if(hp[num]<=0)
+        InGame_MultiGameManager.GetPlayersHealth();
+
+        for(int i=0; i<Players.Count; i++)
         {
-            hp[num] = 0;
-        }
-        else
-        {
-            if(hp[num]>hp_max){
-                hp[num] = hp_max;
+            if(healths[i]<=0)
+            {
+                healths[i] = 0;
             }
+            else
+            {
+                if(healths[i] > hp_max)
+                {
+                    healths[i] = hp_max;
+                }
+            }
+
+            bar[i].fillAmount = healths[i] / hp_max;
         }
 
-        bar[num].fillAmount = hp[num] / hp_max;
-
-    //체력 0일 시 게임오버창
-        if(IsDead(num)==true && num==0)
+    //체력 0일 시 게임오버창 출력
+        if(IsDead(0)==true)
         {
             gameOver.SetActive(true);
         }
 
-        Debug.Log("체력 : " + hp[num]);
+        Debug.Log("체력 : " + healths[0]);
     }
 }

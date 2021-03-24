@@ -131,7 +131,7 @@ public class DoorController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == GameObjectPlayer)
+        if (other.gameObject.CompareTag("Player") || other.gameObject == GameObjectPlayer)
         {
             if (isClosing == false)
             {
@@ -142,7 +142,7 @@ public class DoorController : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == GameObjectPlayer)
+        if (other.gameObject.CompareTag("Player") || other.gameObject == GameObjectPlayer)
         {
             StartCoroutine(DelayClosedDoor());
         }

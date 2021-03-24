@@ -5,6 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Keypad
+  - LeverController
+  - Lever
+  - ItemBox
+  - ItemHeal
+  - Reset
+  - TestButton
+  - RoomPlayer
+  - Mission
   layers:
   - Default
   - TransparentFX
