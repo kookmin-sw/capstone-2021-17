@@ -16,14 +16,14 @@ public class DoorNetBehaviour : NetworkBehaviour
     public bool IsOpen;
 
     [Command(ignoreAuthority = true)] // send to Server
-    public void OpenDoor()
+    public void CmdOpenDoor()
     {
         IsOpen = true;
         controller.OpenDoor();
     }
 
     [Command(ignoreAuthority = true)] // send to Server
-    public void CloseDoor()
+    public void CmdCloseDoor()
     {
         IsOpen = false;
         controller.CloseDoor();

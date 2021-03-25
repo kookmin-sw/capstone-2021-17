@@ -56,7 +56,7 @@ public class NetGamePlayer : NetworkBehaviour
     [ClientCallback]
     public void MoveCharacter(Vector3 move, bool crouch, bool jump)
     {
-        if (hasAuthority && isLocalPlayer)
+        if (isLocalPlayer)
         {
             Character.Move(move, crouch, jump);
         }

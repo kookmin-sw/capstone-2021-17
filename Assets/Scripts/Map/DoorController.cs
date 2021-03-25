@@ -81,7 +81,7 @@ public class DoorController : MonoBehaviour
             }
             else
             {
-                doorNet.OpenDoor();
+                doorNet.CmdOpenDoor();
             }
             
         }
@@ -94,7 +94,7 @@ public class DoorController : MonoBehaviour
             }
             else
             {
-                doorNet.CloseDoor();
+                doorNet.CmdCloseDoor();
             }
         }
     }
