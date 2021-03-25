@@ -3592,7 +3592,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1699530735}
+      objectReference: {fileID: 700185557}
     - target: {fileID: 114469542848839660, guid: 00ab13a521d2a35439da8dd140026f6c,
         type: 3}
       propertyPath: crosshair
@@ -46179,18 +46179,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 114000012120472060, guid: 0fc2137dcaba019429465545a573cf0f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0fc2137dcaba019429465545a573cf0f, type: 3}
---- !u!114 &1699530735 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114000013775282248, guid: 0fc2137dcaba019429465545a573cf0f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1699530734}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 700185557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05ec5cf00ca181d45a42ba1870e148c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1699891429
 PrefabInstance:
   m_ObjectHideFlags: 0
