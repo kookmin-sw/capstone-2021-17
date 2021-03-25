@@ -22,19 +22,19 @@ public class NetGamePlayer : NetworkBehaviour
     [SyncVar]
     public ThirdPersonCharacter.State State;
 
-    [SerializeField]
-    private ThirdCamera thirdCamera;
-    [SerializeField]
-    private ThirdPersonCharacter character;
-    [SerializeField]
-    private ThirdPersonUserControl control;
-    [SerializeField]
-    private PlayerHealth playerHealth;
+    
+    public ThirdCamera ThirdCamera;
+    
+    public ThirdPersonCharacter Character;
+    
+    public ThirdPersonUserControl ThirdControl;
+    
+    public PlayerHealth PlayerHealth;
 
     private void Awake()
     {
-        Health = playerHealth.Health;
-        State = character.state;
+        Health = PlayerHealth.Health;
+        State = Character.state;
     }
 
     public override void OnStartClient()
@@ -43,9 +43,9 @@ public class NetGamePlayer : NetworkBehaviour
 
         if (isLocalPlayer)
         {
-            if (thirdCamera.gameObject != null)
+            if (ThirdCamera.gameObject != null)
             {
-                thirdCamera.gameObject.SetActive(true);
+                ThirdCamera.gameObject.SetActive(true);
             }
 
             keypadSystem.KPDisableManager.instance.player = this.gameObject;
@@ -58,7 +58,7 @@ public class NetGamePlayer : NetworkBehaviour
     {
         if (hasAuthority && isLocalPlayer)
         {
-            character.Move(move, crouch, jump);
+            Character.Move(move, crouch, jump);
         }
     }
 

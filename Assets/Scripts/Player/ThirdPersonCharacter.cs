@@ -22,6 +22,8 @@ public class ThirdPersonCharacter : MonoBehaviour
     Rigidbody PlayerRigidbody;
     Animator PlayerAnimator;
     CapsuleCollider Capsule;
+
+    [SerializeField]
     NetGamePlayer NetPlayer;
 
     bool IsGrounded;
@@ -57,8 +59,6 @@ public class ThirdPersonCharacter : MonoBehaviour
         Capsule = GetComponent<CapsuleCollider>();
         CapsuleHeight = Capsule.height;
         CapsuleCenter = Capsule.center;
-
-        NetPlayer = GetComponent<NetGamePlayer>();
 
         PlayerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         OrigGroundCheckDistance = GroundCheckDistance;

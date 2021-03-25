@@ -6,6 +6,7 @@ using Mirror;
 
 [RequireComponent(typeof(NetworkIdentity))]
 [RequireComponent(typeof(NetworkAnimator))] // lever animation
+[RequireComponent(typeof(NetworkTransformChild))] // transform doorTransform
 public class DoorNetBehaviour : NetworkBehaviour
 {
     [SerializeField]

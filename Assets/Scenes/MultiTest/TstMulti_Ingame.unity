@@ -2139,6 +2139,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   controller: {fileID: 1697348344}
+  IsOpen: 0
 --- !u!114 &1697348343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2658,6 +2659,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6533142168501272728, guid: 590e1211705302e48871a02a2ed1a7ea,
+        type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 3046158139560815345, guid: 73b6118cd2f5e994eb2d0a543ee95023,
+        type: 3}
     - target: {fileID: 6533142168501272730, guid: 590e1211705302e48871a02a2ed1a7ea,
         type: 3}
       propertyPath: m_Name

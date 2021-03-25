@@ -9,13 +9,13 @@ public class PlayerHealth : MonoBehaviour
 
     Animator PlayerAnimator;
 
-    NetGamePlayer NetPlayer;
+    [SerializeField]
+    private NetGamePlayer NetPlayer;
     // Start is called before the first frame update
     void Start()
     {
         GameObject.FindWithTag("Player").GetComponent<ThirdPersonUserControl>().HealthCheck=Health;
         PlayerAnimator = GetComponent<Animator>();
-        NetPlayer = GetComponent<NetGamePlayer>();
     }
 
     // Update is called once per frame

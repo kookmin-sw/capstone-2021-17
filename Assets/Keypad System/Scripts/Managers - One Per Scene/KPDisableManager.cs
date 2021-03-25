@@ -8,7 +8,7 @@ namespace keypadSystem
     {
         public static KPDisableManager instance;
 
-        public GameObject player;
+        public GameObject player; // Set By NetGamePlayer Or Self
 
         [SerializeField] 
         private Image crosshair; 
@@ -21,11 +21,17 @@ namespace keypadSystem
 
         public void DisablePlayer(bool disable)
         {
-            Behaviour playerBehaviour = player.GetComponent<ThirdPersonUserControl>();
-             
-            if(playerBehaviour == null)
+            Behaviour playerBehaviour;
+            
+            NetGamePlayer netGamePlayer = player.GetComponent<NetGamePlayer>();
+            
+            if (netGamePlayer == null)
             {
                 playerBehaviour = player.GetComponent<FirstPersonController>();
+            }
+            else
+            {
+                playerBehaviour = netGamePlayer.ThirdControl;
             }
             
             
