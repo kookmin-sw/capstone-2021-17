@@ -62,14 +62,14 @@ public class NetGamePlayer : NetworkBehaviour
         }
     }
 
-    [Command]
-    public void CmdChangeHealth(int h)
+    [Client]
+    public void ClientChangeHealth(int h)
     {
         Health = h;
     }
 
-    [Command]
-    public void CmdChangeState(ThirdPersonCharacter.State state)
+    [Client]
+    public void ClientChangeState(ThirdPersonCharacter.State state)
     {
         State = state;
     }

@@ -22,6 +22,7 @@ public class ThirdPersonCharacter : MonoBehaviour
     Rigidbody PlayerRigidbody;
     Animator PlayerAnimator;
     CapsuleCollider Capsule;
+    NetGamePlayer NetPlayer;
 
     bool IsGrounded;
     float OrigGroundCheckDistance;
@@ -57,6 +58,8 @@ public class ThirdPersonCharacter : MonoBehaviour
         CapsuleHeight = Capsule.height;
         CapsuleCenter = Capsule.center;
 
+        NetPlayer = GetComponent<NetGamePlayer>();
+
         PlayerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         OrigGroundCheckDistance = GroundCheckDistance;
     }
@@ -87,6 +90,11 @@ public class ThirdPersonCharacter : MonoBehaviour
         else
         {
             state=State.Idle;
+        }
+
+        if(NetPlayer != null)
+        {
+            NetPlayer.ClientChangeState(state);
         }
         
         // convert the world relative moveInput vector into a local-relative
