@@ -50,14 +50,14 @@ public class EnemyChase : MonoBehaviour
     [Command("isPatrol")]
     public bool isPatrol = false;
     //순찰 위치 기억      
-    private Vector3 patrolPos;
+    public Vector3 patrolPos;
     //플레이어와의 거리
     [Command("distance")]
-    public float dis;    
+    public float dis;
     //AI
-    private NavMeshAgent enemy;
+    public NavMeshAgent enemy;
     //타겟의 위치
-    public Transform target;
+    public Transform target;    
     //WayPoint
     [SerializeField]
     private Transform[] wayPoint;
@@ -69,10 +69,27 @@ public class EnemyChase : MonoBehaviour
         state = State.Idle;
         //추적 시스템을 이용하기 위해 초기화
         enemy = GetComponent<NavMeshAgent>();        
-        //코루틴을 시작해서 FSM에 들어간다.
-        StartCoroutine("Run");
     }
 
+    void Update()
+    {
+        FindTargets();
+        switch (state)
+        {
+            case State.Idle:
+                IdleState();
+                break;
+            case State.Patrol:
+                PatrolState();
+                break;
+            case State.Move:
+                MoveState();
+                break;
+            case State.Attack:
+                AttackState();
+                break;
+        }
+    }
     private void OnEnable()
     {
         Parser.Register(this, "enemy");
@@ -82,122 +99,99 @@ public class EnemyChase : MonoBehaviour
     {
         Parser.Unregister(this);
     }
-    IEnumerator Run()
-    {
-        //항시 시야가 가동된다.
-        StartCoroutine("FindTargetsWithDelay");
-
-        //첫 코루틴을 시작하면 끝날때까지 while문을 돈다.
-        while (true)
-        {
-            switch (state)
-            {
-                case State.Idle:
-                    yield return StartCoroutine("IdleState");
-                    break;
-                case State.Patrol:
-                    yield return StartCoroutine("PatrolState");
-                    break;                
-                case State.Move:
-                    yield return StartCoroutine("MoveState");
-                    break;
-                case State.Attack:
-                    yield return StartCoroutine("AttackState");
-                    break;
-            }
-        }
-    }
 
     //Idle State
-    IEnumerator IdleState()
-    {
-        yield return null;
+    void IdleState()
+    {        
         state = State.Patrol;
     }
 
-    IEnumerator PatrolState()
+    void PatrolState()
     {
         if (!isPatrol)
         {
-            //순찰 시작 전 1초 기다리기
-            yield return new WaitForSeconds(1f);
             //웨이 포인트 중 하나를 랜덤으로 접근
             int random = Random.Range(0, 26);
             //순찰중인지 판단
             isPatrol = true;            
             patrolPos = wayPoint[random].position;                        
+            //순찰 시작
+            enemy.SetDestination(patrolPos);
             //move state로 전환
             state = State.Move;
-            //순찰 시작
-            enemy.SetDestination(patrolPos);            
+            return;
         }
-    }        
+    }
 
-    IEnumerator MoveState()
-    {                      
-        while(state == State.Move)
+    void MoveState()
+    {
+        //순찰중이면
+        if (isPatrol)
         {
-            //순찰중이면
-            if (isPatrol)
+            //경로를 갖고있고
+            hasP = true;
+            //경로에 도달하면
+            if ((int)transform.position.x == (int)patrolPos.x && (int)transform.position.z == (int)patrolPos.z)
             {
-                //경로를 갖고있고
-                hasP = true;     
-                //경로에 도달하면
-                if ((int)transform.position.x == (int)patrolPos.x && (int)transform.position.z == (int)patrolPos.z)
-                {
-                    //초기화
-                    hasP = false;
-                    isPatrol = false;
-                    state = State.Patrol;
-                }
-                else
-                {
-                    yield return null;
-                }                                
-            }
-            //적을 잡으면 다시 Idle 상태로 간다.
-            else if(isCatched)
-            {
-                //경로가 없다고 알림
-                // 모든 변수 초기화
+                //초기화
                 hasP = false;
                 isPatrol = false;
-                setTarget = false;
-                isCatched = false;
+                state = State.Patrol;
+                return;
+            }
+            else
+            {
+                return;
+            }
+        }
+        //적을 잡으면 다시 Idle 상태로 간다.
+        else if (isCatched)
+        {
+            //경로가 없다고 알림
+            // 모든 변수 초기화
+            hasP = false;
+            isPatrol = false;
+            setTarget = false;
+            isCatched = false;
+            state = State.Idle;
+            return;
+        }
+        else
+        {
+            //계속해서 경로를 설정해서 플레이어가 움직여도 그 경로를 다시 설정한다.
+            enemy.SetDestination(target.position);
+            //타겟을 설정했으므로 타겟 설정 변수 초기화
+            /* NavMesh위에 플레이어가 있지 않을때
+            if (!enemy.hasPath)
+            {
                 state = State.Idle;
             }
             else
             {
-                //계속해서 경로를 설정해서 플레이어가 움직여도 그 경로를 다시 설정한다.
-                enemy.SetDestination(target.position);
-                //타겟을 설정했으므로 타겟 설정 변수 초기화
                 setTarget = false;
-                yield return null;
-            }            
-        }        
+            }*/
+            setTarget = false;            
+        }
     }
     
-    IEnumerator AttackState()
+    void AttackState()
     {
-        yield return null;
+        return;
     }
 
     //시야에 들어온 타겟을 찾는다.
-    IEnumerator FindTargetsWithDelay()
+    void FindTargets()
     {
-        while (true)
-        {            
-            FindVisibleTargets();
-            FindTargetWithSound();
-            //시야에 들어온 적이 있으면
-            if (findTargetVision  || findTargetSound)
-            {
-                isPatrol = false;
-                //그 적을 타겟으로 삼는다.
-                SetTargetWithSensor();
-            }          
-            yield return null;
-        }
+
+        FindVisibleTargets();
+        FindTargetWithSound();
+        //시야에 들어온 적이 있으면
+        if (findTargetVision || findTargetSound)
+        {
+            isPatrol = false;
+            //그 적을 타겟으로 삼는다.
+            SetTargetWithSensor();
+        }        
     }
 
     //시야에 새로운 적이 들어오면 들어온 적들 중 가장 가까운 타겟으로 타겟 변경
@@ -215,12 +209,12 @@ public class EnemyChase : MonoBehaviour
         //가장 짧은 거리를 찾기 위한 for문
         for (int i = 1; i < visibleTargets.Count; i++)
         {
-            if (dis > Vector3.Distance(transform.position, visibleTargets[i].position))
+            float temp = Vector3.Distance(transform.position, visibleTargets[i].position);
+            if (dis > temp)
             {
-                dis = Vector3.Distance(transform.position, visibleTargets[i].position);
+                dis = temp;
                 targetIndex = i;
             }
-
         }
         target = visibleTargets[targetIndex];
         setTarget = true;
