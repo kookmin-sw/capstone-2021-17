@@ -32,14 +32,21 @@ public class NetRoomPlayer : NetworkRoomPlayer
     private NetManager netManager;
     WaitingRoom_MultiGameManager gameManager;
 
+    public bool isJoinRoom = false;
+
     private void Awake()
     {
         netManager = NetManager.instance;
         gameManager = WaitingRoom_MultiGameManager.instance;
     }
 
-    public override void OnClientEnterRoom()
+
+    public override void OnClientEnterRoom() // 다른 클라이언트가 들어와도 OnClientEnterRoom은 불림
     {
+        if (isJoinRoom) // Join Room 한 상태라면 바꾸지 않게끔
+        {
+            return;
+        }
         setNicknameText();
         setReadyText();
 
@@ -47,15 +54,12 @@ public class NetRoomPlayer : NetworkRoomPlayer
         
         gameManager.AddPlayerToPlayerSpace(this);
 
-        if (IsLeader)
-        {
-            gameManager.AssignLeaderAuthority(this);
-        }
-
         if (this.gameObject != null)
         {
             Rect_Trans.gameObject.SetActive(true);
         }
+
+        isJoinRoom = true;
     }
 
 
@@ -76,13 +80,11 @@ public class NetRoomPlayer : NetworkRoomPlayer
             ReplaceLeader(this);
         }
     }
-
-    public override void OnClientExitRoom() // CallBack 함수
+    public override void OnClientExitRoom()
     {
-        //GamePlay Scene으로 넘어갔을시 Roomplayer가 남아있던 문제를 해결
-        if (this.gameObject != null && NetManager.IsSceneActive(netManager.GameplayScene))
+        if (NetManager.IsSceneActive(netManager.GameplayScene))
         {
-            Rect_Trans.gameObject.SetActive(false);
+            isJoinRoom = false;
         }
     }
 
@@ -95,11 +97,6 @@ public class NetRoomPlayer : NetworkRoomPlayer
                 player.IsLeader = true;
                 player.setNicknameText();
                 
-
-                if(gameManager!= null)
-                {
-                    gameManager.AssignLeaderAuthority(this);
-                }
                 break;
             }
         }

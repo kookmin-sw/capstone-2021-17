@@ -161,6 +161,11 @@ public class NetManager : NetworkRoomManager
             OnReturnToRoom();
         }
 
+        if (newSceneName == GameplayScene)
+        {
+            OnChangeGamePlayScene();
+        }
+
         NetworkServer.SetAllClientsNotReady();
 
         networkSceneName = newSceneName;
@@ -168,6 +173,8 @@ public class NetManager : NetworkRoomManager
         OnServerChangeScene(newSceneName);
 
         Transport.activeTransport.enabled = false;
+
+        
 
         LoadScene(newSceneName);
 
@@ -189,6 +196,10 @@ public class NetManager : NetworkRoomManager
 
     public override void OnClientChangeScene(string newSceneName, SceneOperation sceneOperation, bool customHandling)
     {
+        if (newSceneName == GameplayScene)
+        {
+            OnChangeGamePlayScene();
+        }
         //base.OnClientChangeScene(newSceneName, sceneOperation, customHandling);
         LoadScene(newSceneName);
 
@@ -225,5 +236,16 @@ public class NetManager : NetworkRoomManager
         allPlayersReady = false;
     }
 
-    
+    private void OnChangeGamePlayScene()
+    {
+        foreach (NetRoomPlayer roomPlayer in roomSlots)
+        {
+            if (roomPlayer.gameObject != null)
+            {
+                roomPlayer.Rect_Trans.gameObject.SetActive(false);
+            }
+        }
+    }
+
+
 }

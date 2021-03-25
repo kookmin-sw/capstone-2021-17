@@ -69,17 +69,6 @@ public class WaitingRoom_MultiGameManager : MonoBehaviour
         }
     }
 
-
-    //StartButtom은 방장에게만 보이게 함.
-    public void AssignLeaderAuthority(NetRoomPlayer player)
-    {
-        if(startButton == null)
-        {
-            return;
-        }
-        startButton.AssignAuthority(player);
-    }
-
     public void ActivateStartButton()
     {
         if (startButton == null)

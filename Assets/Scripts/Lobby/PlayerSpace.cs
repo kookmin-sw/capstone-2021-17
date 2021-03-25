@@ -8,5 +8,6 @@ using UnityEngine;
 
 public class PlayerSpace : MonoBehaviour
 {
+    [HideInInspector]
     public NetRoomPlayer player;
 }
