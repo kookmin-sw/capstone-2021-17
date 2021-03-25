@@ -22,12 +22,13 @@ public class DebugSample : MonoBehaviour
             + "Distance : " + enemyChase.dis + "\n"
             + "IsAudioEvent : " + enemyChase.findTargetSound + "\n"
             + "Target : " + enemyChase.target + "\n"
+            + "WayPoint : " + enemyChase.patrolPos + "\n"
+            + "SetTarget : " + enemyChase.enemy.hasPath + "\n"            
             + "TargetList : ";
 
         for(int i=0; i< enemyChase.visibleTargets.Count; i++)
         {
             text.text +=  enemyChase.visibleTargets[i] + "\n";
-        }
-            
+        }            
     }
 }
