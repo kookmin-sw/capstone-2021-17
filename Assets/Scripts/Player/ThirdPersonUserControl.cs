@@ -82,7 +82,7 @@ public class ThirdPersonUserControl : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.B)) 
         {
-            GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().Hit();
+            GetComponent<PlayerHealth>().Hit();
         }
 
         ChangeSpeed(HealthCheck);

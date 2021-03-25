@@ -56,20 +56,38 @@ public class NetGamePlayer : NetworkBehaviour
     [ClientCallback]
     public void MoveCharacter(Vector3 move, bool crouch, bool jump)
     {
-        if (isLocalPlayer)
+        if (isLocalPlayer) // Authority Check
         {
             Character.Move(move, crouch, jump);
         }
     }
 
-    [Client]
-    public void ClientChangeHealth(int h)
+    
+    public void ChangeHealth(int h)
+    {
+        if (isLocalPlayer) // Authority Check
+        {
+            CmdChangeHealth(h);
+        } 
+    }
+
+    [Command]
+    private void CmdChangeHealth(int h)
     {
         Health = h;
     }
 
-    [Client]
-    public void ClientChangeState(ThirdPersonCharacter.State state)
+    
+    public void ChangeState(ThirdPersonCharacter.State state)
+    {
+        if (isLocalPlayer) // Authority Check
+        {
+            CmdChangeState(state);
+        }
+    }
+
+    [Command]
+    private void CmdChangeState(ThirdPersonCharacter.State state)
     {
         State = state;
     }

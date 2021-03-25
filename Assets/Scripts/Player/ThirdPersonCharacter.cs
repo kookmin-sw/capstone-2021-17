@@ -94,7 +94,7 @@ public class ThirdPersonCharacter : MonoBehaviour
 
         if(NetPlayer != null)
         {
-            NetPlayer.ClientChangeState(state);
+            NetPlayer.ChangeState(state);
         }
         
         // convert the world relative moveInput vector into a local-relative

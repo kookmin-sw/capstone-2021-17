@@ -30,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
 
         if(NetPlayer != null)
         {
-            NetPlayer.ClientChangeHealth(Health);
+            NetPlayer.ChangeHealth(Health);
         }
         if(Health==1)
         {
@@ -48,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
         Health += 1;
         if (NetPlayer != null)
         {
-            NetPlayer.ClientChangeHealth(Health);
+            NetPlayer.ChangeHealth(Health);
         }
         GameObject.FindWithTag("Player").GetComponent<ThirdPersonUserControl>().HealthCheck=Health;
         GameObject.FindWithTag("Player").GetComponent<ThirdPersonCharacter>().IsHit=false;
