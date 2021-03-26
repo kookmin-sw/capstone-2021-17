@@ -23,7 +23,8 @@ public class DebugSample : MonoBehaviour
             + "IsAudioEvent : " + enemyChase.findTargetSound + "\n"
             + "Target : " + enemyChase.target + "\n"
             + "WayPoint : " + enemyChase.patrolPos + "\n"
-            + "SetTarget : " + enemyChase.enemy.hasPath + "\n"            
+            + "SetTarget : " + enemyChase.enemy.hasPath + "\n"         
+            + "Attack : " + enemyChase.attTarget + "\n"
             + "TargetList : ";
 
         for(int i=0; i< enemyChase.visibleTargets.Count; i++)
