@@ -14,61 +14,50 @@ public class EnemyChase : MonoBehaviour
         Move,
         Attack
     }
+    [Command("state")]
+    public State state;
 
     //적의 시야
     public float viewRadius;
     [Range(0, 360)]
     public float viewAngle;
-    //Path가 있는지
-    public bool hasP = false;
-    //플레이어를 잡았는지 체크    
-    public bool isCatched = false;
-    //시야에 들어온 적들의 List
-    public List<Transform> visibleTargets = new List<Transform>();
 
-    //적의 판단 근거, 장애물인지 플레이어인지
-    [SerializeField]
-    private LayerMask targetMask;
-    [SerializeField]
-    private LayerMask obstacleMask;
-    [SerializeField]
-    private AnimationEvent animationEvent;
-
-    private Collider[] targetsInViewRadius = new Collider[4];
-    private int targetsLength;
-    [Command("state")]
-    public State state;
-    //타겟을 설정했는지
+    public bool hasP = false;   //Path가 있는지    
+    public bool isCatched = false;  //플레이어를 잡았는지 체크    
     [Command("setTarget")]
-    public bool setTarget = false;
-    //시야에 적이 들어왔는지 체크    
+    public bool setTarget = false;  //타겟을 설정했는지    
     [Command("findTargetVision")]
-    public bool findTargetVision = false;
+    public bool findTargetVision = false;   //시야에 적이 들어왔는지 체크    
     [Command("findTargetSound")]
-    public bool findTargetSound = false;
-    //순찰 중인지 체크
+    public bool findTargetSound = false;    //오디오 센서에 적이 감지 됐는지    
     [Command("isPatrol")]
-    public bool isPatrol = false;
-    //순찰 위치 기억      
-    public Vector3 patrolPos;
-    //플레이어와의 거리
-    [Command("distance")]
-    public float dis;
-    //AI
-    public NavMeshAgent enemy;
-    //타겟의 위치
-    public Transform target;    
-    //WayPoint
-    [SerializeField]
-    private Transform[] wayPoint;
+    public bool isPatrol = false;   //순찰 중인지 체크
+    public bool attTarget = false;  //Attack 스테이트로 갈지 확인    
 
+    public Vector3 patrolPos;   //순찰 위치 기억      
+    [Command("distance")]
+    public float dis;   //플레이어와의 거리
+
+    [SerializeField] public NavMeshAgent enemy;  //AI
+    public Transform target;    //타겟의 위치
+    
+    public List<Transform> visibleTargets = new List<Transform>();  //시야에 들어온 적들의 List
+
+    [SerializeField] private Transform[] wayPoint;   //WayPoint    
+    //적의 판단 근거, 장애물인지 플레이어인지
+    [SerializeField] private LayerMask targetMask;
+    [SerializeField] private LayerMask obstacleMask;
+    [SerializeField] private AnimationEvent animationEvent;  //오디오 센서를 위한 애니메이션 이벤트    
+    [SerializeField] private MoveObjectTest anim;
+    private Collider[] targetsInViewRadius = new Collider[4];   //OverlapSphereNonAlloc을 위한 어레이
+    private int targetsLength;  //타겟 리스트의 길이
+
+    float timer; //딜레이를 위한 타이머 변수
     void Awake()
     {
         Console.IsOpen = false;
         //기본 상태
-        state = State.Idle;
-        //추적 시스템을 이용하기 위해 초기화
-        enemy = GetComponent<NavMeshAgent>();        
+        state = State.Idle;                
     }
 
     void Update()
@@ -102,12 +91,20 @@ public class EnemyChase : MonoBehaviour
 
     //Idle State
     void IdleState()
-    {        
-        state = State.Patrol;
+    {
+        //NavMeshAgent 활성화
+        enemy.isStopped = false;
+        //타이머, 1초 딜레이
+        timer += Time.deltaTime;
+        if (timer > 1f)
+        {
+            timer = 0.0f;           
+            state = State.Patrol;
+        }        
     }
 
     void PatrolState()
-    {
+    {        
         if (!isPatrol)
         {
             //웨이 포인트 중 하나를 랜덤으로 접근
@@ -149,10 +146,7 @@ public class EnemyChase : MonoBehaviour
         {
             //경로가 없다고 알림
             // 모든 변수 초기화
-            hasP = false;
-            isPatrol = false;
-            setTarget = false;
-            isCatched = false;
+            InitializeVar();
             state = State.Idle;
             return;
         }
@@ -170,19 +164,24 @@ public class EnemyChase : MonoBehaviour
             {
                 setTarget = false;
             }*/
-            setTarget = false;            
+            setTarget = false;
         }
     }
     
     void AttackState()
     {
-        return;
+        //변수 초기화 - Idle 상태로 가기 때문
+        InitializeVar();
+        //NavMeshAgent를 잠시 멈춤.
+        enemy.isStopped = true;    
+        //애니메이션 출력
+        anim.PlayAttAnim();
+        state = State.Idle;
     }
 
     //시야에 들어온 타겟을 찾는다.
     void FindTargets()
     {
-
         FindVisibleTargets();
         FindTargetWithSound();
         //시야에 들어온 적이 있으면
@@ -218,17 +217,29 @@ public class EnemyChase : MonoBehaviour
         }
         target = visibleTargets[targetIndex];
         setTarget = true;
-        hasP = true;
-        state = State.Move;
+        //공격 범위 설정
+        if (dis <= 1.5f)
+        {            
+            //범위 내에 있으면 어택
+            state = State.Attack;
+        }
+        else
+        {
+            //아니면 그대로 추격
+            hasP = true;
+            state = State.Move;
+        }  
     }
 
     void FindTargetWithSound()
     {
+        //오디오 이벤트가 발생하면
         if (animationEvent.audioEvent)
         {
+            //타겟리스트에 추가
             Transform target = animationEvent.transform;
             visibleTargets.Add(target);
-        }        
+        }
     }
 
     //시야에 적이 있는지 없는지 찾는다.
@@ -266,5 +277,17 @@ public class EnemyChase : MonoBehaviour
             angleInDegrees += transform.eulerAngles.y;
         }
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+    }
+
+    //변수 초기화 함수
+    void InitializeVar()
+    {
+        hasP = false;
+        isCatched = false;
+        setTarget = false;
+        findTargetVision = false;
+        findTargetSound = false;
+        isPatrol = false;
+        attTarget = false;
     }
 }
