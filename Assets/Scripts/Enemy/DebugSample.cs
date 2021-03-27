@@ -15,16 +15,15 @@ public class DebugSample : MonoBehaviour
     void Update()
     {
 
-        text.text = "State : " + enemyChase.state + "\n"
-            + "SetTarget : " + enemyChase.setTarget + "\n"
-            + "FindTargetVision : " + enemyChase.findTargetVision + "\n"
-            + "IsPatrol : " + enemyChase.isPatrol + "\n"
-            + "Distance : " + enemyChase.dis + "\n"
-            + "IsAudioEvent : " + enemyChase.findTargetSound + "\n"
-            + "Target : " + enemyChase.target + "\n"
-            + "WayPoint : " + enemyChase.patrolPos + "\n"
-            + "SetTarget : " + enemyChase.enemy.hasPath + "\n"         
-            + "Attack : " + enemyChase.attTarget + "\n"
+        text.text = "State : " + enemyChase.state + "\n\n"
+            + "FindTargetVision : " + enemyChase.findTargetVision + "\n\n"
+            + "IsPatrol : " + enemyChase.isPatrol + "\n\n"
+            + "Distance : " + enemyChase.dis + "\n\n"
+            + "IsAudioEvent : " + enemyChase.findTargetSound + "\n\n"
+            + "Target : " + enemyChase.target + "\n\n"
+            + "WayPoint : " + enemyChase.patrolPos + "\n\n"
+            + "SetTarget : " + enemyChase.enemy.hasPath + "\n\n"
+            + "Attack : " + enemyChase.attTarget + "\n\n"
             + "TargetList : ";
 
         for(int i=0; i< enemyChase.visibleTargets.Count; i++)
