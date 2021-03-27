@@ -9,8 +9,6 @@ namespace keypadSystem
         void Awake()
         {
             _keypadController = gameObject.GetComponent<KeypadController>();
-            _keypadController.SetPassword();
-            _keypadController.GenerateQuiz();
         }
 
         public void KeyPressString(string keyString)

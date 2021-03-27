@@ -4,22 +4,78 @@ using UnityEngine;
 using Mirror;
 
 [RequireComponent(typeof(NetworkIdentity))]
-[RequireComponent(typeof(NetworkAnimator))]
 public class ItemBoxNetBehaviour : NetworkBehaviour
 {
     [SyncVar]
-    public bool IsOpen = false;
+    public bool IsUsing = false;
 
-    public void CheckOpen()
+    [SyncVar]
+    public string quizText;
+
+    [SyncVar]
+    public string validCode;
+
+    [SerializeField]
+    private BoxContoller boxContoller;
+    [SerializeField]
+    private keypadSystem.KeypadController keypadController;
+
+
+    public override void OnStartServer()
     {
-        CmdCheckOpen();
+        keypadController.SetPassword();
+        keypadController.GenerateQuiz();
+    }
+    public override void OnStartClient()
+    {
+        keypadController.quizInfo.text = quizText;
+        keypadController.validCode = validCode;
+    }
+    public void SetUsing(bool isUsing)
+    {
+        CmdSetUsing(isUsing);
     }
 
-    [Command]
-    private void CmdCheckOpen()
+    [Command(ignoreAuthority = true)]
+    private void CmdSetUsing(bool isUsing)
     {
-        IsOpen = true;
+        IsUsing= isUsing;
     }
 
+    public void OpenBox()
+    {
+        CmdOpenBox();
+    }
+
+    [Command(ignoreAuthority = true)]
+    private void CmdOpenBox()
+    {
+        RpcOpenBox();
+    }
+
+    [ClientRpc]
+    private void RpcOpenBox()
+    {
+        boxContoller.PlayAnimation();
+    }
+
+    public void UnableKeypad()
+    {
+        CmdUnableKeypad();
+    }
     
+    [Command(ignoreAuthority = true)]
+    private void CmdUnableKeypad()
+    {
+        RpcUnableKeypad();
+    }
+
+    [ClientRpc]
+    private void RpcUnableKeypad()
+    {
+        keypadController.UnableKeypad();
+    }
+
+
+
 }

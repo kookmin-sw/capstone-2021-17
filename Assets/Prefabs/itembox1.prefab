@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 1643555246492091072}
   - component: {fileID: 3540504127751150655}
   - component: {fileID: 1342203139322882420}
+  - component: {fileID: 1781761736595930365}
+  - component: {fileID: 5672679051307758516}
+  - component: {fileID: 8265605533914970974}
   m_Layer: 8
   m_Name: itembox1
   m_TagString: ItemBox
@@ -111,6 +114,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f48e5b8da23104185e358241473fc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1781761736595930365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038162653935764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
+--- !u!114 &5672679051307758516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038162653935764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800c8251f3e535c4ab1496fd32df7084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  IsUsing: 0
+  IsUnLock: 0
+  boxContoller: {fileID: 1342203139322882420}
+  keypadController: {fileID: 1011932981951100438}
+--- !u!114 &8265605533914970974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038162653935764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a2feb20d90c1994aa504509f9e50123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  Item: {fileID: 5502244845750081425}
 --- !u!1 &1392504987974012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,7 +1859,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1342203139322882420}
         m_TargetAssemblyTypeName: BoxContoller, Assembly-CSharp
-        m_MethodName: PlayAnimation
+        m_MethodName: OpenBox
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1818,6 +1870,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   quizInfo: {fileID: 6151527099722081544}
+  itemBoxNet: {fileID: 5672679051307758516}
 --- !u!1 &2190297890845481358
 GameObject:
   m_ObjectHideFlags: 0
@@ -3341,6 +3394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8012a8f3aa6f53438d1655b76f5328c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemNet: {fileID: 8265605533914970974}
 --- !u!1 &5646679783430665574
 GameObject:
   m_ObjectHideFlags: 0

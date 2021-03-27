@@ -1,9 +1,13 @@
 using System.Text;
 using UnityEngine;
+using Mirror;
 
 
 public class GameMgr : MonoBehaviour
 {
+
+    public static GameMgr instance;
+
     public Transform[] boxspawnPoints;
     public GameObject itemBox;
     public GameObject itemBoxSpawnPoints;
@@ -12,17 +16,17 @@ public class GameMgr : MonoBehaviour
 
     void Start()
     {
+        instance = this;
         //아이템박스 생성
-        GetRandomInt(boxCount, boxCount.Length-1);
+    }
+
+    
+    public void Init()
+    {
+        GetRandomInt(boxCount, boxCount.Length - 1);
         boxspawnPoints = GetSpwanPoints(itemBoxSpawnPoints);
         SpawnObject(itemBox, boxspawnPoints, spawnPointCount);
     }
-
-    void Update()
-    {
-
-    }
-
     static void GetRandomInt(int []arr, int max)
     {
         System.Random r = new System.Random();
@@ -44,7 +48,11 @@ public class GameMgr : MonoBehaviour
     {
         for (int i = 0; i < objCount; i++)
         {
-            Instantiate(gameObject, spawnPoints[boxCount[i]].position, Quaternion.identity);
+            GameObject createdObject = Instantiate(gameObject, spawnPoints[boxCount[i]].position, Quaternion.identity);
+            if (NetworkServer.active)
+            {
+                NetworkServer.Spawn(createdObject);
+            }
             //Debug.Log(boxCount[i] + "위치에 아이템박스 생성");
         }
     }

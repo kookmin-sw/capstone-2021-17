@@ -23,12 +23,20 @@ namespace keypadSystem
 
         public Text quizInfo;
 
+
+        //Add NetGame Player (Custom)
+        [SerializeField]
+        private ItemBoxNetBehaviour itemBoxNet;
+
         public void CheckCode()
         {
             if (codeText.text == validCode)
             {
-                keypadModel.tag = "Untagged";
-                keypadModel.layer = 0;
+                if(itemBoxNet != null)
+                {
+                    itemBoxNet.UnableKeypad();
+                }
+                UnableKeypad();
                 ValidCode();
             }
 
@@ -36,6 +44,11 @@ namespace keypadSystem
             {
                 KPAudioManager.instance.Play("KeypadDenied"); //0.2f
             }
+        }
+        public void UnableKeypad()
+        {
+            keypadModel.tag = "Untagged";
+            keypadModel.layer = 0;
         }
 
         void ValidCode() 
@@ -46,12 +59,29 @@ namespace keypadSystem
 
         public void ShowKeypad()
         {
+            if (itemBoxNet != null )
+            {
+                if(itemBoxNet.IsUsing == false)
+                {
+                    itemBoxNet.SetUsing(true); // Set IsUsing true [Command] 
+                }
+                else
+                {
+                    Debug.Log("Other Player Using this ItemBox");
+                    return;
+                }
+            }
+
             KPDisableManager.instance.DisablePlayer(true);
             keyPadCanvas.SetActive(true);
         }
 
         public void CloseKeypad()
         {
+            if (itemBoxNet != null)
+            {
+                itemBoxNet.SetUsing(false);
+            }
             KPDisableManager.instance.DisablePlayer(false);
             keyPadCanvas.SetActive(false);
         }
@@ -64,6 +94,10 @@ namespace keypadSystem
         public void SetPassword()
         {
             validCode = GameMgr.GeneratePassword(characterLim);
+            if (itemBoxNet != null)
+            {
+                itemBoxNet.validCode = validCode;
+            }
             //Debug.Log(validCode);
         }
 
@@ -99,6 +133,10 @@ namespace keypadSystem
                     break;
             }
 
+            if (itemBoxNet != null)
+            {
+                itemBoxNet.quizText = quizText;
+            }
             quizInfo.text = quizText;
             //Debug.Log(quizInfo.text);
         }

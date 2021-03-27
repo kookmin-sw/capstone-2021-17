@@ -9,6 +9,17 @@ public class HealPack : MonoBehaviour
     // Heal test nono
     PlayerHealth playerHealth;
 
+    [SerializeField]
+    ItemNetBehaviour itemNet;
+
+    private void Awake()
+    {
+        if(itemNet == null)
+        {
+            itemNet = GetComponent<ItemNetBehaviour>();
+        }
+    }
+
     public void UseHealPack()
     {
         //playerHealth = testPlayer.GetComponent<HealTest>();
@@ -37,7 +48,7 @@ public class HealPack : MonoBehaviour
 
     void DestroyItem()
     {
-        healPack.SetActive(false);
+        itemNet.SetActive(false , healPack);
     }
 
     public void SetHealObject(GameObject gameObj)

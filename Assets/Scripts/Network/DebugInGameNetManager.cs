@@ -24,6 +24,13 @@ using System;
  */ 
 public class DebugInGameNetManager : NetworkManager
 {
-    
+    private GameMgr gameMgr;
+
+    public override void OnStartServer()
+    {
+        gameMgr = GameMgr.instance;
+        gameMgr.Init();
+        base.OnStartServer();
+    }
 
 }

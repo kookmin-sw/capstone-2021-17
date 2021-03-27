@@ -67,15 +67,7 @@ public class RayCastCam : MonoBehaviour
                 {
                     ItemBoxNetBehaviour itemBoxNet = raycasted_obj.GetComponent<ItemBoxNetBehaviour>();
                     rayCastedKeypad = raycasted_obj.GetComponent<KeypadItemController>();
-                    if (itemBoxNet != null && itemBoxNet.IsOpen == false)
-                    {
-                        itemBoxNet.CheckOpen();
-                        rayCastedKeypad.ShowKeypad();
-                    }
-                    else if(itemBoxNet == null )
-                    {
-                        rayCastedKeypad.ShowKeypad();
-                    }
+                    rayCastedKeypad.ShowKeypad();
                 }
             }
 
