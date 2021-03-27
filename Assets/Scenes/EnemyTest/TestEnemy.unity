@@ -8342,7 +8342,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317606891}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.97, y: 0.76, z: -18.7}
+  m_LocalPosition: {x: -29.26, y: 0.76, z: -18.7}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -27607,7 +27607,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkAudio: {fileID: 1497111287}
   enemy: {fileID: 1338542117}
-  audioEvent: 0
 --- !u!1 &965512884 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4699244506877485284, guid: 54d60ea479a27f84e9dc3fbd3b3f13f9,
@@ -38402,7 +38401,7 @@ PrefabInstance:
     - target: {fileID: 672020923862264593, guid: 54d60ea479a27f84e9dc3fbd3b3f13f9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.221
+      value: 0.22100002
       objectReference: {fileID: 0}
     - target: {fileID: 672020923862264593, guid: 54d60ea479a27f84e9dc3fbd3b3f13f9,
         type: 3}
@@ -38412,7 +38411,7 @@ PrefabInstance:
     - target: {fileID: 672020923862264593, guid: 54d60ea479a27f84e9dc3fbd3b3f13f9,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: -0.6723921
       objectReference: {fileID: 0}
     - target: {fileID: 672020923862264593, guid: 54d60ea479a27f84e9dc3fbd3b3f13f9,
         type: 3}
@@ -38422,7 +38421,7 @@ PrefabInstance:
     - target: {fileID: 672020923862264593, guid: 54d60ea479a27f84e9dc3fbd3b3f13f9,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.70710677
+      value: 0.74019516
       objectReference: {fileID: 0}
     - target: {fileID: 672020923862264593, guid: 54d60ea479a27f84e9dc3fbd3b3f13f9,
         type: 3}
@@ -38437,7 +38436,7 @@ PrefabInstance:
     - target: {fileID: 672020923862264593, guid: 54d60ea479a27f84e9dc3fbd3b3f13f9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 264.504
       objectReference: {fileID: 0}
     - target: {fileID: 672020923862264593, guid: 54d60ea479a27f84e9dc3fbd3b3f13f9,
         type: 3}
@@ -38530,8 +38529,6 @@ MonoBehaviour:
   viewRadius: 15
   viewAngle: 75
   hasP: 0
-  isCatched: 0
-  setTarget: 0
   findTargetVision: 0
   findTargetSound: 0
   isPatrol: 0
