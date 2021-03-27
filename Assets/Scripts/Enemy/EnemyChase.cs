@@ -22,19 +22,16 @@ public class EnemyChase : MonoBehaviour
     [Range(0, 360)]
     public float viewAngle;
 
-    public bool hasP = false;   //Path가 있는지    
-    public bool isCatched = false;  //플레이어를 잡았는지 체크    
-    [Command("setTarget")]
-    public bool setTarget = false;  //타겟을 설정했는지    
+    public bool hasP = false;   //Walk 애니메이션을 사용하기 위한 조건               
     [Command("findTargetVision")]
     public bool findTargetVision = false;   //시야에 적이 들어왔는지 체크    
     [Command("findTargetSound")]
     public bool findTargetSound = false;    //오디오 센서에 적이 감지 됐는지    
     [Command("isPatrol")]
     public bool isPatrol = false;   //순찰 중인지 체크
-    public bool attTarget = false;  //Attack 스테이트로 갈지 확인    
+    public bool attTarget = true;  //공격중에 시야와 오디오 센서를 끈다.  
 
-    public Vector3 patrolPos;   //순찰 위치 기억      
+    public Vector3 patrolPos;   //순찰 위치 기억
     [Command("distance")]
     public float dis;   //플레이어와의 거리
 
@@ -77,9 +74,9 @@ public class EnemyChase : MonoBehaviour
             case State.Attack:
                 AttackState();
                 break;
-        }
+        }        
     }
-    private void OnEnable()
+    /*private void OnEnable()
     {
         Parser.Register(this, "enemy");
     }
@@ -87,18 +84,17 @@ public class EnemyChase : MonoBehaviour
     private void OnDisable()
     {
         Parser.Unregister(this);
-    }
+    }*/
 
     //Idle State
     void IdleState()
-    {
-        //NavMeshAgent 활성화
-        enemy.isStopped = false;
-        //타이머, 1초 딜레이
+    {        
+        //타이머, 5초 딜레이
         timer += Time.deltaTime;
-        if (timer > 1f)
+        if (timer > 5f)
         {
-            timer = 0.0f;           
+            timer = 0.0f;
+            enemy.isStopped = false;
             state = State.Patrol;
         }        
     }
@@ -107,6 +103,7 @@ public class EnemyChase : MonoBehaviour
     {        
         if (!isPatrol)
         {
+            attTarget = false;
             //웨이 포인트 중 하나를 랜덤으로 접근
             int random = Random.Range(0, 26);
             //순찰중인지 판단
@@ -115,8 +112,7 @@ public class EnemyChase : MonoBehaviour
             //순찰 시작
             enemy.SetDestination(patrolPos);
             //move state로 전환
-            state = State.Move;
-            return;
+            state = State.Move;            
         }
     }
 
@@ -133,23 +129,9 @@ public class EnemyChase : MonoBehaviour
                 //초기화
                 hasP = false;
                 isPatrol = false;
-                state = State.Patrol;
-                return;
-            }
-            else
-            {
-                return;
-            }
-        }
-        //적을 잡으면 다시 Idle 상태로 간다.
-        else if (isCatched)
-        {
-            //경로가 없다고 알림
-            // 모든 변수 초기화
-            InitializeVar();
-            state = State.Idle;
-            return;
-        }
+                state = State.Patrol;                
+            }            
+        }       
         else
         {
             //계속해서 경로를 설정해서 플레이어가 움직여도 그 경로를 다시 설정한다.
@@ -160,21 +142,14 @@ public class EnemyChase : MonoBehaviour
             {
                 state = State.Idle;
             }
-            else
-            {
-                setTarget = false;
-            }*/
-            setTarget = false;
+            */            
         }
     }
     
     void AttackState()
     {
-        //변수 초기화 - Idle 상태로 가기 때문
-        InitializeVar();
-        //NavMeshAgent를 잠시 멈춤.
-        enemy.isStopped = true;    
-        //애니메이션 출력
+        //NavMeshAgent 잠시 멈춤
+        enemy.isStopped = true;
         anim.PlayAttAnim();
         state = State.Idle;
     }
@@ -182,15 +157,20 @@ public class EnemyChase : MonoBehaviour
     //시야에 들어온 타겟을 찾는다.
     void FindTargets()
     {
-        FindVisibleTargets();
-        FindTargetWithSound();
-        //시야에 들어온 적이 있으면
-        if (findTargetVision || findTargetSound)
+        //공격중이 아닐 때
+        if (!attTarget)
         {
-            isPatrol = false;
-            //그 적을 타겟으로 삼는다.
-            SetTargetWithSensor();
-        }        
+            //센서들을 키고
+            FindVisibleTargets();
+            FindTargetWithSound();
+            //센서에 들어온 적이 있으면
+            if (findTargetVision || findTargetSound)
+            {
+                isPatrol = false;
+                //그 적을 타겟으로 삼는다.
+                SetTargetWithSensor();
+            }
+        }
     }
 
     //시야에 새로운 적이 들어오면 들어온 적들 중 가장 가까운 타겟으로 타겟 변경
@@ -216,25 +196,26 @@ public class EnemyChase : MonoBehaviour
             }
         }
         target = visibleTargets[targetIndex];
-        setTarget = true;
         //공격 범위 설정
+        //범위 내에 있으면 Attack 스테이트로, 아니면 그대로 추격
         if (dis <= 1.5f)
-        {            
-            //범위 내에 있으면 어택
-            state = State.Attack;
-        }
-        else
         {
-            //아니면 그대로 추격
+            //변수초기화
+            InitializeVar();            
+            attTarget = true;
+            state = State.Attack;
+        }        
+        else
+        {            
             hasP = true;
             state = State.Move;
-        }  
+        }
     }
 
     void FindTargetWithSound()
     {
         //오디오 이벤트가 발생하면
-        if (animationEvent.audioEvent)
+        if (findTargetSound)
         {
             //타겟리스트에 추가
             Transform target = animationEvent.transform;
@@ -244,9 +225,9 @@ public class EnemyChase : MonoBehaviour
 
     //시야에 적이 있는지 없는지 찾는다.
     void FindVisibleTargets()
-    {        
+    {   
         //시야에 들어온 타겟들을 초기화
-        visibleTargets.Clear();        
+        visibleTargets.Clear();
         //주변 시야 범위에 들어온 타겟들을 찾는다.
         targetsLength = Physics.OverlapSphereNonAlloc(transform.position, viewRadius, targetsInViewRadius, targetMask);
         
@@ -282,12 +263,9 @@ public class EnemyChase : MonoBehaviour
     //변수 초기화 함수
     void InitializeVar()
     {
-        hasP = false;
-        isCatched = false;
-        setTarget = false;
+        hasP = false;        
         findTargetVision = false;
         findTargetSound = false;
         isPatrol = false;
-        attTarget = false;
     }
 }
