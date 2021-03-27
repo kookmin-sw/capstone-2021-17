@@ -9,8 +9,7 @@ public class AnimationEvent : MonoBehaviour
     [SerializeField]
     EnemyChase enemy;
 
-    private Transform enemyPos;
-    public bool audioEvent = false;
+    private Transform enemyPos;    
 
     public void Awake()
     {
@@ -18,11 +17,9 @@ public class AnimationEvent : MonoBehaviour
     }
     public void SoundWhenAnim()
     {
-        if (Vector3.Distance(transform.position, enemyPos.position) <= 2.5f)
+        if (Vector3.Distance(transform.position, enemyPos.position) <= 5f)
         {
-            enemy.findTargetSound = true;
-            
-            audioEvent = true;            
+            enemy.findTargetSound = true;                        
         }
         walkAudio.Play();
     }
