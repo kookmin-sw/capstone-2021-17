@@ -4,7 +4,9 @@ using UnityEngine;
 [RequireComponent(typeof(ThirdPersonUserControl))]
 public class PlayerHealth : MonoBehaviour
 {
+    public const int MAXHP = 2;
     public int Health = 2;
+    
     bool IsHit;
 
     Animator PlayerAnimator;

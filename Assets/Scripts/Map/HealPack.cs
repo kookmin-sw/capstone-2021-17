@@ -6,17 +6,24 @@ public class HealPack : MonoBehaviour
 {
     GameObject testPlayer;
     GameObject healPack;
-    HealTest playerHealth;
+    // Heal test nono
+    PlayerHealth playerHealth;
 
     public void UseHealPack()
     {
-        playerHealth = testPlayer.GetComponent<HealTest>();
+        //playerHealth = testPlayer.GetComponent<HealTest>();
+        NetGamePlayer netPlayer = testPlayer.GetComponent<NetGamePlayer>();
+        if (netPlayer == null)
+        {
+            Debug.LogWarning("Player Don't have NetGamePlayer Script - Heeun An");
+        }
+        playerHealth = netPlayer.PlayerHealth;
         HealPlayer();
     }
 
     void HealPlayer()
     {
-        if (playerHealth.playerHP < playerHealth.maxHP)
+        if (playerHealth.Health < PlayerHealth.MAXHP)
         {
             playerHealth.Heal();
             DestroyItem();
@@ -24,7 +31,7 @@ public class HealPack : MonoBehaviour
         }
         else
         {
-            Debug.Log("아이템 사용 불가");
+            Debug.Log("아이템 사용 불가 - 체력이 가득찬 상태");
         }
     }
 
@@ -33,12 +40,12 @@ public class HealPack : MonoBehaviour
         healPack.SetActive(false);
     }
 
-    public void GetHealObject(GameObject gameObj)
+    public void SetHealObject(GameObject gameObj)
     {
         healPack = gameObj;
     }
 
-    public void GetPlayerObject(GameObject gameObj)
+    public void SetPlayerObject(GameObject gameObj)
     {
         testPlayer = gameObj;
     }

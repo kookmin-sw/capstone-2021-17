@@ -26,6 +26,7 @@ public class RayCastCam : MonoBehaviour
         if (player_obj == null)
         {
             player_obj = transform.parent.gameObject;
+
         }
         if (cam == null)
         {
@@ -64,8 +65,17 @@ public class RayCastCam : MonoBehaviour
 
                 if (Input.GetKeyDown("e"))
                 {
+                    ItemBoxNetBehaviour itemBoxNet = raycasted_obj.GetComponent<ItemBoxNetBehaviour>();
                     rayCastedKeypad = raycasted_obj.GetComponent<KeypadItemController>();
-                    rayCastedKeypad.ShowKeypad();
+                    if (itemBoxNet != null && itemBoxNet.IsOpen == false)
+                    {
+                        itemBoxNet.CheckOpen();
+                        rayCastedKeypad.ShowKeypad();
+                    }
+                    else if(itemBoxNet == null )
+                    {
+                        rayCastedKeypad.ShowKeypad();
+                    }
                 }
             }
 
@@ -76,9 +86,11 @@ public class RayCastCam : MonoBehaviour
 
                 if (Input.GetKeyDown("e"))
                 {
-                    raycasted_obj.GetComponent<HealPack>().GetHealObject(raycasted_obj);
-                    raycasted_obj.GetComponent<HealPack>().GetPlayerObject(player_obj);
-                    raycasted_obj.GetComponent<HealPack>().UseHealPack();
+                    HealPack healPack = raycasted_obj.GetComponent<HealPack>();
+                    healPack.SetHealObject(raycasted_obj);
+                    healPack.SetPlayerObject(player_obj);
+                    healPack.UseHealPack();
+
                     //raycasted_obj.SetActive(false);
                 }
             }

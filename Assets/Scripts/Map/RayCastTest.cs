@@ -55,8 +55,8 @@ public class RayCastTest : MonoBehaviour
 
                 if (Input.GetKeyDown("e"))
                 {
-                    raycasted_obj.GetComponent<HealPack>().GetHealObject(raycasted_obj);
-                    raycasted_obj.GetComponent<HealPack>().GetPlayerObject(player_obj);
+                    raycasted_obj.GetComponent<HealPack>().SetHealObject(raycasted_obj);
+                    raycasted_obj.GetComponent<HealPack>().SetPlayerObject(player_obj);
                     raycasted_obj.GetComponent<HealPack>().UseHealPack();
                     //raycasted_obj.SetActive(false);
                 }
