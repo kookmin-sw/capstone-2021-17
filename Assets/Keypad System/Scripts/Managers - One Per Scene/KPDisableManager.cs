@@ -15,8 +15,7 @@ namespace keypadSystem
 
         void Awake()
         {
-            if (instance != null) { Destroy(gameObject); }
-            else { instance = this; DontDestroyOnLoad(gameObject); }
+            instance = this;
         }
 
         public void DisablePlayer(bool disable)
