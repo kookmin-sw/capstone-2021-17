@@ -3225,7 +3225,6 @@ MonoBehaviour:
   - {fileID: 1518220238}
   - {fileID: 1747631248}
   - {fileID: 163511072}
-  clearText: {fileID: 0}
 --- !u!4 &1368262336
 Transform:
   m_ObjectHideFlags: 0
@@ -5688,7 +5687,8 @@ MonoBehaviour:
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 1
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 1038162653935764, guid: 0462052c0393d654185c9da4c8e6e072, type: 3}
   showRoomGUI: 1
   minPlayers: 1
   roomPlayerPrefab: {fileID: 5801046964974653843, guid: 104f3e730f7e3a245a4de0f19f3b9df2,

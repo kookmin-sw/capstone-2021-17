@@ -915,7 +915,7 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   runInBackground: 1
   autoStartServerBuild: 1
-  showDebugMessages: 0
+  showDebugMessages: 1
   serverTickRate: 30
   offlineScene: Assets/Scenes/MultiTest/TstMulti_Start.unity
   onlineScene: Assets/Scenes/MultiTest/TstMulti_WatingRoom.unity
@@ -928,8 +928,9 @@ MonoBehaviour:
   playerPrefab: {fileID: 3046158139560815345, guid: 73b6118cd2f5e994eb2d0a543ee95023,
     type: 3}
   autoCreatePlayer: 1
-  playerSpawnMethod: 0
-  spawnPrefabs: []
+  playerSpawnMethod: 1
+  spawnPrefabs:
+  - {fileID: 1038162653935764, guid: 0462052c0393d654185c9da4c8e6e072, type: 3}
   showRoomGUI: 1
   minPlayers: 1
   roomPlayerPrefab: {fileID: 5801046964974653843, guid: 104f3e730f7e3a245a4de0f19f3b9df2,

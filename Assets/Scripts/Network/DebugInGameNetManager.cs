@@ -26,6 +26,20 @@ public class DebugInGameNetManager : NetworkManager
 {
     private GameMgr gameMgr;
 
+    public override void Awake() // 이미 NetworkManager가 있을 경우
+    {
+        NetworkManager instance = NetworkManager.singleton;
+        if (instance != null && instance != this)
+        {
+            Debug.Log("S");
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            base.Awake();
+        }
+    }
+
     public override void OnStartServer()
     {
         gameMgr = GameMgr.instance;

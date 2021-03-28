@@ -41,6 +41,7 @@ public class NetManager : NetworkRoomManager
     [FormerlySerializedAs("LoadingManagerPrefab")]
     private GameObject loadingManagerPrefab;
 
+    private GameMgr inGameMgr;
 
     //singleton
     public override void Awake() 
@@ -200,9 +201,19 @@ public class NetManager : NetworkRoomManager
         {
             OnChangeGamePlayScene();
         }
+        startPositionIndex = 0;
+        startPositions.Clear();
         //base.OnClientChangeScene(newSceneName, sceneOperation, customHandling);
         LoadScene(newSceneName);
 
+    }
+    public override void OnRoomServerSceneChanged(string sceneName)
+    {
+        if(sceneName == GameplayScene)
+        {
+            inGameMgr = GameMgr.instance;
+            inGameMgr.Init();
+        }
     }
     void LoadScene(string newSceneName)
     {
