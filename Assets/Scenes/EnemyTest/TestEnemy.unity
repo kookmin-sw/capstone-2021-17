@@ -38411,7 +38411,7 @@ PrefabInstance:
     - target: {fileID: 672020923862264593, guid: 54d60ea479a27f84e9dc3fbd3b3f13f9,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.6723921
+      value: -0.7278055
       objectReference: {fileID: 0}
     - target: {fileID: 672020923862264593, guid: 54d60ea479a27f84e9dc3fbd3b3f13f9,
         type: 3}
@@ -38421,7 +38421,7 @@ PrefabInstance:
     - target: {fileID: 672020923862264593, guid: 54d60ea479a27f84e9dc3fbd3b3f13f9,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.74019516
+      value: 0.6857837
       objectReference: {fileID: 0}
     - target: {fileID: 672020923862264593, guid: 54d60ea479a27f84e9dc3fbd3b3f13f9,
         type: 3}
@@ -38436,7 +38436,7 @@ PrefabInstance:
     - target: {fileID: 672020923862264593, guid: 54d60ea479a27f84e9dc3fbd3b3f13f9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 264.504
+      value: 273.405
       objectReference: {fileID: 0}
     - target: {fileID: 672020923862264593, guid: 54d60ea479a27f84e9dc3fbd3b3f13f9,
         type: 3}
@@ -38532,7 +38532,7 @@ MonoBehaviour:
   findTargetVision: 0
   findTargetSound: 0
   isPatrol: 0
-  attTarget: 0
+  turnOnSensor: 1
   patrolPos: {x: 0, y: 0, z: 0}
   dis: 0
   enemy: {fileID: 1338542116}
@@ -49525,7 +49525,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1715418334}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.05, z: -27.5}
+  m_LocalPosition: {x: 0, y: 0.1, z: -27.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1603294269}
