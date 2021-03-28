@@ -438,6 +438,7 @@ GameObject:
   - component: {fileID: 241376086}
   - component: {fileID: 241376088}
   - component: {fileID: 241376087}
+  - component: {fileID: 241376089}
   m_Layer: 8
   m_Name: Power Lever1
   m_TagString: Lever
@@ -488,6 +489,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.25, y: 2.28, z: 0.3}
   m_Center: {x: 0, y: 0.37, z: 0}
+--- !u!114 &241376089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241376085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 3911763117
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &257880896
 GameObject:
   m_ObjectHideFlags: 0
@@ -1462,6 +1479,7 @@ GameObject:
   - component: {fileID: 1099630168}
   - component: {fileID: 1099630169}
   - component: {fileID: 1099630170}
+  - component: {fileID: 1099630171}
   m_Layer: 0
   m_Name: LeverController_Prefab
   m_TagString: LeverController
@@ -1509,6 +1527,7 @@ MonoBehaviour:
   acceptedBtn: {fileID: 901748194}
   limitReachedBtn: {fileID: 901748193}
   open: 0
+  doorNet: {fileID: 1697348342}
 --- !u!82 &1099630170
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1605,6 +1624,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1099630171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099630167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 1006149468
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1001 &1102930519
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2295,6 +2330,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   controller: {fileID: 1697348344}
+  leverController: {fileID: 1099630169}
   IsOpen: 0
 --- !u!114 &1697348343
 MonoBehaviour:
@@ -2840,7 +2876,7 @@ PrefabInstance:
     - target: {fileID: 6533142168501272730, guid: 590e1211705302e48871a02a2ed1a7ea,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6533142168501272735, guid: 590e1211705302e48871a02a2ed1a7ea,
         type: 3}

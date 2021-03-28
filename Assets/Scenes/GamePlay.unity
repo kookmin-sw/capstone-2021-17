@@ -10795,6 +10795,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   controller: {fileID: 350397468}
+  leverController: {fileID: 1844071346}
   IsOpen: 0
 --- !u!114 &350397471
 MonoBehaviour:
@@ -10815,22 +10816,6 @@ MonoBehaviour:
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
   target: {fileID: 350397469}
---- !u!114 &350397472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 350397466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  clientAuthority: 0
-  animator: {fileID: 1172919324}
 --- !u!114 &350397473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20236,6 +20221,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   controller: {fileID: 717710053}
+  leverController: {fileID: 1353658803}
   IsOpen: 0
 --- !u!114 &717710056
 MonoBehaviour:
@@ -20256,22 +20242,6 @@ MonoBehaviour:
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
   target: {fileID: 717710054}
---- !u!114 &717710057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 717710051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  clientAuthority: 0
-  animator: {fileID: 1826495212}
 --- !u!114 &717710058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25597,6 +25567,7 @@ MonoBehaviour:
   acceptedBtn: {fileID: 772215266}
   limitReachedBtn: {fileID: 772215265}
   open: 0
+  doorNet: {fileID: 1220049370}
 --- !u!82 &908622907
 AudioSource:
   m_ObjectHideFlags: 0
@@ -26619,6 +26590,7 @@ GameObject:
   - component: {fileID: 954335635}
   - component: {fileID: 954335637}
   - component: {fileID: 954335636}
+  - component: {fileID: 954335638}
   m_Layer: 8
   m_Name: Power Lever1
   m_TagString: Lever
@@ -26669,6 +26641,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.25, y: 2.28, z: 0.3}
   m_Center: {x: 0, y: 0.37, z: 0}
+--- !u!114 &954335638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954335634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 3683688808
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1001 &955094206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34244,6 +34232,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   controller: {fileID: 1220049368}
+  leverController: {fileID: 908622906}
   IsOpen: 0
 --- !u!114 &1220049371
 MonoBehaviour:
@@ -34264,22 +34253,6 @@ MonoBehaviour:
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
   target: {fileID: 1220049369}
---- !u!114 &1220049372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1220049366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  clientAuthority: 0
-  animator: {fileID: 595038144}
 --- !u!114 &1220049373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35519,6 +35492,7 @@ GameObject:
   - component: {fileID: 1279526825}
   - component: {fileID: 1279526827}
   - component: {fileID: 1279526826}
+  - component: {fileID: 1279526828}
   m_Layer: 8
   m_Name: Power Lever1
   m_TagString: Lever
@@ -35569,6 +35543,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.25, y: 2.28, z: 0.3}
   m_Center: {x: 0, y: 0.37, z: 0}
+--- !u!114 &1279526828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279526824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 4252853833
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1001 &1281762074
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37516,6 +37506,7 @@ GameObject:
   - component: {fileID: 1353447886}
   - component: {fileID: 1353447888}
   - component: {fileID: 1353447887}
+  - component: {fileID: 1353447889}
   m_Layer: 8
   m_Name: Power Lever1
   m_TagString: Lever
@@ -37566,6 +37557,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.25, y: 2.28, z: 0.3}
   m_Center: {x: 0, y: 0.37, z: 0}
+--- !u!114 &1353447889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353447885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 3246445767
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &1353658801
 GameObject:
   m_ObjectHideFlags: 0
@@ -37624,6 +37631,7 @@ MonoBehaviour:
   acceptedBtn: {fileID: 162811110}
   limitReachedBtn: {fileID: 162811109}
   open: 0
+  doorNet: {fileID: 717710055}
 --- !u!82 &1353658804
 AudioSource:
   m_ObjectHideFlags: 0
@@ -40951,6 +40959,7 @@ GameObject:
   - component: {fileID: 1464901082}
   - component: {fileID: 1464901084}
   - component: {fileID: 1464901083}
+  - component: {fileID: 1464901085}
   m_Layer: 8
   m_Name: Power Lever1
   m_TagString: Lever
@@ -41001,6 +41010,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.25, y: 2.28, z: 0.3}
   m_Center: {x: 0, y: 0.37, z: 0}
+--- !u!114 &1464901085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464901081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 324569621
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1001 &1466590191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47885,6 +47910,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   controller: {fileID: 1729372639}
+  leverController: {fileID: 1996038779}
   IsOpen: 0
 --- !u!114 &1729372642
 MonoBehaviour:
@@ -47905,22 +47931,6 @@ MonoBehaviour:
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
   target: {fileID: 1729372640}
---- !u!114 &1729372643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1729372637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  clientAuthority: 0
-  animator: {fileID: 900369350}
 --- !u!114 &1729372644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52037,6 +52047,7 @@ MonoBehaviour:
   acceptedBtn: {fileID: 51529905}
   limitReachedBtn: {fileID: 51529904}
   open: 0
+  doorNet: {fileID: 350397470}
 --- !u!82 &1844071347
 AudioSource:
   m_ObjectHideFlags: 0
@@ -56534,6 +56545,7 @@ MonoBehaviour:
   acceptedBtn: {fileID: 114691648}
   limitReachedBtn: {fileID: 114691647}
   open: 0
+  doorNet: {fileID: 1729372641}
 --- !u!82 &1996038780
 AudioSource:
   m_ObjectHideFlags: 0

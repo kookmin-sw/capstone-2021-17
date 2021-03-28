@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using keypadSystem;
+using Mirror;
 
 public class RayCastCam : MonoBehaviour
 {
@@ -52,9 +53,9 @@ public class RayCastCam : MonoBehaviour
 
                 if (Input.GetKeyDown("e") && canPull)
                 {
-                    raycasted_obj.GetComponentInChildren<Animator>().Play("HandlePull", -1, 0.0f);
-                    raycasted_obj.GetComponent<LeverScript>().LeverNumber();
-                    raycasted_obj.layer = 0;
+
+                    LeverController leverController = raycasted_obj.GetComponent<LeverScript>().leverController;
+                    leverController.doorNet.CmdPullDownLever(raycasted_obj);
                     StartCoroutine(Timer(1.0f));
                 }
             }

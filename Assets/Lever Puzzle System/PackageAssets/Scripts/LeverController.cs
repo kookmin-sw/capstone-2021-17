@@ -24,6 +24,8 @@ public class LeverController : MonoBehaviour
     private bool resetting;
     public bool open = false;
 
+    public DoorNetBehaviour doorNet;
+
     void Start()
     {
         mainAudio = GetComponent<AudioSource>(); //Finds the AudioSource on the GameObject
@@ -53,6 +55,12 @@ public class LeverController : MonoBehaviour
             acceptedBtn.GetComponent<Renderer>().material.color = Color.red;
             limitReachedBtn.GetComponent<Renderer>().material.color = Color.red;
         }
+    }
+    public void PullDownLever(GameObject lever_obj)
+    {
+        lever_obj.GetComponentInChildren<Animator>().Play("HandlePull", -1, 0.0f);
+        lever_obj.GetComponent<LeverScript>().LeverNumber();
+        lever_obj.layer = 0;
     }
 
     public void LeverCheck()
