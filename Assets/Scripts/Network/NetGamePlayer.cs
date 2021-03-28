@@ -39,7 +39,7 @@ public class NetGamePlayer : NetworkBehaviour
 
     public override void OnStartClient()
     {
-        InGame_MultiGameManager.Players.Add(this);
+        InGame_MultiGameManager.AddPlayer(this);
 
         if (isLocalPlayer)
         {
@@ -51,7 +51,12 @@ public class NetGamePlayer : NetworkBehaviour
             keypadSystem.KPDisableManager.instance.player = this.gameObject;
         }
     }
-    
+
+    public override void OnStopClient()
+    {
+        InGame_MultiGameManager.DisablePlayer(this);
+    }
+
 
     [ClientCallback]
     public void MoveCharacter(Vector3 move, bool crouch, bool jump)

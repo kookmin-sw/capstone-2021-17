@@ -12,11 +12,38 @@ public class InGame_MultiGameManager : MonoBehaviour
 
     private static List<ThirdPersonCharacter.State> states = new List<ThirdPersonCharacter.State>();
 
+    public static int playerCount = 0;
+
 
 
     /***************** 데이터 전달 *****************/
 
+    public static bool IsLocalPlayer(int index)
+    {
+        if (Players[index].isLocalPlayer)
+        {
+            return true;
+        }
+        return false;
+    }
 
+    public static void AddPlayer(NetGamePlayer newPlayer)
+    {
+        Players.Add(newPlayer);
+        healths.Add(newPlayer.Health);
+        names.Add(newPlayer.Nickname);
+        states.Add(newPlayer.State);
+    }
+    public static void DisablePlayer(NetGamePlayer targetPlayer)
+    {
+        foreach(NetGamePlayer player in Players)
+        {
+            if(player == targetPlayer)
+            {
+
+            }
+        }
+    }
     // 체력 전달
     public static List<int> GetPlayersHealth()
     {
@@ -30,6 +57,7 @@ public class InGame_MultiGameManager : MonoBehaviour
     //이름 전달
     public static List<string> GetPlayersNickname()
     {
+
         for (int index = 0; index < Players.Count; index++)
         {
             names[index] = Players[index].Nickname;
@@ -58,6 +86,8 @@ public class InGame_MultiGameManager : MonoBehaviour
         }
         return false;
     }
+
+
 
 
 }
