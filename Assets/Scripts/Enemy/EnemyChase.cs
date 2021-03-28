@@ -12,7 +12,8 @@ public class EnemyChase : MonoBehaviour
         Idle,
         Patrol,
         Move,
-        Attack
+        Attack,
+        Dizzy
     }
     [Command("state")]
     public State state;
@@ -29,8 +30,7 @@ public class EnemyChase : MonoBehaviour
     public bool findTargetSound = false;    //오디오 센서에 적이 감지 됐는지    
     [Command("isPatrol")]
     public bool isPatrol = false;   //순찰 중인지 체크
-    public bool attTarget = true;  //공격중에 시야와 오디오 센서를 끈다.  
-
+    public bool turnOnSensor = true;  //시야와 오디오 센서 온오프.      
     public Vector3 patrolPos;   //순찰 위치 기억
     [Command("distance")]
     public float dis;   //플레이어와의 거리
@@ -45,7 +45,7 @@ public class EnemyChase : MonoBehaviour
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private LayerMask obstacleMask;
     [SerializeField] private AnimationEvent animationEvent;  //오디오 센서를 위한 애니메이션 이벤트    
-    [SerializeField] private MoveObjectTest anim;
+    [SerializeField] private EnemyAnimation anim;
     private Collider[] targetsInViewRadius = new Collider[4];   //OverlapSphereNonAlloc을 위한 어레이
     private int targetsLength;  //타겟 리스트의 길이
 
@@ -54,12 +54,11 @@ public class EnemyChase : MonoBehaviour
     {
         Console.IsOpen = false;
         //기본 상태
-        state = State.Idle;                
+        state = State.Dizzy;
     }
-
+    
     void Update()
-    {
-        FindTargets();
+    {        
         switch (state)
         {
             case State.Idle:
@@ -74,7 +73,11 @@ public class EnemyChase : MonoBehaviour
             case State.Attack:
                 AttackState();
                 break;
-        }        
+            case State.Dizzy:
+                DizzyState();
+                break;
+        }
+        FindTargets();
     }
     /*private void OnEnable()
     {
@@ -96,14 +99,14 @@ public class EnemyChase : MonoBehaviour
             timer = 0.0f;
             enemy.isStopped = false;
             state = State.Patrol;
-        }        
+        }
     }
 
     void PatrolState()
     {        
         if (!isPatrol)
         {
-            attTarget = false;
+            turnOnSensor = true;
             //웨이 포인트 중 하나를 랜덤으로 접근
             int random = Random.Range(0, 26);
             //순찰중인지 판단
@@ -142,7 +145,7 @@ public class EnemyChase : MonoBehaviour
             {
                 state = State.Idle;
             }
-            */            
+            */
         }
     }
     
@@ -150,17 +153,27 @@ public class EnemyChase : MonoBehaviour
     {
         //NavMeshAgent 잠시 멈춤
         enemy.isStopped = true;
+        //타겟 초기화
+        visibleTargets.Clear();
         anim.PlayAttAnim();
         state = State.Idle;
+    }
+
+    void DizzyState()
+    {
+        //센서를 끈다
+        turnOnSensor = false;        
+        anim.PlayDizzyAnim();
+        state = State.Idle;        
     }
 
     //시야에 들어온 타겟을 찾는다.
     void FindTargets()
     {
-        //공격중이 아닐 때
-        if (!attTarget)
+        //센서가 켜지면
+        if (turnOnSensor)
         {
-            //센서들을 키고
+            //센서들을 작동
             FindVisibleTargets();
             FindTargetWithSound();
             //센서에 들어온 적이 있으면
@@ -202,7 +215,7 @@ public class EnemyChase : MonoBehaviour
         {
             //변수초기화
             InitializeVar();            
-            attTarget = true;
+            turnOnSensor = false;
             state = State.Attack;
         }        
         else
