@@ -23,7 +23,7 @@ public class DebugSample : MonoBehaviour
             + "Target : " + enemyChase.target + "\n\n"
             + "WayPoint : " + enemyChase.patrolPos + "\n\n"
             + "SetTarget : " + enemyChase.enemy.hasPath + "\n\n"
-            + "Attack : " + enemyChase.attTarget + "\n\n"
+            + "Sensor : " + enemyChase.turnOnSensor + "\n\n"
             + "TargetList : ";
 
         for(int i=0; i< enemyChase.visibleTargets.Count; i++)
