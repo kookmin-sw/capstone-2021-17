@@ -2707,8 +2707,8 @@ GameObject:
   - component: {fileID: 574997294696144198}
   - component: {fileID: 6708225584575804860}
   - component: {fileID: 322646219063958889}
-  - component: {fileID: 1097001024167058779}
   - component: {fileID: -539915384432615878}
+  - component: {fileID: 7001548125330135845}
   m_Layer: 4
   m_Name: MultiTest_Player
   m_TagString: Untagged
@@ -2747,6 +2747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneId: 0
   serverOnly: 0
+  visible: 0
   m_AssetId: 
   hasSpawned: 0
 --- !u!114 &574997294696144198
@@ -2805,25 +2806,10 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
+  compressRotation: 0
+  interpolateScale: 1
+  syncScale: 1
   target: {fileID: 3046978955488187386}
---- !u!114 &1097001024167058779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3046158139560815345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f032128052c95a46afb0ddd97d994cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  target: {fileID: 3064319502263392316}
-  lerpVelocityAmount: 0.5
-  lerpPositionAmount: 0.5
-  clientAuthority: 1
 --- !u!114 &-539915384432615878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2843,6 +2829,28 @@ MonoBehaviour:
     m_Bits: 256
   cHNormal: {fileID: 2156943534304426182}
   cHHighlight: {fileID: 2156943533112443204}
+--- !u!114 &7001548125330135845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3046158139560815345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83392ae5c1b731446909f252fd494ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  target: {fileID: 3064319502263392316}
+  clientAuthority: 1
+  syncVelocity: 1
+  clearVelocity: 0
+  velocitySensitivity: 0.1
+  syncAngularVelocity: 1
+  clearAngularVelocity: 0
+  angularVelocitySensitivity: 0.1
 --- !u!1001 &2156253584695157934
 PrefabInstance:
   m_ObjectHideFlags: 0

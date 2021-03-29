@@ -11,6 +11,9 @@ public class EnemyNetBehaviour : NetworkBehaviour
     [SerializeField]
     EnemyChase enemyChase;
 
+    [SerializeField]
+    NetworkAnimator netAni;
+
     [Server]
     public void SetWalk()
     {
@@ -26,13 +29,13 @@ public class EnemyNetBehaviour : NetworkBehaviour
     [Server]
     public void SetAttAnim()
     {
-        enemyAnimation.SetAttAnim();
+        netAni.SetTrigger("Attack");
     }
 
     [Server]
     public void SetDizzyAnim()
     {
-        enemyAnimation.SetDizzyAnim();
+        netAni.SetTrigger("Dizzy");
     }
 
 

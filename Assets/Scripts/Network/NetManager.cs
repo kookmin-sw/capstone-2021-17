@@ -42,6 +42,7 @@ public class NetManager : NetworkRoomManager
     private GameObject loadingManagerPrefab;
 
     private GameMgr inGameMgr;
+    private EnemySpawnManager enemySpawnManager;
 
     //singleton
     public override void Awake() 
@@ -213,6 +214,9 @@ public class NetManager : NetworkRoomManager
         {
             inGameMgr = GameMgr.instance;
             inGameMgr.Init();
+
+            enemySpawnManager = EnemySpawnManager.instance;
+            enemySpawnManager.Init();
         }
     }
     void LoadScene(string newSceneName)

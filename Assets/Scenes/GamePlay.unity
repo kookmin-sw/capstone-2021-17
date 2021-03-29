@@ -3671,7 +3671,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 700185557}
+      objectReference: {fileID: 0}
     - target: {fileID: 114469542848839660, guid: 00ab13a521d2a35439da8dd140026f6c,
         type: 3}
       propertyPath: crosshair
@@ -10905,6 +10905,9 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
+  compressRotation: 0
+  interpolateScale: 1
+  syncScale: 1
   target: {fileID: 350397469}
 --- !u!114 &350397473
 MonoBehaviour:
@@ -10920,6 +10923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneId: 2801583523
   serverOnly: 0
+  visible: 0
   m_AssetId: 6f7e8ff4bd7c29d4eaddaf7d2be7920f
   hasSpawned: 0
 --- !u!4 &354786341 stripped
@@ -20451,6 +20455,9 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
+  compressRotation: 0
+  interpolateScale: 1
+  syncScale: 1
   target: {fileID: 717710054}
 --- !u!114 &717710058
 MonoBehaviour:
@@ -20466,6 +20473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneId: 1355275537
   serverOnly: 0
+  visible: 0
   m_AssetId: 6f7e8ff4bd7c29d4eaddaf7d2be7920f
   hasSpawned: 0
 --- !u!1001 &722246321
@@ -27011,6 +27019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneId: 3683688808
   serverOnly: 0
+  visible: 0
   m_AssetId: 
   hasSpawned: 0
 --- !u!1001 &955094206
@@ -34772,6 +34781,9 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
+  compressRotation: 0
+  interpolateScale: 1
+  syncScale: 1
   target: {fileID: 1220049369}
 --- !u!114 &1220049373
 MonoBehaviour:
@@ -34787,6 +34799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneId: 3879685976
   serverOnly: 0
+  visible: 0
   m_AssetId: 6f7e8ff4bd7c29d4eaddaf7d2be7920f
   hasSpawned: 0
 --- !u!4 &1221680411 stripped
@@ -36107,6 +36120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneId: 4252853833
   serverOnly: 0
+  visible: 0
   m_AssetId: 
   hasSpawned: 0
 --- !u!1001 &1281762074
@@ -38181,6 +38195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneId: 3246445767
   serverOnly: 0
+  visible: 0
   m_AssetId: 
   hasSpawned: 0
 --- !u!1 &1353658801
@@ -41694,6 +41709,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneId: 324569621
   serverOnly: 0
+  visible: 0
   m_AssetId: 
   hasSpawned: 0
 --- !u!1001 &1466590191
@@ -48786,6 +48802,9 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
+  compressRotation: 0
+  interpolateScale: 1
+  syncScale: 1
   target: {fileID: 1729372640}
 --- !u!114 &1729372644
 MonoBehaviour:
@@ -48801,6 +48820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneId: 1661970680
   serverOnly: 0
+  visible: 0
   m_AssetId: 6f7e8ff4bd7c29d4eaddaf7d2be7920f
   hasSpawned: 0
 --- !u!1 &1729629732
