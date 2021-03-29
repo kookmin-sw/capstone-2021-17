@@ -745,6 +745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneId: 0
   serverOnly: 0
+  visible: 0
   m_AssetId: 
   hasSpawned: 0
 --- !u!114 &384034003677992307
@@ -765,10 +766,10 @@ MonoBehaviour:
   Nickname: 
   isLeader: 0
   State: 0
-  thirdCamera: {fileID: 3304256032176961895}
-  character: {fileID: 3192513881159015674}
-  control: {fileID: 3192341749932857772}
-  playerHealth: {fileID: 2368182709319004134}
+  ThirdCamera: {fileID: 3304256032176961895}
+  Character: {fileID: 3192513881159015674}
+  ThirdControl: {fileID: 3192341749932857772}
+  PlayerHealth: {fileID: 2368182709319004134}
 --- !u!95 &3210892039109543904
 Animator:
   serializedVersion: 3
@@ -854,6 +855,7 @@ MonoBehaviour:
   MoveSpeedMultiplier: 2
   AnimSpeedMultiplier: 1
   GroundCheckDistance: 0.3
+  NetPlayer: {fileID: 384034003677992307}
   IsHit: 0
   IsDie: 0
   state: 0
@@ -870,6 +872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 2
+  NetPlayer: {fileID: 384034003677992307}
 --- !u!114 &-4264333794859748839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -907,6 +910,9 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
+  compressRotation: 0
+  interpolateScale: 1
+  syncScale: 1
 --- !u!114 &686575068850007455
 MonoBehaviour:
   m_ObjectHideFlags: 0
