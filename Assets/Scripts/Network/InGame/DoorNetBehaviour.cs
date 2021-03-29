@@ -17,21 +17,21 @@ public class DoorNetBehaviour : NetworkBehaviour
     [SyncVar]
     public bool IsOpen;
 
-    [Command(ignoreAuthority = true)] // send to Server
+    [Command(requiresAuthority = false)] // send to Server
     public void CmdOpenDoor()
     {
         IsOpen = true;
         controller.OpenDoor();
     }
 
-    [Command(ignoreAuthority = true)] // send to Server
+    [Command(requiresAuthority = false)] // send to Server
     public void CmdCloseDoor()
     {
         IsOpen = false;
         controller.CloseDoor();
     }
 
-    [Command(ignoreAuthority = true)]
+    [Command(requiresAuthority = false)]
     public void CmdPullDownLever(GameObject lever_obj)
     {
         RpcPullDownLever(lever_obj);

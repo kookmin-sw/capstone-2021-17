@@ -22,7 +22,7 @@ public class ItemNetBehaviour : NetworkBehaviour
     }
 
 
-    [Command(ignoreAuthority = true)]
+    [Command(requiresAuthority = false)]
     private void CmdSetActive(bool isActive, GameObject target)
     {
         RpcSetActive(isActive, target);

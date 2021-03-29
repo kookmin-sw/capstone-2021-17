@@ -36,7 +36,7 @@ public class ItemBoxNetBehaviour : NetworkBehaviour
         CmdSetUsing(isUsing);
     }
 
-    [Command(ignoreAuthority = true)]
+    [Command(requiresAuthority = false)]
     private void CmdSetUsing(bool isUsing)
     {
         IsUsing= isUsing;
@@ -47,7 +47,7 @@ public class ItemBoxNetBehaviour : NetworkBehaviour
         CmdOpenBox();
     }
 
-    [Command(ignoreAuthority = true)]
+    [Command(requiresAuthority = false)]
     private void CmdOpenBox()
     {
         RpcOpenBox();
@@ -64,7 +64,7 @@ public class ItemBoxNetBehaviour : NetworkBehaviour
         CmdUnableKeypad();
     }
     
-    [Command(ignoreAuthority = true)]
+    [Command(requiresAuthority = false)]
     private void CmdUnableKeypad()
     {
         RpcUnableKeypad();
