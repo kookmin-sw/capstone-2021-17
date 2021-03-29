@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +14,6 @@ public class InGame_MultiGameManager : MonoBehaviour
     private static List<ThirdPersonCharacter.State> states = new List<ThirdPersonCharacter.State>();
 
     public static int playerCount = 0;
-
 
 
     /***************** 데이터 전달 *****************/

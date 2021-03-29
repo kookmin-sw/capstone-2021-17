@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Popcron.Console;
 using UnityEngine.AI;
+using Mirror;
+using CommandAttribute = Popcron.Console.CommandAttribute;
 
 public class EnemyChase : MonoBehaviour
 {
@@ -40,7 +42,7 @@ public class EnemyChase : MonoBehaviour
     
     public List<Transform> visibleTargets = new List<Transform>();  //시야에 들어온 적들의 List
 
-    [SerializeField] private Transform[] wayPoint;   //WayPoint    
+    [SerializeField] public Transform[] wayPoint;   //WayPoint - public EnemySpawnManager에서 동적 할당이 이루어져야됨.   
     //적의 판단 근거, 장애물인지 플레이어인지
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private LayerMask obstacleMask;
@@ -48,6 +50,9 @@ public class EnemyChase : MonoBehaviour
     [SerializeField] private EnemyAnimation anim;
     private Collider[] targetsInViewRadius = new Collider[4];   //OverlapSphereNonAlloc을 위한 어레이
     private int targetsLength;  //타겟 리스트의 길이
+
+    [SerializeField] private EnemyNetBehaviour enemyNet;
+
 
     float timer; //딜레이를 위한 타이머 변수
     void Awake()
@@ -58,7 +63,12 @@ public class EnemyChase : MonoBehaviour
     }
     
     void Update()
-    {        
+    {
+        if(enemyNet != null && !NetworkServer.active) // Client에서는 Enemy를 조종하지 않음
+        {
+            return;
+        }
+        
         switch (state)
         {
             case State.Idle:
@@ -108,7 +118,7 @@ public class EnemyChase : MonoBehaviour
         {
             turnOnSensor = true;
             //웨이 포인트 중 하나를 랜덤으로 접근
-            int random = Random.Range(0, 26);
+            int random = Random.Range(0, wayPoint.Length);
             //순찰중인지 판단
             isPatrol = true;            
             patrolPos = wayPoint[random].position;                        

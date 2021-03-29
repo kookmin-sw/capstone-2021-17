@@ -9,7 +9,10 @@ public class EnemyAnimation : MonoBehaviour
     [SerializeField]
     private EnemyChase checkAnim;
     Animator ani;
-    void Start()
+
+    [SerializeField]
+    private EnemyNetBehaviour enemyNet;
+    void Awake()
     {
         ani = GetComponent<Animator>();
     }
@@ -19,21 +22,68 @@ public class EnemyAnimation : MonoBehaviour
     {       
         if (checkAnim.hasP)
         {
-            ani.SetBool("Walk", true);
+            if(enemyNet != null)
+            {
+                enemyNet.SetWalk();
+            }
+            else
+            {
+                SetWalk();
+            }
         }
         else
         {
-            ani.SetBool("Walk", false);
+            if(enemyNet != null)
+            {
+                enemyNet.UnSetWalk();
+            }
+            else
+            {
+                UnsetWalk();
+            }
+            
         }       
+    }
+
+    public void SetWalk()
+    {
+        ani.SetBool("Walk", true);
+    }
+
+    public void UnsetWalk()
+    {
+        ani.SetBool("Walk", false);
     }
 
     public void PlayAttAnim()
     {
+        if (enemyNet != null)
+        {
+            enemyNet.SetAttAnim();
+        }
+        else
+        {
+            SetAttAnim();
+        }
+    }
+    public void SetAttAnim()
+    {
         ani.SetTrigger("Attack");
     }
-
     public void PlayDizzyAnim()
     {
+        if(enemyNet != null)
+        {
+            enemyNet.SetDizzyAnim();
+        }
+        else
+        {
+            SetDizzyAnim();
+        }
+    }
+    
+    public void SetDizzyAnim()
+    {
         ani.SetTrigger("Dizzy");
-    }    
+    }
 }
