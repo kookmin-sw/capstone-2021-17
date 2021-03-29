@@ -6,7 +6,9 @@ public class PlayerHealth : MonoBehaviour
 {
     public const int MAXHP = 2;
     public int Health = 2;
-    
+    private GameObject Player;
+    private ThirdPersonUserControl PlayerHealthCheck;
+    private ThirdPersonCharacter PlayerHealthState;
     bool IsHit;
 
     Animator PlayerAnimator;
@@ -16,8 +18,11 @@ public class PlayerHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject.FindWithTag("Player").GetComponent<ThirdPersonUserControl>().HealthCheck=Health;
+        Player=GameObject.Find("Chibi_boy");
+        PlayerHealthCheck=Player.GetComponent<ThirdPersonUserControl>();
+        PlayerHealthState=Player.GetComponent<ThirdPersonCharacter>();
         PlayerAnimator = GetComponent<Animator>();
+        HealthChange();
     }
 
     // Update is called once per frame
@@ -36,8 +41,8 @@ public class PlayerHealth : MonoBehaviour
         }
         if(Health==1)
         {
-            GameObject.FindWithTag("Player").GetComponent<ThirdPersonUserControl>().HealthCheck=Health;
-            GameObject.FindWithTag("Player").GetComponent<ThirdPersonCharacter>().IsHit=true;            
+            HealthChange();
+            PlayerHealthState.IsHit=true;            
         }
         else if (Health==0)
         {
@@ -52,14 +57,19 @@ public class PlayerHealth : MonoBehaviour
         {
             NetPlayer.ChangeHealth(Health);
         }
-        GameObject.FindWithTag("Player").GetComponent<ThirdPersonUserControl>().HealthCheck=Health;
-        GameObject.FindWithTag("Player").GetComponent<ThirdPersonCharacter>().IsHit=false;
+        HealthChange();
+        PlayerHealthState.IsHit=false;
     }
 
     public void Die()
     {
-        GameObject.FindWithTag("Player").GetComponent<ThirdPersonUserControl>().HealthCheck=Health;
-        GameObject.FindWithTag("Player").GetComponent<ThirdPersonCharacter>().IsDie=true;
+        HealthChange();
+        PlayerHealthState.IsDie=true;
 
+    }
+    public void HealthChange()
+    {
+        PlayerHealthCheck.HealthCheck=Health;
+        print(PlayerHealthCheck.HealthCheck);
     }
 }
