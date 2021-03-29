@@ -5639,10 +5639,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   port: 7777
   NoDelay: 1
+  SendTimeout: 5000
+  ReceiveTimeout: 30000
   serverMaxMessageSize: 16384
   serverMaxReceivesPerTick: 10000
+  serverSendQueueLimitPerConnection: 10000
+  serverReceiveQueueLimitPerConnection: 10000
   clientMaxMessageSize: 16384
   clientMaxReceivesPerTick: 1000
+  clientSendQueueLimit: 10000
+  clientReceiveQueueLimit: 10000
 --- !u!114 &2124268452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5671,10 +5677,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
+  PersistNetworkManagerToOfflineScene: 0
   runInBackground: 1
   autoStartServerBuild: 1
-  showDebugMessages: 0
   serverTickRate: 30
+  serverBatching: 1
+  serverBatchInterval: 0
   offlineScene: Assets/Scenes/Start.unity
   onlineScene: Assets/Scenes/WaitingRoom.unity
   transport: {fileID: 2124268451}
@@ -5689,6 +5697,7 @@ MonoBehaviour:
   playerSpawnMethod: 1
   spawnPrefabs:
   - {fileID: 1038162653935764, guid: 0462052c0393d654185c9da4c8e6e072, type: 3}
+  - {fileID: 5834168737704926764, guid: 6b338324bbf044f4bbc176251bbaf035, type: 3}
   showRoomGUI: 1
   minPlayers: 1
   roomPlayerPrefab: {fileID: 5801046964974653843, guid: 104f3e730f7e3a245a4de0f19f3b9df2,
