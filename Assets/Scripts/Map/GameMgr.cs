@@ -59,6 +59,7 @@ public class GameMgr : MonoBehaviour
         }
     }
 
+    //아이템박스 패스워드 생성
     public static string GeneratePassword(int length)
     {
         StringBuilder codeSB = new StringBuilder(10);
@@ -73,26 +74,26 @@ public class GameMgr : MonoBehaviour
         return codeSB.ToString();
     }
 
-    //셔플 알고리즘 여러번 호출해도 셔플된 결과가 같아서 보류
-    /*public static string GenerateMissionCode(int length)
+    //미션에 사용한 셔플 알고리즘 - 9자리 까지만 생성가능, 중복체크함
+    public static string GenerateMissionCode(int length)
     {
         string str = "123456789";
         char[] arr = str.ToCharArray();
-        System.Random rng = new System.Random();
         int n = arr.Length;
         while (n > 1)
         {
             n--;
-            int k = rng.Next(n + 1);
+            int k = Random.Range(0, 9);
             var value = arr[k];
             arr[k] = arr[n];
             arr[n] = value;
         }
         string code = new string(arr);
         return code.Substring(0, length);
-    }*/
+    }
 
-    public static string GenerateMissionCode(int length)
+    //미션에 사용할 패스워드 - 원하는 길이만큼 생성가능, 중복체크안함
+    /*public static string GenerateMissionCode(int length)
     {
         StringBuilder codeSB = new StringBuilder(10);
         char singleChar;
@@ -104,5 +105,5 @@ public class GameMgr : MonoBehaviour
             codeSB.Append(singleChar);
         }
         return codeSB.ToString();
-    }
+    }*/
 }
