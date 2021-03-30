@@ -69,18 +69,21 @@ public class MissionController : MonoBehaviour
         }
     }
 
+    //미션오브젝트 상호작용 제거
     public void UnableMission()
     {
         missionObject.tag = "Untagged";
         missionObject.layer = 0;
     }
 
+    //미션창 활성화
     public void ShowMission()
     {
         //KPDisableManager.instance.DisablePlayer(true);
         missionCanvas.SetActive(true);
     }
 
+    //미션창 비활성화
     public void CloseMission()
     {
         //KPDisableManager.instance.DisablePlayer(false);
@@ -92,6 +95,7 @@ public class MissionController : MonoBehaviour
         //탈출구랑 연동할 부분
     }
 
+    //GameMgr 스크립트의 GenerateMissionCode를 실행해 미션에 사용할 코드를 배열에 저장함
     public void SetStageCode()
     {
         clearStage = new bool[maxStage];
@@ -105,6 +109,7 @@ public class MissionController : MonoBehaviour
         }
     }
 
+    //ShowQuiz에서 사용 버튼을 비활성화하고 비활성화시 색상을 변경하는 방식
     public void ButtonTurnYellow()
     {
         //Debug.Log(num);
@@ -113,7 +118,6 @@ public class MissionController : MonoBehaviour
         button[num].colors = colors;
         //Debug.Log("color change Y");
     }
-
     public void ButtonTurnGray()
     {
         //Debug.Log(num);
@@ -123,6 +127,7 @@ public class MissionController : MonoBehaviour
         //Debug.Log("color change G");
     }
 
+    //버튼 비활성화
     public void ButtonFalse()
     {
         for(int i=0; i<9; i++)
@@ -131,6 +136,7 @@ public class MissionController : MonoBehaviour
         }
     }
 
+    //버튼 활성화
     public void ButtonActive()
     {
         for (int i = 0; i < 9; i++)
@@ -139,6 +145,9 @@ public class MissionController : MonoBehaviour
         }
     }
 
+
+    //버튼의 색상을 바꾸는 방식으로 입력할 코드 순서를 보여줌
+    //실행되는 동안 버튼 비활성화됨 실행 완료후 버튼 활성화
     IEnumerator ShowQuiz()
     {
         //Debug.Log("ShowQuiz Start");

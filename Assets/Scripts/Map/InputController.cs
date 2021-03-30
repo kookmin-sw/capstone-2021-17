@@ -17,6 +17,7 @@ public class InputController : MonoBehaviour
 
     public void ButtonPressString(string keyString)
     {
+        //버튼과 코드를 한자리씩 비교하기위해 추가한것
         if (!missionController.firstClick)
         {
             missionController.codeText = string.Empty;
@@ -27,9 +28,10 @@ public class InputController : MonoBehaviour
         missionController.firstClick = false;
     }
 
+    //미션 중간에 종료 UI바깥화면 터치하면 미션창 꺼짐
     public void ShutDownMission()
     {
         //KPDisableManager.instance.DisablePlayer(false);
-        //missionController.CloseMission();
+        missionController.CloseMission();
     }
 }

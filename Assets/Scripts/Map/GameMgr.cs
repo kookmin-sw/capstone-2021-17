@@ -18,7 +18,6 @@ public class GameMgr : MonoBehaviour
     void Start()
     {
         instance = this;
-        //아이템박스 생성
     }
 
     
@@ -28,6 +27,7 @@ public class GameMgr : MonoBehaviour
         boxspawnPoints = GetSpwanPoints(itemBoxSpawnPoints);
         SpawnObject(itemBox, boxspawnPoints, spawnPointCount);
     }
+    
     static void GetRandomInt(int []arr, int max)
     {
         System.Random r = new System.Random();
@@ -40,7 +40,6 @@ public class GameMgr : MonoBehaviour
         }
     }
     
-
     public Transform[] GetSpwanPoints(GameObject spawnPoinst)
     {
         return spawnPoinst.GetComponentsInChildren<Transform>();
@@ -93,6 +92,7 @@ public class GameMgr : MonoBehaviour
     }
 
     //미션에 사용할 패스워드 - 원하는 길이만큼 생성가능, 중복체크안함
+    //차후 변경할 가능성 있으니 지우지 말것
     /*public static string GenerateMissionCode(int length)
     {
         StringBuilder codeSB = new StringBuilder(10);
