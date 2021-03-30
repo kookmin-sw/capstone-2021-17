@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using Mirror;
@@ -38,6 +39,7 @@ public class GameMgr : MonoBehaviour
             arr[j] = temp;
         }
     }
+    
 
     public Transform[] GetSpwanPoints(GameObject spawnPoinst)
     {
@@ -62,6 +64,39 @@ public class GameMgr : MonoBehaviour
         StringBuilder codeSB = new StringBuilder(10);
         char singleChar;
         string numbers = "0123456789";
+
+        while (codeSB.Length < length)
+        {
+            singleChar = numbers[UnityEngine.Random.Range(0, numbers.Length)];
+            codeSB.Append(singleChar);
+        }
+        return codeSB.ToString();
+    }
+
+    //셔플 알고리즘 여러번 호출해도 셔플된 결과가 같아서 보류
+    /*public static string GenerateMissionCode(int length)
+    {
+        string str = "123456789";
+        char[] arr = str.ToCharArray();
+        System.Random rng = new System.Random();
+        int n = arr.Length;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            var value = arr[k];
+            arr[k] = arr[n];
+            arr[n] = value;
+        }
+        string code = new string(arr);
+        return code.Substring(0, length);
+    }*/
+
+    public static string GenerateMissionCode(int length)
+    {
+        StringBuilder codeSB = new StringBuilder(10);
+        char singleChar;
+        string numbers = "123456789";
 
         while (codeSB.Length < length)
         {
