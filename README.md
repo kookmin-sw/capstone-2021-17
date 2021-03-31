@@ -1,8 +1,9 @@
-[![Work in Repl.it](https://classroom.github.com/assets/work-in-replit-14baed9a392b3a25080506f3b7b6d57f295ec2978f6f33ec97e36a161684cbe9.svg)](https://classroom.github.com/online_ide?assignment_repo_id=349915&assignment_repo_type=GroupAssignmentRepo)
 # Raider
+<hr>
 
+https://kookmin-sw.github.io/capstone-2021-17/
 
-![logo4](https://user-images.githubusercontent.com/28583561/113183056-905da680-928e-11eb-8be8-8c97b68dc006.png)
+<img src="https://user-images.githubusercontent.com/28583561/113183056-905da680-928e-11eb-8be8-8c97b68dc006.png" width= "500">
 
 
 
@@ -22,7 +23,7 @@
 
 플랫폼은 **PC** 기반이고, 플레이어는 3인칭 시점의 카메라를 보며 키보드와 마우스를 이용해 캐릭터를 조종하게 됩니다. 
 
-플레이어들은 아이템 박스로부터 아이템을 얻어 자신의 생존에 도움을 줄 수 있습니다. 그리고 체력 시스템이 존재해 체력을 회복할 수 있는 수단도 있지만 공격을 받아 체력이 0이되면 죽게됩니다.
+플레이어들은 아이템 박스로부터 아이템을 얻어 사용할 수 있습니다. 그리고 체력 시스템이 존재해 체력을 회복할 수 있는 수단도 있지만 공격을 받아 체력이 0이되면 죽게됩니다.
 
 게임은 플레이어가 모두 탈출하거나 모두 공격당해 죽었을 경우에 끝납니다. 
 
@@ -38,7 +39,7 @@ The platform is based on **PC**, and the players use the keyboard and mouse to c
 
 Players can get items from the item box and help them survive. And there is a health system, so they can recover that, but when they got attacked and health become zero, they will die
 
-The game ends when all players escape or all dead
+The game ends when all players escape or dead
 
 Players will wait in the waiting room (lobby) for other players to enter the room before the game starts. When the game starts, the players in the waiting room will go to the in-game together.
 
