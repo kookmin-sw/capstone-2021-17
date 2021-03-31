@@ -87,6 +87,20 @@ public class RayCastCam : MonoBehaviour
                     //raycasted_obj.SetActive(false);
                 }
             }
+
+            else if (hit.collider.CompareTag("Mission"))
+            {
+                raycasted_obj = hit.collider.gameObject;
+                CrosshairActive();
+
+                if (Input.GetKeyDown("e"))
+                {
+                    MissionController missionController = raycasted_obj.GetComponentInChildren<MissionController>();
+                    missionController.ShowMission();
+
+                    //raycasted_obj.SetActive(false);
+                }
+            }
         }
 
         else

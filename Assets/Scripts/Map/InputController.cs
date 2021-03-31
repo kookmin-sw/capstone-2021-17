@@ -11,8 +11,8 @@ public class InputController : MonoBehaviour
     {
         missionController = this.GetComponent<MissionController>();
         missionController.SetStageCode();
-        missionController.ShowMission();
-        missionController.StartCoroutine("ShowQuiz");
+        //missionController.ShowMission();
+        //missionController.StartCoroutine("ShowQuiz");
     }
 
     public void ButtonPressString(string keyString)

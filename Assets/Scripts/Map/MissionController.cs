@@ -61,7 +61,7 @@ public class MissionController : MonoBehaviour
         {
             StopCoroutine("ShowQuiz");
             state.text = "Clear";
-            //UnableMission();
+            UnableMission();
             //ValidStageClear();
 
             //1초뒤 창 종료
@@ -79,14 +79,15 @@ public class MissionController : MonoBehaviour
     //미션창 활성화
     public void ShowMission()
     {
-        //KPDisableManager.instance.DisablePlayer(true);
+        KPDisableManager.instance.DisablePlayer(true);
         missionCanvas.SetActive(true);
+        StartCoroutine("ShowQuiz");
     }
 
     //미션창 비활성화
     public void CloseMission()
     {
-        //KPDisableManager.instance.DisablePlayer(false);
+        KPDisableManager.instance.DisablePlayer(false);
         missionCanvas.SetActive(false);
     }
 
@@ -150,7 +151,7 @@ public class MissionController : MonoBehaviour
     //실행되는 동안 버튼 비활성화됨 실행 완료후 버튼 활성화
     IEnumerator ShowQuiz()
     {
-        //Debug.Log("ShowQuiz Start");
+        Debug.Log("ShowQuiz Start");
         int length = stage * 2 + 3;
         ButtonFalse();
         for (int i = 0; i < length; i++)
