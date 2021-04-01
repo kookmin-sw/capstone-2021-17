@@ -27,11 +27,4 @@ public class InputController : MonoBehaviour
         missionController.CheckStageCode();
         missionController.firstClick = false;
     }
-
-    //미션 중간에 종료 UI바깥화면 터치하면 미션창 꺼짐
-    public void ShutDownMission()
-    {
-        //KPDisableManager.instance.DisablePlayer(false);
-        missionController.CloseMission();
-    }
 }

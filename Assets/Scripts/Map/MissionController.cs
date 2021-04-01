@@ -87,6 +87,7 @@ public class MissionController : MonoBehaviour
     //미션창 비활성화
     public void CloseMission()
     {
+        stage = 0;
         KPDisableManager.instance.DisablePlayer(false);
         missionCanvas.SetActive(false);
     }

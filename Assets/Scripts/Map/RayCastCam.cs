@@ -100,6 +100,13 @@ public class RayCastCam : MonoBehaviour
 
                     //raycasted_obj.SetActive(false);
                 }
+                else if (Input.GetKeyDown("escape"))
+                {
+                    MissionController missionController = raycasted_obj.GetComponentInChildren<MissionController>();
+                    missionController.CloseMission();
+
+                    //raycasted_obj.SetActive(false);
+                }
             }
         }
 
