@@ -37,6 +37,9 @@ public class NetManager : NetworkRoomManager
 
     public static NetManager instance;
 
+    public string PlayerName;
+    private string clientPlayerName;
+
     [SerializeField]
     [FormerlySerializedAs("LoadingManagerPrefab")]
     private GameObject loadingManagerPrefab;
@@ -90,10 +93,35 @@ public class NetManager : NetworkRoomManager
      */
 
     //플레이어가 생성될때 플레이어 객체에 닉네임등 스타트씬에서 입력된 정보를 입력
+
+    public struct CreateRoomPlayerMessage : NetworkMessage
+    {
+        public string name;
+    }
+    public override void OnRoomStartServer()
+    {
+        base.OnRoomStartServer();
+        NetworkServer.RegisterHandler<CreateRoomPlayerMessage>(OnCreatePlayer);
+    }
+
+    void OnCreatePlayer(NetworkConnection conn, CreateRoomPlayerMessage msg)
+    {
+        clientPlayerName = msg.name;
+    }
+
+    public override void OnRoomClientConnect(NetworkConnection conn)
+    {
+        base.OnRoomClientConnect(conn);
+        conn.Send(new CreateRoomPlayerMessage { name = PlayerName });
+    }
+
+
+
     public override GameObject OnRoomServerCreateRoomPlayer(NetworkConnection conn)
     {
+        
         NetRoomPlayer newPlayer = (NetRoomPlayer)Instantiate(roomPlayerPrefab);
-        newPlayer.Nickname = PlayerPrefs.GetString("nickname");
+        newPlayer.Nickname = clientPlayerName;
         if (roomSlots.Count == 0) newPlayer.IsLeader = true;
 
         return newPlayer.gameObject;
