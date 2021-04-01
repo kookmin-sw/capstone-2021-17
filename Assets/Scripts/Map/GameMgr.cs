@@ -9,11 +9,17 @@ public class GameMgr : MonoBehaviour
 
     public static GameMgr instance;
 
-    public Transform[] boxspawnPoints;
+    public Transform[] boxSpawnPoints;
     public GameObject itemBox;
     public GameObject itemBoxSpawnPoints;
-    public int spawnPointCount;
+    public int boxSpawnCount;
     int[] boxCount = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
+
+    public Transform[] missionSpawnPoints;
+    public GameObject mission1;
+    public GameObject missionObjectSpawnPoints;
+    public int missionSpawnCount;
+    int[] missionCount = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
 
     void Start()
     {
@@ -24,10 +30,13 @@ public class GameMgr : MonoBehaviour
     public void Init()
     {
         GetRandomInt(boxCount, boxCount.Length - 1);
-        boxspawnPoints = GetSpwanPoints(itemBoxSpawnPoints);
-        SpawnObject(itemBox, boxspawnPoints, spawnPointCount);
+        boxSpawnPoints = GetSpwanPoints(itemBoxSpawnPoints);
+        SpawnObject(itemBox, boxSpawnPoints, boxCount, boxSpawnCount);
+        GetRandomInt(missionCount, missionCount.Length - 1);
+        missionSpawnPoints = GetSpwanPoints(missionObjectSpawnPoints);
+        SpawnObject(mission1, missionSpawnPoints, missionCount, missionSpawnCount);
     }
-    
+
     static void GetRandomInt(int []arr, int max)
     {
         System.Random r = new System.Random();
@@ -45,11 +54,11 @@ public class GameMgr : MonoBehaviour
         return spawnPoinst.GetComponentsInChildren<Transform>();
     }
     
-    private void SpawnObject(GameObject gameObject, Transform[] spawnPoints, int objCount)
+    private void SpawnObject(GameObject gameObject, Transform[] spawnPoints, int[] spawnCount, int objCount)
     {
         for (int i = 0; i < objCount; i++)
         {
-            GameObject createdObject = Instantiate(gameObject, spawnPoints[boxCount[i]].position, Quaternion.identity);
+            GameObject createdObject = Instantiate(gameObject, spawnPoints[spawnCount[i]].position, Quaternion.identity);
             if (NetworkServer.active)
             {
                 NetworkServer.Spawn(createdObject);
