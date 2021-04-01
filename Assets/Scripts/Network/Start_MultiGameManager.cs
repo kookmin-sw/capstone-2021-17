@@ -27,7 +27,7 @@ public class Start_MultiGameManager: MonoBehaviour
     }
     public void SaveNickName()
     {
-        PlayerPrefs.SetString("nickname", nameField.text);
+        netManager.PlayerName = nameField.text;
     }
 
 
