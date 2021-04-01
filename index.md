@@ -1,23 +1,13 @@
 # Raider
-<hr>
 
 https://kookmin-sw.github.io/capstone-2021-17/
 
-<img src="https://user-images.githubusercontent.com/28583561/113183056-905da680-928e-11eb-8be8-8c97b68dc006.png" width= "500">
-
-
-
-
-
-
-
 ### 1. 프로잭트 소개
 
-
-![888efdcb-abc6-4911-9468-81f456c121d2](https://user-images.githubusercontent.com/28583561/109491985-a0d30380-7acd-11eb-8911-08e9bbf8d33e.jpg)
-![8920f93b-4999-49f7-9826-b8360e75b059](https://user-images.githubusercontent.com/28583561/109492009-a92b3e80-7acd-11eb-9248-680e0618ad33.jpg)
-![36fa99b9-424e-4c6f-979f-8325f7dbb3fc](https://user-images.githubusercontent.com/28583561/109492281-1343e380-7ace-11eb-8819-9e5232d5a144.jpg)
-
+<hr> 
+<div width="100%">
+<img src="https://user-images.githubusercontent.com/28583561/113183056-905da680-928e-11eb-8be8-8c97b68dc006.png" width= "500"> </img>
+</div>
 
 
 
@@ -40,7 +30,6 @@ In this project, we would like to develop **Multiplayer 3D Games** using Unity 3
 this game has **4 player robots**. they need to avoid the **Enemy robot** and perform missions to escape from spaceship in SF
 
 The platform is based on **PC**, and the players use the keyboard and mouse to control the character while looking at the third person camera.
-
 Players can get items from the item box and help them survive. And there is a health system, so they can recover that, but when they got attacked and health become zero, they will die
 
 The game ends when all players escape or dead
@@ -89,4 +78,14 @@ Players will wait in the waiting room (lobby) for other players to enter the roo
 
 ### 6. 기타
 
-추가적인 내용은 자유롭게 작성하세요.
+**게임 테스트 사진들**
+
+<img width="351" alt="스타트캡처" src="https://user-images.githubusercontent.com/28583561/113193765-4e872d00-929b-11eb-97e7-96cbd78dbbea.PNG">
+
+
+<img width="351" alt="인게임 캡처" src="https://user-images.githubusercontent.com/28583561/113193184-a4a7a080-929a-11eb-81b9-61356e1763e1.PNG">
+
+
+
+
+
