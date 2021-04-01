@@ -3,7 +3,6 @@ using System;
 
 
 //Add Component
-
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(Animator))]
@@ -21,26 +20,37 @@ public class ThirdPersonCharacter : MonoBehaviour
 
     Rigidbody PlayerRigidbody;
     Animator PlayerAnimator;
+
     CapsuleCollider Capsule;
+    float CapsuleHeight;
+    Vector3 CapsuleCenter;
+    Vector3 GroundNormal;
 
-    [SerializeField]
-    NetGamePlayer NetPlayer;
-
-    bool IsGrounded;
-    float OrigGroundCheckDistance;
     const float k_Half = 0.5f;
     float TurnAmount;
     float ForwardAmount;
-    Vector3 GroundNormal;
-    float CapsuleHeight;
-    Vector3 CapsuleCenter;
-
-    bool Crouching;
-    Vector3 PresentMove;
+    
+    public bool IsGrounded;
+    float OrigGroundCheckDistance;
 
     public bool IsHit;
     public bool IsDie;
 
+    bool Crouching;
+    Vector3 PresentMove;
+    
+    //NetPlayer
+    [SerializeField]
+    NetGamePlayer NetPlayer;
+
+    public AudioSource soundSource;
+    public AudioSource soundSources;
+    public AudioClip[] sound;
+
+    [SerializeField]
+    AudioSource walkAudio;
+    
+    //Player State
     public enum State
     {
         Idle,
@@ -50,6 +60,7 @@ public class ThirdPersonCharacter : MonoBehaviour
         Hit,
         Die
     }
+    //Player State Idle Setting
     public State state =State.Idle;
 
     void Start()
@@ -59,37 +70,55 @@ public class ThirdPersonCharacter : MonoBehaviour
         Capsule = GetComponent<CapsuleCollider>();
         CapsuleHeight = Capsule.height;
         CapsuleCenter = Capsule.center;
-
         PlayerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         OrigGroundCheckDistance = GroundCheckDistance;
+        soundSource=soundSource.GetComponent<AudioSource>();
     }
-
 
     public void Move(Vector3 move, bool crouch, bool jump)
     {
-        if (PresentMove != move)
+        if (PresentMove != move && crouch == false&& IsGrounded)
         {
+            if (soundSource.isPlaying==false)
+            {
+                soundSource.Play();
+            }         
             state=State.Move;
         }
-        else if (crouch==true)
+        else if (crouch)
         {
+            soundSources.Stop();
             state=State.Crouch;
         }
-        else if (jump==true)
+        else if (crouch&&PresentMove != move)
+        {
+            soundSources.Stop();
+            state=State.Crouch;
+            if (soundSource.isPlaying==false)
+            {
+                soundSource.Play();
+            }
+        }
+        else if (jump)
         {
             state=State.Jump;
+            soundSources.Stop();
+            soundSource.PlayOneShot(sound[1]);
         }
         else if (IsHit==true)
         {
+            soundSources.Stop();
             state=State.Hit;
         }
         else if (IsDie==true)
         {
+            soundSources.Stop();
             state=State.Die;
         }
         else
         {
             state=State.Idle;
+            soundSources.Stop();      
         }
 
         if(NetPlayer != null)
@@ -127,7 +156,6 @@ public class ThirdPersonCharacter : MonoBehaviour
         PresentMove=move;
     }
 
-
     void ScaleCapsuleForCrouching(bool crouch)
     {
         if (IsGrounded && crouch)
@@ -139,6 +167,7 @@ public class ThirdPersonCharacter : MonoBehaviour
             Capsule.height = Capsule.height / 2f;
             Capsule.center = Capsule.center / 2f;
             Crouching = true;
+            soundSource.PlayOneShot(sound[0]);
         }
         else
         {
@@ -169,12 +198,10 @@ public class ThirdPersonCharacter : MonoBehaviour
         }
     }
 
-
     void UpdateAnimator(Vector3 move)
     {
         // update the animator parameters
         PlayerAnimator.SetFloat("Forward", ForwardAmount, 0.1f, Time.deltaTime);
-        //m_Animator.SetFloat("Turn", m_TurnAmount);
         PlayerAnimator.SetBool("Crouch", Crouching);
         PlayerAnimator.SetBool("OnGround", IsGrounded);
         PlayerAnimator.SetBool("Hit", IsHit);
@@ -209,7 +236,6 @@ public class ThirdPersonCharacter : MonoBehaviour
         }
     }
 
-
     void HandleAirborneMovement()
     {
         // apply extra gravity from multiplier:
@@ -219,12 +245,12 @@ public class ThirdPersonCharacter : MonoBehaviour
         GroundCheckDistance = PlayerRigidbody.velocity.y < 0 ? OrigGroundCheckDistance : 0.01f;
     }
 
-
     void HandleGroundedMovement(bool crouch, bool jump)
     {
         // check whether conditions are right to allow a jump:
-        if (jump && !crouch && PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
+        if (jump && !crouch)
         {
+            //&& PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Grounded")
             // jump!
             PlayerRigidbody.velocity = new Vector3(PlayerRigidbody.velocity.x, JumpPower, PlayerRigidbody.velocity.z);
             IsGrounded = false;
@@ -240,7 +266,6 @@ public class ThirdPersonCharacter : MonoBehaviour
         transform.Rotate(0, TurnAmount * turnSpeed * Time.deltaTime, 0);
     }
 
-
     public void OnAnimatorMove()
     {
         // we implement this function to override the default root motion.
@@ -254,7 +279,6 @@ public class ThirdPersonCharacter : MonoBehaviour
             PlayerRigidbody.velocity = v;
         }
     }
-
 
     void CheckGroundStatus()
     {

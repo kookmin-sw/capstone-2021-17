@@ -25,12 +25,6 @@ public class PlayerHealth : MonoBehaviour
         HealthChange();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       // print(Health);
-    }
-
     public void Hit()
     {
         Health -= 1;
@@ -70,6 +64,5 @@ public class PlayerHealth : MonoBehaviour
     public void HealthChange()
     {
         PlayerHealthCheck.HealthCheck=Health;
-        print(PlayerHealthCheck.HealthCheck);
     }
 }

@@ -27,10 +27,11 @@ public class ThirdPersonUserControl : MonoBehaviour
     {
         if (!Jump)
         {
-            Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+            Jump = Input.GetKeyDown(KeyCode.Space);
         }
         LookAround();
     }
+
     private void LookAround()
     {
         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
@@ -52,7 +53,6 @@ public class ThirdPersonUserControl : MonoBehaviour
     // Fixed update is called in sync with physics
     private void FixedUpdate()
     {
-
         // read inputs
         float h = CrossPlatformInputManager.GetAxis("Horizontal");
         float v = CrossPlatformInputManager.GetAxis("Vertical");
@@ -80,12 +80,12 @@ public class ThirdPersonUserControl : MonoBehaviour
         { 
             Move *= 0.7f;
         }
+
         if (Input.GetKeyUp(KeyCode.B)) 
         {
             GetComponent<PlayerHealth>().Hit();
-        }
 
-        ChangeSpeed(HealthCheck);
+        }
 
         // pass all parameters to the character control script
         
@@ -99,10 +99,6 @@ public class ThirdPersonUserControl : MonoBehaviour
         }
 
         Jump = false;
-    }
-    public void ChangeSpeed(int healthcheck)
-    {
-
     }
 }
 
