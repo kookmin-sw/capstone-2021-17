@@ -25,7 +25,13 @@ public class StartButton : MonoBehaviour
     public void PressStart()
     {
         //game start!
-        netManager.ServerChangeScene(netManager.GameplayScene);
+        foreach( NetRoomPlayer player in netManager.roomSlots)
+        {
+            if (player.IsLeader)
+            {
+                player.StartGame();
+            }
+        }
     }
 
 }

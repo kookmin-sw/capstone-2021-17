@@ -5839,7 +5839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGUI: 1
+  showGUI: 0
   offsetX: 200
   offsetY: 0
 --- !u!114 &2124268453
@@ -5876,7 +5876,7 @@ MonoBehaviour:
   spawnPrefabs:
   - {fileID: 1038162653935764, guid: 0462052c0393d654185c9da4c8e6e072, type: 3}
   - {fileID: 5834168737704926764, guid: 6b338324bbf044f4bbc176251bbaf035, type: 3}
-  showRoomGUI: 1
+  showRoomGUI: 0
   minPlayers: 1
   roomPlayerPrefab: {fileID: 5801046964974653843, guid: 104f3e730f7e3a245a4de0f19f3b9df2,
     type: 3}
@@ -5885,6 +5885,7 @@ MonoBehaviour:
   _allPlayersReady: 0
   roomSlots: []
   clientIndex: 0
+  PlayerName: 
   loadingManagerPrefab: {fileID: 3825596481130646103, guid: f8df0c5ba34cebb4ebdc953c12376662,
     type: 3}
 --- !u!4 &2124268454
