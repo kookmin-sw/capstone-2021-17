@@ -122,6 +122,12 @@ public class NetRoomPlayer : NetworkRoomPlayer
         gameManager.DeActivateStartButton();
     }
 
+    [Command]
+    public void StartGame()
+    {
+        netManager.ServerChangeScene(netManager.GameplayScene);
+    }
+
     
     public void setReadyText()
     {
