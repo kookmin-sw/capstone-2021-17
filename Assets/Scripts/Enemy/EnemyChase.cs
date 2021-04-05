@@ -58,6 +58,7 @@ public class EnemyChase : MonoBehaviour
     void Awake()
     {
         Console.IsOpen = false;
+        Application.targetFrameRate = 300;
         //기본 상태
         state = State.Dizzy;
     }
@@ -116,14 +117,15 @@ public class EnemyChase : MonoBehaviour
     {        
         if (!isPatrol)
         {
-            turnOnSensor = true;
-            //웨이 포인트 중 하나를 랜덤으로 접근
-            int random = Random.Range(0, wayPoint.Length);
+            findTargetSound = false;
             //순찰중인지 판단
             isPatrol = true;            
-            patrolPos = wayPoint[random].position;                        
+            turnOnSensor = true;
+            //웨이 포인트 중 하나를 랜덤으로 접근
+            int random = Random.Range(0, wayPoint.Length);            
+            patrolPos = wayPoint[random].position;            
             //순찰 시작
-            enemy.SetDestination(patrolPos);
+            enemy.SetDestination(patrolPos);            
             //move state로 전환
             state = State.Move;            
         }
@@ -146,7 +148,7 @@ public class EnemyChase : MonoBehaviour
             }            
         }       
         else
-        {
+        {            
             //계속해서 경로를 설정해서 플레이어가 움직여도 그 경로를 다시 설정한다.
             enemy.SetDestination(target.position);
             //타겟을 설정했으므로 타겟 설정 변수 초기화
@@ -224,8 +226,7 @@ public class EnemyChase : MonoBehaviour
         if (dis <= 1.5f)
         {
             //변수초기화
-            InitializeVar();            
-            turnOnSensor = false;
+            InitializeVar();
             state = State.Attack;
         }        
         else
@@ -289,6 +290,7 @@ public class EnemyChase : MonoBehaviour
         hasP = false;        
         findTargetVision = false;
         findTargetSound = false;
+        turnOnSensor = false;
         isPatrol = false;
     }
 }

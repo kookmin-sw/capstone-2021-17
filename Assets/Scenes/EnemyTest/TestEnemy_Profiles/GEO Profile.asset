@@ -12,30 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b924e2dad56384a8df2a1e111bb675, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
   mode:
-    overrideState: 1
+    overrideState: 0
     value: 0
   color:
     overrideState: 1
-    value: {r: 0, g: 0, b: 0, a: 1}
+    value: {r: 0.94509804, g: 0.3529412, b: 0.3529412, a: 1}
   center:
     overrideState: 1
-    value: {x: 0.5, y: 0.5}
+    value: {x: 0.6, y: 0.6}
   intensity:
     overrideState: 1
     value: 0.5
   smoothness:
     overrideState: 1
-    value: 0.3
+    value: 0.75
   roundness:
-    overrideState: 1
+    overrideState: 0
     value: 1
   rounded:
-    overrideState: 1
+    overrideState: 0
     value: 0
   mask:
     overrideState: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
     value: -12
   thicknessModifier:
     overrideState: 1
-    value: 3.5
+    value: 1
   directLightingStrength:
     overrideState: 0
     value: 0
@@ -164,13 +164,13 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 0
-    value: 0
+    value: -10
   tint:
     overrideState: 0
     value: 0
   colorFilter:
-    overrideState: 0
-    value: {r: 1, g: 1, b: 1, a: 1}
+    overrideState: 1
+    value: {r: 0.2666667, g: 0.2666667, b: 0.2666667, a: 1}
   hueShift:
     overrideState: 0
     value: 0
@@ -215,13 +215,13 @@ MonoBehaviour:
     value: 100
   lift:
     overrideState: 1
-    value: {x: 0.83927834, y: 0.90040004, z: 1, w: 0}
+    value: {x: 0.9801243, y: 0.9974075, z: 1, w: -0.22297296}
   gamma:
     overrideState: 1
-    value: {x: 0.85350275, y: 0.88993686, z: 1, w: 0}
+    value: {x: 0.8771321, y: 1, z: 0.91814446, w: 1}
   gain:
     overrideState: 1
-    value: {x: 1, y: 0.9677177, z: 0.89103025, w: 0}
+    value: {x: 1, y: 0.9647954, z: 0.89191204, w: 1}
   masterCurve:
     overrideState: 0
     value:
@@ -1440,10 +1440,10 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 5
+    value: 10
   threshold:
     overrideState: 1
-    value: 0.75
+    value: 0.5
   softKnee:
     overrideState: 1
     value: 0.5
@@ -1455,7 +1455,7 @@ MonoBehaviour:
     value: 7
   anamorphicRatio:
     overrideState: 1
-    value: 0
+    value: -1
   color:
     overrideState: 1
     value: {r: 1, g: 1, b: 1, a: 1}
@@ -1463,12 +1463,12 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   dirtTexture:
-    overrideState: 1
+    overrideState: 0
     value: {fileID: 0}
     defaultState: 1
   dirtIntensity:
     overrideState: 1
-    value: 2
+    value: 0
 --- !u!114 &8248530261654660948
 MonoBehaviour:
   m_ObjectHideFlags: 3
