@@ -6,7 +6,11 @@ using UnityEngine.UI;
 public class IngameUIManager : MonoBehaviour
 {
     public GameObject ingame_quit;
+    public GameObject ingame_sound;
+    public GameObject menu_UI;
+    public GameObject game_clear;
     public Text clearText;
+    public GameObject menuinfo;
     bool gameClear;
     float loadingTime = 5; 
     
@@ -24,7 +28,7 @@ public class IngameUIManager : MonoBehaviour
             ClearTimeCount();    
         }
 
-        GameQuit();
+        OpenMenu();
     }
 
         //게임 클리어시 활성화
@@ -49,30 +53,62 @@ public class IngameUIManager : MonoBehaviour
         }
     }
 
-        //게임 중간 종료 스크립트
-    private void GameQuit()
-    {
+        //메뉴창 스크립트
+    private void OpenMenu()
+    {   
+        //메뉴창 열고닫기
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            if(ingame_quit.activeSelf == false)
+            if(menu_UI.activeSelf == false)
             {
-                ingame_quit.SetActive(true);
+                menu_UI.SetActive(true);
             }
             else
             {
-                ingame_quit.SetActive(false);
+                menu_UI.SetActive(false);
             }
         }
 
-        if(ingame_quit.activeSelf == true)
-        {
-            if(Input.GetKeyDown(KeyCode.R))
+        //메뉴탕이 열려있을 때 액션
+        if(menu_UI.activeSelf == true)
+        {   //볼륨조절창
+            if(Input.GetKeyDown(KeyCode.S))
             {
-                SceneManager.ChangeStartScene();
+                if(ingame_sound.activeSelf==false)
+                {
+                    ingame_sound.SetActive(true);
+                    ingame_quit.SetActive(false);
+                    menuinfo.SetActive(false);
+                }
+                else
+                {
+                    ingame_sound.SetActive(false);
+                }
             }
-            else if(Input.GetKeyDown(KeyCode.G))
+            else if(Input.GetKeyDown(KeyCode.E))
+            {//게임종료 선택창
+                if(ingame_quit.activeSelf==false)
+                {
+                    ingame_quit.SetActive(true);
+                    ingame_sound.SetActive(false);
+                    menuinfo.SetActive(false);
+                }
+                else
+                {
+                    ingame_quit.SetActive(false);
+                }
+            }
+
+            if(ingame_quit.activeSelf==true)
             {
-                SceneManager.GameExit();
+                if(Input.GetKeyDown(KeyCode.R))
+                {
+                    SceneManager.ChangeStartScene();
+                }
+                else if(Input.GetKeyDown(KeyCode.G))
+                {
+                    SceneManager.GameExit();
+                }
             }
         }
     }
