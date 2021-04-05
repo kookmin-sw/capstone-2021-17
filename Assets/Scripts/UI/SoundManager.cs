@@ -7,7 +7,7 @@ public class SoundManager : MonoBehaviour
 {
 
     public AudioClip[] sound;
-    private AudioSource[] audioSource;
+    public AudioSource[] audioSource;
     public Slider[] volume_slider;
 
     //0번 : 배경음악
@@ -16,10 +16,10 @@ public class SoundManager : MonoBehaviour
 
     void Awake()
     {
-        for(int i=0; i<audioSource.Length; i++)
-        {
-            this.audioSource[i] = GetComponent<AudioSource>();
-        }
+        //for(int i=0; i<audioSource.Length; i++)
+       // {
+          //  this.audioSource[i] = GetComponent<AudioSource>();
+        //}
     }
 
     // Update is called once per frame
