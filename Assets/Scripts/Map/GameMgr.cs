@@ -58,7 +58,7 @@ public class GameMgr : MonoBehaviour
     {
         for (int i = 0; i < objCount; i++)
         {
-            GameObject createdObject = Instantiate(gameObject, spawnPoints[spawnCount[i]].position, Quaternion.identity);
+            GameObject createdObject = Instantiate(gameObject, spawnPoints[spawnCount[i]].position, spawnPoints[spawnCount[i]].rotation);
             if (NetworkServer.active)
             {
                 NetworkServer.Spawn(createdObject);
