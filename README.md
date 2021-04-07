@@ -39,7 +39,7 @@ Players will wait in the waiting room (lobby) for other players to enter the roo
 
 ### 3. 소개 영상
 
-프로젝트 소개하는 영상을 추가하세요
+[![Alt text](http://i.ytimg.com/vi/ETcIRnatyL4/0.jpg)](https://youtu.be/ETcIRnatyL4)
 
 ### 4. 팀 소개
 
@@ -80,12 +80,8 @@ Players will wait in the waiting room (lobby) for other players to enter the roo
 
 **게임 테스트 사진들**
 
-<img width="351" alt="스타트캡처" src="https://user-images.githubusercontent.com/28583561/113193765-4e872d00-929b-11eb-97e7-96cbd78dbbea.PNG">
+<img width="351" alt="스타트캡처" src="https://user-images.githubusercontent.com/28583561/113883018-c0f69080-97f8-11eb-9d08-b535ea46bea8.jpg">
 
 
 <img width="351" alt="인게임 캡처" src="https://user-images.githubusercontent.com/28583561/113193184-a4a7a080-929a-11eb-81b9-61356e1763e1.PNG">
-
-
-
-
 
