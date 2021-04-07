@@ -46,7 +46,7 @@ public class EnemyChase : MonoBehaviour
     //적의 판단 근거, 장애물인지 플레이어인지
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private LayerMask obstacleMask;
-    [SerializeField] private AnimationEvent animationEvent;  //오디오 센서를 위한 애니메이션 이벤트    
+    [SerializeField] private AnimationSound animationEvent;  //오디오 센서를 위한 애니메이션 이벤트    
     [SerializeField] private EnemyAnimation anim;
     private Collider[] targetsInViewRadius = new Collider[4];   //OverlapSphereNonAlloc을 위한 어레이
     private int targetsLength;  //타겟 리스트의 길이

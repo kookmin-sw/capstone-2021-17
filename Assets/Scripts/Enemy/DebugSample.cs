@@ -10,7 +10,7 @@ public class DebugSample : MonoBehaviour
     [SerializeField]
     private EnemyChase enemyChase;
     [SerializeField]
-    private AnimationEvent animEvent;
+    private AnimationSound animEvent;
     // Update is called once per frame
     void Update()
     {

@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationEvent : MonoBehaviour
+public class AnimationSound : MonoBehaviour
 {
     [SerializeField]
     AudioSource walkAudio;
     [SerializeField]
     EnemyChase enemy;
 
-    private Transform enemyPos;    
+    private Transform enemyPos;
 
     public void Awake()
     {
@@ -21,6 +21,11 @@ public class AnimationEvent : MonoBehaviour
         {
             enemy.findTargetSound = true;                        
         }
+        walkAudio.Play();
+    }
+
+    public void WalkSound()
+    {
         walkAudio.Play();
     }
 }
