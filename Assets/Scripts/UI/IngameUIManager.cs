@@ -36,7 +36,8 @@ public class IngameUIManager : MonoBehaviour
     {
         int clearPlayer_count = 0;
         int serverPlayer = 4;
-        if(clearPlayer_count==serverPlayer){
+        if(clearPlayer_count==serverPlayer)
+        {
             gameClear = true;
         }
         
@@ -101,13 +102,17 @@ public class IngameUIManager : MonoBehaviour
 
             if(ingame_quit.activeSelf==true)
             {
-                if(Input.GetKeyDown(KeyCode.R))
+                if(Input.GetKeyDown(KeyCode.S))
                 {
                     SceneManager.ChangeStartScene();
                 }
                 else if(Input.GetKeyDown(KeyCode.G))
                 {
                     SceneManager.GameExit();
+                }
+                else if(Input.GetKeyDown(KeyCode.R))
+                {
+                    //로비로 가는 스크립트 추가
                 }
             }
         }
