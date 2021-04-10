@@ -126,19 +126,6 @@ public class NetManager : NetworkRoomManager
 
         return newPlayer.gameObject;
     }
-    // Client가 Room에서 나갈때
-    //그 Client의 RoomPlayerPrefab의 UI를 PlayerSpace의 UI가 대체함
-    public override void OnRoomServerDisconnect(NetworkConnection conn)
-    {
-        
-        if (conn.identity != null && IsSceneActive(RoomScene))
-        {
-            NetRoomPlayer disconnectedPlayer = conn.identity.GetComponent<NetRoomPlayer>();
-            //disconnectedPlayer.playerSpace.SetActive(true); // UI 대체
-
-        }
-        
-    }
     
 
 

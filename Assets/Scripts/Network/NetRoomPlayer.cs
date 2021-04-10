@@ -15,6 +15,9 @@ public class NetRoomPlayer : NetworkRoomPlayer
     [SyncVar]
     public bool IsLeader;
 
+    [SyncVar]
+    public int roomidx = -1;
+
     public RectTransform Rect_Trans;
 
     public string NotReady_msg = "Not Ready";

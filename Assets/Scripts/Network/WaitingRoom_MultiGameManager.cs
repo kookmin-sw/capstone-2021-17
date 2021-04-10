@@ -33,23 +33,41 @@ public class WaitingRoom_MultiGameManager : MonoBehaviour
     //룸플레이어가 들어올경우 룸플레이어를 룸플레이어 공간에 옮기고 롬플레이어 공간은 비활성화
     public void AddPlayerToPlayerSpace(NetRoomPlayer newPlayer)
     {
-        
+        Debug.Log(newPlayer.roomidx);
+        if (newPlayer.roomidx != -1)
+        {
+            PlayerSpace space = playerSpaces[newPlayer.roomidx];
+            space.player = newPlayer;
+            RectTransform playerSpaceRectTrans = space.GetComponentInChildren<RectTransform>();
+            space.player.Rect_Trans.localPosition = playerSpaceRectTrans.localPosition;
+            space.gameObject.SetActive(false);
+        }
+        else
+        {
+            for (int index = 0; index < playerSpaces.Length; index++)
+            {
+                PlayerSpace space = playerSpaces[index];
+                if (space.player == null)
+                {
+                    space.player = newPlayer;
+                    newPlayer.roomidx = index;
+                    Debug.Log("roomidx= "+ index);
+                    RectTransform playerSpaceRectTrans = space.GetComponentInChildren<RectTransform>();
+                    if (playerSpaceRectTrans == null)
+                    {
+                        Debug.LogError("PlayerSpace must get Rect Transform! - heeunAn");
+                        return;
+                    }
+
+                    space.player.Rect_Trans.localPosition = playerSpaceRectTrans.localPosition;
+                    space.gameObject.SetActive(false);
+                    break;
+                }
+            }
+        }
         foreach (PlayerSpace space in playerSpaces)
         {
-            if (space.player == null)
-            {
-                space.player = newPlayer;
-                RectTransform playerSpaceRectTrans = space.GetComponentInChildren<RectTransform>();
-                if (playerSpaceRectTrans == null)
-                {
-                    Debug.LogError("PlayerSpace must get Rect Transform! - heeunAn");
-                    return;
-                }
-
-                space.player.Rect_Trans.localPosition = playerSpaceRectTrans.localPosition;
-                space.gameObject.SetActive(false);
-                break;
-            }
+            
         }
     }
     //룸 플레이어가 나갈시 플레이어 공간을 다시 활성화
