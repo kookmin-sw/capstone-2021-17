@@ -2016,6 +2016,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1414418414}
     m_Modifications:
+    - target: {fileID: 1707104377271611641, guid: 0a43fb67767f3de4aa0a8824246ac924,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4656714455106249023, guid: 0a43fb67767f3de4aa0a8824246ac924,
         type: 3}
       propertyPath: m_RootOrder
@@ -2075,6 +2080,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: btn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956983322808979299, guid: 0a43fb67767f3de4aa0a8824246ac924,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a43fb67767f3de4aa0a8824246ac924, type: 3}
@@ -3351,6 +3361,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1030396081}
     m_Modifications:
+    - target: {fileID: 1707104377271611641, guid: 0a43fb67767f3de4aa0a8824246ac924,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4656714455106249023, guid: 0a43fb67767f3de4aa0a8824246ac924,
         type: 3}
       propertyPath: m_RootOrder
@@ -3410,6 +3425,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: btn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956983322808979299, guid: 0a43fb67767f3de4aa0a8824246ac924,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a43fb67767f3de4aa0a8824246ac924, type: 3}
@@ -4477,6 +4497,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1715563358}
     m_Modifications:
+    - target: {fileID: 1707104377271611641, guid: 0a43fb67767f3de4aa0a8824246ac924,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4656714455106249023, guid: 0a43fb67767f3de4aa0a8824246ac924,
         type: 3}
       propertyPath: m_RootOrder
@@ -4536,6 +4561,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: btn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956983322808979299, guid: 0a43fb67767f3de4aa0a8824246ac924,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a43fb67767f3de4aa0a8824246ac924, type: 3}
@@ -21668,6 +21698,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 40391464}
     m_Modifications:
+    - target: {fileID: 1707104377271611641, guid: 0a43fb67767f3de4aa0a8824246ac924,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4656714455106249023, guid: 0a43fb67767f3de4aa0a8824246ac924,
         type: 3}
       propertyPath: m_RootOrder
@@ -21727,6 +21762,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: btn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956983322808979299, guid: 0a43fb67767f3de4aa0a8824246ac924,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a43fb67767f3de4aa0a8824246ac924, type: 3}
@@ -27045,7 +27085,7 @@ GameObject:
   - component: {fileID: 954335637}
   - component: {fileID: 954335636}
   - component: {fileID: 954335638}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Power Lever1
   m_TagString: Lever
   m_Icon: {fileID: 0}
@@ -31118,7 +31158,13 @@ MonoBehaviour:
   mission1: {fileID: 6690388454592023288, guid: 09641a87d806be54798b18c2da9c0c37,
     type: 3}
   missionObjectSpawnPoints: {fileID: 1149676629}
-  missionSpawnCount: 14
+  missionSpawnCount: 1
+  exitLever:
+  - {fileID: 954335634}
+  - {fileID: 1464901081}
+  - {fileID: 1353447885}
+  - {fileID: 1279526824}
+  missionClearCount: 0
 --- !u!114 &1109556291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36255,7 +36301,7 @@ GameObject:
   - component: {fileID: 1279526827}
   - component: {fileID: 1279526826}
   - component: {fileID: 1279526828}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Power Lever1
   m_TagString: Lever
   m_Icon: {fileID: 0}
@@ -38360,7 +38406,7 @@ GameObject:
   - component: {fileID: 1353447888}
   - component: {fileID: 1353447887}
   - component: {fileID: 1353447889}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Power Lever1
   m_TagString: Lever
   m_Icon: {fileID: 0}
@@ -41874,7 +41920,7 @@ GameObject:
   - component: {fileID: 1464901084}
   - component: {fileID: 1464901083}
   - component: {fileID: 1464901085}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Power Lever1
   m_TagString: Lever
   m_Icon: {fileID: 0}
@@ -44358,7 +44404,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1532994834}
   m_LocalRotation: {x: 0.06162845, y: 0.70441604, z: -0.06162845, w: 0.70441604}
-  m_LocalPosition: {x: -33.36, y: -3.7, z: 26.14}
+  m_LocalPosition: {x: -33.3, y: -3.7, z: 26.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1149676630}

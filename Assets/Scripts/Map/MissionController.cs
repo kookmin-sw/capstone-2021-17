@@ -66,6 +66,7 @@ public class MissionController : MonoBehaviour
 
             //1초뒤 창 종료
             Invoke("CloseMission", 1.0f);
+            GameMgr.MissionClear();
         }
     }
 
