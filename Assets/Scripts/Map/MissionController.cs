@@ -63,9 +63,9 @@ public class MissionController : MonoBehaviour
             state.text = "Clear";
             UnableMission();
             //ValidStageClear();
-
             //1초뒤 창 종료
             Invoke("CloseMission", 1.0f);
+            GameMgr.MissionClear();
         }
     }
 

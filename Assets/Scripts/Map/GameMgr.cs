@@ -21,6 +21,10 @@ public class GameMgr : MonoBehaviour
     public int missionSpawnCount;
     int[] missionCount = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
 
+    public GameObject[] exitLever;
+    public int missionClearCount;
+    int[] exitCount = { 0, 1, 2, 3 };
+
     void Start()
     {
         instance = this;
@@ -98,6 +102,22 @@ public class GameMgr : MonoBehaviour
         }
         string code = new string(arr);
         return code.Substring(0, length);
+    }
+
+    public static void MissionClear()
+    {
+        instance.missionClearCount++;
+        if (instance.missionClearCount == instance.missionSpawnCount)
+        {
+            instance.ActiveExitDoor();
+        }
+    }
+
+    public void ActiveExitDoor()
+    {
+        GetRandomInt(exitCount, exitCount.Length - 1);
+        exitLever[exitCount[0]].gameObject.layer = LayerMask.NameToLayer("Interact");
+        Debug.Log("Active Lever : " + exitCount[0]);
     }
 
     //미션에 사용할 패스워드 - 원하는 길이만큼 생성가능, 중복체크안함
