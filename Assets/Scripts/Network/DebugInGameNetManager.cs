@@ -29,15 +29,25 @@ public class DebugInGameNetManager : NetworkManager
 
     public override void OnStartServer()
     {
-        if(gameMgr == null)
+        gameMgr = GameMgr.instance;
+        if (gameMgr == null)
         {
             Debug.LogWarning("GameMgr Script dosent on the Scene");
         }
-        gameMgr = GameMgr.instance;
-        gameMgr.Init();
+        else
+        {
+            gameMgr.Init();
+        }
 
         enemySpawnManager = EnemySpawnManager.instance;
-        enemySpawnManager.Init();
+        if (enemySpawnManager == null)
+        {
+            Debug.LogWarning("EnemySpawnManager Script dosent on the Scene");
+        }
+        else
+        {
+            enemySpawnManager.Init();
+        }
 
         base.OnStartServer();
 
