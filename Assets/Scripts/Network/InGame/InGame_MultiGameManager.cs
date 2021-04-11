@@ -13,6 +13,8 @@ public class InGame_MultiGameManager : MonoBehaviour
 
     private static List<ThirdPersonCharacter.State> states = new List<ThirdPersonCharacter.State>();
 
+    private static List<string> networkTimes = new List<string>();
+
     public static InGame_MultiGameManager instance;
 
     public Camera DebugIntroCam;
@@ -38,6 +40,7 @@ public class InGame_MultiGameManager : MonoBehaviour
         healths.Add(newPlayer.Health);
         names.Add(newPlayer.Nickname);
         states.Add(newPlayer.State);
+        networkTimes.Add(newPlayer.GetConnState());
     }
     public static void DisablePlayer(NetGamePlayer targetPlayer)
     {
@@ -81,6 +84,16 @@ public class InGame_MultiGameManager : MonoBehaviour
             states[index] = Players[index].State;
         }
         return states;
+    }
+
+    public static List<string> GetPlayersNetworkTime()
+    {
+        for (int index = 0; index < Players.Count; index++)
+        {
+            networkTimes[index] = Players[index].GetConnState();
+        }
+
+        return networkTimes;
     }
 
 

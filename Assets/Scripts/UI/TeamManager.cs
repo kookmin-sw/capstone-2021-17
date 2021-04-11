@@ -8,10 +8,11 @@ public class TeamManager : MonoBehaviour
 {
     public Text[] UI;
 
-    public static List<NetGamePlayer> Players = new List<NetGamePlayer>(NetManager.PLAYER_MAXNUM);
-    private static List<int> healths = new List<int>();
-    private static List<string> names = new List<string>();
-    private static List<ThirdPersonCharacter.State> states = new List<ThirdPersonCharacter.State>();
+    public List<NetGamePlayer> Players = new List<NetGamePlayer>(NetManager.PLAYER_MAXNUM);
+    private List<int> healths = new List<int>();
+    private List<string> names = new List<string>();
+    private List<ThirdPersonCharacter.State> states = new List<ThirdPersonCharacter.State>();
+    private List<string> networkTimes = new List<string>();
 
 
     void Update()
@@ -22,6 +23,7 @@ public class TeamManager : MonoBehaviour
             names = InGame_MultiGameManager.GetPlayersNickname();
             healths = InGame_MultiGameManager.GetPlayersHealth();
             states = InGame_MultiGameManager.GetPlayersState();
+            networkTimes = InGame_MultiGameManager.GetPlayersNetworkTime(); // RTT 시간
         }
         ShowText();
     }
@@ -40,13 +42,13 @@ public class TeamManager : MonoBehaviour
             }
             if(InGame_MultiGameManager.isPlayerLeader(id))
             {
-                UI[otherIdx].text = "Name : " + names[id] + "\n" + healths[id] + "\n state : " 
-            + states[id] + "\n < Leader";
+                UI[otherIdx].text = "Name : " + names[id] + "\n" + healths[id] + "\n States : " 
+            + states[id] + "\n RTT : " + networkTimes[id]+  "\n < Leader";
             }
             else
-            { 
-                UI[otherIdx].text = "Name : " + names[id] + "\n" + healths[id] + "\n state : " 
-                + states[id];
+            {
+                UI[otherIdx].text = "Name : " + names[id] + "\n" + healths[id] + "\n States : "
+                + states[id] + "\n RTT : " + networkTimes[id];
             }
             otherIdx++;
         }

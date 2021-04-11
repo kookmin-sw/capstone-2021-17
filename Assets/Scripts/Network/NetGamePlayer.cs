@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
@@ -48,7 +49,7 @@ public class NetGamePlayer : NetworkBehaviour
         {
             if(MultigameManager.DebugIntroCam != null)
             {
-                MultigameManager.DebugIntroCam.enabled = false;
+                MultigameManager.DebugIntroCam.gameObject.SetActive(false);
             }
             else // == null
             {
@@ -71,17 +72,10 @@ public class NetGamePlayer : NetworkBehaviour
     {
         InGame_MultiGameManager.DisablePlayer(this);
     }
-
-
-    [ClientCallback]
-    public void MoveCharacter(Vector3 move, bool crouch, bool jump)
+    public string GetConnState()
     {
-        if (isLocalPlayer) // Authority Check
-        {
-            Character.Move(move, crouch, jump);
-        }
+        return ""+ Math.Round(NetworkTime.rtt * 1000)+"ms";
     }
-
     
     public void ChangeHealth(int h)
     {
@@ -90,13 +84,6 @@ public class NetGamePlayer : NetworkBehaviour
             CmdChangeHealth(h);
         } 
     }
-
-    [Command]
-    private void CmdChangeHealth(int h)
-    {
-        Health = h;
-    }
-
     
     public void ChangeState(ThirdPersonCharacter.State state)
     {
@@ -104,12 +91,6 @@ public class NetGamePlayer : NetworkBehaviour
         {
             CmdChangeState(state);
         }
-    }
-
-    [Command]
-    private void CmdChangeState(ThirdPersonCharacter.State state)
-    {
-        State = state;
     }
 
     public void PlaySound()
@@ -126,7 +107,27 @@ public class NetGamePlayer : NetworkBehaviour
     {
         CmdPlaySoundOneShot(soundId);
     }
+    [ClientCallback]
+    public void MoveCharacter(Vector3 move, bool crouch, bool jump)
+    {
+        if (isLocalPlayer) // Authority Check
+        {
+            Character.Move(move, crouch, jump);
+        }
+    }
 
+    [Command]
+    private void CmdChangeHealth(int h)
+    {
+        Health = h;
+    }
+
+
+    [Command]
+    private void CmdChangeState(ThirdPersonCharacter.State state)
+    {
+        State = state;
+    }
 
     [Command]
     private void CmdPlaySound()
