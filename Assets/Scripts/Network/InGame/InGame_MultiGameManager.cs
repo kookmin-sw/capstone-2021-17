@@ -13,11 +13,16 @@ public class InGame_MultiGameManager : MonoBehaviour
 
     private static List<ThirdPersonCharacter.State> states = new List<ThirdPersonCharacter.State>();
 
-    public static int playerCount = 0;
+    public static InGame_MultiGameManager instance;
 
+    public Camera DebugIntroCam;
 
     /***************** 데이터 전달 *****************/
 
+    private void Awake()
+    {
+        instance = this;
+    }
     public static bool IsLocalPlayer(int index)
     {
         if (Players[index].isLocalPlayer)

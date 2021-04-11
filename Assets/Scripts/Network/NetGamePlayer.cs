@@ -31,10 +31,13 @@ public class NetGamePlayer : NetworkBehaviour
     
     public PlayerHealth PlayerHealth;
 
+    private InGame_MultiGameManager MultigameManager;
+
     private void Awake()
     {
         Health = PlayerHealth.Health;
         State = Character.state;
+        MultigameManager = InGame_MultiGameManager.instance;
     }
 
     public override void OnStartClient()
@@ -43,9 +46,19 @@ public class NetGamePlayer : NetworkBehaviour
 
         if (isLocalPlayer)
         {
+            if(MultigameManager.DebugIntroCam != null)
+            {
+                MultigameManager.DebugIntroCam.enabled = false;
+            }
+            else // == null
+            {
+                Debug.Log("Intro Cam is not detected - InGame_MultiGameManager  , heeun an");
+            }
+
             if (ThirdCamera.gameObject != null)
             {
                 ThirdCamera.gameObject.SetActive(true);
+                
             }
 
             keypadSystem.KPDisableManager disableManager = keypadSystem.KPDisableManager.instance;
@@ -98,6 +111,59 @@ public class NetGamePlayer : NetworkBehaviour
     {
         State = state;
     }
+
+    public void PlaySound()
+    {
+        CmdPlaySound();
+    }
+
+    public void StopSound()
+    {
+        CmdStopSound();
+    }
+
+    public void PlaySoundOneShot(int soundId)
+    {
+        CmdPlaySoundOneShot(soundId);
+    }
+
+
+    [Command]
+    private void CmdPlaySound()
+    {
+        RpcPlaySound();
+    }
+
+    [ClientRpc]
+    private void RpcPlaySound()
+    {
+        Character.soundSource.Play();        
+    }
+
+    [Command]
+    private void CmdPlaySoundOneShot(int soundId)
+    {
+        RpcPlaySoundOneShot(soundId);
+    }
+
+    [ClientRpc]
+    private void RpcPlaySoundOneShot(int soundId)
+    {
+        Character.soundSource.PlayOneShot(Character.sound[soundId]);
+    }
+
+    [Command]
+    private void CmdStopSound()
+    {
+        RpcStopSound();
+    }
+
+    [ClientRpc]
+    private void RpcStopSound()
+    {
+        Character.soundSources.Stop();
+    }
+
 
 
 
