@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
-
-    public AudioClip[] sound;
     public AudioSource[] audioSource;
     public Slider[] volume_slider;
 
@@ -14,24 +12,10 @@ public class SoundManager : MonoBehaviour
     //1번 : 효과음(버튼 등)
     //2번 : 캐릭터 & 에너미 음
 
-    void Awake()
-    {
-        //for(int i=0; i<audioSource.Length; i++)
-       // {
-          //  this.audioSource[i] = GetComponent<AudioSource>();
-        //}
-    }
-
-    // Update is called once per frame
-    //void Update()
-    //{
-        
-    //}
 
 //음악 재생
     public void PlaySound(int num)
-    {
-        audioSource[num].clip = sound[num];
+    {;
         audioSource[num].Play();
     }
 
