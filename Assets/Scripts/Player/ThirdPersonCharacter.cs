@@ -77,55 +77,90 @@ public class ThirdPersonCharacter : MonoBehaviour
 
     public void Move(Vector3 move, bool crouch, bool jump)
     {
+        bool isPlayWalk = false;
+        bool isStopWalk = false;
+        int oneShotId = -1;
+        
         if (PresentMove != move && crouch == false&& IsGrounded)
         {
             if (soundSource.isPlaying==false)
             {
-                soundSource.Play();
+                isPlayWalk = true; //soundSource.Play();
             }         
             state=State.Move;
         }
         else if (crouch)
         {
-            soundSources.Stop();
+            isStopWalk = true; //soundSources.Stop();
             state=State.Crouch;
         }
         else if (crouch&&PresentMove != move)
         {
-            soundSources.Stop();
+            isStopWalk = true; // soundSources.Stop();
             state=State.Crouch;
             if (soundSource.isPlaying==false)
             {
-                soundSource.Play();
+                isPlayWalk = true; //soundSource.Play();
             }
         }
         else if (jump)
         {
             state=State.Jump;
-            soundSources.Stop();
-            soundSource.PlayOneShot(sound[1]);
+            isStopWalk = true; // soundSources.Stop();
+            oneShotId = 1;
         }
         else if (IsHit==true)
         {
-            soundSources.Stop();
-            state=State.Hit;
+            isStopWalk = true; // soundSources.Stop();
+            state =State.Hit;
         }
         else if (IsDie==true)
         {
-            soundSources.Stop();
-            state=State.Die;
+            isStopWalk = true; // soundSources.Stop();
+            state =State.Die;
         }
         else
         {
             state=State.Idle;
-            soundSources.Stop();      
+            isStopWalk = true; // soundSources.Stop();   
         }
 
-        if(NetPlayer != null)
+        if (NetPlayer != null)
         {
             NetPlayer.ChangeState(state);
+            if (isPlayWalk)
+            {
+                NetPlayer.PlaySound();
+            }
+
+            if(isStopWalk)
+            {
+                NetPlayer.StopSound();
+            }
+            
+
+            if (oneShotId != -1) 
+            {
+                NetPlayer.PlaySoundOneShot(oneShotId);
+            }
         }
-        
+        else
+        {
+            if (isPlayWalk)
+            {
+                soundSource.Play();
+            }
+            if(isStopWalk)
+            {
+                soundSources.Stop();
+            }
+
+            if(oneShotId != -1)
+            {
+                soundSource.PlayOneShot(sound[oneShotId]);
+            }
+        }
+       
         // convert the world relative moveInput vector into a local-relative
         // turn amount and forward amount required to head in the desired
         // direction.
