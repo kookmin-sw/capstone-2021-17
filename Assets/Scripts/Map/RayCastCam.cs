@@ -88,8 +88,7 @@ public class RayCastCam : MonoBehaviour
                 {
                     HealPack healPack = raycasted_obj.GetComponent<HealPack>();
                     inventory.AddItem(healPack);
-                    healPack.Destroy();
-                    
+                    healPack.DestroyObj();
                 }
             }
 

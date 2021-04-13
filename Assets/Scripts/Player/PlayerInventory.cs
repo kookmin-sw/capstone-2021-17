@@ -9,8 +9,6 @@ public class PlayerInventory : MonoBehaviour
 
     [SerializeField]
     private NetGamePlayer netPlayer;
-    [SerializeField]
-    private GameObject Player;
 
     public bool AddItem(Item newItem)
     {
@@ -37,9 +35,7 @@ public class PlayerInventory : MonoBehaviour
         else if(targetItem.GetType().Name == "HealPack")
         {
             HealPack healPack = targetItem.GetComponent<HealPack>();
-            healPack.SetHealObject(healPack.gameObject);
-            healPack.SetPlayerObject(Player);
-            healPack.UseHealPack();
+            healPack.Use();
 
             RemoveItem(idx);
         }
