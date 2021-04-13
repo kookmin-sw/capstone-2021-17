@@ -13,6 +13,9 @@ public class RayCastCam : MonoBehaviour
     [SerializeField]
     private Camera cam;
 
+    [SerializeField]
+    private PlayerInventory inventory;
+
     private int rayLength = 2;
     public LayerMask layerMaskInteract;
 
@@ -32,6 +35,10 @@ public class RayCastCam : MonoBehaviour
         if (cam == null)
         {
             cam = Camera.main;
+        }
+        if(inventory == null)
+        {
+            GetComponent<PlayerInventory>();
         }
     }
 
@@ -80,11 +87,9 @@ public class RayCastCam : MonoBehaviour
                 if (Input.GetKeyDown("e"))
                 {
                     HealPack healPack = raycasted_obj.GetComponent<HealPack>();
-                    healPack.SetHealObject(raycasted_obj);
-                    healPack.SetPlayerObject(player_obj);
-                    healPack.UseHealPack();
-
-                    //raycasted_obj.SetActive(false);
+                    inventory.AddItem(healPack);
+                    healPack.Destroy();
+                    
                 }
             }
 

@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 3157909130021106838}
   - component: {fileID: 6375489128231356037}
   - component: {fileID: 2112200877598259296}
+  - component: {fileID: 1689867080596699477}
   m_Layer: 4
   m_Name: Chibi_boy
   m_TagString: Player
@@ -339,6 +340,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1689867080596699477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3044512612950390390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4587d2b38cd764ebd6f47a8d0b79ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Items:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  netPlayer: {fileID: 6708225584575804860}
+  Player: {fileID: 3044512612950390390}
 --- !u!1 &3044521090428568344
 GameObject:
   m_ObjectHideFlags: 0
@@ -2990,6 +3010,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_obj: {fileID: 3046158139560815345}
   cam: {fileID: 3046158138424434196}
+  inventory: {fileID: 1689867080596699477}
   layerMaskInteract:
     serializedVersion: 2
     m_Bits: 256

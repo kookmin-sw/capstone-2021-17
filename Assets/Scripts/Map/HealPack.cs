@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealPack : MonoBehaviour
+public class HealPack : Item
 {
     GameObject testPlayer;
     GameObject healPack;
@@ -37,7 +37,7 @@ public class HealPack : MonoBehaviour
         if (playerHealth.Health < PlayerHealth.MAXHP)
         {
             playerHealth.Heal();
-            DestroyItem();
+            Destroy();
             Debug.Log("아이템 사용");
         }
         else
@@ -46,7 +46,7 @@ public class HealPack : MonoBehaviour
         }
     }
 
-    void DestroyItem()
+    public void Destroy()
     {
         itemNet.SetActive(false , healPack);
     }
