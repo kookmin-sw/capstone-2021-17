@@ -7,6 +7,8 @@ public class PlayerInventory : MonoBehaviour
     // Start is called before the first frame update
     public Item[] Items = new Item[4];
 
+    public SlotManager SlotManager; // Assigned in NetGamePlayer OnStartClient
+
     [SerializeField]
     private NetGamePlayer netPlayer;
 
@@ -17,6 +19,7 @@ public class PlayerInventory : MonoBehaviour
             if(Items[idx] == null)
             {
                 Items[idx] = newItem;
+                //SlotManager.AddItem();
                 return true;
             }
         }
@@ -50,6 +53,9 @@ public class PlayerInventory : MonoBehaviour
             if (Items[idx] == targetItem)
             {
                 Items[idx] = null;
+
+                //SlotManager.RemoveItem();
+                return;
             }
         }
     }
@@ -59,6 +65,8 @@ public class PlayerInventory : MonoBehaviour
         if(Items[idx] != null)
         {
             Items[idx] = null;
+
+           // SlotManager.RemoveItem();
         }
     }
 
@@ -73,4 +81,6 @@ public class PlayerInventory : MonoBehaviour
         }
         return true;
     }
+
+    
 }
