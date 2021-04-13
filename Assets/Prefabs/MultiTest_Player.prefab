@@ -357,8 +357,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  SlotManager: {fileID: 0}
   netPlayer: {fileID: 6708225584575804860}
-  Player: {fileID: 3044512612950390390}
 --- !u!1 &3044521090428568344
 GameObject:
   m_ObjectHideFlags: 0
@@ -2974,6 +2974,7 @@ MonoBehaviour:
   Character: {fileID: 3157909130021106838}
   ThirdControl: {fileID: 3157104715050250688}
   PlayerHealth: {fileID: 6375489128231356037}
+  PlayerInventory: {fileID: 1689867080596699477}
 --- !u!114 &322646219063958889
 MonoBehaviour:
   m_ObjectHideFlags: 0

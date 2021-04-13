@@ -3,19 +3,22 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ItemDatabase : MonoBehaviour 
+public class SlotManager : MonoBehaviour 
 {
     public Image[] slot = new Image[4];
     public Sprite[] sprites = new Sprite[2];
     private Sprite thisImage;
     private bool[] isEmpty = new bool[4];
 
+    public static SlotManager instance; 
 
-	void Start () 
+
+	void Awake () 
     {
         for(int i=0; i<4; i++){
             isEmpty[i] = true;
         }
+        instance = this;
     }
     
     //힐 아이콘 추가

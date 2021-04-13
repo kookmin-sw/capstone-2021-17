@@ -32,6 +32,8 @@ public class NetGamePlayer : NetworkBehaviour
     
     public PlayerHealth PlayerHealth;
 
+    public PlayerInventory PlayerInventory;
+
     private InGame_MultiGameManager MultigameManager;
 
     private void Awake()
@@ -65,6 +67,7 @@ public class NetGamePlayer : NetworkBehaviour
             keypadSystem.KPDisableManager disableManager = keypadSystem.KPDisableManager.instance;
             disableManager.player = this.gameObject;
 
+            PlayerInventory.SlotManager = SlotManager.instance;
         }
     }
 
