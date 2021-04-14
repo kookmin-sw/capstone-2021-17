@@ -67,7 +67,6 @@ public class NetGamePlayer : NetworkBehaviour
             keypadSystem.KPDisableManager disableManager = keypadSystem.KPDisableManager.instance;
             disableManager.player = this.gameObject;
 
-            PlayerInventory.SlotManager = SlotManager.instance;
         }
     }
 

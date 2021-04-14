@@ -10,7 +10,9 @@ public class SlotManager : MonoBehaviour
     private Sprite thisImage;
     private bool[] isEmpty = new bool[4];
 
-    public static SlotManager instance; 
+    public static SlotManager instance;
+
+    public PlayerInventory inventory;
 
 
 	void Awake () 
@@ -20,23 +22,39 @@ public class SlotManager : MonoBehaviour
         }
         instance = this;
     }
-    
-    //힐 아이콘 추가
-    public void AddHeal()
-    {
-        thisImage = sprites[0];
-        AddItem();
-    }
 
-    //아이템 창에 추가
-    public void AddItem()
+    void Update()
     {
-        for(int i=0; i<4; i++)
+        if(inventory == null)
         {
-            if(isEmpty[i]==true)
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1)) // 1
+        {
+            inventory.UseItem(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2)) // 2
+        {
+            inventory.UseItem(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3)) // 3
+        {
+            inventory.UseItem(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4)) // 4
+        {
+            inventory.UseItem(3);
+        }
+    }
+    public void AddItem(Item item)
+    {
+        for (int i=0;i<4 ; i++)
+        {
+            if (isEmpty[i] == true)
             {
+                SetThisImage(item);
                 slot[i].sprite = thisImage;
-                slot[i].gameObject.SetActive(true);
                 isEmpty[i] = false;
                 break;
             }
@@ -44,6 +62,24 @@ public class SlotManager : MonoBehaviour
             {
                 continue;
             }
+        }
+    }
+    public void AddItem(int i, Item item)
+    {
+        if (isEmpty[i] == true)
+        {
+            SetThisImage(item);
+            slot[i].sprite = thisImage;
+            isEmpty[i] = false;
+        }
+    }
+
+    void SetThisImage(Item item)
+    {
+        string itemName = item.GetType().Name;
+        if(itemName == "HealPack")
+        {
+            thisImage = sprites[0];
         }
     }
 
@@ -55,7 +91,6 @@ public class SlotManager : MonoBehaviour
             if(isEmpty[i]==false)
             {
                 slot[i].sprite = null;
-                slot[i].gameObject.SetActive(false);
                 isEmpty[i] = true;
                 break;
             }
@@ -64,5 +99,13 @@ public class SlotManager : MonoBehaviour
                 continue;
             }
         }
-    }    
+    }
+    public void RemoveItem(int i)
+    {
+        if (isEmpty[i] == false)
+        {
+            slot[i].sprite = null;
+            isEmpty[i] = true;
+        }
+    }
 }

@@ -5,8 +5,19 @@ using UnityEngine;
 [RequireComponent(typeof(ItemNetBehaviour))]
 public abstract class Item : MonoBehaviour
 {
-
-    public NetGamePlayer OwnedPlayer; // owner
+    private GameObject ownedPlayer; // owner
+    public GameObject OwnedPlayer
+    {
+        get
+        {
+            return ownedPlayer;
+        }
+        set
+        {
+            ownedPlayer = value;
+            OnPlayerOwnItem();
+        }
+    }
 
     [SerializeField]
     protected ItemNetBehaviour itemNet;
@@ -19,14 +30,19 @@ public abstract class Item : MonoBehaviour
         }
     }
 
+    public abstract bool CanUse();
     public abstract void Use();
 
     public void DestroyObj()
     {
         itemNet.SetActive(false, gameObject);
     }
-    
-    
 
-    
+    public virtual void OnPlayerOwnItem()
+    {
+        return;
+    }
+
+
+
 }

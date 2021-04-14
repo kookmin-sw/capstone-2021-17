@@ -1,16 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    // Start is called before the first frame update
     public Item[] Items = new Item[4];
 
     public SlotManager SlotManager; // Assigned in NetGamePlayer OnStartClient
 
-    [SerializeField]
-    private NetGamePlayer netPlayer;
+    
+
+    private void Awake()
+    {
+        SlotManager = SlotManager.instance;
+        if (SlotManager != null)
+        {
+            SlotManager.inventory = this;
+        }
+        else
+        {
+            Debug.LogError("SlotManager not detected! - PlayerInventory");
+        }
+    }
+
 
     public bool AddItem(Item newItem)
     {
@@ -19,7 +32,12 @@ public class PlayerInventory : MonoBehaviour
             if(Items[idx] == null)
             {
                 Items[idx] = newItem;
-                //SlotManager.AddItem();
+                newItem.OwnedPlayer = this.gameObject;
+
+                if (SlotManager != null)
+                {
+                    SlotManager.AddItem(idx , newItem);
+                }
                 return true;
             }
         }
@@ -38,12 +56,23 @@ public class PlayerInventory : MonoBehaviour
         else if(targetItem.GetType().Name == "HealPack")
         {
             HealPack healPack = targetItem.GetComponent<HealPack>();
-            healPack.Use();
-
-            RemoveItem(idx);
+            if (healPack.CanUse())
+            {
+                healPack.Use();
+                RemoveItem(idx);
+            }
         }
-
-
+    }
+    public void RemoveItem()
+    {
+        for(int idx = 3; idx >= 0; idx--)
+        {
+            if(Items[idx] != null)
+            {
+                Items[idx] = null;
+                SlotManager.RemoveItem(idx);
+            }
+        }
     }
 
     public void RemoveItem(Item targetItem)
@@ -53,8 +82,7 @@ public class PlayerInventory : MonoBehaviour
             if (Items[idx] == targetItem)
             {
                 Items[idx] = null;
-
-                //SlotManager.RemoveItem();
+                SlotManager.RemoveItem(idx);
                 return;
             }
         }
@@ -65,8 +93,7 @@ public class PlayerInventory : MonoBehaviour
         if(Items[idx] != null)
         {
             Items[idx] = null;
-
-           // SlotManager.RemoveItem();
+            SlotManager.RemoveItem(idx);
         }
     }
 

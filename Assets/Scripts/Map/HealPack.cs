@@ -6,22 +6,25 @@ public class HealPack : Item
 {
     private PlayerHealth playerHealth;
 
-    public override void Use()
+    public override bool CanUse()
     {
-        playerHealth = OwnedPlayer.PlayerHealth;
-        HealPlayer();
-    }
-
-    void HealPlayer()
-    {
-        if (playerHealth.Health < PlayerHealth.MAXHP)
-        {
-            playerHealth.Heal();
-            Debug.Log("아이템 사용");
-        }
-        else
+        if (playerHealth.Health >= PlayerHealth.MAXHP)
         {
             Debug.Log("아이템 사용 불가 - 체력이 가득찬 상태");
+            return false;
         }
+        return true;
     }
+
+    public override void Use()
+    {
+        playerHealth.Heal();
+    }
+
+    public override void OnPlayerOwnItem()
+    {
+        playerHealth = OwnedPlayer.GetComponent<PlayerHealth>();
+    }
+
+
 }
