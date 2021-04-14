@@ -97,7 +97,7 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public bool IsFullInventory()
+    public bool IsFull()
     {
         for (int idx = 0; idx < Items.Length; idx++)
         {

@@ -87,8 +87,15 @@ public class RayCastCam : MonoBehaviour
                 if (Input.GetKeyDown("e"))
                 {
                     HealPack healPack = raycasted_obj.GetComponent<HealPack>();
-                    inventory.AddItem(healPack);
-                    healPack.DestroyObj();
+                    if (!inventory.IsFull())
+                    {
+                        inventory.AddItem(healPack);
+                        healPack.DestroyObj();
+                    }
+                    else
+                    {
+                        Debug.Log("Inventory is Full");
+                    }
                 }
             }
 
