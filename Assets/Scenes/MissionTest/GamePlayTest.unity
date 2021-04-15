@@ -28092,6 +28092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6bf20148eeb9b4cba0bf3399b8f41d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugIntroCam: {fileID: 0}
 --- !u!4 &1005596287
 Transform:
   m_ObjectHideFlags: 0
@@ -31155,8 +31156,7 @@ MonoBehaviour:
   itemBoxSpawnPoints: {fileID: 1890902181}
   boxSpawnCount: 13
   missionSpawnPoints: []
-  mission1: {fileID: 6690388454592023288, guid: 09641a87d806be54798b18c2da9c0c37,
-    type: 3}
+  mission1: {fileID: 363627462034149909, guid: 1894a3520ed13f94997ef7f9488d14db, type: 3}
   missionObjectSpawnPoints: {fileID: 1149676629}
   missionSpawnCount: 1
   exitLever:
@@ -47277,6 +47277,7 @@ MonoBehaviour:
   - {fileID: 804290478}
   - {fileID: 1454258974}
   - {fileID: 1166478354}
+  Players: []
 --- !u!114 &1638196646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48090,6 +48091,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f76878d69a10914c8d642573941bb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slot:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  sprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!1 &1691832047
 GameObject:
   m_ObjectHideFlags: 0

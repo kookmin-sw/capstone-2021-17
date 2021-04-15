@@ -13,6 +13,8 @@ TagManager:
   - TestButton
   - RoomPlayer
   - Mission
+  - Enemy
+  - Mission2
   layers:
   - Default
   - TransparentFX
