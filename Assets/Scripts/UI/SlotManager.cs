@@ -9,6 +9,7 @@ public class SlotManager : MonoBehaviour
     public Sprite[] sprites = new Sprite[2];
     private Sprite thisImage;
     private bool[] isEmpty = new bool[4];
+    private Color[] color = new Color[4];
 
     public static SlotManager instance;
 
@@ -19,6 +20,9 @@ public class SlotManager : MonoBehaviour
     {
         for(int i=0; i<4; i++){
             isEmpty[i] = true;
+            color[i] = slot[i].color;
+            color[i].a = 0; // 인벤토리 빈 상태로 보이도록
+            slot[i].color = color[i];
         }
         instance = this;
     }
@@ -55,6 +59,8 @@ public class SlotManager : MonoBehaviour
             {
                 SetThisImage(item);
                 slot[i].sprite = thisImage;
+                color[i].a = 1f; // 알파값 1로
+                slot[i].color = color[i];
                 isEmpty[i] = false;
                 break;
             }
@@ -70,6 +76,8 @@ public class SlotManager : MonoBehaviour
         {
             SetThisImage(item);
             slot[i].sprite = thisImage;
+            color[i].a = 1f;
+            slot[i].color = color[i];
             isEmpty[i] = false;
         }
     }
@@ -92,6 +100,8 @@ public class SlotManager : MonoBehaviour
             if(isEmpty[i]==false)
             {
                 slot[i].sprite = null;
+                color[i].a = 0;
+                slot[i].color = color[i];
                 isEmpty[i] = true;
                 break;
             }
@@ -106,6 +116,8 @@ public class SlotManager : MonoBehaviour
         if (isEmpty[i] == false)
         {
             slot[i].sprite = null;
+            color[i].a = 0;
+            slot[i].color = color[i];
             isEmpty[i] = true;
         }
     }
