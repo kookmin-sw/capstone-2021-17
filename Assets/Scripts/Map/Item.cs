@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ItemNetBehaviour))]
 public abstract class Item : MonoBehaviour
 {
     private GameObject ownedPlayer; // owner
@@ -21,14 +20,6 @@ public abstract class Item : MonoBehaviour
 
     [SerializeField]
     protected ItemNetBehaviour itemNet;
-
-    private void Awake()
-    {
-        if (itemNet == null)
-        {
-            itemNet = GetComponent<ItemNetBehaviour>();
-        }
-    }
 
     public abstract bool CanUse();
     public abstract void Use();
