@@ -57,8 +57,7 @@ public class EnemyChase : MonoBehaviour
     float timer; //딜레이를 위한 타이머 변수
     void Awake()
     {
-        Console.IsOpen = false;
-        Application.targetFrameRate = 300;
+        Console.IsOpen = false;        
         //기본 상태
         state = State.Dizzy;
     }
@@ -139,7 +138,7 @@ public class EnemyChase : MonoBehaviour
             //경로를 갖고있고
             hasP = true;
             //경로에 도달하면
-            if ((int)transform.position.x == (int)patrolPos.x && (int)transform.position.z == (int)patrolPos.z)
+            if (DistanceXZ(transform.position, patrolPos) <= 0.5f)
             {
                 //초기화
                 hasP = false;
@@ -292,5 +291,14 @@ public class EnemyChase : MonoBehaviour
         findTargetSound = false;
         turnOnSensor = false;
         isPatrol = false;
+    }
+
+    //position의 x와 z만 가지고 거리를 체크하는 함수
+    float DistanceXZ(Vector3 posFirst, Vector3 posSecond)
+    {
+        posFirst.y = 0.0f;
+        posSecond.y = 0.0f;
+
+        return Vector3.Distance(posFirst, posSecond);
     }
 }

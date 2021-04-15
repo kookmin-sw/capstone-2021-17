@@ -21,7 +21,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.61764705, g: 0.61764705, b: 0.61764705, a: 1}
+  m_AmbientSkyColor: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -12803,7 +12803,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -1116247276986162121, guid: aedf31b12a4b1ad43ab7ce92a8dba04b,
+      objectReference: {fileID: -8157742000537244354, guid: aedf31b12a4b1ad43ab7ce92a8dba04b,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dadf33ec34129144f99f1a051f6f2ab5, type: 3}
@@ -37363,7 +37363,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3521eca46b6be489b88e47b8b95c54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: []
   audioSource:
   - {fileID: 798874940}
   - {fileID: 857396238}
@@ -53252,6 +53251,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 0}
   - {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!1001 &1692163986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60766,13 +60766,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1905634382}
-  m_LocalRotation: {x: 0.2238142, y: -0, z: -0, w: 0.97463185}
-  m_LocalPosition: {x: -1.5, y: 1.51, z: -4.03}
+  m_LocalRotation: {x: 0, y: 0.6795437, z: 0, w: 0.733635}
+  m_LocalPosition: {x: -33.6, y: 0.54, z: -2.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 25.866, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 85.616, z: 0}
 --- !u!114 &1905634386
 MonoBehaviour:
   m_ObjectHideFlags: 0
