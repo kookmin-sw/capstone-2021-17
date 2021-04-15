@@ -6,13 +6,13 @@ using Mirror;
 public class ItemNetBehaviour : NetworkBehaviour
 {
     [SerializeField] 
-    private GameObject Item;
+    private Item Item;
 
     public override void OnStartClient()
     {
         if(Item == null)
         {
-            Item = gameObject;
+            Item = GetComponent<Item>();
         }
     }
 
@@ -33,14 +33,12 @@ public class ItemNetBehaviour : NetworkBehaviour
     {
         if (target == null) 
         { 
-            Item.SetActive(isActive); 
+            Item.gameObject.SetActive(isActive); 
         }
 
         else
         {
             target.SetActive(isActive);
         }
-
-        
     }
 }

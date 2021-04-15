@@ -36,10 +36,6 @@ public class RayCastCam : MonoBehaviour
         {
             cam = Camera.main;
         }
-        if(inventory == null)
-        {
-            GetComponent<PlayerInventory>();
-        }
     }
 
     void Update()

@@ -26,7 +26,14 @@ public abstract class Item : MonoBehaviour
 
     public void DestroyObj()
     {
-        itemNet.SetActive(false, gameObject);
+        if (itemNet == null)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            itemNet.SetActive(false, gameObject);
+        }
     }
 
     public virtual void OnPlayerOwnItem()
