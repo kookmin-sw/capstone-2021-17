@@ -42,12 +42,12 @@ public class TeamManager : MonoBehaviour
             }
             if(InGame_MultiGameManager.isPlayerLeader(id))
             {
-                UI[otherIdx].text = "Name : " + names[id] + "\n" + healths[id] + "\n States : " 
+                UI[otherIdx].text = "Name : " + names[id] + "\nHP : " + healths[id] + "\n" 
             + states[id] + "\n RTT : " + networkTimes[id]+  "\n < Leader";
             }
             else
             {
-                UI[otherIdx].text = "Name : " + names[id] + "\n" + healths[id] + "\n States : "
+                UI[otherIdx].text = "Name : " + names[id] + "\nHP : " + healths[id] + "\n"
                 + states[id] + "\n RTT : " + networkTimes[id];
             }
             otherIdx++;
