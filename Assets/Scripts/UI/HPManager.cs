@@ -9,6 +9,10 @@ public class HPManager : MonoBehaviour
     public Image[] bar = new Image[4];
     public GameObject gameOver;
 
+    //HP바
+    public Image[] mainHP_bar = new Image[2]; //체력바 2칸
+    public Sprite[] HP_image = new Sprite[2]; //0 : 체력 없음, 1 : 체력 참
+
     //public static List<NetGamePlayer> Players;
     private static List<int> healths;
     //private static List<string> names;
@@ -76,7 +80,18 @@ public class HPManager : MonoBehaviour
             if (InGame_MultiGameManager.IsLocalPlayer(i))
             {
                 localPlayerIdx = i;
-                bar[0].fillAmount = (float)healths[i] / hp_max;
+                if((float)healths[i] >=2){
+                    mainHP_bar[0].sprite = HP_image[1];
+                    mainHP_bar[1].sprite = HP_image[1];
+                }
+                else if((float)healths[i] > 0 && (float)healths[i] < 2){
+                    mainHP_bar[0].sprite = HP_image[1];
+                    mainHP_bar[1].sprite = HP_image[0];
+                }
+                else{
+                    mainHP_bar[0].sprite = HP_image[0];
+                    mainHP_bar[1].sprite = HP_image[0];
+                }
             }
             else
             {
