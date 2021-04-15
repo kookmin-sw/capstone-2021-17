@@ -77,6 +77,7 @@ public class SlotManager : MonoBehaviour
     void SetThisImage(Item item)
     {
         string itemName = item.GetType().Name;
+        Debug.Log("Pick UP : " +itemName);
         if(itemName == "HealPack")
         {
             thisImage = sprites[0];
