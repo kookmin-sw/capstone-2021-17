@@ -15,6 +15,7 @@ TagManager:
   - Mission
   - Enemy
   - Mission2
+  - Bullet
   layers:
   - Default
   - TransparentFX
