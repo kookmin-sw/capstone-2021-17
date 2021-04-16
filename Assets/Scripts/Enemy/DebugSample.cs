@@ -8,27 +8,27 @@ public class DebugSample : MonoBehaviour
     private Text text;
 
     [SerializeField]
-    private EnemyChase enemyChase;
+    private EnemyControl enemyControl;
     [SerializeField]
-    private AnimationSound animEvent;
+    private AnimationSoundEvent animEvent;
     // Update is called once per frame
     void Update()
     {
 
-        text.text = "State : " + enemyChase.state + "\n\n"
-            + "FindTargetVision : " + enemyChase.findTargetVision + "\n\n"
-            + "IsPatrol : " + enemyChase.isPatrol + "\n\n"
-            + "Distance : " + enemyChase.dis + "\n\n"
-            + "IsAudioEvent : " + enemyChase.findTargetSound + "\n\n"
-            + "Target : " + enemyChase.target + "\n\n"
-            + "WayPoint : " + enemyChase.patrolPos + "\n\n"
-            + "SetTarget : " + enemyChase.enemy.hasPath + "\n\n"
-            + "Sensor : " + enemyChase.turnOnSensor + "\n\n"
+        text.text = "State : " + enemyControl.state + "\n\n"
+            + "FindTargetVision : " + enemyControl.findTargetVision + "\n\n"
+            + "IsPatrol : " + enemyControl.isPatrol + "\n\n"
+            + "Distance : " + enemyControl.dis + "\n\n"
+            + "IsAudioEvent : " + enemyControl.findTargetSound + "\n\n"
+            + "Target : " + enemyControl.target + "\n\n"
+            + "WayPoint : " + enemyControl.patrolPos + "\n\n"
+            + "SetTarget : " + enemyControl.enemy.hasPath + "\n\n"
+            + "Sensor : " + enemyControl.turnOnSensor + "\n\n"
             + "TargetList : ";
 
-        for(int i=0; i< enemyChase.visibleTargets.Count; i++)
+        for(int i=0; i< enemyControl.visibleTargets.Count; i++)
         {
-            text.text +=  enemyChase.visibleTargets[i] + "\n";
+            text.text +=  enemyControl.visibleTargets[i] + "\n";
         }            
     }
 }

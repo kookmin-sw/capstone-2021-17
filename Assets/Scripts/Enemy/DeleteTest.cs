@@ -6,7 +6,7 @@ using UnityEngine;
 public class DeleteTest : MonoBehaviour
 {
     [SerializeField]
-    private EnemyChase checkCatch;
+    private EnemyControl checkCatch;
 
     public void OnTriggerEnter(Collider other)   
     {

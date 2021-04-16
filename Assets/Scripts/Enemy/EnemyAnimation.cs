@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAnimation : MonoBehaviour
-{
-    
+{    
     //check enemy has Path
     [SerializeField]
-    private EnemyChase checkAnim;
+    private EnemyControl checkAnim;
     Animator ani;
 
     [SerializeField]
@@ -40,8 +39,7 @@ public class EnemyAnimation : MonoBehaviour
             else
             {
                 UnsetWalk();
-            }
-            
+            }            
         }       
     }
 

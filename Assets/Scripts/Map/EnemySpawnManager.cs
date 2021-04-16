@@ -27,10 +27,10 @@ public class EnemySpawnManager : MonoBehaviour
     public void SpawnEnemy(Transform pos)
     {
         GameObject enemyObject = Instantiate(EnemyPrefab, pos.position, Quaternion.identity);
-        EnemyChase enemyChase = enemyObject.GetComponent<EnemyChase>();
+        EnemyControl enemyControl = enemyObject.GetComponent<EnemyControl>();
 
         // 동적으로 Waypoint 할당
-        enemyChase.wayPoint = wayPoints;
+        enemyControl.wayPoint = wayPoints;
 
         if (NetworkServer.active)
         {
