@@ -26,6 +26,7 @@ namespace keypadSystem
                 _keypadController.codeText.characterLimit++;
                 _keypadController.codeText.text += keyString;
             }
+            _keypadController.CheckCode();
         }
 
         public void KeyPressEnt()

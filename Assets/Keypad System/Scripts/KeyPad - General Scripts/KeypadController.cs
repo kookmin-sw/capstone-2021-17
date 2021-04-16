@@ -36,15 +36,29 @@ namespace keypadSystem
                 {
                     itemBoxNet.UnableKeypad();
                 }
+                codeText.text = "Ok";
                 UnableKeypad();
                 ValidCode();
+                Invoke("CloseKeypad", 1.0f);
             }
-
             else
             {
-                KPAudioManager.instance.Play("KeypadDenied"); //0.2f
+                if (codeText.text.Length == characterLim)
+                {
+                    codeText.text = "Err";
+                    KPAudioManager.instance.Play("KeypadDenied"); //0.2f
+                    Invoke("ClearCode", 1.0f);
+                }
             }
         }
+
+        void ClearCode()
+        {
+            codeText.text = string.Empty;
+            codeText.characterLimit = 0;
+            firstClick = false;
+        }
+
         public void UnableKeypad()
         {
             keypadModel.tag = "Untagged";
@@ -119,17 +133,17 @@ namespace keypadSystem
             int randomCase=0;
             randomCase = Random.Range(0, 2);
             plusNum = Random.Range(0, quizInt);
-            minusNum = Random.Range(0, 9999 - quizInt);
+            minusNum = Random.Range(0, 999 - quizInt);
             
             switch (randomCase)
             {
                 case 0:
                     resultNum = quizInt - plusNum;
-                    quizText = resultNum.ToString() + " + " + plusNum.ToString() + "= 0000";
+                    quizText = resultNum.ToString() + " + " + plusNum.ToString() + "= 000";
                     break;
                 case 1:
                     resultNum = quizInt + minusNum;
-                    quizText = resultNum.ToString() + " - " + minusNum.ToString() + "= 0000";
+                    quizText = resultNum.ToString() + " - " + minusNum.ToString() + "= 000";
                     break;
             }
 

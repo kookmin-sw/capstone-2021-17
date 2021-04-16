@@ -10,5 +10,10 @@ namespace keypadSystem
         {
             _keypadController.ShowKeypad();
         }
+
+        public void CloseKeypad()
+        {
+            _keypadController.CloseKeypad();
+        }
     }
 }

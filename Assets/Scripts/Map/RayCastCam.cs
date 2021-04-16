@@ -73,6 +73,12 @@ public class RayCastCam : MonoBehaviour
                     rayCastedKeypad = raycasted_obj.GetComponent<KeypadItemController>();
                     rayCastedKeypad.ShowKeypad();
                 }
+                else if (Input.GetKeyDown("escape"))
+                {
+                    ItemBoxNetBehaviour itemBoxNet = raycasted_obj.GetComponent<ItemBoxNetBehaviour>();
+                    rayCastedKeypad = raycasted_obj.GetComponent<KeypadItemController>();
+                    rayCastedKeypad.CloseKeypad();
+                }
             }
 
             else if (hit.collider.CompareTag("ItemHeal"))
