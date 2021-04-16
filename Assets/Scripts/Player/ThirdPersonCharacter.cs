@@ -107,7 +107,7 @@ public class ThirdPersonCharacter : MonoBehaviour
         {
             state=State.Jump;
             isStopWalk = true; // soundSources.Stop();
-            oneShotId = 1;
+            oneShotId = 0;
         }
         else if (IsHit==true)
         {

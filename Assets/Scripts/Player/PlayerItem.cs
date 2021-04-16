@@ -19,15 +19,11 @@ public class PlayerItem : MonoBehaviour
 
     void Update()
     {
-        GetInput();
         PickUpGun();
     }
-    void GetInput()
+    void PickUpGun()
     {
-        pDown = Input.GetButtonDown("PickUp");
-    }
-    void PickUpGun(){
-        if (pDown&&nearObject!=null) 
+        if (Input.GetKeyDown(KeyCode.E)&&nearObject!=null)
         {
             if(nearObject.name =="Gun")
             {
@@ -35,12 +31,15 @@ public class PlayerItem : MonoBehaviour
                 PlayerAnimator.SetBool("Gun", hasWeapons[0]);
                 Weapons[0].SetActive(true);
             }
-            else
+            else if(nearObject.name =="HealPotion")
             {
-
+                hasWeapons[1]=true;
+               // PlayerAnimator.SetBool("Heal", hasWeapons[0]);
+                Weapons[1].SetActive(true);
             }
             Destroy(nearObject);
-        }
+            
+        } 
     }
 
     void OnTriggerStay(Collider other)
@@ -49,10 +48,18 @@ public class PlayerItem : MonoBehaviour
         {
             nearObject=other.gameObject;
         }
+        else if(other.name == "HealPotion")
+        {
+            nearObject=other.gameObject;
+        }
     }
     void OnTriggerExit(Collider other)
     {
         if(other.tag == "Gun")
+        {
+            nearObject=null;
+        }
+        else if(other.tag == "HealPotion")
         {
             nearObject=null;
         }
