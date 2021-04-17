@@ -25,7 +25,7 @@ public class EnemyControl : MonoBehaviour
     [Range(0, 360)]
     public float viewAngle;
 
-    public bool hasP = false;   //Walk 애니메이션을 사용하기 위한 조건               
+    public bool hasDestination = false;   //Walk 애니메이션을 사용하기 위한 조건               
     [Command("findTargetVision")]
     public bool findTargetVision = false;   //시야에 적이 들어왔는지 체크    
     [Command("findTargetSound")]
@@ -49,10 +49,10 @@ public class EnemyControl : MonoBehaviour
     [SerializeField] private AnimationSoundEvent[] animationEvent;  //오디오 센서를 위한 애니메이션 이벤트    
     [SerializeField] private EnemyAnimation anim;
     private Collider[] targetsInViewRadius = new Collider[4];   //OverlapSphereNonAlloc을 위한 어레이
-    private int targetsLength;  //타겟 리스트의 길이
-    private int animationEventLength = 0;
+    private int targetsLength;  //타겟 리스트의 길이    
+    private int animationEventLength = 0;   //AnimationSoundEvent 컴포넌트를 가진 오브젝트의 legnth
     [SerializeField] private EnemyNetBehaviour enemyNet;
-
+    [SerializeField] private float minErrorWayPoint = 0.5f;    //순찰 지점거리의 최소 오차 
 
     float timer; //딜레이를 위한 타이머 변수
     void Awake()
@@ -139,12 +139,16 @@ public class EnemyControl : MonoBehaviour
         if (isPatrol)
         {
             //경로를 갖고있고
-            hasP = true;
+            hasDestination = true;
             //경로에 도달하면
-            if (DistanceXZ(transform.position, patrolPos) <= 0.5f)
+            /*순찰 지점에 정확하게 도착하는 걸 조건으로 걸면 
+             * 제대로 동작이 되지 않는 경우가 많아 
+             * 오차 범위를 설정해서 순찰을 진행하도록 한다.
+             */
+            if (DistanceXZ(transform.position, patrolPos) <= minErrorWayPoint)
             {
                 //초기화
-                hasP = false;
+                hasDestination = false;
                 isPatrol = false;
                 state = State.Patrol;                
             }            
@@ -233,8 +237,8 @@ public class EnemyControl : MonoBehaviour
             state = State.Attack;
         }        
         else
-        {            
-            hasP = true;
+        {
+            hasDestination = true;
             state = State.Move;
         }
     }
@@ -296,7 +300,7 @@ public class EnemyControl : MonoBehaviour
     //변수 초기화 함수
     void InitializeVar()
     {
-        hasP = false;        
+        hasDestination = false;        
         findTargetVision = false;
         findTargetSound = false;
         turnOnSensor = false;

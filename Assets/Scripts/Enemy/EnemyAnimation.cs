@@ -19,7 +19,7 @@ public class EnemyAnimation : MonoBehaviour
     // 경로가 있으면 애니메이션 시작.
     void Update()
     {       
-        if (checkAnim.hasP)
+        if (checkAnim.hasDestination)
         {
             if(enemyNet != null)
             {
