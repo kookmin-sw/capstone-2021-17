@@ -58,7 +58,7 @@ public class IngameUIManager : MonoBehaviour
     private void OpenMenu()
     {   
         //메뉴창 열고닫기
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.Escape)) //esc키로 메뉴창 열고닫기
         {
             if(menu_UI.activeSelf == false)
             {
