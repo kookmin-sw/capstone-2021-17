@@ -11,6 +11,9 @@ public class SlotManager : MonoBehaviour
     private bool[] isEmpty = new bool[4];
     private Color[] color = new Color[4];
 
+    public GameObject Cursor; //아이템 선택 이미지
+    private int itemTarget; //커서가 위치해있는 아이템슬롯
+
     public static SlotManager instance;
 
     public PlayerInventory inventory;
@@ -18,7 +21,8 @@ public class SlotManager : MonoBehaviour
 
 	void Awake () 
     {
-        for(int i=0; i<4; i++){
+        for(int i=0; i<4; i++)
+        {
             isEmpty[i] = true;
             color[i] = slot[i].color;
             color[i].a = 0; // 인벤토리 빈 상태로 보이도록
@@ -34,23 +38,72 @@ public class SlotManager : MonoBehaviour
             return;
         }
 
+        //아이템창 활성화 & 커서이동
         if (Input.GetKeyDown(KeyCode.Alpha1)) // 1
         {
-            inventory.UseItem(0);
+            Debug.Log("1 click"); //디버그용으로 삭제해도 무관
+            itemTarget = 0;
+            moveCursor(itemTarget);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2)) // 2
         {
-            inventory.UseItem(1);
+            Debug.Log("2 click");
+            itemTarget = 1;
+            moveCursor(itemTarget);
+
         }
         if (Input.GetKeyDown(KeyCode.Alpha3)) // 3
         {
-            inventory.UseItem(2);
+            Debug.Log("3 click");
+            itemTarget = 2;
+            moveCursor(itemTarget);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4)) // 4
         {
-            inventory.UseItem(3);
+            Debug.Log("4 click");
+            itemTarget = 3;
+            moveCursor(itemTarget);
+        }
+        
+        if(isEmpty[itemTarget]==false)
+        {
+            ItemAction();
         }
     }
+
+
+    //아이템 선택 커서 이동
+    private void moveCursor(int i)
+    {//i번재 슬롯으로 커서 이동
+        Vector3 position = Cursor.transform.localPosition;
+        position.y = -6f;
+        if(i==0){
+            position.x = -179.5f;
+        }
+        if(i==1){
+            position.x = -60f;
+        }
+        if(i==2){
+            position.x = 55f;
+        }
+        if(i==3){
+            position.x = 169f;
+        }
+         Cursor.transform.localPosition = position;
+
+    }
+
+    private void ItemAction(){ //클릭으로 사용, R키로 아이템 버리기
+        if (Input.GetMouseButtonDown(0))
+        {
+            inventory.UseItem(itemTarget); //아이템 사용
+        }
+        //else if(Input.GetKeyDown(KeyCode.Q))
+        //{
+            //아이템 버리기 코드 추가
+        //}
+    }
+
     public void AddItem(Item item)
     {
         for (int i=0;i<4 ; i++)
@@ -121,4 +174,5 @@ public class SlotManager : MonoBehaviour
             isEmpty[i] = true;
         }
     }
+
 }

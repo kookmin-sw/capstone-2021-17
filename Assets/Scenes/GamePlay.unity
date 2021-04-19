@@ -4560,6 +4560,101 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 133340998}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &136999097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 136999101}
+  - component: {fileID: 136999100}
+  - component: {fileID: 136999099}
+  - component: {fileID: 136999098}
+  m_Layer: 5
+  m_Name: select
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!95 &136999098
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136999097}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 085e051607429fc4d9ae5586ace64ef6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &136999099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136999097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 6d056583ba8b56049a51add23dfb2cc8, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &136999100
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136999097}
+  m_CullTransparentMesh: 1
+--- !u!224 &136999101
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136999097}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 453259128}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 169, y: -6}
+  m_SizeDelta: {x: 153, y: 153}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &139529830
 GameObject:
   m_ObjectHideFlags: 0
@@ -14888,6 +14983,7 @@ RectTransform:
   m_LocalScale: {x: 0.39083335, y: 0.39083335, z: 0.7816667}
   m_Children:
   - {fileID: 416262629}
+  - {fileID: 136999101}
   m_Father: {fileID: 664108480}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26151,8 +26247,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -264.2524, y: -182.48}
-  m_SizeDelta: {x: 243.174, y: 84.917}
+  m_AnchoredPosition: {x: -167.92, y: -178.5943}
+  m_SizeDelta: {x: 435.84, y: 77.1456}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &811891596
 MonoBehaviour:
@@ -26189,7 +26285,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "\uC774\uB3D9 : WASD / \uC810\uD504 : \uC2A4\uD398\uC774\uC2A4 \uBC14\n\uC219\uC774\uAE30
     : C\n\uBB3C\uAC74\uACFC \uC0C1\uD638\uC791\uC6A9 : E\n\uC544\uC774\uD15C \uC0AC\uC6A9
-    : (\uD0A4 \uC9C0\uC815 \uD544\uC694)\n\uBA54\uB274\uCC3D : Q"
+    : 1, 2, 3, 4\uB85C \uD0C0\uAC9F \uC9C0\uC815, \uB9C8\uC6B0\uC2A4 \uD074\uB9AD
+    : \uC0AC\uC6A9 / R : \uC544\uC774\uD15C \uBC84\uB9AC\uAE30\n\uBA54\uB274\uCC3D
+    : Esc"
 --- !u!222 &811891597
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -53430,6 +53528,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: f408d3bab0311dc419aedd3d350ac5cb, type: 3}
   - {fileID: 0}
+  Cursor: {fileID: 136999097}
   inventory: {fileID: 0}
 --- !u!1001 &1692163986
 PrefabInstance:
