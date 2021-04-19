@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class IngameUIManager : MonoBehaviour
 {
-    public GameObject ingame_quit;
-    public GameObject ingame_sound;
+    public GameObject ingame_quit; // Qxit 창 열기
+    public GameObject ingame_sound; //사운드 조절 창 열기
+    public GameObject[] ingame_howto; //how to 창 열기
     public GameObject menu_UI;
     public GameObject game_clear;
     public Text clearText;
@@ -79,6 +80,8 @@ public class IngameUIManager : MonoBehaviour
                 {
                     ingame_sound.SetActive(true);
                     ingame_quit.SetActive(false);
+                    ingame_howto[0].SetActive(false);
+                    ingame_howto[1].SetActive(false);
                     menuinfo.SetActive(false);
                 }
                 else
@@ -92,6 +95,8 @@ public class IngameUIManager : MonoBehaviour
                 {
                     ingame_quit.SetActive(true);
                     ingame_sound.SetActive(false);
+                    ingame_howto[0].SetActive(false);
+                    ingame_howto[1].SetActive(false);
                     menuinfo.SetActive(false);
                 }
                 else
@@ -100,19 +105,49 @@ public class IngameUIManager : MonoBehaviour
                 }
             }
 
+            else if(Input.GetKeyDown(KeyCode.H))
+            {//How to 창 열기
+                if(ingame_howto[0].activeSelf==false)
+                {
+                    ingame_howto[0].SetActive(true);
+                    ingame_quit.SetActive(false);
+                    ingame_sound.SetActive(false);
+                    ingame_howto[1].SetActive(false);
+                    menuinfo.SetActive(false);
+                }
+                else
+                {
+                    ingame_howto[0].SetActive(false);
+                    ingame_howto[1].SetActive(false);
+                }
+            }
+
             if(ingame_quit.activeSelf==true)
             {
-                if(Input.GetKeyDown(KeyCode.S))
+                if(Input.GetKeyDown(KeyCode.Z)) //시작창으로 돌아가기
                 {
                     SceneManager.ChangeStartScene();
                 }
-                else if(Input.GetKeyDown(KeyCode.G))
+                else if(Input.GetKeyDown(KeyCode.X))
                 {
-                    SceneManager.GameExit();
+                    SceneManager.GameExit(); // 게임 종료하기
                 }
-                else if(Input.GetKeyDown(KeyCode.R))
+            }
+
+            if(ingame_howto[0].activeSelf==true)
+            {
+                if(Input.GetKeyDown(KeyCode.RightArrow))
                 {
-                    //로비로 가는 스크립트 추가
+                    ingame_howto[0].SetActive(false);
+                    ingame_howto[1].SetActive(true);
+                }
+            }
+            else if(ingame_howto[1].activeSelf==true)
+            {
+                if(Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    ingame_howto[0].SetActive(true);
+                    ingame_howto[1].SetActive(false);
                 }
             }
         }
