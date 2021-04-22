@@ -34845,15 +34845,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxSpawnPoints: []
-  itemBox: {fileID: 1038162653935764, guid: 0462052c0393d654185c9da4c8e6e072, type: 3}
+  itemBox:
+  - {fileID: 1038162653935764, guid: 0462052c0393d654185c9da4c8e6e072, type: 3}
   itemBoxSpawnPoints: {fileID: 1890902181}
   boxSpawnCount: 13
   missionSpawnPoints: []
-  mission1: {fileID: 6690388454592023288, guid: 09641a87d806be54798b18c2da9c0c37,
-    type: 3}
+  mission:
+  - {fileID: 6690388454592023288, guid: 09641a87d806be54798b18c2da9c0c37, type: 3}
+  - {fileID: 363627462034149909, guid: 1894a3520ed13f94997ef7f9488d14db, type: 3}
   missionObjectSpawnPoints: {fileID: 1038677583}
-  missionSpawnCount: 14
-  exitLever: []
+  missionSpawnCount: 13
+  exitLever:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   missionClearCount: 0
 --- !u!114 &1109556291
 MonoBehaviour:
