@@ -150,9 +150,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6690839101327149479}
-  - component: {fileID: 6690839101327149478}
   - component: {fileID: 6690839101327149473}
   - component: {fileID: 6690839101327149472}
+  - component: {fileID: 3218753902275954123}
+  - component: {fileID: 6426153770259856539}
   m_Layer: 0
   m_Name: 'MissionController '
   m_TagString: Untagged
@@ -179,7 +180,27 @@ RectTransform:
   m_AnchoredPosition: {x: 462.45972, y: 529.3309}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6690839101327149478
+--- !u!114 &6690839101327149473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6690839101327149475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b4539a839b8ccc47b975489386a7d89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!222 &6690839101327149472
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6690839101327149475}
+  m_CullTransparentMesh: 1
+--- !u!114 &3218753902275954123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,7 +231,7 @@ MonoBehaviour:
   - {fileID: 6690839102784588161}
   - {fileID: 6690839101851436620}
   state: {fileID: 6690839103207820965}
---- !u!114 &6690839101327149473
+--- !u!114 &6426153770259856539
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,17 +240,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6690839101327149475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b4539a839b8ccc47b975489386a7d89, type: 3}
+  m_Script: {fileID: 11500000, guid: 423b9108f0866524599dd2fa6bde150e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!222 &6690839101327149472
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6690839101327149475}
-  m_CullTransparentMesh: 1
+  missionObject: {fileID: 0}
+  mission1Controller: {fileID: 0}
+  mission2Controller: {fileID: 0}
 --- !u!1 &6690839101347096377
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,13 +10,13 @@ public class GameMgr : MonoBehaviour
     public static GameMgr instance;
 
     public Transform[] boxSpawnPoints;
-    public GameObject itemBox;
+    public GameObject[] itemBox;
     public GameObject itemBoxSpawnPoints;
     public int boxSpawnCount;
     int[] boxCount = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
 
     public Transform[] missionSpawnPoints;
-    public GameObject mission1;
+    public GameObject[] mission;
     public GameObject missionObjectSpawnPoints;
     public int missionSpawnCount;
     int[] missionCount = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
@@ -35,10 +35,10 @@ public class GameMgr : MonoBehaviour
     {
         GetRandomInt(boxCount, boxCount.Length - 1);
         boxSpawnPoints = GetSpwanPoints(itemBoxSpawnPoints);
-        SpawnObject(itemBox, boxSpawnPoints, boxCount, boxSpawnCount);
+        SpawnObject(itemBox, boxSpawnPoints, boxCount, boxSpawnCount, 1);
         GetRandomInt(missionCount, missionCount.Length - 1);
         missionSpawnPoints = GetSpwanPoints(missionObjectSpawnPoints);
-        SpawnObject(mission1, missionSpawnPoints, missionCount, missionSpawnCount);
+        SpawnObject(mission, missionSpawnPoints, missionCount, missionSpawnCount, 2);
     }
 
     static void GetRandomInt(int []arr, int max)
@@ -58,11 +58,12 @@ public class GameMgr : MonoBehaviour
         return spawnPoinst.GetComponentsInChildren<Transform>();
     }
     
-    private void SpawnObject(GameObject gameObject, Transform[] spawnPoints, int[] spawnCount, int objCount)
+    private void SpawnObject(GameObject[] gameObject, Transform[] spawnPoints, int[] spawnCount, int objCount, int randomRange)
     {
         for (int i = 0; i < objCount; i++)
         {
-            GameObject createdObject = Instantiate(gameObject, spawnPoints[spawnCount[i]].position, spawnPoints[spawnCount[i]].rotation);
+            int rNum = Random.Range(0, randomRange);
+            GameObject createdObject = Instantiate(gameObject[rNum], spawnPoints[spawnCount[i]].position, spawnPoints[spawnCount[i]].rotation);
             if (NetworkServer.active)
             {
                 NetworkServer.Spawn(createdObject);

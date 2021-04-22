@@ -5,11 +5,11 @@ using keypadSystem;
 
 public class InputController : MonoBehaviour
 {
-    private MissionController missionController;
+    private Mission1Controller missionController;
 
     void Awake()
     {
-        missionController = this.GetComponent<MissionController>();
+        missionController = this.GetComponent<Mission1Controller>();
         missionController.SetStageCode();
         //missionController.ShowMission();
         //missionController.StartCoroutine("ShowQuiz");

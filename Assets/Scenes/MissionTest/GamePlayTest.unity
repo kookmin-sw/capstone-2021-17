@@ -31152,13 +31152,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxSpawnPoints: []
-  itemBox: {fileID: 1038162653935764, guid: 0462052c0393d654185c9da4c8e6e072, type: 3}
+  itemBox:
+  - {fileID: 1038162653935764, guid: 0462052c0393d654185c9da4c8e6e072, type: 3}
   itemBoxSpawnPoints: {fileID: 1890902181}
   boxSpawnCount: 13
   missionSpawnPoints: []
-  mission1: {fileID: 363627462034149909, guid: 1894a3520ed13f94997ef7f9488d14db, type: 3}
+  mission:
+  - {fileID: 6690388454592023288, guid: 09641a87d806be54798b18c2da9c0c37, type: 3}
+  - {fileID: 363627462034149909, guid: 1894a3520ed13f94997ef7f9488d14db, type: 3}
   missionObjectSpawnPoints: {fileID: 1149676629}
-  missionSpawnCount: 1
+  missionSpawnCount: 13
   exitLever:
   - {fileID: 954335634}
   - {fileID: 1464901081}
@@ -47257,6 +47260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingame_quit: {fileID: 6737879}
   ingame_sound: {fileID: 0}
+  ingame_howto: []
   menu_UI: {fileID: 0}
   game_clear: {fileID: 0}
   clearText: {fileID: 1139013348}
@@ -47296,6 +47300,12 @@ MonoBehaviour:
   - {fileID: 1782666972}
   - {fileID: 1177009813}
   gameOver: {fileID: 1922979539}
+  mainHP_bar:
+  - {fileID: 0}
+  - {fileID: 0}
+  HP_image:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1638196647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48099,6 +48109,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 0}
   - {fileID: 0}
+  Cursor: {fileID: 0}
   inventory: {fileID: 0}
 --- !u!1 &1691832047
 GameObject:

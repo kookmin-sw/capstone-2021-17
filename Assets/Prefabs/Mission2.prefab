@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: -323031487494656410}
   m_Layer: 8
   m_Name: Mission2
-  m_TagString: Mission2
+  m_TagString: Mission
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -763,6 +763,7 @@ GameObject:
   - component: {fileID: 5117631638776443544}
   - component: {fileID: 713185778463759717}
   - component: {fileID: 3786980989519277598}
+  - component: {fileID: 6588118566319327146}
   m_Layer: 0
   m_Name: MissionController
   m_TagString: Untagged
@@ -832,6 +833,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a87c13824baf44fb7c3abe0babe352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6588118566319327146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3529062433173740423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 423b9108f0866524599dd2fa6bde150e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionObject: {fileID: 0}
+  mission1Controller: {fileID: 0}
+  mission2Controller: {fileID: 0}
 --- !u!1 &3764621927797264340
 GameObject:
   m_ObjectHideFlags: 0

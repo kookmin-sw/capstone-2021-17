@@ -14,7 +14,6 @@ TagManager:
   - RoomPlayer
   - Mission
   - Enemy
-  - Mission2
   - Bullet
   layers:
   - Default
