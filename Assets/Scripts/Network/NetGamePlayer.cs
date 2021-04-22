@@ -169,6 +169,19 @@ public class NetGamePlayer : NetworkBehaviour
         Character.soundSources.Stop();
     }
 
+    GameObject spawnPrefab;
+    public void SpawnObject(GameObject prefab, Vector3 position, Quaternion rotation)
+    {
+        spawnPrefab = prefab;
+        CmdSpawnObject(position, rotation);
+    }
+
+    [Command]
+    private void CmdSpawnObject(Vector3 position, Quaternion rotation)
+    {
+        GameObject createdObject = Instantiate(spawnPrefab , position , rotation);
+        NetworkServer.Spawn(createdObject);
+    }
 
 
 

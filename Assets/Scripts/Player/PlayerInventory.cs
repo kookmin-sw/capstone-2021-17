@@ -9,7 +9,11 @@ public class PlayerInventory : MonoBehaviour
 
     public SlotManager SlotManager; // Assigned in NetGamePlayer OnStartClient
 
-    
+    [SerializeField]
+    NetGamePlayer netPlayer;
+
+    [SerializeField]
+    GameObject HealPackPrefab;
 
     private void Awake()
     {
@@ -62,6 +66,28 @@ public class PlayerInventory : MonoBehaviour
                 RemoveItem(idx);
             }
         }
+    }
+    public void DropItem(int idx)
+    {
+        Item targetItem = Items[idx];
+
+        Vector3 position = transform.position;
+        position += transform.forward;
+
+        Quaternion rotation = Quaternion.identity;
+        
+
+        if (targetItem == null)
+        {
+            // nothing works..
+        }
+        else if (targetItem.GetType().Name == "HealPack")
+        {
+            
+            netPlayer.SpawnObject(HealPackPrefab, position , rotation);
+            RemoveItem(idx);
+        }
+
     }
     public void RemoveItem()
     {

@@ -359,6 +359,8 @@ MonoBehaviour:
   - {fileID: 0}
   SlotManager: {fileID: 0}
   netPlayer: {fileID: 6708225584575804860}
+  HealPackPrefab: {fileID: 322308546107684143, guid: 9c3c4b96ac9faf942a027efa95050500,
+    type: 3}
 --- !u!1 &3044521090428568344
 GameObject:
   m_ObjectHideFlags: 0
