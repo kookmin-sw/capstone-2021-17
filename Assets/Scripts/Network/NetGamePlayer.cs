@@ -63,9 +63,11 @@ public class NetGamePlayer : NetworkBehaviour
                 ThirdCamera.gameObject.SetActive(true);
                 
             }
-
             keypadSystem.KPDisableManager disableManager = keypadSystem.KPDisableManager.instance;
             disableManager.player = this.gameObject;
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
 
         }
     }
