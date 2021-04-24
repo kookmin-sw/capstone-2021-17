@@ -92,7 +92,7 @@ public class RayCastCam : MonoBehaviour
                     if (!inventory.IsFull())
                     {
                         inventory.AddItem(healPack);
-                        healPack.DestroyObj();
+                        healPack.DeactivateObj();
                     }
                     else
                     {

@@ -24,7 +24,7 @@ public abstract class Item : MonoBehaviour
     public abstract bool CanUse();
     public abstract void Use();
 
-    public void DestroyObj()
+    public void DeactivateObj()
     {
         if (itemNet == null)
         {

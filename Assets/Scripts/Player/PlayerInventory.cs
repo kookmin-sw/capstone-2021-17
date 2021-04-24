@@ -9,11 +9,14 @@ public class PlayerInventory : MonoBehaviour
 
     public SlotManager SlotManager; // Assigned in NetGamePlayer OnStartClient
 
-    [SerializeField]
-    NetGamePlayer netPlayer;
+    
 
     [SerializeField]
-    GameObject HealPackPrefab;
+    private NetGamePlayer netPlayer;
+
+    private NetworkManager netManager;
+
+    private GameObject healPackPrefab;
 
     private void Awake()
     {
@@ -26,6 +29,22 @@ public class PlayerInventory : MonoBehaviour
         {
             Debug.LogError("SlotManager not detected! - PlayerInventory");
         }
+
+        netManager = NetworkManager.singleton;
+
+        foreach (GameObject prefab in netManager.spawnPrefabs)
+        {
+            if (prefab.TryGetComponent(out HealPack healpack))
+            {
+                healPackPrefab = prefab;
+            }
+        }
+
+        if(healPackPrefab == null)
+        {
+            Debug.Log("You should assign prefabs at NetworkManager in Editor - HeeunAn");
+        }
+        
     }
 
 
@@ -83,8 +102,7 @@ public class PlayerInventory : MonoBehaviour
         }
         else if (targetItem.GetType().Name == "HealPack")
         {
-            
-            netPlayer.SpawnObject(HealPackPrefab, position , rotation);
+            netPlayer.SpawnObject(healPackPrefab, position , rotation);
             RemoveItem(idx);
         }
 
