@@ -15,6 +15,7 @@ namespace MasterServerToolkit.Networking
     {
         private WebSocketServer server;
         private readonly Queue<Action> executeOnUpdate;
+#pragma warning disable 0414
         private readonly float initialSendMessageDelayTime = 0.2f;
 
         public bool UseSecure { get; set; }

@@ -121,6 +121,7 @@ namespace MasterServerToolkit.MasterServer
         /// <summary>
         /// Invoked, when user successfully changed his username
         /// </summary>
+#pragma warning disable 0067
         public event UsernameChangedEventHandlerDelegate OnUsernameChangedEvent;
 
         protected override void Awake()

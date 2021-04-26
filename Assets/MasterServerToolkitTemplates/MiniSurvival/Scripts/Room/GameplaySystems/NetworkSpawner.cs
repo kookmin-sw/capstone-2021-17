@@ -33,7 +33,7 @@ namespace MasterServerToolkit.Template.MiniSurvival
         private void Awake()
         {
             // Lets register our object in network
-            ClientScene.RegisterPrefab(objectPrefab);
+            NetworkClient.RegisterPrefab(objectPrefab);
         }
 
 #if UNITY_EDITOR

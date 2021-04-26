@@ -9,6 +9,7 @@ namespace MasterServerToolkit.Template.MiniSurvival
         /// <summary>
         /// 
         /// </summary>
+#pragma warning disable 0414
         private bool isVisible = true;
 
         /// <summary>
