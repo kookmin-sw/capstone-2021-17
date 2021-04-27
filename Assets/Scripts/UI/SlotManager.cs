@@ -93,7 +93,8 @@ public class SlotManager : MonoBehaviour
 
     }
 
-    private void ItemAction(){ //클릭으로 사용, Q키로 아이템 버리기
+    private void ItemAction()
+    { //클릭으로 사용, Q키로 아이템 버리기
         if (Input.GetMouseButtonDown(0))
         {
             inventory.UseItem(itemTarget); //아이템 사용
