@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Popcron.Console;
 using UnityEngine.AI;
 using Mirror;
-using CommandAttribute = Popcron.Console.CommandAttribute;
 
 public class EnemyControl : MonoBehaviour
 {
@@ -16,45 +14,38 @@ public class EnemyControl : MonoBehaviour
         Move,
         Attack,
         Dizzy
-    }
-    [Command("state")]
+    }    
     public State state;
-
     //적의 시야
     public float viewRadius;
     [Range(0, 360)]
     public float viewAngle;
-
-    public bool hasDestination = false;   //Walk 애니메이션을 사용하기 위한 조건               
-    [Command("findTargetVision")]
-    public bool findTargetVision = false;   //시야에 적이 들어왔는지 체크    
-    [Command("findTargetSound")]
-    public bool findTargetSound = false;    //오디오 센서에 적이 감지 됐는지    
-    [Command("isPatrol")]
+    public bool hasDestination = false;   //Walk 애니메이션을 사용하기 위한 조건                   
+    public bool findTargetVision = false;   //시야에 적이 들어왔는지 체크        
+    public bool findTargetSound = false;    //오디오 센서에 적이 감지 됐는지        
     public bool isPatrol = false;   //순찰 중인지 체크
     public bool turnOnSensor = true;  //시야와 오디오 센서 온오프.      
-    public Vector3 patrolPos;   //순찰 위치 기억
-    [Command("distance")]
+    public Vector3 patrolPos;   //순찰 위치 기억    
     public float dis;   //플레이어와의 거리
-
-    [SerializeField] public NavMeshAgent enemy;  //AI
     public Transform target;    //타겟의 위치
-    
     public List<Transform> visibleTargets = new List<Transform>();  //시야에 들어온 적들의 List
 
+    [SerializeField] public NavMeshAgent enemy;  //AI  
     [SerializeField] public Transform[] wayPoint;   //WayPoint - public EnemySpawnManager에서 동적 할당이 이루어져야됨.   
+
     //적의 판단 근거, 장애물인지 플레이어인지
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private LayerMask obstacleMask;
     [SerializeField] private AnimationSoundEvent[] animationEvent;  //오디오 센서를 위한 애니메이션 이벤트    
-    [SerializeField] private EnemyAnimation anim;
+    [SerializeField] private EnemyAnimation anim;    
+    [SerializeField] private EnemyNetBehaviour enemyNet;
+    [SerializeField] private float minErrorWayPoint = 0.5f;    //순찰 지점거리의 최소 오차 
+    [SerializeField] private AudioSource siren;                 //사이렌 오디오 소스
     private Collider[] targetsInViewRadius = new Collider[4];   //OverlapSphereNonAlloc을 위한 어레이
     private int targetsLength;  //타겟 리스트의 길이    
     private int animationEventLength = 0;   //AnimationSoundEvent 컴포넌트를 가진 오브젝트의 legnth
-    [SerializeField] private EnemyNetBehaviour enemyNet;
-    [SerializeField] private float minErrorWayPoint = 0.5f;    //순찰 지점거리의 최소 오차 
-
     float timer; //딜레이를 위한 타이머 변수
+
     void Awake()
     {
         //animationEvent = FindObjectsOfType<AnimationSoundEvent>();
@@ -91,17 +82,7 @@ public class EnemyControl : MonoBehaviour
                 break;
         }
         FindTargets();
-    }
-    /*private void OnEnable()
-    {
-        Parser.Register(this, "enemy");
-    }
-
-    private void OnDisable()
-    {
-        Parser.Unregister(this);
-    }*/
-
+    }   
     //Idle State
     void IdleState()
     {        
@@ -169,6 +150,7 @@ public class EnemyControl : MonoBehaviour
     
     void AttackState()
     {
+        siren.Stop();
         //NavMeshAgent 잠시 멈춤
         enemy.isStopped = true;
         //타겟 초기화
@@ -181,6 +163,7 @@ public class EnemyControl : MonoBehaviour
     {
         //센서를 끈다
         turnOnSensor = false;
+        siren.Stop();
         visibleTargets.Clear();
         anim.PlayDizzyAnim();
         state = State.Idle;        
@@ -198,6 +181,10 @@ public class EnemyControl : MonoBehaviour
             //센서에 들어온 적이 있으면
             if (findTargetVision || findTargetSound)
             {
+                if (!siren.isPlaying)
+                {
+                    siren.Play();
+                }
                 isPatrol = false;
                 //그 적을 타겟으로 삼는다.
                 SetTargetWithSensor();
