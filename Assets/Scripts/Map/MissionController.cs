@@ -22,19 +22,6 @@ public class MissionController : MonoBehaviour
         }
     }
 
-    //미션오브젝트 상호작용 제거
-    public void UnableMission()
-    {
-        if (missionObject.name == "Mission1(Clone)")
-        {
-            mission1Controller.UnableMission();
-        }
-        if (missionObject.name == "Mission2(Clone)")
-        {
-            mission2Controller.UnableMission();
-        }
-    }
-
     //미션창 활성화
     public void ShowMission()
     {

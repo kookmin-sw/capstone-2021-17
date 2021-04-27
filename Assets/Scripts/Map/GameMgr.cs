@@ -25,6 +25,8 @@ public class GameMgr : MonoBehaviour
     public int missionClearCount;
     int[] exitCount = { 0, 1, 2, 3 };
 
+    public static bool lockKey = false;
+
     void Start()
     {
         instance = this;
