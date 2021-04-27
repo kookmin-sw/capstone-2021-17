@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using MasterServerToolkit.MasterServer;
 using TMPro;
+using MasterServerToolkit.Networking;
 /*
- * NetManager를 이용합니다
- * StartScene에서의 GameObject를 다루는 Manager 객체입니다 
- */
+* NetManager를 이용합니다
+* StartScene에서의 GameObject를 다루는 Manager 객체입니다 
+*/
 public class Start_MultiGameManager: MonoBehaviour
 {
     public TMP_InputField nameField;
@@ -17,6 +19,13 @@ public class Start_MultiGameManager: MonoBehaviour
     private void Start() // Awake할때는 instance 못부름
     {
         netManager = NetManager.instance;
+        if (Application.isBatchMode)
+        {
+            Debug.Log("Server Starting! -- Heeun An");
+        }
+        {
+            Debug.Log("Client Start");
+        }
     }
 
     public void SaveAddress()
@@ -46,6 +55,26 @@ public class Start_MultiGameManager: MonoBehaviour
     {
         SaveNickName();
         netManager.StartHost();
+    }
+
+    public void  JoinDedicatedRoom()
+    {
+        SaveAddress();
+        SaveNickName();
+
+        MstTimer.WaitForSeconds(0.2f, () =>
+        {
+            Mst.Client.Matchmaker.FindGames((games) =>
+            {
+
+                Debug.Log(games.Count);
+            });
+        });
+    }
+
+    public void CreateDedicatedRoom()
+    {
+        CreateRoom();
     }
 
 
