@@ -45,13 +45,12 @@ public class EnemyControl : MonoBehaviour
     private int targetsLength;  //타겟 리스트의 길이    
     private int animationEventLength = 0;   //AnimationSoundEvent 컴포넌트를 가진 오브젝트의 legnth
     float timer; //딜레이를 위한 타이머 변수
-
+    
     void Awake()
     {
         //animationEvent = FindObjectsOfType<AnimationSoundEvent>();
         animationEventLength = animationEvent.Length;
-        Debug.Log(animationEventLength);
-        Console.IsOpen = false;        
+        Debug.Log(animationEventLength);        
         //기본 상태
         state = State.Dizzy;
     }
@@ -110,7 +109,7 @@ public class EnemyControl : MonoBehaviour
             //순찰 시작
             enemy.SetDestination(patrolPos);            
             //move state로 전환
-            state = State.Move;            
+            state = State.Move;
         }
     }
 
@@ -146,7 +145,7 @@ public class EnemyControl : MonoBehaviour
             }
             */
         }
-    }
+    } 
     
     void AttackState()
     {
