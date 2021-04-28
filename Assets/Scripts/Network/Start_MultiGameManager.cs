@@ -75,6 +75,8 @@ public class Start_MultiGameManager: MonoBehaviour
 
         ClientToMasterConnector.Instance.Connection.AddConnectionListener(OnConnectedToMasterServerAtServer, true);
         ClientToMasterConnector.Instance.StartConnection();
+
+        SpawnServer.Instance.OnRoomStart += JoinRoom;
     }
 
     private void OnConnectedToMasterServerAtServer()

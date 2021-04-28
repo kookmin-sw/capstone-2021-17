@@ -43,10 +43,6 @@ public class NetServersList : MonoBehaviour
         roomOptions = new RoomOptions
         {
             IsPublic = true,
-            // Your Game Server Name
-            Name = "My Game With Friends",
-            // If you want your server to be passworded
-            Password = "",
             // Machine IP the server is running on
             RoomIp = "127.0.0.1",
             // Port of the game server
@@ -61,7 +57,6 @@ public class NetServersList : MonoBehaviour
         // If this room was spawned
         if (Mst.Server.Spawners.IsSpawnedProccess)
         {
-            Debug.Log("IS_SPAWNED_PROCESS");
             // Try to register spawned process first
             RegisterSpawnedProcess();
         }
