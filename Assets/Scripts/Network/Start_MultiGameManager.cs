@@ -15,7 +15,6 @@ public class Start_MultiGameManager: MonoBehaviour
     public TMP_InputField addressField;
 
     private NetManager netManager;
-
     private void Start() // Awake할때는 instance 못부름
     {
         netManager = NetManager.instance;
@@ -61,21 +60,36 @@ public class Start_MultiGameManager: MonoBehaviour
     {
         SaveAddress();
         SaveNickName();
+        MasterServerConnectRoom.Instance.AddMasterServerConnectionListners();
+        ClientToMasterConnector.Instance.Connection.AddConnectionListener(OnConnectedToMasterServerAtClient, true);
+        ClientToMasterConnector.Instance.StartConnection();
 
-        MstTimer.WaitForSeconds(0.2f, () =>
-        {
-            Mst.Client.Matchmaker.FindGames((games) =>
-            {
-
-                Debug.Log(games.Count);
-            });
-        });
+        //ClientToMasterConnector.Instance.Connection.AddConnectionListener(OnConnectedToMasterServerHandler, true);
     }
 
     public void CreateDedicatedRoom()
     {
-        CreateRoom();
+        
+        SpawnServer.Instance.AddMasterServerConnectionListners();
+        NetServersList.Instance.AddMasterServerConnectionListners();
+
+        ClientToMasterConnector.Instance.Connection.AddConnectionListener(OnConnectedToMasterServerAtServer, true);
+        ClientToMasterConnector.Instance.StartConnection();
     }
+
+    private void OnConnectedToMasterServerAtServer()
+    {
+        //CreateRoom();
+    }
+
+    private void OnConnectedToMasterServerAtClient()
+    {
+        JoinRoom();
+    }
+
+
+
+
 
 
 }

@@ -218,14 +218,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1453184711}
-        m_TargetAssemblyTypeName: MasterServerToolkit.MasterServer.ConnectionHelper`1[[MasterServerToolkit.MasterServer.ClientToMasterConnector,
-          MasterServerToolkit
-        m_MethodName: StartConnection
+      - m_Target: {fileID: 1646276139}
+        m_TargetAssemblyTypeName: Start_MultiGameManager, Assembly-CSharp
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -469,6 +468,72 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &561650025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 561650027}
+  - component: {fileID: 561650026}
+  - component: {fileID: 561650028}
+  m_Layer: 0
+  m_Name: --MASTERSERVERCONNECTROOM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &561650026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561650025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21285020184bf2646a31c841d6a999dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &561650027
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561650025}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15.753603, y: -42.771122, z: 66.02875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &561650028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561650025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d4571f53acf10d459294f95b782ae9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logLevel: 3
+  initModulesAtStart: 1
+  startRoomScene: Room
+  matchCreationTimeout: 60
+  OnRoomStartedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRoomStartAbortedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &597454868
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +619,7 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   PersistNetworkManagerToOfflineScene: 0
   runInBackground: 1
-  autoStartServerBuild: 0
+  autoStartServerBuild: 1
   serverTickRate: 30
   serverBatching: 1
   serverBatchInterval: 0
@@ -1738,8 +1803,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1968966173}
-        m_TargetAssemblyTypeName: StartUI_GameManager, Assembly-CSharp
-        m_MethodName: CreateRoom
+        m_TargetAssemblyTypeName: Start_MultiGameManager, Assembly-CSharp
+        m_MethodName: CreateDedicatedRoom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2323,19 +2388,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1453184711}
-        m_TargetAssemblyTypeName: MasterServerToolkit.MasterServer.ConnectionHelper`1[[MasterServerToolkit.MasterServer.ClientToMasterConnector,
-          MasterServerToolkit
-        m_MethodName: StartConnection
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1551453533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2559,6 +2611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1646276141}
   - component: {fileID: 1646276140}
+  - component: {fileID: 1646276142}
   m_Layer: 0
   m_Name: --Servers--List
   m_TagString: Untagged
@@ -2592,6 +2645,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1646276142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646276139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744f21bc2e7de6045ae4c753f9499997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1782740818
 GameObject:
   m_ObjectHideFlags: 0
