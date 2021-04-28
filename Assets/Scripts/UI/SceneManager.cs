@@ -13,7 +13,7 @@ public class SceneManager : MonoBehaviour
     {
         LoadingManager.LoadScene("Start");
     }
-    public static void ChangeWaitingRoomScene()
+    public static void ChangeLoadingScene()
     {
         LoadingManager.LoadScene("Loading");
     }
@@ -24,6 +24,10 @@ public class SceneManager : MonoBehaviour
     public static void ChangeGamePlayScene()
     {
         LoadingManager.LoadScene("GamePlay");
+    }
+    public static void ChangeLobbyScene()
+    {
+        LoadingManager.LoadScene("WaitingRoom");//로비씬으로 이동(네트워크 연동 필요할 수 있음)
     }
 
     //게임 종료
