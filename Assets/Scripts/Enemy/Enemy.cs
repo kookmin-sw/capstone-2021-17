@@ -2,37 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Mirror;
 
 public class Enemy : MonoBehaviour
 {
-    public float viewRadius;
-    [Range(0, 360)]
-    public float viewAngle;
+
+    [Range(0, 360)] public float viewAngle; 
+    public float viewRadius;    
     public bool hasDestination = false;   //Walk 애니메이션을 사용하기 위한 조건                   
     public bool findTargetVision = false;   //시야에 적이 들어왔는지 체크        
     public bool findTargetSound = false;    //오디오 센서에 적이 감지 됐는지        
     public bool isPatrol = false;   //순찰 중인지 체크
     public bool turnOnSensor = true;  //시야와 오디오 센서 온오프.          
-    public float dis;   //플레이어와의 거리
-    public float minErrorWayPoint = 0.5f;    //순찰 지점거리의 최소 오차 
+    private float dis;   //플레이어와의 거리
+    
     public Vector3 patrolPos;   //순찰 위치 기억    
+
     public Transform target;    //타겟의 위치
-    public List<Transform> visibleTargets = new List<Transform>();  //시야에 들어온 적들의 List
+    
     public NavMeshAgent navMeshAgent;  //AI  
     public Transform[] wayPoint;   //WayPoint - public EnemySpawnManager에서 동적 할당이 이루어져야됨.   
     public AudioSource siren;                 //사이렌 오디오 소스
 
-    //적의 판단 근거, 장애물인지 플레이어인지
-    [SerializeField] private LayerMask targetMask;
-    [SerializeField] private LayerMask obstacleMask;
-    [SerializeField] private AnimationSoundEvent[] animationEvent;  //오디오 센서를 위한 애니메이션 이벤트    
-    [SerializeField] private EnemyAnimation anim;
-    [SerializeField] private EnemyNetBehaviour enemyNet;
-        
-    private Collider[] targetsInViewRadius = new Collider[4];   //OverlapSphereNonAlloc을 위한 어레이
-    private int targetsLength;  //타겟 리스트의 길이    
-    private int animationEventLength = 0;   //AnimationSoundEvent 컴포넌트를 가진 오브젝트의 legnth
-    float timer; //딜레이를 위한 타이머 변수  
+    #region Variables
+    public float minErrorWayPoint = 0.5f;    //순찰 지점거리의 최소 오차 
 
     public StateMachine enemyStateMachine;
     public IdleState idle;
@@ -40,6 +33,24 @@ public class Enemy : MonoBehaviour
     public AttackState attack;
     public MoveState move;
     public DizzyState dizzy;
+
+    public List<Transform> visibleTargets = new List<Transform>();  //시야에 들어온 적들의 List
+    //적의 판단 근거, 장애물인지 플레이어인지
+    [SerializeField] private LayerMask targetMask;
+    [SerializeField] private LayerMask obstacleMask;
+    [SerializeField] private AnimationSoundEvent[] animationEvent;  //오디오 센서를 위한 애니메이션 이벤트        
+    [SerializeField] private EnemyNetBehaviour enemyNet;
+    
+
+    #endregion
+    [SerializeField] private EnemyAnimation anim;
+
+    private Collider[] targetsInViewRadius = new Collider[4];   //OverlapSphereNonAlloc을 위한 어레이
+    private int targetsLength;  //타겟 리스트의 길이    
+    private int animationEventLength = 0;   //AnimationSoundEvent 컴포넌트를 가진 오브젝트의 legnth
+    float timer; //딜레이를 위한 타이머 변수  
+
+    
 
     public void InitializeVar()
     {
@@ -57,11 +68,21 @@ public class Enemy : MonoBehaviour
         return Vector3.Distance(posFirst, posSecond);
     }
 
+    //Scene에서 시야각과 적의 위치를 잇는 선을 긋는다.
+    public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
+    {
+        if (!angleIsGlobal)
+        {
+            angleInDegrees += transform.eulerAngles.y;
+        }
+        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+    }
+
     public void OnTriggerEnter(Collider other)
     {
-        if (CompareTag("Bullet"))
+        /*if (CompareTag("Bullet"))
         {            
-        }
+        }*/
     }
 
     public void FindTargets()
@@ -166,8 +187,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     {
+        animationEventLength = animationEvent.Length;
         enemyStateMachine = new StateMachine();
         idle = new IdleState(this, enemyStateMachine, anim);
         patrol = new PatrolState(this, enemyStateMachine, anim);
@@ -180,7 +202,12 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if (enemyNet != null && !NetworkServer.active) // Client에서는 Enemy를 조종하지 않음
+        {
+            return;
+        }
         enemyStateMachine.currentState.LogicUpdate();
+        FindTargets();
     }
 
     private void FixedUpdate()
