@@ -40,7 +40,7 @@ public class EnemyControl : MonoBehaviour
     [SerializeField] private EnemyAnimation anim;    
     [SerializeField] private EnemyNetBehaviour enemyNet;
     [SerializeField] private float minErrorWayPoint = 0.5f;    //순찰 지점거리의 최소 오차 
-    [SerializeField] private AudioSource siren;                 //사이렌 오디오 소스
+    [SerializeField] private AudioSource siren;                 //사이렌 오디오 소스    
     private Collider[] targetsInViewRadius = new Collider[4];   //OverlapSphereNonAlloc을 위한 어레이
     private int targetsLength;  //타겟 리스트의 길이    
     private int animationEventLength = 0;   //AnimationSoundEvent 컴포넌트를 가진 오브젝트의 legnth
@@ -96,10 +96,10 @@ public class EnemyControl : MonoBehaviour
     }
 
     void PatrolState()
-    {        
+    {
+        InitializeVar();
         if (!isPatrol)
-        {
-            findTargetSound = false;
+        {            
             //순찰중인지 판단
             isPatrol = true;            
             turnOnSensor = true;
@@ -134,8 +134,8 @@ public class EnemyControl : MonoBehaviour
             }            
         }       
         else
-        {            
-            //계속해서 경로를 설정해서 플레이어가 움직여도 그 경로를 다시 설정한다.
+        {
+            //계속해서 경로를 설정해서 플레이어가 움직여도 그 경로를 다시 설정한다.            
             enemy.SetDestination(target.position);
             //타겟을 설정했으므로 타겟 설정 변수 초기화
             /* NavMesh위에 플레이어가 있지 않을때
@@ -144,11 +144,16 @@ public class EnemyControl : MonoBehaviour
                 state = State.Idle;
             }
             */
+            if (!siren.isPlaying)
+            {
+                siren.Play();
+            }
         }
     } 
     
     void AttackState()
     {
+        InitializeVar();
         siren.Stop();
         //NavMeshAgent 잠시 멈춤
         enemy.isStopped = true;
@@ -159,9 +164,8 @@ public class EnemyControl : MonoBehaviour
     }
 
     void DizzyState()
-    {
-        //센서를 끈다
-        turnOnSensor = false;
+    {        
+        InitializeVar();        
         siren.Stop();
         visibleTargets.Clear();
         anim.PlayDizzyAnim();
@@ -179,11 +183,7 @@ public class EnemyControl : MonoBehaviour
             FindTargetWithSound();
             //센서에 들어온 적이 있으면
             if (findTargetVision || findTargetSound)
-            {
-                if (!siren.isPlaying)
-                {
-                    siren.Play();
-                }
+            {               
                 isPatrol = false;
                 //그 적을 타겟으로 삼는다.
                 SetTargetWithSensor();
@@ -219,7 +219,7 @@ public class EnemyControl : MonoBehaviour
         if (dis <= 1.5f)
         {
             //변수초기화
-            InitializeVar();
+            //InitializeVar();
             state = State.Attack;
         }        
         else
