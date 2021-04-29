@@ -7,6 +7,8 @@ public class EnemyAnimation : MonoBehaviour
     //check enemy has Path
     [SerializeField]
     private EnemyControl checkAnim;
+    [SerializeField]
+    private Enemy checkAni;
     Animator ani;
 
     [SerializeField]
@@ -19,7 +21,7 @@ public class EnemyAnimation : MonoBehaviour
     // 경로가 있으면 애니메이션 시작.
     void Update()
     {       
-        if (checkAnim.hasDestination)
+        if (checkAni.hasDestination)
         {
             if(enemyNet != null)
             {

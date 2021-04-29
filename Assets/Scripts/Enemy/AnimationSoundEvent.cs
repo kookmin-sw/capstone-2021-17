@@ -7,7 +7,7 @@ public class AnimationSoundEvent : MonoBehaviour
     [SerializeField]
     AudioSource walkAudio;
     [SerializeField]
-    EnemyControl enemy;
+    Enemy enemy;
 
     private Transform enemyPos;
     //범위 안에 있는지 확인하는 변수
