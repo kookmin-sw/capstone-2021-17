@@ -11,6 +11,8 @@ public class PatrolState : State
     public override void Enter()
     {
         base.Enter();
+        enemy.InitializeVar();
+        
     }
 
     public override void Exit()
@@ -22,8 +24,7 @@ public class PatrolState : State
     {
         base.LogicUpdate();
         if (!enemy.isPatrol)
-        {
-            enemy.findTargetSound = false;
+        {            
             //순찰중인지 판단
             enemy.isPatrol = true;
             enemy.turnOnSensor = true;
@@ -34,5 +35,11 @@ public class PatrolState : State
             enemy.navMeshAgent.SetDestination(enemy.patrolPos);
             stateMachine.ChangeState(enemy.move);
         }
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+
     }
 }

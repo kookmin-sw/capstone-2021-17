@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MoveState : State
 {
+
     public MoveState(Enemy enemy, StateMachine stateMachine, EnemyAnimation ani) : base(enemy, stateMachine, ani)
     {
     }
@@ -11,6 +12,7 @@ public class MoveState : State
     public override void Enter()
     {
         base.Enter();
+        siren = enemy.siren;
     }
 
     public override void Exit()
@@ -40,6 +42,10 @@ public class MoveState : State
         }
         else
         {
+            if (!siren.isPlaying)
+            {
+                siren.Play();
+            }
             //계속해서 경로를 설정해서 플레이어가 움직여도 그 경로를 다시 설정한다.
             enemy.navMeshAgent.SetDestination(enemy.target.position);
             //타겟을 설정했으므로 타겟 설정 변수 초기화

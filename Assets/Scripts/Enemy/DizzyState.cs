@@ -11,8 +11,9 @@ public class DizzyState : State
     public override void Enter()
     {
         base.Enter();
-        enemy.turnOnSensor = false;
-        enemy.siren.Stop();
+        siren = enemy.siren;
+        enemy.InitializeVar();
+        siren.Stop();
         enemy.visibleTargets.Clear();
         ani.PlayDizzyAnim();
         stateMachine.ChangeState(enemy.idle);
@@ -25,9 +26,7 @@ public class DizzyState : State
 
     public override void LogicUpdate()
     {
-        base.LogicUpdate();
-        
-        
+        base.LogicUpdate();       
     }
 
 }

@@ -10,7 +10,9 @@ public class AttackState : State
     public override void Enter()
     {
         base.Enter();
-        enemy.siren.Stop();
+        enemy.InitializeVar();
+        siren = enemy.siren;
+        siren.Stop();
         //NavMeshAgent ¿·Ω√ ∏ÿ√„
         enemy.navMeshAgent.isStopped = true;
         //≈∏∞Ÿ √ ±‚»≠

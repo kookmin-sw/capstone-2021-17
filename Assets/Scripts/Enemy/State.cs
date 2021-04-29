@@ -8,6 +8,7 @@ abstract public class State
     protected Enemy enemy;
     protected StateMachine stateMachine;
     protected EnemyAnimation ani;
+    protected AudioSource siren;
     
     protected State(Enemy enemy, StateMachine stateMachine, EnemyAnimation ani)
     {
