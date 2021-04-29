@@ -10823,7 +10823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4591906861939676, guid: 6f7e8ff4bd7c29d4eaddaf7d2be7920f, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4591906861939676, guid: 6f7e8ff4bd7c29d4eaddaf7d2be7920f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10981,7 +10981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneId: 2801583523
+  sceneId: 1444441237
   serverOnly: 0
   visible: 0
   m_AssetId: 6f7e8ff4bd7c29d4eaddaf7d2be7920f
@@ -20403,7 +20403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4591906861939676, guid: 6f7e8ff4bd7c29d4eaddaf7d2be7920f, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4591906861939676, guid: 6f7e8ff4bd7c29d4eaddaf7d2be7920f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20561,7 +20561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneId: 1355275537
+  sceneId: 1522815818
   serverOnly: 0
   visible: 0
   m_AssetId: 6f7e8ff4bd7c29d4eaddaf7d2be7920f
@@ -27147,7 +27147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneId: 3683688808
+  sceneId: 407669873
   serverOnly: 0
   visible: 0
   m_AssetId: 
@@ -31161,7 +31161,7 @@ MonoBehaviour:
   - {fileID: 6690388454592023288, guid: 09641a87d806be54798b18c2da9c0c37, type: 3}
   - {fileID: 363627462034149909, guid: 1894a3520ed13f94997ef7f9488d14db, type: 3}
   missionObjectSpawnPoints: {fileID: 1149676629}
-  missionSpawnCount: 13
+  missionSpawnCount: 14
   exitLever:
   - {fileID: 954335634}
   - {fileID: 1464901081}
@@ -32641,7 +32641,7 @@ Transform:
   - {fileID: 2010462128}
   - {fileID: 1325762833}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1152316552
 PrefabInstance:
@@ -34887,7 +34887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4591906861939676, guid: 6f7e8ff4bd7c29d4eaddaf7d2be7920f, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4591906861939676, guid: 6f7e8ff4bd7c29d4eaddaf7d2be7920f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35045,7 +35045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneId: 3879685976
+  sceneId: 1403908399
   serverOnly: 0
   visible: 0
   m_AssetId: 6f7e8ff4bd7c29d4eaddaf7d2be7920f
@@ -36366,7 +36366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneId: 4252853833
+  sceneId: 3383151658
   serverOnly: 0
   visible: 0
   m_AssetId: 
@@ -38471,7 +38471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneId: 3246445767
+  sceneId: 540982606
   serverOnly: 0
   visible: 0
   m_AssetId: 
@@ -39199,7 +39199,7 @@ Transform:
   - {fileID: 2051952343}
   - {fileID: 511453427}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1380996335
 GameObject:
@@ -41985,7 +41985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneId: 324569621
+  sceneId: 152333701
   serverOnly: 0
   visible: 0
   m_AssetId: 
@@ -48270,7 +48270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011000112506, guid: 0fc2137dcaba019429465545a573cf0f, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4000011000112506, guid: 0fc2137dcaba019429465545a573cf0f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -49110,7 +49110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4591906861939676, guid: 6f7e8ff4bd7c29d4eaddaf7d2be7920f, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4591906861939676, guid: 6f7e8ff4bd7c29d4eaddaf7d2be7920f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -49268,7 +49268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneId: 1661970680
+  sceneId: 105666967
   serverOnly: 0
   visible: 0
   m_AssetId: 6f7e8ff4bd7c29d4eaddaf7d2be7920f
@@ -54690,7 +54690,7 @@ Transform:
   - {fileID: 974515865}
   - {fileID: 98639816}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1890975431 stripped
 Transform:
