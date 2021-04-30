@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 367369959239402611}
   - component: {fileID: -8979637276926727154}
   - component: {fileID: -323031487494656410}
+  - component: {fileID: 4582226925424061433}
   m_Layer: 8
   m_Name: Mission2
   m_TagString: Mission
@@ -140,6 +141,22 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
+--- !u!114 &4582226925424061433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363627462034149909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02661ab1ff2b8c1438f004b65d3206d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  IsUsing: 0
+  missionController: {fileID: 6588118566319327146}
 --- !u!1 &363676455127916899
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,6 +926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionCanvas: {fileID: 3764621927797264340}
   missionObject: {fileID: 363627462034149909}
+  missionNet: {fileID: 4582226925424061433}
   correctCode: 
   randomCode: 
   firstClick: 0
@@ -943,8 +961,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionObject: {fileID: 0}
-  mission1Controller: {fileID: 0}
-  mission2Controller: {fileID: 0}
 --- !u!1 &3764621927797264340
 GameObject:
   m_ObjectHideFlags: 0

@@ -70,14 +70,12 @@ public class RayCastCam : MonoBehaviour
                 if (Input.GetKeyDown("e"))
                 {
                     GameMgr.lockKey = true;
-                    ItemBoxNetBehaviour itemBoxNet = raycasted_obj.GetComponent<ItemBoxNetBehaviour>();
                     rayCastedKeypad = raycasted_obj.GetComponent<KeypadItemController>();
                     rayCastedKeypad.ShowKeypad();
                 }
                 else if (Input.GetKeyDown("escape"))
                 {
                     GameMgr.lockKey = false;
-                    ItemBoxNetBehaviour itemBoxNet = raycasted_obj.GetComponent<ItemBoxNetBehaviour>();
                     rayCastedKeypad = raycasted_obj.GetComponent<KeypadItemController>();
                     rayCastedKeypad.CloseKeypad();
                 }

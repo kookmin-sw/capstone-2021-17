@@ -10,6 +10,8 @@ public class Mission1Controller : MonoBehaviour
     [SerializeField] private GameObject missionCanvas;
     //연동할 오브젝트
     [SerializeField] private GameObject missionObject;
+    //네트워크
+    [SerializeField] private MissionNetBehaviour missionNet;
     //입력받은값
     public string codeText;
     //저장된 퀴즈의 답
@@ -61,7 +63,14 @@ public class Mission1Controller : MonoBehaviour
         {
             StopCoroutine("ShowQuiz");
             state.text = "Clear";
-            UnableMission();
+            if (missionNet != null)
+            {
+                missionNet.UnableMission();
+            }
+            else
+            {
+                UnableMission();
+            }
             //ValidStageClear();
 
             //1초뒤 창 종료
@@ -80,6 +89,19 @@ public class Mission1Controller : MonoBehaviour
     //미션창 활성화
     public void ShowMission()
     {
+        if (missionNet != null)
+        {
+            if (missionNet.IsUsing == false)
+            {
+                missionNet.SetUsing(true); // Set IsUsing true [Command] 
+            }
+            else
+            {
+                Debug.Log("Other Player Using this mission");
+                return;
+            }
+        }
+
         KPDisableManager.instance.DisablePlayer(true);
         missionCanvas.SetActive(true);
         StartCoroutine("ShowQuiz");
@@ -88,6 +110,11 @@ public class Mission1Controller : MonoBehaviour
     //미션창 비활성화
     public void CloseMission()
     {
+        if (missionNet != null)
+        {
+            missionNet.SetUsing(false);
+        }
+
         stage = 0;
         KPDisableManager.instance.DisablePlayer(false);
         missionCanvas.SetActive(false);
