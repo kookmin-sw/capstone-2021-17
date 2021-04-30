@@ -38,7 +38,6 @@ public class PlayerItem : MonoBehaviour
                 Weapons[1].SetActive(true);
             }
             Destroy(nearObject);
-            
         } 
     }
 

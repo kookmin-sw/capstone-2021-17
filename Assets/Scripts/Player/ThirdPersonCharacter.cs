@@ -20,6 +20,7 @@ public class ThirdPersonCharacter : MonoBehaviour
 
     Rigidbody PlayerRigidbody;
     Animator PlayerAnimator;
+    
 
     CapsuleCollider Capsule;
     float CapsuleHeight;
@@ -44,11 +45,6 @@ public class ThirdPersonCharacter : MonoBehaviour
     NetGamePlayer NetPlayer;
 
     public AudioSource soundSource;
-    public AudioSource soundSources;
-    public AudioClip[] sound;
-
-    [SerializeField]
-    AudioSource walkAudio;
     
     //Player State
     public enum State
@@ -60,6 +56,7 @@ public class ThirdPersonCharacter : MonoBehaviour
         Hit,
         Die
     }
+    
     //Player State Idle Setting
     public State state =State.Idle;
 
@@ -72,7 +69,6 @@ public class ThirdPersonCharacter : MonoBehaviour
         CapsuleCenter = Capsule.center;
         PlayerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         OrigGroundCheckDistance = GroundCheckDistance;
-        soundSource=soundSource.GetComponent<AudioSource>();
     }
 
     public void Move(Vector3 move, bool crouch, bool jump)
@@ -85,44 +81,42 @@ public class ThirdPersonCharacter : MonoBehaviour
         {
             if (soundSource.isPlaying==false)
             {
-                isPlayWalk = true; //soundSource.Play();
+                isPlayWalk = true;
             }         
             state=State.Move;
         }
         else if (crouch)
         {
-            isStopWalk = true; //soundSources.Stop();
+            isStopWalk = true;
             state=State.Crouch;
         }
         else if (crouch&&PresentMove != move)
         {
-            isStopWalk = true; // soundSources.Stop();
+            isStopWalk = true;
             state=State.Crouch;
             if (soundSource.isPlaying==false)
             {
-                isPlayWalk = true; //soundSource.Play();
+                isPlayWalk = true;
             }
         }
         else if (jump)
         {
             state=State.Jump;
-            isStopWalk = true; // soundSources.Stop();
-            oneShotId = 0;
         }
         else if (IsHit==true)
         {
-            isStopWalk = true; // soundSources.Stop();
+            isStopWalk = true;
             state =State.Hit;
         }
         else if (IsDie==true)
         {
-            isStopWalk = true; // soundSources.Stop();
+            isStopWalk = true;
             state =State.Die;
         }
         else
         {
             state=State.Idle;
-            isStopWalk = true; // soundSources.Stop();   
+            isStopWalk = true;
         }
 
         if (NetPlayer != null)
@@ -136,13 +130,7 @@ public class ThirdPersonCharacter : MonoBehaviour
             if(isStopWalk)
             {
                 NetPlayer.StopSound();
-            }
-            
-
-            if (oneShotId != -1) 
-            {
-                NetPlayer.PlaySoundOneShot(oneShotId);
-            }
+            }  
         }
         else
         {
@@ -152,13 +140,9 @@ public class ThirdPersonCharacter : MonoBehaviour
             }
             if(isStopWalk)
             {
-                soundSources.Stop();
+                soundSource.Stop();
             }
 
-            if(oneShotId != -1)
-            {
-                soundSource.PlayOneShot(sound[oneShotId]);
-            }
         }
        
         // convert the world relative moveInput vector into a local-relative
@@ -202,7 +186,6 @@ public class ThirdPersonCharacter : MonoBehaviour
             Capsule.height = Capsule.height / 2f;
             Capsule.center = Capsule.center / 2f;
             Crouching = true;
-            soundSource.PlayOneShot(sound[0]);
         }
         else
         {

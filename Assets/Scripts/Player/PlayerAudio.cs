@@ -6,21 +6,24 @@ public class PlayerAudio : MonoBehaviour
 {
     [SerializeField] 
     AudioSource AudioSource;
-    public AudioClip[] sound;
+    public AudioClip[] Sound;
     bool isCrouch; 
+    bool isJump;
     Animator PlayerAnimator;
-    bool check=false;
+    bool Check=false;
+    public bool Checks=false;
+    public float jump;
 
 
     void Awake()
     {
-        AudioSource = GetComponent<AudioSource>();
         PlayerAnimator = GetComponent<Animator>();
     }
 
     void Update()
     {
         CrouchCheck();
+        JumpCheck();
     }
 
     void PlayAudio(AudioClip audioclip,float f)
@@ -35,14 +38,14 @@ public class PlayerAudio : MonoBehaviour
 
     void Crouch()
     {
-        if (isCrouch&&check==false)
+        if (isCrouch&&Check==false)
         {   
-            PlayAudio(sound[1],0.1f);
-            check=true;
+            PlayAudio(Sound[1],0.1f);
+            Check=true;
         }
         else if (isCrouch)
         {   
-            PlayAudio(sound[0],0.1f);
+            PlayAudio(Sound[0],0.1f);
         }
     }
 
@@ -52,7 +55,22 @@ public class PlayerAudio : MonoBehaviour
         if(isCrouch==false)
         {
             StopAudio();
-            check=false;
+            Check=false;
+        }
+    }
+
+    void JumpCheck()
+    {
+        bool isjump=PlayerAnimator.GetBool("OnGround");
+        if(isjump==false&&Checks==false)
+        {
+            PlayAudio(Sound[2],0.1f);
+            Checks=true;
+
+        }
+        else if(isjump)
+        {
+            Checks=false;
         }
     }
 }
