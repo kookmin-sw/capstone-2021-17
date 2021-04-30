@@ -38,9 +38,4 @@ public class MissionNetBehaviour : NetworkBehaviour
     {
         missionController.UnableMission();
     }
-
-    public void MissionClear()
-    {
-
-    }
 }

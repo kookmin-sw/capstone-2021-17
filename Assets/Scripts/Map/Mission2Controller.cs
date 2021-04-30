@@ -45,6 +45,7 @@ public class Mission2Controller : MonoBehaviour
 
             //1초뒤 창 종료
             Invoke("CloseMission", 1.0f);
+
         }
     }
 
@@ -89,8 +90,7 @@ public class Mission2Controller : MonoBehaviour
 
     void ValidStageClear()
     {
-        //탈출구랑 연동할 부분
-        GameMgr.MissionClear();
+        GameMgr.instance.MissionClear();
     }
     public void CodeChange(string num)
     {

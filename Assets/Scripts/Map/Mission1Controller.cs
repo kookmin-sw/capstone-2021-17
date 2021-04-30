@@ -71,11 +71,10 @@ public class Mission1Controller : MonoBehaviour
             {
                 UnableMission();
             }
-            //ValidStageClear();
+            ValidStageClear();
 
             //1초뒤 창 종료
             Invoke("CloseMission", 1.0f);
-            GameMgr.MissionClear();
         }
     }
 
@@ -122,7 +121,7 @@ public class Mission1Controller : MonoBehaviour
 
     void ValidStageClear()
     {
-        //탈출구랑 연동할 부분
+        GameMgr.instance.MissionClear();
     }
 
     //GameMgr 스크립트의 GenerateMissionCode를 실행해 미션에 사용할 코드를 배열에 저장함

@@ -21,6 +21,8 @@ public class GameMgr : MonoBehaviour
     public int missionSpawnCount;
     int[] missionCount = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
 
+    [SerializeField] private GameMgrNetBehaviour gameMgrNet;
+
     public GameObject[] exitLever;
     public int missionClearCount;
     int[] exitCount = { 0, 1, 2, 3 };
@@ -108,15 +110,12 @@ public class GameMgr : MonoBehaviour
     }
 
     //missionClearCount를 이용해 생성된 미션이 전부 완료됬는지 판단하고 탈출구를 작동시킴
-    public static void MissionClear()
+    public void MissionClear()
     {
-        instance.missionClearCount++;
-        if (instance.missionClearCount == instance.missionSpawnCount)
-        {
-            instance.ActiveExitDoor();
-        }
+        gameMgrNet.AddMissionClearCount(); //GameMgr.missionClearCount도 같이 올라갑니다!
     }
 
+    //GameMgrNetBehaviour로부터 작동됩니다
     public void ActiveExitDoor()
     {
         GetRandomInt(exitCount, exitCount.Length - 1);
