@@ -107,6 +107,7 @@ public class GameMgr : MonoBehaviour
         return code.Substring(0, length);
     }
 
+    //missionClearCount를 이용해 생성된 미션이 전부 완료됬는지 판단하고 탈출구를 작동시킴
     public static void MissionClear()
     {
         instance.missionClearCount++;
