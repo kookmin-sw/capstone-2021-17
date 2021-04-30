@@ -9484,7 +9484,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.033333335
-    functionName: Jump
+    functionName: JumpCheck
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: c106ffddd64f1004293d4005be185a4f,
       type: 3}
