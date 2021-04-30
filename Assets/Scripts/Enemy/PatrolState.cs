@@ -12,7 +12,7 @@ public class PatrolState : State
     {
         base.Enter();
         enemy.InitializeVar();
-        
+        enemy.navMeshAgent.speed = 0.5f;
     }
 
     public override void Exit()

@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
 
     public Transform target;    //타겟의 위치
     
-    public NavMeshAgent navMeshAgent;  //AI  
+    public NavMeshAgent navMeshAgent;  //AI
     public Transform[] wayPoint;   //WayPoint - public EnemySpawnManager에서 동적 할당이 이루어져야됨.   
     public AudioSource siren;                 //사이렌 오디오 소스
 
@@ -139,6 +139,7 @@ public class Enemy : MonoBehaviour
         else
         {
             hasDestination = true;
+            navMeshAgent.speed += navMeshAgent.speed * 0.005f;
             enemyStateMachine.ChangeState(move);
         }
     }
@@ -198,6 +199,7 @@ public class Enemy : MonoBehaviour
         dizzy = new DizzyState(this, enemyStateMachine, anim);
 
         enemyStateMachine.Initialize(idle);
+
     }
 
     private void Update()
