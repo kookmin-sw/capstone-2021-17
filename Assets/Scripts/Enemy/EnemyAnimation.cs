@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAnimation : MonoBehaviour
-{    
-    //check enemy has Path
-    [SerializeField]
+{            
     private EnemyControl checkAnim;
+    //check enemy has Path
     [SerializeField]
     private Enemy checkAni;
     Animator ani;
