@@ -34900,7 +34900,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoints:
-  - {fileID: 1506129690}
+  - {fileID: 611435901}
+  - {fileID: 1669443635}
+  - {fileID: 1557437921}
   wayPoints:
   - {fileID: 1583312890}
   - {fileID: 1066860803}
