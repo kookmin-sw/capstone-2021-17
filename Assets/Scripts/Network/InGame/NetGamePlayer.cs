@@ -154,7 +154,7 @@ public class NetGamePlayer : NetworkBehaviour
     [ClientRpc]
     private void RpcPlaySoundOneShot(int soundId)
     {
-        Character.soundSource.PlayOneShot(Character.sound[soundId]);
+        //사용 안해서 삭제 
     }
 
     [Command]
@@ -166,7 +166,8 @@ public class NetGamePlayer : NetworkBehaviour
     [ClientRpc]
     private void RpcStopSound()
     {
-        Character.soundSources.Stop();
+        // Character.soundSources-> Character.soundSource
+        Character.soundSource.Stop();
     }
 
     GameObject spawnPrefab;
@@ -182,10 +183,4 @@ public class NetGamePlayer : NetworkBehaviour
         GameObject createdObject = Instantiate(spawnPrefab , position , rotation);
         NetworkServer.Spawn(createdObject);
     }
-
-
-
-    
-
-    
 }
