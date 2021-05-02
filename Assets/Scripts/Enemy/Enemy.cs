@@ -9,25 +9,28 @@ public class Enemy : MonoBehaviour
 
     [Range(0, 360)] public float viewAngle;
     public float viewRadius;
-    public bool hasDestination = false;   //Walk 애니메이션을 사용하기 위한 조건
-    public bool findTargetVision = false;   //시야에 적이 들어왔는지 체크
-    public bool findTargetSound = false;    //오디오 센서에 적이 감지 됐는지
-    public bool turnOnSensor = true;  //시야와 오디오 센서 온오프.
-    public float dis;   //플레이어와의 거리
-    public float minErrorWayPoint = 0.5f;   //순찰 지점거리의 최소 오차
 
-    public Transform target;    //타겟의 위치
-    public Transform[] wayPoint;   //WayPoint - public EnemySpawnManager에서 동적 할당이 이루어져야됨.
-    public NavMeshAgent navMeshAgent;  //AI
-    public AudioSource siren;                 //사이렌 오디오 소스
-    public StateMachine enemyStateMachine;
-    public IdleState idle;
-    public PatrolState patrol;
-    public AttackState attack;
-    public DizzyState dizzy;
-    public ChaseState chase;
+    public bool hasDestination = false;   //Walk 애니메이션을 사용하기 위한 조건           
+    public float minErrorWayPoint = 0.5f;   //순찰 지점거리의 최소 오차    
+    public Transform[] wayPoint;        //WayPoint - public EnemySpawnManager에서 동적 할당이 이루어져야됨.        
+    private int randomIndex;
+    //현재 디버깅을 위해 public으로 선언한 것들 입니다.
+    #region Debuging    
+    private bool findTargetVision = false;   //시야에 적이 들어왔는지 체크
+    private bool findTargetSound = false;    //오디오 센서에 적이 감지 됐는지
+    private float dis;   //플레이어와의 거리    
+    
+    private StateMachine enemyStateMachine;
+    [SerializeField] private NavMeshAgent navMeshAgent;   //AI    
+    private PatrolState patrol;
+    private List<Transform> visibleTargets = new List<Transform>();  //시야에 들어온 적들의 List
+    [SerializeField] private Transform target;            //타겟의 위치
+    #endregion
 
-    public List<Transform> visibleTargets = new List<Transform>();  //시야에 들어온 적들의 List
+    private IdleState idle;
+    private AttackState attack;
+    private DizzyState dizzy;
+    private ChaseState chase;
     
     //적의 판단 근거, 장애물인지 플레이어인지
     [SerializeField] private LayerMask targetMask;
@@ -36,28 +39,26 @@ public class Enemy : MonoBehaviour
     [SerializeField] private AnimationSoundEvent[] animationEvent;  //오디오 센서를 위한 애니메이션 이벤트        
     [SerializeField] private EnemyNetBehaviour enemyNet;        
     [SerializeField] private EnemyAnimation anim;       //에너미의 에니메이션을 컨트롤하는 클래스
-    
+    [SerializeField] private AudioSource siren;           //사이렌 오디오 소스
+
     private int targetsLength;  //타겟 리스트의 길이
     private int animationEventLength;   //AnimationSoundEvent 컴포넌트를 가진 오브젝트의 legnth    
     private Collider[] targetsInViewRadius = new Collider[4];   //OverlapSphereNonAlloc을 위한 어레이
-    
+    private System.Random random = new System.Random();
 
     public void FindTargets()   //사운드 센서와 시야로 플레이어를 찾는다.
     {
-        //센서가 켜지면
-        if (turnOnSensor)
-        {            
-            //센서들을 작동
-            FindVisibleTargets();
-            FindTargetWithSound();
-            //센서에 들어온 플레이어가 있으면
-            if (findTargetVision || findTargetSound)
-            {                
-                //그 플레이어를 타겟으로 삼는다.
-                SetTargetWithSensor();
-            }
+        //센서들을 작동
+        FindVisibleTargets();
+        FindTargetWithSound();
+        //센서에 들어온 플레이어가 있으면
+        if (findTargetVision || findTargetSound)
+        {
+            //그 플레이어를 타겟으로 삼는다.
+            SetTargetWithSensor();
         }
     }
+
     
     public void SetTargetWithSensor()   //시야에 새로운 플레이어가 들어오면 들어온 적들 중 가장 가까운 타겟으로 타겟 변경
     {
@@ -86,11 +87,7 @@ public class Enemy : MonoBehaviour
         if (dis <= 1.5f)
         {
             enemyStateMachine.ChangeState(attack);
-        }
-        else
-        {
-            enemyStateMachine.ChangeState(chase);
-        }
+        }        
     }
 
     public void FindVisibleTargets()     //시야에 플레이어가 있는지 없는지 찾는다.
@@ -136,14 +133,29 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    //센서와 에니메이션에 사용하는 변수 초기화
-    public void InitializeVar()
+    //센서와 에니메이션에 사용하는 모든 것 초기화
+    public void InitializeAll()
     {
         hasDestination = false;
         findTargetVision = false;
         findTargetSound = false;
-        turnOnSensor = false;        
+        navMeshAgent.speed = 0.5f;
+        visibleTargets.Clear();
     }    
+
+    //플레이어 타겟의 위치로 이동합니다.
+    public void MoveToTarget()
+    {
+        navMeshAgent.speed += navMeshAgent.speed * 0.0005f;     //에너미의 속도를 점차 증가시킵니다.
+        navMeshAgent.SetDestination(target.position);
+    }
+
+    //순찰 시 사용하는 웨이포인트로 이동합니다.
+    public void MoveToWayPoint()
+    {
+        randomIndex = random.Next() % wayPoint.Length;
+        navMeshAgent.SetDestination(wayPoint[randomIndex].position);
+    }
 
     //Scene에서 시야각과 적의 위치를 잇는 선을 긋는다.
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
@@ -161,16 +173,70 @@ public class Enemy : MonoBehaviour
         {            
         }*/
     }
-                       
+
+    //NavMeshAgent가 실행중이면 멈추고 멈춰있으면 실행시킨다.
+    public void ControlNavMesh()
+    {
+        navMeshAgent.isStopped = navMeshAgent.isStopped ? true : false;
+    }
+    public void ChangeToIdle()
+    {
+        enemyStateMachine.ChangeState(idle);
+    }
+    public void ChangeToPatrol()
+    {
+        enemyStateMachine.ChangeState(patrol);
+    }
+    public void ChangeToChase()
+    {
+        enemyStateMachine.ChangeState(chase);
+    }
+    public void ChangeToDizzy()
+    {
+        enemyStateMachine.ChangeState(dizzy);
+    }
+    public void ChangeToAttack()
+    {
+        enemyStateMachine.ChangeState(attack);
+    }
+
+    public void SirenPlay()
+    {
+        if (!siren.isPlaying)
+        {
+            siren.Play();
+        }
+    }
+
+    public void SirenStop()
+    {
+        siren.Stop();
+    }
+
+    public void SoundSensorDetect()
+    {
+        findTargetSound = true;
+    }
+
+    public float DistanceXZ()
+    {
+        Vector3 enemyPos = transform.position;
+        Vector3 wayPointPos = wayPoint[randomIndex].position;
+        enemyPos.y = 0.0f;
+        wayPointPos.y = 0.0f;
+
+        return Vector3.Distance(enemyPos, wayPointPos);
+    }
+
     private void Awake()
     {
         animationEventLength = animationEvent.Length;
         enemyStateMachine = new StateMachine();
-        idle = new IdleState(this, enemyStateMachine, anim, navMeshAgent);
-        patrol = new PatrolState(this, enemyStateMachine, anim, navMeshAgent);        
-        attack = new AttackState(this, enemyStateMachine, anim, navMeshAgent);
-        dizzy = new DizzyState(this, enemyStateMachine, anim, navMeshAgent);
-        chase = new ChaseState(this, enemyStateMachine, anim, navMeshAgent);
+        idle = new IdleState(this);
+        patrol = new PatrolState(this);
+        attack = new AttackState(this, anim);
+        dizzy = new DizzyState(this, anim);
+        chase = new ChaseState(this);
 
         enemyStateMachine.Initialize(idle);
     }
@@ -181,7 +247,6 @@ public class Enemy : MonoBehaviour
         {
             return;
         }        
-        enemyStateMachine.currentState.LogicUpdate();
-        FindTargets();
-    }   
+        enemyStateMachine.currentState.LogicUpdate();        
+    }
 }
