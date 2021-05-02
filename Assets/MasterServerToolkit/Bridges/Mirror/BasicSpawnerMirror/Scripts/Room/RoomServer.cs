@@ -248,7 +248,7 @@ namespace MasterServerToolkit.Bridges.MirrorNetworking
         /// This is called on the Server when a Mirror Client disconnects from the Server
         /// </summary>
         /// <param name="obj"></param>
-        private void OnMirrorClientDisconnectedEvent(NetworkConnection connection)
+        protected void OnMirrorClientDisconnectedEvent(NetworkConnection connection)
         {
             MstTimer.WaitForSeconds(0.2f, () =>
             {
@@ -286,7 +286,7 @@ namespace MasterServerToolkit.Bridges.MirrorNetworking
         /// Fired when mirror host was stopped.
         /// This is usefull in test mode.
         /// </summary>
-        private void OnMirrorServerStoppedEventHandler()
+        protected void OnMirrorServerStoppedEventHandler()
         {
             // Register handler to listen to client access validation request
             NetworkServer.UnregisterHandler<ValidateRoomAccessRequestMessage>();
@@ -300,7 +300,7 @@ namespace MasterServerToolkit.Bridges.MirrorNetworking
         /// <summary>
         /// Invokes when room server is successfully connected to master server as client
         /// </summary>
-        private void OnConnectedToMasterServerEventHandler()
+        protected void OnConnectedToMasterServerEventHandler()
         {
             logger.Debug("Room server is successfully connected to master server");
 
