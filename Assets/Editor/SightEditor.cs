@@ -22,10 +22,6 @@ public class SightEditor : Editor
         Handles.color = Color.red;
         /* 타겟이 시야에 있으면 빨간 선을 Scene에서 그림
         * *Game 화면 아님*
-        */
-        foreach (Transform visibleTarget in fov.visibleTargets)
-        {
-            Handles.DrawLine(fov.transform.position, visibleTarget.position);
-        }
+        */        
     }
 }

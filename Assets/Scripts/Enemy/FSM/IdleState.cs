@@ -5,14 +5,15 @@ using UnityEngine.AI;
 public class IdleState : State
 {
     float timer;
-    public IdleState(Enemy enemy, StateMachine stateMachine, EnemyAnimation ani, NavMeshAgent navMeshAgent) : base(enemy, stateMachine, ani, navMeshAgent)
-    { 
+
+    public IdleState(Enemy enemy) : base(enemy)
+    {
     }
-        
+
     public override void Enter()
     {
         base.Enter();
-        enemy.InitializeVar();  //변수 초기화
+        enemy.InitializeAll();  //변수 초기화
     }
 
     public override void LogicUpdate()
@@ -22,8 +23,8 @@ public class IdleState : State
         if (timer > 5f)
         {
             timer = 0.0f;
-            navMeshAgent.isStopped = false; //NavMeshAgent 재실행
-            stateMachine.ChangeState(enemy.patrol); //스테이트 변경
+            enemy.ControlNavMesh();
+            enemy.ChangeToPatrol();
         }
     }
 

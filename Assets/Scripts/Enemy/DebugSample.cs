@@ -11,11 +11,12 @@ public class DebugSample : MonoBehaviour
     private AnimationSoundEvent animEvent;
     [SerializeField]
     private Enemy enemy;
-
+    PatrolState patrol;
+    
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
-
+        
         text.text = "State : " + enemy.enemyStateMachine.currentState + "\n\n"
             + "FindTargetVision : " + enemy.findTargetVision + "\n\n"           
             + "Distance : " + enemy.dis + "\n\n"            
@@ -29,5 +30,5 @@ public class DebugSample : MonoBehaviour
         {
             text.text +=  enemy.visibleTargets[i] + "\n";
         }            
-    }
+    }*/
 }
