@@ -13424,7 +13424,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.155
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -53472,8 +53472,9 @@ MonoBehaviour:
   - {fileID: 666316128}
   menu_UI: {fileID: 6737879}
   game_clear: {fileID: 922606212}
-  clearText: {fileID: 1139013348}
   menuinfo: {fileID: 226993239}
+  missionCount: {fileID: 395507407}
+  clearText: {fileID: 1139013348}
 --- !u!114 &1638196645
 MonoBehaviour:
   m_ObjectHideFlags: 0
