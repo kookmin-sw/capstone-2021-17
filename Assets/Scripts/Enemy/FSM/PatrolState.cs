@@ -14,7 +14,7 @@ public class PatrolState : State
     {
         base.Enter();
         enemy.InitializeAll();          //변수 초기화        
-        enemy.hasDestination = true;    //걷는 애니메이션 실행
+        enemy.SetHasDestination();
         enemy.MoveToWayPoint();
     }
 

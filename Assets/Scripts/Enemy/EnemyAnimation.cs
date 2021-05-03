@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAnimation : MonoBehaviour
-{            
-    private EnemyControl checkAnim;
+{                
     //check enemy has Path
     [SerializeField]
     private Enemy checkAni;
-    Animator ani;
+    private Animator ani;
 
     [SerializeField]
     private EnemyNetBehaviour enemyNet;
@@ -20,7 +19,7 @@ public class EnemyAnimation : MonoBehaviour
     // 경로가 있으면 애니메이션 시작.
     void Update()
     {       
-        if (checkAni.hasDestination)
+        if (checkAni.GetHasDestination())
         {
             if(enemyNet != null)
             {
