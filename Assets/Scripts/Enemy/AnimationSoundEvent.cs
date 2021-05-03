@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class AnimationSoundEvent : MonoBehaviour
 {
-    [SerializeField]
-    private AudioSource walkAudio;
-    [SerializeField]
-    private Enemy enemy;
+    [SerializeField] private AudioSource playerAudioSource;
+    [SerializeField] private AudioClip[] playerAudioClip;
+    [SerializeField] private Enemy enemy;
 
     private Transform enemyPos;
     //범위 안에 있는지 확인하는 변수
@@ -19,6 +18,22 @@ public class AnimationSoundEvent : MonoBehaviour
     }
     public void SoundWhenAnim()
     {
+        ActiveSoundSensor();
+        playerAudioSource.Play();
+    }
+
+    public void WalkSound()
+    {
+        playerAudioSource.Play();
+    }
+
+    public bool CheckInArea()
+    {
+        return isInArea;
+    }
+
+    public void ActiveSoundSensor()
+    {
         if (Vector3.Distance(transform.position, enemyPos.position) <= 5f)
         {
             enemy.SoundSensorDetect();
@@ -27,17 +42,6 @@ public class AnimationSoundEvent : MonoBehaviour
         else
         {
             isInArea = false;
-        }        
-        walkAudio.Play();
-    }
-
-    public void WalkSound()
-    {
-        walkAudio.Play();
-    }
-
-    public bool CheckInArea()
-    {
-        return isInArea;
+        }
     }
 }
