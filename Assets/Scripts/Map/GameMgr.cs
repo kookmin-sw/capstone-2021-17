@@ -72,11 +72,11 @@ public class GameMgr : MonoBehaviour
             {
                 NetworkServer.Spawn(createdObject);
             }
-            //Debug.Log(boxCount[i] + "À§Ä¡¿¡ ¾ÆÀÌÅÛ¹Ú½º »ý¼º");
+            //Debug.Log(boxCount[i] + "ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Û¹Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         }
     }
 
-    //¾ÆÀÌÅÛ¹Ú½º ÆÐ½º¿öµå »ý¼º
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Û¹Ú½ï¿½ ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public static string GeneratePassword(int length)
     {
         StringBuilder codeSB = new StringBuilder(10);
@@ -91,7 +91,7 @@ public class GameMgr : MonoBehaviour
         return codeSB.ToString();
     }
 
-    //¹Ì¼Ç¿¡ »ç¿ëÇÑ ¼ÅÇÃ ¾Ë°í¸®Áò - 9ÀÚ¸® ±îÁö¸¸ »ý¼º°¡´É, Áßº¹Ã¼Å©ÇÔ
+    //ï¿½Ì¼Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë°ï¿½ï¿½ï¿½ï¿½ï¿½ - 9ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ßºï¿½Ã¼Å©ï¿½ï¿½
     public static string GenerateMissionCode(int length)
     {
         string str = "123456789";
@@ -109,13 +109,19 @@ public class GameMgr : MonoBehaviour
         return code.Substring(0, length);
     }
 
-    //missionClearCount¸¦ ÀÌ¿ëÇØ »ý¼ºµÈ ¹Ì¼ÇÀÌ ÀüºÎ ¿Ï·á‰ç´ÂÁö ÆÇ´ÜÇÏ°í Å»Ãâ±¸¸¦ ÀÛµ¿½ÃÅ´
+    //missionClearCountï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ï¿½Ï°ï¿½ Å»ï¿½â±¸ï¿½ï¿½ ï¿½Ûµï¿½ï¿½ï¿½Å´
     public void MissionClear()
     {
-        gameMgrNet.AddMissionClearCount(); //GameMgr.missionClearCountµµ °°ÀÌ ¿Ã¶ó°©´Ï´Ù!
+        gameMgrNet.AddMissionClearCount(); //GameMgr.missionClearCountï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¶ó°©´Ï´ï¿½!
     }
 
-    //GameMgrNetBehaviour·ÎºÎÅÍ ÀÛµ¿µË´Ï´Ù
+    //missionClearCount ì „ë‹¬
+    public int GetMissionClearCount()
+    {
+        return missionClearCount;
+    }
+
+    //GameMgrNetBehaviourï¿½Îºï¿½ï¿½ï¿½ ï¿½Ûµï¿½ï¿½Ë´Ï´ï¿½
     public void ActiveExitDoor()
     {
         GetRandomInt(exitCount, exitCount.Length - 1);
@@ -123,8 +129,8 @@ public class GameMgr : MonoBehaviour
         Debug.Log("Active Lever : " + exitCount[0]);
     }
 
-    //¹Ì¼Ç¿¡ »ç¿ëÇÒ ÆÐ½º¿öµå - ¿øÇÏ´Â ±æÀÌ¸¸Å­ »ý¼º°¡´É, Áßº¹Ã¼Å©¾ÈÇÔ
-    //Â÷ÈÄ º¯°æÇÒ °¡´É¼º ÀÖÀ¸´Ï Áö¿ìÁö ¸»°Í
+    //ï¿½Ì¼Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ßºï¿½Ã¼Å©ï¿½ï¿½ï¿½ï¿½
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     /*public static string GenerateMissionCode(int length)
     {
         StringBuilder codeSB = new StringBuilder(10);
