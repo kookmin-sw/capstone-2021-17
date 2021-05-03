@@ -47942,12 +47942,7 @@ MonoBehaviour:
   viewAngle: 75
   viewRadius: 25
   hasDestination: 0
-  findTargetVision: 0
-  findTargetSound: 0
-  turnOnSensor: 1
-  dis: 0
   minErrorWayPoint: 0.5
-  target: {fileID: 0}
   wayPoint:
   - {fileID: 613314581}
   - {fileID: 1232282867}
@@ -47976,8 +47971,7 @@ MonoBehaviour:
   - {fileID: 1970239915}
   - {fileID: 1362386966}
   navMeshAgent: {fileID: 1533231831}
-  siren: {fileID: 1438463266}
-  visibleTargets: []
+  target: {fileID: 0}
   targetMask:
     serializedVersion: 2
     m_Bits: 16
@@ -47988,6 +47982,7 @@ MonoBehaviour:
   - {fileID: 0}
   enemyNet: {fileID: 0}
   anim: {fileID: 1533231830}
+  siren: {fileID: 1438463266}
 --- !u!114 &1533231829
 MonoBehaviour:
   m_ObjectHideFlags: 0
