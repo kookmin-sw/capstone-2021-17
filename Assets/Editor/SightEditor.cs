@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor (typeof (Enemy))]
+//[CustomEditor (typeof (Enemy))]
 public class SightEditor : Editor
 {
-    void OnSceneGUI()
+    /*void OnSceneGUI()
     {
         Enemy fov = (Enemy)target;
         Handles.color = Color.white;
@@ -20,8 +20,8 @@ public class SightEditor : Editor
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngleB * fov.viewRadius);
 
         Handles.color = Color.red;
-        /* 타겟이 시야에 있으면 빨간 선을 Scene에서 그림
-        * *Game 화면 아님*
-        */        
-    }
+         타겟이 시야에 있으면 빨간 선을 Scene에서 그림
+         Game 화면 아님
+                
+    }*/
 }
