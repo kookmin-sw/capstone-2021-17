@@ -10,8 +10,11 @@ public class IngameUIManager : MonoBehaviour
     public GameObject[] ingame_howto; //how to 창 열기
     public GameObject menu_UI;
     public GameObject game_clear;
-    public Text clearText;
     public GameObject menuinfo;
+
+    public Slider missionCount; // 미션 게이지바
+    public Text clearText;
+    
     bool gameClear;
     float loadingTime = 5; 
     
@@ -21,7 +24,6 @@ public class IngameUIManager : MonoBehaviour
         gameClear = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(gameClear)
@@ -30,6 +32,7 @@ public class IngameUIManager : MonoBehaviour
         }
 
         OpenMenu();
+        MissionCount();
     }
 
         //게임 클리어시 활성화
@@ -151,5 +154,13 @@ public class IngameUIManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    //미션 수행도 진행바
+    private void MissionCount()
+    {
+        GameMgr mg = new GameMgr();
+        missionCount.value = mg.GetMissionClearCount();
+        //총 미션 갯수 구해야함
     }
 }
