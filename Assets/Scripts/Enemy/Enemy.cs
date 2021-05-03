@@ -24,7 +24,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private NavMeshAgent navMeshAgent;   //AI    
     private PatrolState patrol;
     private List<Transform> visibleTargets = new List<Transform>();  //시야에 들어온 적들의 List
-    [SerializeField] private Transform target;            //타겟의 위치
+    [SerializeField] private Transform target;            //타겟의 위치    
+    [SerializeField] private Transform memTarget;
     #endregion
 
     private IdleState idle;
@@ -62,9 +63,10 @@ public class Enemy : MonoBehaviour
     
     public void SetTargetWithSensor()   //시야에 새로운 플레이어가 들어오면 들어온 적들 중 가장 가까운 타겟으로 타겟 변경
     {
-        //시야에 적이 들어왔으므로 적을 탐지하는 변수 초기화
+        //센서에 적이 들어왔으므로 적을 탐지하는 변수 초기화
         findTargetVision = false;
         findTargetSound = false;
+        memTarget = target;
         //타겟을 정하기 위한 인덱스 변수
         int targetIndex = 0;
 
@@ -82,14 +84,12 @@ public class Enemy : MonoBehaviour
             }
         }
         target = visibleTargets[targetIndex];
-        //공격 범위 설정
-        //범위 내에 있으면 Attack 스테이트로, 아니면 그대로 추격
-        if (dis <= 1.5f)
+        if(target != memTarget)
         {
-            enemyStateMachine.ChangeState(attack);
-        }        
+            ChangeToChase();
+        }
     }
-
+    
     public void FindVisibleTargets()     //시야에 플레이어가 있는지 없는지 찾는다.
     {
         //시야에 들어온 타겟들을 초기화
@@ -124,7 +124,7 @@ public class Enemy : MonoBehaviour
             //타겟리스트에 추가 -> 임시 구현 (여러 플레이어의 사운드를 탐지)
             for (int i = 0; i < animationEventLength; i++)
             {
-                if (animationEvent[i].isInArea)
+                if (animationEvent[i].CheckInArea())
                 {
                     Transform target = animationEvent[i].transform;
                     visibleTargets.Add(target);
@@ -142,7 +142,7 @@ public class Enemy : MonoBehaviour
         navMeshAgent.speed = 0.5f;
         visibleTargets.Clear();
     }    
-
+    
     //플레이어 타겟의 위치로 이동합니다.
     public void MoveToTarget()
     {
@@ -197,7 +197,10 @@ public class Enemy : MonoBehaviour
     }
     public void ChangeToAttack()
     {
-        enemyStateMachine.ChangeState(attack);
+        if (dis <= 1.5f)
+        {
+            enemyStateMachine.ChangeState(attack);
+        }        
     }
 
     public void SirenPlay()

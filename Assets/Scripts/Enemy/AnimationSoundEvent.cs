@@ -5,13 +5,13 @@ using UnityEngine;
 public class AnimationSoundEvent : MonoBehaviour
 {
     [SerializeField]
-    AudioSource walkAudio;
+    private AudioSource walkAudio;
     [SerializeField]
-    Enemy enemy;
+    private Enemy enemy;
 
     private Transform enemyPos;
     //범위 안에 있는지 확인하는 변수
-    public bool isInArea = false;
+    private bool isInArea = false;
 
     public void Awake()
     {
@@ -34,5 +34,10 @@ public class AnimationSoundEvent : MonoBehaviour
     public void WalkSound()
     {
         walkAudio.Play();
+    }
+
+    public bool CheckInArea()
+    {
+        return isInArea;
     }
 }

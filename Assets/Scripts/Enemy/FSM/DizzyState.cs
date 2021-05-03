@@ -11,8 +11,8 @@ public class DizzyState : State
     public override void Enter()
     {
         base.Enter();
-        enemy.InitializeAll();  //변수 초기화
-        enemy.SirenStop();        
+        enemy.SirenStop();
+        enemy.InitializeAll();  //변수 초기화        
         enemy.ChangeToIdle();
         anim.PlayDizzyAnim();    //Dizzy 애니메이션 실행
     }

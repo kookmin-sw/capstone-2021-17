@@ -22,8 +22,7 @@ public class IdleState : State
         timer += Time.deltaTime;    //타이머로 딜레이 부여
         if (timer > 5f)
         {
-            timer = 0.0f;
-            enemy.ControlNavMesh();
+            timer = 0.0f;            
             enemy.ChangeToPatrol();
         }
     }

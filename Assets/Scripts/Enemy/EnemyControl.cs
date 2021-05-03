@@ -237,7 +237,7 @@ public class EnemyControl : MonoBehaviour
             //타겟리스트에 추가 -> 임시 구현 (여러 플레이어의 사운드를 탐지)
             for(int i=0; i<animationEventLength; i++)
             {                
-                if (animationEvent[i].isInArea)
+                if (animationEvent[i].CheckInArea())
                 {
                     Transform target = animationEvent[i].transform;
                     visibleTargets.Add(target);
