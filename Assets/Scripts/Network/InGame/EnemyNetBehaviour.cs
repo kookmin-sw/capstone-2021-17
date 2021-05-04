@@ -9,9 +9,6 @@ public class EnemyNetBehaviour : NetworkBehaviour
     EnemyAnimation enemyAnimation;
 
     [SerializeField]
-    EnemyControl enemyControl;
-
-    [SerializeField]
     NetworkAnimator netAni;
 
     [Server]

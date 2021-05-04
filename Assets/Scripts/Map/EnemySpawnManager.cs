@@ -9,7 +9,7 @@ public class EnemySpawnManager : MonoBehaviour
     public Transform[] wayPoints;
 
     [SerializeField]
-    private GameObject EnemyPrefab; 
+    private GameObject enemyPrefab; 
     private void Awake()
     {
         instance = this;
@@ -21,21 +21,25 @@ public class EnemySpawnManager : MonoBehaviour
         {
             Debug.LogWarning("Need to Set SpawnPoint at EnemySpawnManager! - Heeun An");
         }
-        SpawnEnemy(spawnPoints[0]);
+
+        SpawnEnemy(spawnPoints);
     }
 
-    public void SpawnEnemy(Transform pos)
+    public void SpawnEnemy(Transform[] spawnPoints)
     {
-        GameObject enemyObject = Instantiate(EnemyPrefab, pos.position, Quaternion.identity);
-        EnemyControl enemyControl = enemyObject.GetComponent<EnemyControl>();
-
-        // 동적으로 Waypoint 할당
-        enemyControl.wayPoint = wayPoints;
-
-        if (NetworkServer.active)
+        for(int i=0; i<spawnPoints.Length; i++)
         {
-            NetworkServer.Spawn(enemyObject);
-        }
+            GameObject enemyObject = Instantiate(enemyPrefab, spawnPoints[i].position, Quaternion.identity);
+            Enemy enemy = enemyObject.GetComponent<Enemy>();
+
+            // 동적으로 Waypoint 할당
+            enemy.SetWayPoints(wayPoints);
+
+            if (NetworkServer.active)
+            {
+                NetworkServer.Spawn(enemyObject);
+            }
+        }        
 
     }
 }
