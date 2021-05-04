@@ -47366,6 +47366,8 @@ MonoBehaviour:
   - {fileID: 1640456088}
   - {fileID: 1970239915}
   - {fileID: 1362386966}
+  viewAngle: 75
+  viewRadius: 15
   targetMask:
     serializedVersion: 2
     m_Bits: 16
@@ -47447,7 +47449,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 150
+  Priority: 12
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 5
@@ -48366,11 +48368,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c106ffddd64f1004293d4005be185a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1572419078}
-  sound:
-  - {fileID: 8300000, guid: e9714160ce34f2b4ab63ff8c27bd68e1, type: 3}
+  AudioSource: {fileID: 1572419078}
+  Sound:
+  - {fileID: 8300000, guid: 738e3bff6c9edfe409dcb5b68d82d66a, type: 3}
   - {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
-  - {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
+  - {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
+  Checks: 0
+  jump: 0
 --- !u!114 &1572419080
 MonoBehaviour:
   m_ObjectHideFlags: 0
