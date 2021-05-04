@@ -7,7 +7,7 @@ using Mirror;
 public class Enemy : MonoBehaviour
 {    
     public float minErrorWayPoint = 0.5f;   //순찰 지점거리의 최소 오차    
-    [SerializeField] private Transform[] wayPoint;        //WayPoint - public EnemySpawnManager에서 동적 할당이 이루어져야됨.            
+    
 
     [Range(0, 360)] [SerializeField] private float viewAngle;
     [SerializeField] private float viewRadius;
@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     //적의 판단 근거, 장애물인지 플레이어인지
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private LayerMask obstacleMask;
-
+    [SerializeField] private Transform[] wayPoint;        //WayPoint - public EnemySpawnManager에서 동적 할당이 이루어져야됨. 
     [SerializeField] private AnimationSoundEvent[] animationEvent;  //오디오 센서를 위한 애니메이션 이벤트        
     [SerializeField] private EnemyNetBehaviour enemyNet;
     [SerializeField] private EnemyAnimation anim;       //에너미의 에니메이션을 컨트롤하는 클래스
@@ -39,8 +39,6 @@ public class Enemy : MonoBehaviour
     private DizzyState dizzy;
     private ChaseState chase;            
     private Collider[] targetsInViewRadius = new Collider[4];   //OverlapSphereNonAlloc을 위한 어레이
-    private System.Random random = new System.Random();
-
 
     #region Public Methods
     public void FindTargets()   //사운드 센서와 시야로 플레이어를 찾는다.
@@ -80,7 +78,7 @@ public class Enemy : MonoBehaviour
     //순찰 시 사용하는 웨이포인트로 이동합니다.
     public void MoveToWayPoint()
     {
-        randomIndex = random.Next() % wayPoint.Length;
+        randomIndex = Random.Range(0, 26);
         navMeshAgent.SetDestination(wayPoint[randomIndex].position);
     }
 

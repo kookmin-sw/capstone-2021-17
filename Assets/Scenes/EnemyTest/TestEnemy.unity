@@ -47338,7 +47338,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67728d1a768c95044b8dea5b08e1a8af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minErrorWayPoint: 0.5
+  minErrorWayPoint: 1.5
+  viewAngle: 75
+  viewRadius: 15
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 16
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 256
   wayPoint:
   - {fileID: 613314581}
   - {fileID: 1232282867}
@@ -47366,14 +47374,6 @@ MonoBehaviour:
   - {fileID: 1640456088}
   - {fileID: 1970239915}
   - {fileID: 1362386966}
-  viewAngle: 75
-  viewRadius: 15
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 16
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 256
   animationEvent:
   - {fileID: 0}
   enemyNet: {fileID: 0}
@@ -48363,7 +48363,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572419077}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c106ffddd64f1004293d4005be185a4f, type: 3}
   m_Name: 

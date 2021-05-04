@@ -1450,8 +1450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67728d1a768c95044b8dea5b08e1a8af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minErrorWayPoint: 0.5
-  wayPoint: []
+  minErrorWayPoint: 2
   viewAngle: 75
   viewRadius: 10
   targetMask:
@@ -1460,6 +1459,7 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 256
+  wayPoint: []
   animationEvent: []
   enemyNet: {fileID: 5352464087998128179}
   anim: {fileID: 8070176954867844900}
@@ -1820,7 +1820,7 @@ Transform:
   m_GameObject: {fileID: 6747233845133606441}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 2.491597, z: 0.2184105}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 3.298}
   m_Children: []
   m_Father: {fileID: 7398420600991099967}
   m_RootOrder: 6
