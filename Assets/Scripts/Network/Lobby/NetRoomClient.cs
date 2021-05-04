@@ -63,4 +63,15 @@ public class NetRoomClient : RoomClient
     {
         //NetworkClient.Send(new CreateRoomPlayerMessage());
     }
+
+    protected override void JoinTheRoom()
+    {
+        if(roomAccess.SceneName != RoomNetworkManager.onlineScene)
+        {
+            Debug.Log("Room Game is Already Started!");
+            UnityEngine.SceneManagement.SceneManager.LoadScene(MS.Mst.Options.AsString(MS.MstDictKeys.ROOM_OFFLINE_SCENE_NAME));
+            return;
+        }
+        base.JoinTheRoom();
+    }
 }
