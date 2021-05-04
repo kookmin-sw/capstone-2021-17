@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using MasterServerToolkit.MasterServer;
 using TMPro;
 using MasterServerToolkit.Networking;
+using MasterServerToolkit.Games;
+using UnityEngine.Events;
 /*
 * NetManager를 이용합니다
 * StartScene에서의 GameObject를 다루는 Manager 객체입니다 
@@ -13,6 +15,8 @@ public class Start_MultiGameManager: MonoBehaviour
 {
     public TMP_InputField nameField;
     public TMP_InputField addressField;
+
+    public MasterServerConnectRoom connectRoom;
 
     private NetManager netManager;
     private void Start() // Awake할때는 instance 못부름
@@ -55,38 +59,51 @@ public class Start_MultiGameManager: MonoBehaviour
         SaveNickName();
         netManager.StartHost();
     }
+    
+    public UnityEvent OnRoomCreate;
+    private bool IsCreateRoom = false;
 
     public void  JoinDedicatedRoom()
     {
-        SaveAddress();
-        SaveNickName();
-        MasterServerConnectRoom.Instance.AddMasterServerConnectionListners();
-        ClientToMasterConnector.Instance.Connection.AddConnectionListener(OnConnectedToMasterServerAtClient, true);
-        ClientToMasterConnector.Instance.StartConnection();
+        IsCreateRoom = false;
 
+        if (!ClientToMasterConnector.Instance.Connection.IsConnected)
+        {
+            ClientToMasterConnector.Instance.StartConnection();
+        }
+        else
+        {
+            if(MatchmakingBehaviour.Instance is NetMatchmakingBehaviour netMatchmaking)
+            {
+                netMatchmaking.StartMatchByName(addressField.text);
+            }
+        }
+        
         //ClientToMasterConnector.Instance.Connection.AddConnectionListener(OnConnectedToMasterServerHandler, true);
     }
 
     public void CreateDedicatedRoom()
     {
-        
-        SpawnServer.Instance.AddMasterServerConnectionListners();
-        NetServersList.Instance.AddMasterServerConnectionListners();
-
-        ClientToMasterConnector.Instance.Connection.AddConnectionListener(OnConnectedToMasterServerAtServer, true);
-        ClientToMasterConnector.Instance.StartConnection();
-
-        SpawnServer.Instance.OnRoomStart += JoinRoom;
+        IsCreateRoom = true;
+        if (!ClientToMasterConnector.Instance.Connection.IsConnected)
+        {
+            ClientToMasterConnector.Instance.StartConnection();
+        }
     }
 
-    private void OnConnectedToMasterServerAtServer()
+    public void OnConnectedToMasterServer()
     {
-        //CreateRoom();
-    }
-
-    private void OnConnectedToMasterServerAtClient()
-    {
-        JoinRoom();
+        if (IsCreateRoom)
+        {
+            OnRoomCreate?.Invoke();
+        }
+        else
+        {
+            if (MatchmakingBehaviour.Instance is NetMatchmakingBehaviour netMatchmaking)
+            {
+                netMatchmaking.StartMatchByName(addressField.text);
+            }
+        }
     }
 
 

@@ -459,7 +459,7 @@ MonoBehaviour:
   masterPort: 5000
   allowGuestUsers: 1
   autoStartInEditor: 1
-  startServerAsHost: 0
+  startServerAsHost: 1
 --- !u!4 &1596428445
 Transform:
   m_ObjectHideFlags: 0
