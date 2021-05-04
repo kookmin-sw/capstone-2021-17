@@ -7,7 +7,7 @@ using Mirror;
 public class Enemy : MonoBehaviour
 {    
     public float minErrorWayPoint = 0.5f;   //순찰 지점거리의 최소 오차    
-    public Transform[] wayPoint;        //WayPoint - public EnemySpawnManager에서 동적 할당이 이루어져야됨.            
+    [SerializeField] private Transform[] wayPoint;        //WayPoint - public EnemySpawnManager에서 동적 할당이 이루어져야됨.            
 
     [Range(0, 360)] [SerializeField] private float viewAngle;
     [SerializeField] private float viewRadius;
@@ -56,6 +56,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void SetWayPoints(Transform[] wayPoints)
+    {
+        wayPoint = wayPoints;
+    }
+    
     public void InitializeAll()
     {
         hasDestination = false;
