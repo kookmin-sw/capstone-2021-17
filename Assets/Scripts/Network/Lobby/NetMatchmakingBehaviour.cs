@@ -6,6 +6,8 @@ using MasterServerToolkit.Networking;
 
 public class NetMatchmakingBehaviour : MatchmakingBehaviour
 {
+    public delegate void FindMatchCallback(GameInfoPacket game);
+
 
     private string roomName;
 
@@ -13,7 +15,7 @@ public class NetMatchmakingBehaviour : MatchmakingBehaviour
     {
         this.roomName = roomName;
     }
-    
+
     public override void StartMatch(GameInfoPacket gameInfo)
     {
         // Save room Id in buffer, may be very helpful
@@ -36,8 +38,11 @@ public class NetMatchmakingBehaviour : MatchmakingBehaviour
         }
     }
 
-    public void StartMatchByName(string name)
+    public void FindMatch(string name, FindMatchCallback callback)
     {
+
+        GameInfoPacket foundGame = null;
+
         MstTimer.WaitForSeconds(0.2f, () =>
         {
             Mst.Client.Matchmaker.FindGames((games) =>
@@ -49,19 +54,27 @@ public class NetMatchmakingBehaviour : MatchmakingBehaviour
 
                 foreach (GameInfoPacket game in games)
                 {
-                    Debug.Log(game.Properties);
                     Debug.Log(game.ToString());
                     if (game.Name == name)
                     {
-                        StartMatch(game);
+                        foundGame = game;
+                        break;
                     }
-
                 }
 
+                callback.Invoke(foundGame);
             });
         });
 
         
+    }
+
+    public void StartMatchByName(string name)
+    {
+        FindMatch(name, (game) =>
+        {
+            StartMatch(game);
+        });
     }
 
     public void StartMyMatch()

@@ -66,7 +66,13 @@ public class NetRoomClient : RoomClient
 
     protected override void JoinTheRoom()
     {
-        if(roomAccess.SceneName != RoomNetworkManager.onlineScene)
+        
+        string[] fileSplit = NetManager.instance.GameplayScene.Split('/');
+        string[] fileNameSplit = fileSplit[fileSplit.Length -1 ].Split('.');
+       
+        string GameplaySceneName = fileNameSplit[0];
+
+        if (roomAccess.SceneName == GameplaySceneName)
         {
             Debug.Log("Room Game is Already Started!");
             UnityEngine.SceneManagement.SceneManager.LoadScene(MS.Mst.Options.AsString(MS.MstDictKeys.ROOM_OFFLINE_SCENE_NAME));
