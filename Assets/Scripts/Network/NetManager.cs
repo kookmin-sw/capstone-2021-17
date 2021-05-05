@@ -84,6 +84,9 @@ public class NetManager : NetworkRoomManager
     protected virtual void CreateRoomPlayerRequestHandler(NetworkConnection connection, CreateRoomPlayerMessage message)
     {
 
+        clientPlayerName = message.name;
+        Debug.Log(clientPlayerName);
+
         Debug.Log("CREATE ROOMPLAYER REQUEST HANDLER");
         // Try to get old player
         GameObject oldPlayer = null;
@@ -113,6 +116,7 @@ public class NetManager : NetworkRoomManager
     {
         base.OnRoomClientConnect(conn);
         conn.Send(new CreateRoomPlayerMessage { name = PlayerName });
+        Debug.Log(PlayerName);
     }
 
 

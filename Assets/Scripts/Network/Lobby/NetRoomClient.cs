@@ -39,6 +39,8 @@ public class NetRoomClient : RoomClient
         {
             manager.OnClientStartedEvent += OnMirrorClientStartedEventHandler;
             manager.OnClientStoppedEvent += OnMirrorClientStoppedEventHandler;
+
+            manager.PlayerName = PlayerPrefs.GetString("PlayerName");
         }
         else
         {

@@ -68,6 +68,7 @@ public class Start_MultiGameManager: MonoBehaviour
     {
         if (ClientToMasterConnector.Instance.Connection.IsConnected)
         {
+            SetPlayerName();
             OnRoomJoin?.Invoke();
         }
         else
@@ -82,6 +83,7 @@ public class Start_MultiGameManager: MonoBehaviour
     {
         if (ClientToMasterConnector.Instance.Connection.IsConnected)
         {
+            SetPlayerName();
             OnRoomCreate?.Invoke();
         }
         else
@@ -107,6 +109,8 @@ public class Start_MultiGameManager: MonoBehaviour
         Mst.Events.Invoke(MstEventKeys.showLoadingInfo, "Connecting To Server...");
     }
 
-
-
+    public void SetPlayerName()
+    {
+        PlayerPrefs.SetString("PlayerName", nameField.text);
+    }
 }
