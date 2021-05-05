@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GunControll : MonoBehaviour
@@ -13,6 +12,7 @@ public class GunControll : MonoBehaviour
 
     void Update()
     {
+        //왼쪽 마우스 버튼을 클릭하면 & 사용한 총알이 0개이면 발사된다
         if(Input.GetMouseButtonUp(0)&&CountBullet==0)
         {
             StopCoroutine("Shot");

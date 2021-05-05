@@ -21,7 +21,6 @@ public class ThirdPersonCharacter : MonoBehaviour
     Rigidbody PlayerRigidbody;
     Animator PlayerAnimator;
     
-
     CapsuleCollider Capsule;
     float CapsuleHeight;
     Vector3 CapsuleCenter;
@@ -43,8 +42,6 @@ public class ThirdPersonCharacter : MonoBehaviour
     //NetPlayer
     [SerializeField]
     NetGamePlayer NetPlayer;
-
-    public AudioSource soundSource;
     
     //Player State
     public enum State
@@ -73,31 +70,19 @@ public class ThirdPersonCharacter : MonoBehaviour
 
     public void Move(Vector3 move, bool crouch, bool jump)
     {
-        bool isPlayWalk = false;
-        bool isStopWalk = false;
-        int oneShotId = -1;
         
         if (PresentMove != move && crouch == false&& IsGrounded)
-        {
-            if (soundSource.isPlaying==false)
-            {
-                isPlayWalk = true;
-            }         
+        {       
             state=State.Move;
         }
         else if (crouch)
         {
-            isStopWalk = true;
             state=State.Crouch;
         }
         else if (crouch&&PresentMove != move)
         {
-            isStopWalk = true;
             state=State.Crouch;
-            if (soundSource.isPlaying==false)
-            {
-                isPlayWalk = true;
-            }
+            
         }
         else if (jump)
         {
@@ -105,43 +90,20 @@ public class ThirdPersonCharacter : MonoBehaviour
         }
         else if (IsHit==true)
         {
-            isStopWalk = true;
             state =State.Hit;
         }
         else if (IsDie==true)
         {
-            isStopWalk = true;
             state =State.Die;
         }
         else
         {
             state=State.Idle;
-            isStopWalk = true;
         }
 
         if (NetPlayer != null)
         {
             NetPlayer.ChangeState(state);
-            if (isPlayWalk)
-            {
-                NetPlayer.PlaySound();
-            }
-
-            if(isStopWalk)
-            {
-                NetPlayer.StopSound();
-            }  
-        }
-        else
-        {
-            if (isPlayWalk)
-            {
-                soundSource.Play();
-            }
-            if(isStopWalk)
-            {
-                soundSource.Stop();
-            }
 
         }
        
