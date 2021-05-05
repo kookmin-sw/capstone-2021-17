@@ -14,6 +14,7 @@ public class IngameUIManager : MonoBehaviour
 
     public Slider missionCount; // 미션 게이지바
     public Text clearText;
+    public Text missionText;
     
     bool gameClear;
     float loadingTime = 5; 
@@ -160,7 +161,9 @@ public class IngameUIManager : MonoBehaviour
     private void MissionCount()
     {
         GameMgr mg = new GameMgr();
-        missionCount.value = mg.GetMissionClearCount();
+        int missionProgress = (mg.GetMissionClearCount() / mg.GetMissionSpawnPoint());
+        missionCount.value = missionProgress;
+        missionText.text = missionProgress*100 + "%";
         //총 미션 갯수 구해야함
     }
 }

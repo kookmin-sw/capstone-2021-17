@@ -120,6 +120,11 @@ public class GameMgr : MonoBehaviour
         return missionClearCount;
     }
 
+    public int GetMissionSpawnPoint()
+    {
+        return missionSpawnCount;
+    }
+
     //GameMgrNetBehaviour�κ��� �۵��˴ϴ�
     public void ActiveExitDoor()
     {
