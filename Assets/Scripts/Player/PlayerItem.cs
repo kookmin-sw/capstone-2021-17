@@ -8,8 +8,6 @@ public class PlayerItem : MonoBehaviour
     public GameObject[] Weapons;
     public bool[] hasWeapons;
 
-    bool pDown;
-
     Animator PlayerAnimator;
 
     void Start()
@@ -19,9 +17,10 @@ public class PlayerItem : MonoBehaviour
 
     void Update()
     {
-        PickUpGun();
+        PickUp();
+        Drop();
     }
-    void PickUpGun()
+    void PickUp()
     {
         if (Input.GetKeyDown(KeyCode.E)&&nearObject!=null)
         {
@@ -34,11 +33,22 @@ public class PlayerItem : MonoBehaviour
             else if(nearObject.name =="HealPotion")
             {
                 hasWeapons[1]=true;
-               // PlayerAnimator.SetBool("Heal", hasWeapons[0]);
                 Weapons[1].SetActive(true);
             }
             Destroy(nearObject);
         } 
+    }
+    void Drop()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (Weapons[0])
+            {
+                hasWeapons[0] = false;
+                PlayerAnimator.SetBool("Gun", hasWeapons[0]);
+                Weapons[0].SetActive(false);
+            }
+        }
     }
 
     void OnTriggerStay(Collider other)

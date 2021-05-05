@@ -9,9 +9,11 @@ public class PlayerHealth : MonoBehaviour
     private GameObject Player;
     private ThirdPersonUserControl PlayerHealthCheck;
     private ThirdPersonCharacter PlayerHealthState;
-    bool IsHit;
-
+    private PlayerItem PlayerHealItem;
     Animator PlayerAnimator;
+
+    public GameObject HealPortion;
+    public int CountHeal;
 
     [SerializeField]
     private NetGamePlayer NetPlayer;
@@ -21,8 +23,17 @@ public class PlayerHealth : MonoBehaviour
         Player=GameObject.Find("Chibi_boy");
         PlayerHealthCheck=Player.GetComponent<ThirdPersonUserControl>();
         PlayerHealthState=Player.GetComponent<ThirdPersonCharacter>();
+        PlayerHealItem = Player.GetComponent<PlayerItem>();
         PlayerAnimator = GetComponent<Animator>();
         HealthChange();
+    }
+    void Update()
+    {
+        //왼쪽 마우스 버튼을 클릭하면 & 힐아이템이 활성화가 되면 힐을 한다. 
+        if (Input.GetMouseButtonUp(0) && HealPortion.activeSelf == true)
+        {
+            StartCoroutine("Healing");
+        }
     }
 
     public void Hit()
@@ -64,5 +75,14 @@ public class PlayerHealth : MonoBehaviour
     public void HealthChange()
     {
         PlayerHealthCheck.HealthCheck=Health;
+    }
+    IEnumerator Healing()
+    {
+        PlayerAnimator.SetBool("Heal", true);
+        Heal();
+        yield return new WaitForSeconds(4);
+        PlayerHealItem.hasWeapons[1] = false;
+        PlayerHealItem.Weapons[1].SetActive(false);
+        PlayerAnimator.SetBool("Heal", false);
     }
 }

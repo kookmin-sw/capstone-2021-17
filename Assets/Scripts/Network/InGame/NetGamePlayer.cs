@@ -142,7 +142,7 @@ public class NetGamePlayer : NetworkBehaviour
     [ClientRpc]
     private void RpcPlaySound()
     {
-        Character.soundSource.Play();        
+
     }
 
     [Command]
@@ -167,7 +167,6 @@ public class NetGamePlayer : NetworkBehaviour
     private void RpcStopSound()
     {
         // Character.soundSources-> Character.soundSource
-        Character.soundSource.Stop();
     }
 
     GameObject spawnPrefab;
