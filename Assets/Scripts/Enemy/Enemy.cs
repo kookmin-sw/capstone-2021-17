@@ -66,6 +66,7 @@ public class Enemy : MonoBehaviour
         findTargetSound = false;
         navMeshAgent.speed = 0.5f;
         visibleTargets.Clear();
+        target = null;
     }
 
     //플레이어 타겟의 위치로 이동합니다.
