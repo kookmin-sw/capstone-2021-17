@@ -129,19 +129,23 @@ public class GameMgr : MonoBehaviour
         Debug.Log("Active Lever : " + exitCount[0]);
     }
 
-    //�̼ǿ� ����� �н����� - ���ϴ� ���̸�ŭ ��������, �ߺ�üũ����
-    //���� ������ ���ɼ� ������ ������ ����
-    /*public static string GenerateMissionCode(int length)
+
+    public static string GenerateMissionTime()
     {
         StringBuilder codeSB = new StringBuilder(10);
         char singleChar;
-        string numbers = "123456789";
-
-        while (codeSB.Length < length)
+        string numbers = "0123456789";
+        int length = 4;
+        for(int i = 0; i < length; i++)
         {
+            if (i == 0)
+            {
+                singleChar = numbers[UnityEngine.Random.Range(0, numbers.Length - 2)];
+                codeSB.Append(singleChar);
+            }
             singleChar = numbers[UnityEngine.Random.Range(0, numbers.Length)];
             codeSB.Append(singleChar);
         }
         return codeSB.ToString();
-    }*/
+    }
 }

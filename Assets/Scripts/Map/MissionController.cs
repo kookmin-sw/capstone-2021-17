@@ -9,6 +9,7 @@ public class MissionController : MonoBehaviour
     [SerializeField] private GameObject missionObject;
     [SerializeField] public Mission1Controller mission1Controller { get; private set; }
     [SerializeField] public Mission2Controller mission2Controller { get; private set; }
+    [SerializeField] public Mission3Controller mission3Controller { get; private set; }
 
     void Awake()
     {
@@ -20,6 +21,10 @@ public class MissionController : MonoBehaviour
         if (missionObject.name == "Mission2(Clone)")
         {
             mission2Controller = gameObject.GetComponent<Mission2Controller>();
+        }
+        if (missionObject.name == "Mission3(Clone)")
+        {
+            mission3Controller = gameObject.GetComponent<Mission3Controller>();
         }
     }
 
@@ -34,6 +39,10 @@ public class MissionController : MonoBehaviour
         {
             mission2Controller.ShowMission();
         }
+        if (missionObject.name == "Mission3(Clone)")
+        {
+            mission3Controller.ShowMission();
+        }
     }
 
     //미션창 비활성화
@@ -47,6 +56,10 @@ public class MissionController : MonoBehaviour
         {
             mission2Controller.CloseMission();
         }
+        if (missionObject.name == "Mission3(Clone)")
+        {
+            mission3Controller.CloseMission();
+        }
     }
 
     public void UnableMission()
@@ -58,6 +71,10 @@ public class MissionController : MonoBehaviour
         if (missionObject.name == "Mission2(Clone)")
         {
             mission2Controller.UnableMission();
+        }
+        if (missionObject.name == "Mission3(Clone)")
+        {
+            mission3Controller.UnableMission();
         }
     }
 }
