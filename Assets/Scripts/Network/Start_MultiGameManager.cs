@@ -61,22 +61,18 @@ public class Start_MultiGameManager: MonoBehaviour
     }
     
     public UnityEvent OnRoomCreate;
-    private bool IsCreateRoom = false;
+    public UnityEvent OnRoomJoin;
+    public UnityEvent OnServerCantConnect;
 
     public void  JoinDedicatedRoom()
     {
-        IsCreateRoom = false;
-
-        if (!ClientToMasterConnector.Instance.Connection.IsConnected)
+        if (ClientToMasterConnector.Instance.Connection.IsConnected)
         {
-            ClientToMasterConnector.Instance.StartConnection();
+            OnRoomJoin?.Invoke();
         }
         else
         {
-            if(MatchmakingBehaviour.Instance is NetMatchmakingBehaviour netMatchmaking)
-            {
-                netMatchmaking.StartMatchByName(addressField.text);
-            }
+            OnServerCantConnect?.Invoke();
         }
         
         //ClientToMasterConnector.Instance.Connection.AddConnectionListener(OnConnectedToMasterServerHandler, true);
@@ -84,30 +80,32 @@ public class Start_MultiGameManager: MonoBehaviour
 
     public void CreateDedicatedRoom()
     {
-        IsCreateRoom = true;
-        if (!ClientToMasterConnector.Instance.Connection.IsConnected)
-        {
-            ClientToMasterConnector.Instance.StartConnection();
-        }
-    }
-
-    public void OnConnectedToMasterServer()
-    {
-        if (IsCreateRoom)
+        if (ClientToMasterConnector.Instance.Connection.IsConnected)
         {
             OnRoomCreate?.Invoke();
         }
         else
         {
-            if (MatchmakingBehaviour.Instance is NetMatchmakingBehaviour netMatchmaking)
-            {
-                netMatchmaking.StartMatchByName(addressField.text);
-            }
+            OnServerCantConnect?.Invoke();
         }
     }
 
+    public void StartMatchMaking()
+    {
+        if(MatchmakingBehaviour.Instance is NetMatchmakingBehaviour netMatchmaking)
+        {
+            netMatchmaking.StartMatchByName(addressField.text);
+        }
+        else
+        {
+            OnServerCantConnect?.Invoke();
+        }
+    }
 
-
+    public void OnConnectedToMasterServer()
+    {
+        Mst.Events.Invoke(MstEventKeys.showLoadingInfo, "Connecting To Server...");
+    }
 
 
 

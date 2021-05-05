@@ -43,6 +43,8 @@ public class NetMatchmakingBehaviour : MatchmakingBehaviour
 
         GameInfoPacket foundGame = null;
 
+        Mst.Events.Invoke(MstEventKeys.showLoadingInfo, "Joining room... Please wait!");
+
         MstTimer.WaitForSeconds(0.2f, () =>
         {
             Mst.Client.Matchmaker.FindGames((games) =>
