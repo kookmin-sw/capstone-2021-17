@@ -72,11 +72,10 @@ public class GameMgr : MonoBehaviour
             {
                 NetworkServer.Spawn(createdObject);
             }
-            //Debug.Log(boxCount[i] + "��ġ�� �����۹ڽ� ����");
         }
     }
 
-    //�����۹ڽ� �н����� ����
+    //미션2와 아이템박스에 사용되는 코드 생성
     public static string GeneratePassword(int length)
     {
         StringBuilder codeSB = new StringBuilder(10);
@@ -91,7 +90,7 @@ public class GameMgr : MonoBehaviour
         return codeSB.ToString();
     }
 
-    //�̼ǿ� ����� ���� �˰����� - 9�ڸ� ������ ��������, �ߺ�üũ��
+    //미션1에 사용되는 코드 생성
     public static string GenerateMissionCode(int length)
     {
         string str = "123456789";

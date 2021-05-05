@@ -66,7 +66,7 @@ public class Mission3Controller : MonoBehaviour
         KPDisableManager.instance.DisablePlayer(false);
         missionCanvas.SetActive(false);
     }
-
+    //시간 변경 함수들
     public void ChangeTimeUp()
     {
         if (second == 60)
@@ -109,7 +109,7 @@ public class Mission3Controller : MonoBehaviour
         }
         stateTime.text = string.Format("{0:00}:{1:00}:{2:00}", hour, minute, second);
     }
-
+    //버튼에 따른 시간변경 코루틴
     IEnumerator ChangeTimeDownFast()
     {
         corutineRunning[0] = true;
@@ -175,6 +175,7 @@ public class Mission3Controller : MonoBehaviour
         }
         StartCoroutine("ChangeTimeDownFast");
     }
+    //시간 증가를 멈추고 답과 일치하는지 비교합니다
     public void StopCo()
     {
         if (corutineRunning[1])
@@ -200,6 +201,8 @@ public class Mission3Controller : MonoBehaviour
             Invoke("CloseMission", 1.0f);
         }
     }
+
+    //미션클리어 카운트 증가
     void ValidStageClear()
     {
         GameMgr.instance.MissionClear();
