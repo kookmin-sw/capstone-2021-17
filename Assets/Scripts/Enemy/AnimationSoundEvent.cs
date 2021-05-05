@@ -16,10 +16,15 @@ public class AnimationSoundEvent : MonoBehaviour
     {
         enemyPos = enemy.transform;
     }
-    public void SoundWhenAnim()
+    public void MakeEventWalk()
     {
         ActiveSoundSensor();
         playerAudioSource.Play();
+    }
+
+    public void MakeEventCrouch()
+    {        
+        playerAudioSource.PlayOneShot(playerAudioClip[0],0.1f);
     }
 
     public void WalkSound()
