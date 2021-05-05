@@ -194,8 +194,10 @@ public class Mission3Controller : MonoBehaviour
         }
         if(correctHour == hour && correctMinute == minute && correctSecond == second)
         {
+            stateTime.text = "Mission Clear!";
             ValidStageClear();
             UnableMission();
+            Invoke("CloseMission", 1.0f);
         }
     }
     void ValidStageClear()

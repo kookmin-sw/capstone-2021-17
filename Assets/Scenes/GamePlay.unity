@@ -36478,6 +36478,7 @@ MonoBehaviour:
   mission:
   - {fileID: 6690388454592023288, guid: 09641a87d806be54798b18c2da9c0c37, type: 3}
   - {fileID: 363627462034149909, guid: 1894a3520ed13f94997ef7f9488d14db, type: 3}
+  - {fileID: 1544027838506993895, guid: 7e164e273bfc85b4084b9ab7f7ffc32c, type: 3}
   missionObjectSpawnPoints: {fileID: 1038677583}
   missionSpawnCount: 14
   gameMgrNet: {fileID: 2115790823}

@@ -42,7 +42,7 @@ public class GameMgr : MonoBehaviour
         SpawnObject(itemBox, boxSpawnPoints, boxCount, boxSpawnCount, 1);
         GetRandomInt(missionCount, missionCount.Length - 1);
         missionSpawnPoints = GetSpwanPoints(missionObjectSpawnPoints);
-        SpawnObject(mission, missionSpawnPoints, missionCount, missionSpawnCount, 2);
+        SpawnObject(mission, missionSpawnPoints, missionCount, missionSpawnCount, 3);
     }
 
     static void GetRandomInt(int []arr, int max)

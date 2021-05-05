@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 7616450083895966491}
   - component: {fileID: 1544027838506993914}
   - component: {fileID: 1544027838506993913}
-  - component: {fileID: 1544027838506993912}
+  - component: {fileID: 99227988117635319}
   m_Layer: 8
   m_Name: Mission3
   m_TagString: Mission
@@ -330,7 +330,7 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
---- !u!114 &1544027838506993912
+--- !u!114 &99227988117635319
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -345,7 +345,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   IsUsing: 0
-  missionController: {fileID: 0}
+  missionController: {fileID: 6588118566319327146, guid: 1894a3520ed13f94997ef7f9488d14db,
+    type: 3}
 --- !u!1 &1727938641112634347
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,7 +682,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 681312702721610422}
         m_TargetAssemblyTypeName: TimeChangeController, Assembly-CSharp
         m_MethodName: ButtonPressString
         m_Mode: 5
@@ -814,7 +815,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 681312702721610422}
         m_TargetAssemblyTypeName: TimeChangeController, Assembly-CSharp
         m_MethodName: ButtonPressString
         m_Mode: 5
@@ -1030,7 +1031,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 681312702721610422}
         m_TargetAssemblyTypeName: TimeChangeController, Assembly-CSharp
         m_MethodName: ButtonPressString
         m_Mode: 5
@@ -1575,7 +1576,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 681312702721610422}
         m_TargetAssemblyTypeName: TimeChangeController, Assembly-CSharp
         m_MethodName: ButtonPressString
         m_Mode: 5
@@ -1598,6 +1599,7 @@ GameObject:
   - component: {fileID: 5652810470517358667}
   - component: {fileID: 3307029554762601212}
   - component: {fileID: 681312702721610422}
+  - component: {fileID: 1850923478267409078}
   m_Layer: 0
   m_Name: MissionController
   m_TagString: Untagged
@@ -1631,12 +1633,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c11ea520197154b861078aa846e717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missionCanvas: {fileID: 0}
+  missionCanvas: {fileID: 440405878859784003}
   missionObject: {fileID: 1544027838506993895}
-  missionNet: {fileID: 0}
+  missionNet: {fileID: 99227988117635319}
   correctTime: 
-  stateTime: {fileID: 0}
-  hintTime: {fileID: 0}
+  stateTime: {fileID: 2235012965531039308}
+  hintTime: {fileID: 8699057982851971595}
   correctHour: 0
   correctMinute: 0
   correctSecond: 0
@@ -1656,6 +1658,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5767bd3b77633e45be0730156f7c618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1850923478267409078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5446394852006692334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 423b9108f0866524599dd2fa6bde150e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionObject: {fileID: 0}
 --- !u!1 &6702015546621537605
 GameObject:
   m_ObjectHideFlags: 0
