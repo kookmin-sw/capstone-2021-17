@@ -18,7 +18,7 @@ public class EnemyNetBehaviour : NetworkBehaviour
     }
 
     [Server]
-    public void UnSetWalk()
+    public void UnsetWalk()
     {
         enemyAnimation.UnsetWalk();
     }
@@ -35,6 +35,4 @@ public class EnemyNetBehaviour : NetworkBehaviour
         netAni.SetTrigger("Dizzy");
     }
 
-
-    
 }

@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float viewRadius;
     private float dis;   //플레이어와의 거리  
     private bool hasDestination = false;   //Walk 애니메이션을 사용하기 위한 조건
+    private bool isChasing = false;        //Run 애니메이션을 사용하기 위한 조건
     private bool findTargetVision = false;   //시야에 적이 들어왔는지 체크
     private bool findTargetSound = false;    //오디오 센서에 적이 감지 됐는지      
     private int randomIndex;
@@ -60,8 +61,7 @@ public class Enemy : MonoBehaviour
     }
     
     public void InitializeAll()
-    {
-        hasDestination = false;
+    {        
         findTargetVision = false;
         findTargetSound = false;
         navMeshAgent.speed = 0.5f;
@@ -73,6 +73,7 @@ public class Enemy : MonoBehaviour
     public void MoveToTarget()
     {
         navMeshAgent.speed += navMeshAgent.speed * 0.0005f;     //에너미의 속도를 점차 증가시킵니다.
+        anim.SetBlnedTree(navMeshAgent.speed);
         navMeshAgent.SetDestination(target.position);
     }
 
@@ -107,7 +108,7 @@ public class Enemy : MonoBehaviour
     }
 
     public void ChangeToPatrol()
-    {
+    {        
         enemyStateMachine.ChangeState(patrol);
     }
 
@@ -152,13 +153,23 @@ public class Enemy : MonoBehaviour
         return Vector3.Distance(enemyPos, wayPointPos);
     }
 
-    public void SetHasDestination()
+    public void SetHasDestination(bool hasDestination)
     {
-        hasDestination = true;
+        this.hasDestination = hasDestination;
     }
     public bool GetHasDestination()
     {
         return hasDestination;
+    }
+
+    public void SetIsChasing(bool run)
+    {
+        isChasing = run;
+    }
+
+    public bool GetIsChasing()
+    {
+        return isChasing;
     }
     #endregion
 
@@ -246,7 +257,9 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        animationEvent = FindObjectsOfType<AnimationSoundEvent>();
         animationEventLength = animationEvent.Length;
+        Debug.Log(animationEventLength);
         enemyStateMachine = new StateMachine();
         idle = new IdleState(this);
         patrol = new PatrolState(this);
@@ -263,6 +276,6 @@ public class Enemy : MonoBehaviour
         {
             return;
         }        
-        enemyStateMachine.currentState.LogicUpdate();        
+        enemyStateMachine.currentState.LogicUpdate();
     }
 }

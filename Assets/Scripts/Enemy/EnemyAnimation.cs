@@ -34,13 +34,18 @@ public class EnemyAnimation : MonoBehaviour
         {
             if(enemyNet != null)
             {
-                enemyNet.UnSetWalk();
+                enemyNet.UnsetWalk();
             }
             else
             {
                 UnsetWalk();
             }            
         }       
+    }
+
+    public void SetBlnedTree(float runAmount)
+    {
+        ani.SetFloat("Blend", runAmount);
     }
 
     public void SetWalk()
@@ -53,6 +58,15 @@ public class EnemyAnimation : MonoBehaviour
         ani.SetBool("Walk", false);
     }
 
+    public void SetRun()
+    {
+        ani.SetBool("Run", true);
+    }
+
+    public void UnsetRun()
+    {
+        ani.SetBool("Run", false);
+    }
     public void PlayAttAnim()
     {
         if (enemyNet != null)
