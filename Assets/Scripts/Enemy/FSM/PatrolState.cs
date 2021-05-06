@@ -14,13 +14,14 @@ public class PatrolState : State
     {
         base.Enter();
         enemy.InitializeAll();          //변수 초기화        
-        enemy.SetHasDestination();
+        enemy.SetHasDestination(true);
         enemy.MoveToWayPoint();
     }
 
     public override void Exit()
     {
         base.Exit();
+        enemy.SetHasDestination(false);
     }
 
     public override void LogicUpdate()
@@ -37,8 +38,5 @@ public class PatrolState : State
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-
-    }
-
-    
+    }    
 }
