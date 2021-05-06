@@ -11,13 +11,16 @@ public class IngameUIManager : MonoBehaviour
     public GameObject menu_UI;
     public GameObject game_clear;
     public GameObject menuinfo;
+    public GameObject reCheck_UI;
 
     public Slider missionCount; // 미션 게이지바
     public Text clearText;
     public Text missionText;
+    public Text checktext;
     
     bool gameClear;
     float loadingTime = 5; 
+    private int check_state; // 게임 종료인지, 중간 종료인지 등 상태 체크용 int
     
     void Start()
     {
@@ -130,11 +133,11 @@ public class IngameUIManager : MonoBehaviour
             {
                 if(Input.GetKeyDown(KeyCode.Z)) //시작창으로 돌아가기
                 {
-                    SceneManager.ChangeStartScene();
+                    SetCheckText(2);
                 }
                 else if(Input.GetKeyDown(KeyCode.X))
                 {
-                    SceneManager.GameExit(); // 게임 종료하기
+                    SetCheckText(3); // 게임 종료하기
                 }
             }
 
@@ -164,6 +167,65 @@ public class IngameUIManager : MonoBehaviour
         int missionProgress = (mg.GetMissionClearCount() / mg.GetMissionSpawnPoint());
         missionCount.value = missionProgress;
         missionText.text = missionProgress*100 + "%";
-        //총 미션 갯수 구해야함
+    }
+
+    //게임 종료시 다시 물어보는 UI (ex : 정말로 나가시겠습니까?)
+    public void SetCheckText(int check)
+    {
+        reCheck_UI.SetActive(true);
+        if(menu_UI.activeSelf==true)
+        {
+            menu_UI.SetActive(false);
+        }
+        
+
+        // 1 : 로비
+        // 2 : 시작창
+        // 3 : 종료
+        switch (check)
+        {
+            case 1:
+                checktext.text = "로비로 돌아갈 경우, 현재 방의 플레이어들과 다시 게임을 진행하게 됩니다.\n로비로 돌아가시겠습니까?\n(Y/N)";
+                MoveScene(1);
+                break;
+            case 2:
+                checktext.text = "시작창으로 돌아갈 경우, 새로운 방을 찾아 게임을 진행해야 합니다.\n시작창으로 돌아가시겠습니까?\n(Y/N)";
+                MoveScene(2);
+                break;
+            case 3:
+                checktext.text = "게임이 완전히 종료됩니다. 종료하시겠습니까?\n(Y/N)";
+                MoveScene(3);
+                break;
+            default:
+                checktext.text = "정말로 게임에서 나가시겠습니까?\n(Y/N)";
+                MoveScene(2);
+                break;
+        }
+    }
+    private void MoveScene(int scene)
+    {//입력된 int 값에 따라 scene 이동 (로비 : 1 / 시작 : 2, 종료 : 3)
+        if(reCheck_UI.activeSelf==true)
+        {
+            if(Input.GetKeyDown(KeyCode.Y))
+            {
+                if(scene==1)
+                {
+                    SceneManager.ChangeLobbyScene();
+                }
+                else if(scene==2)
+                {
+                    SceneManager.ChangeStartScene();
+                }
+                else if(scene==3)
+                {
+                    SceneManager.GameExit();
+                }
+                
+            }
+            else if(Input.GetKeyDown(KeyCode.N))
+            {
+                reCheck_UI.SetActive(false);
+            }
+        }//버튼 안먹는 오류 고쳐야함
     }
 }
