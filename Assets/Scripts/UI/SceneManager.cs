@@ -50,4 +50,31 @@ public class SceneManager : MonoBehaviour
         }
     }
 
+    public void ShowOnly(int index)
+    {
+        for(int i=0;i< obj.Length; i++)
+        {
+            if(i == index)
+            {
+                obj[i].SetActive(true);
+            }
+            else
+            {
+                obj[i].SetActive(false);
+            }
+        }
+    }
+
+    public void ShowLoadingInfo()
+    {
+        ShowOnly(5);
+    }
+
+    public void ShowServerFail()
+    {
+        ShowOnly(6);
+    }
+
+
+
 }
