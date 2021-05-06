@@ -8,7 +8,7 @@ public class NetLoadingInfoView : LoadingInfoView
 {
     public IClientSocket Connection => Mst.Connection;
 
-    protected virtual void Start()
+    protected void Start()
     {
         Connection.OnStatusChangedEvent += OnStatusChangedEventHandler;
         OnStatusChangedEventHandler(Connection.Status);
@@ -19,16 +19,20 @@ public class NetLoadingInfoView : LoadingInfoView
         switch (status)
         {
             case ConnectionStatus.Connected:
-                SetLables("Client is connected");
+                SetLables("Connected To Server");
+                Owner.Show();
                 break;
             case ConnectionStatus.Disconnected:
-                SetLables("Client is offline");
+                SetLables("Disconnected Server");
+                Owner.Show();
                 break;
             case ConnectionStatus.Connecting:
-                SetLables("Client is connecting");
+                SetLables("Connecting To Server...");
+                Owner.Show();
                 break;
             default:
                 SetLables("Unknown status");
+                Owner.Show();
                 break;
         }
     }
