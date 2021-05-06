@@ -58,8 +58,7 @@ public class MovePlayerTestForEnemy : MonoBehaviour
 
     //Player State Idle Setting
     public State state = State.Idle;
-    bool isPlayWalk = false;
-    bool isStopWalk = false;
+    bool isPlayWalk = false;    
     void Start()
     {        
         soundSources = GetComponent<AudioSource>();
@@ -306,4 +305,22 @@ public class MovePlayerTestForEnemy : MonoBehaviour
             playerAnimator.applyRootMotion = false;
         }
     }
+
+    /*public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            Vector3 reactVec ;
+            reactVec = 10 * Vector3.back;
+            reactVec += 5 * Vector3.up;
+            playerRigidbody.AddRelativeForce(reactVec/2, ForceMode.Impulse);            
+        }
+    }
+
+    IEnumerator OnDamage(Vector3 reactVec)
+    {
+        
+        yield return new WaitForSeconds(2.0f);        
+    }
+    */
 }

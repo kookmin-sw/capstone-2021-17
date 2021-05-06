@@ -13,6 +13,7 @@ public class PlayerControlForEnemy : MonoBehaviour
     private Vector3 move;
     private bool jump;
     // the world-relative desired move direction, calculated from the camForward and user input.
+    private bool isAttacked = false;
 
     [SerializeField]
     private NetGamePlayer netPlayer;
@@ -22,13 +23,13 @@ public class PlayerControlForEnemy : MonoBehaviour
         // get the third person character ( this should never be null due to require component )
         character = GetComponent<MovePlayerTestForEnemy>();
     }
+    public void SetIsAttacked(bool isAttacked)
+    {
+        this.isAttacked = isAttacked;
+    }
 
     private void Update()
-    {
-        if (!jump)
-        {
-            jump = Input.GetKeyDown(KeyCode.Space);
-        }
+    {                
         LookAround();
     }
 
@@ -52,51 +53,60 @@ public class PlayerControlForEnemy : MonoBehaviour
     // Fixed update is called in sync with physics
     private void FixedUpdate()
     {
-        // read inputs
-        float h = CrossPlatformInputManager.GetAxis("Horizontal");
-        float v = CrossPlatformInputManager.GetAxis("Vertical");
-        bool crouch = Input.GetKey(KeyCode.C);
-
-        // calculate move direction to pass to character
-        if (cam != null)
+        if (!isAttacked)
         {
+            if (!jump)
+            {
+                jump = Input.GetKeyDown(KeyCode.Space);
+            }
 
-            // calculate camera relative direction to move:
-            // m_CamForward = new Vector3(m_Cam.forward.x, 0, m_Cam.forward.z).normalized;
-            camForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
-            move = v * camForward + h * cam.right;
+            // read inputs
+            float h = CrossPlatformInputManager.GetAxis("Horizontal");
+            float v = CrossPlatformInputManager.GetAxis("Vertical");
+            bool crouch = Input.GetKey(KeyCode.C);
+
+            // calculate move direction to pass to character
+            if (cam != null)
+            {
+
+                // calculate camera relative direction to move:
+                // m_CamForward = new Vector3(m_Cam.forward.x, 0, m_Cam.forward.z).normalized;
+                camForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
+                move = v * camForward + h * cam.right;
+            }
+            else
+            {
+                // we use world-relative directions in the case of no main camera
+                move = v * Vector3.forward + h * Vector3.right;
+                Debug.Log(v);
+
+            }
+
+            // walk speed multiplier
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                move *= 0.7f;
+            }
+
+            if (Input.GetKeyUp(KeyCode.B))
+            {
+                GetComponent<PlayerHealth>().Hit();
+
+            }
+
+            // pass all parameters to the character control script
+
+            if (netPlayer != null)
+            {
+                netPlayer.MoveCharacter(move, crouch, jump);
+            }
+            else
+            {
+                character.Move(move, crouch, jump);
+            }
+
+            jump = false;
         }
-        else
-        {
-            // we use world-relative directions in the case of no main camera
-            move = v * Vector3.forward + h * Vector3.right;
-            Debug.Log(v);
-
-        }
-
-        // walk speed multiplier
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            move *= 0.7f;
-        }
-
-        if (Input.GetKeyUp(KeyCode.B))
-        {
-            GetComponent<PlayerHealth>().Hit();
-
-        }
-
-        // pass all parameters to the character control script
-
-        if (netPlayer != null)
-        {
-            netPlayer.MoveCharacter(move, crouch, jump);
-        }
-        else
-        {
-            character.Move(move, crouch, jump);
-        }
-
-        jump = false;
     }
+
 }
