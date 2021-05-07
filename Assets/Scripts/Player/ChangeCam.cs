@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChangeCam : MonoBehaviour{
     public GameObject Cam1;
     public GameObject Cam2;
-    bool isCam2 = true;
+    bool isCam2 = false;
 
     private void Cam1ON() //카메라1 키기
     {
@@ -20,25 +20,20 @@ public class ChangeCam : MonoBehaviour{
 
     void Start()
     {
-        Cam1ON(); //시작할땐 Cam1을 틈
+        CheckCam();
     }
 
-    void Update()
+    void CheckCam()
     {
-        //Y키를 누르면 전환
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (isCam2 == true)
         {
-            if (isCam2 == true)
-            {
-                isCam2  = false;
-                Cam2ON();
-            }
-            else
-            {
-                isCam2  = true;
-                Cam1ON();
-            }
-         
+            isCam2  = false;
+            Cam2ON();
+        }
+        else
+        {
+            isCam2  = true;
+            Cam1ON();
         }
     }
 }
