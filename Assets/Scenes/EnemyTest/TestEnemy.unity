@@ -8322,7 +8322,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333242563}
   m_LocalRotation: {x: -0, y: 0.6718808, z: -0, w: 0.7406594}
-  m_LocalPosition: {x: -31.71, y: 0.027999878, z: -20.26}
+  m_LocalPosition: {x: -31.71, y: 0.027999878, z: -20.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1572419087}
@@ -19409,6 +19409,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -269.999
       objectReference: {fileID: 0}
+    - target: {fileID: 64591439983410076, guid: bc049284aee708a4b89092ca2a6eeba6,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc049284aee708a4b89092ca2a6eeba6, type: 3}
 --- !u!4 &694413445 stripped
@@ -27949,25 +27954,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 996628963}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1001972358 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5046772447193132823, guid: 54d60ea479a27f84e9dc3fbd3b3f13f9,
-    type: 3}
-  m_PrefabInstance: {fileID: 1533231819}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1001972360
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1001972358}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.7250275, y: 0.22183028, z: 0.366879}
-  m_Center: {x: -0.1374861, y: 0.024614934, z: -0.0012911857}
 --- !u!1001 &1003137429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38415,7 +38401,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17a6e083445b834e8e74f9d95265e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkAudio: {fileID: 1338542119}
+  audioSource: {fileID: 0}
+  clips: []
+  colliders: []
 --- !u!1 &1340527270
 GameObject:
   m_ObjectHideFlags: 0
@@ -42060,15 +42048,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 991b3a1bb37be41429c6faf8e2406ce7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2793c656be0ada441b05e0e384d8c923, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 200
+  Priority: 10
   DopplerLevel: 1
   MinDistance: 5
   MaxDistance: 10
@@ -45024,18 +45012,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1533231819}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1533231825 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8710875220803981584, guid: 54d60ea479a27f84e9dc3fbd3b3f13f9,
-    type: 3}
-  m_PrefabInstance: {fileID: 1533231819}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1533231826 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6272502359925367850, guid: 54d60ea479a27f84e9dc3fbd3b3f13f9,
-    type: 3}
-  m_PrefabInstance: {fileID: 1533231819}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1533231828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45103,7 +45079,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17a6e083445b834e8e74f9d95265e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkAudio: {fileID: 1533231832}
+  audioSource: {fileID: 1533231832}
+  clips:
+  - {fileID: 8300000, guid: 7c174b007b91f694c9d2b85294169bdf, type: 3}
+  - {fileID: 8300000, guid: 8a72c00452d4b2c4598537d7f2276bc9, type: 3}
+  - {fileID: 8300000, guid: 0f02fda8c2eab9d4d9cb2f15e4ca4273, type: 3}
+  colliders:
+  - {fileID: 1533231834}
+  - {fileID: 1533231833}
+  - {fileID: 2013775313}
 --- !u!114 &1533231830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45158,10 +45142,10 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 12
+  Priority: 50
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 5
+  MinDistance: 5
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -45262,32 +45246,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5032826, y: 0.16153711, z: 0.20238489}
   m_Center: {x: 0.20513257, y: 0.0067479205, z: 0}
---- !u!65 &1533231836
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1533231825}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.3209902, y: 0.17834084, z: 0.16976926}
-  m_Center: {x: -0.13993795, y: -0.0013716127, z: -0.0034217967}
---- !u!65 &1533231837
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1533231826}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.42552245, y: 0.16153711, z: 0.15444179}
-  m_Center: {x: -0.22462727, y: 0.006747951, z: -0.0017770231}
 --- !u!1001 &1538314606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45933,7 +45891,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 255
+  Priority: 125
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 1.01
@@ -46186,7 +46144,7 @@ MonoBehaviour:
   runCycleLegOffset: 0.2
   moveSpeedMultiplier: 2
   animSpeedMultiplier: 1
-  groundCheckDistance: 0.3
+  groundCheckDistance: 0.5
   isGrounded: 0
   isHit: 0
   isDie: 0
@@ -57823,6 +57781,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2010591449}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2013775311 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9109970959259385122, guid: 54d60ea479a27f84e9dc3fbd3b3f13f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1533231819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2013775313
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013775311}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7358522, y: 0.3090886, z: 0.36126128}
+  m_Center: {x: 0.15797974, y: 0.0029105733, z: 0.019493544}
 --- !u!1001 &2016747838
 PrefabInstance:
   m_ObjectHideFlags: 0
