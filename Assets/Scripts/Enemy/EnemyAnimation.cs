@@ -7,8 +7,7 @@ public class EnemyAnimation : MonoBehaviour
     //check enemy has Path
     [SerializeField]
     private Enemy checkAni;
-    private Animator ani;
-
+    private Animator ani;    
     [SerializeField]
     private EnemyNetBehaviour enemyNet;
     void Awake()
@@ -40,7 +39,7 @@ public class EnemyAnimation : MonoBehaviour
             {
                 UnsetWalk();
             }            
-        }       
+        }
     }
 
     public void SetBlnedTree(float runAmount)

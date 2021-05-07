@@ -31,9 +31,4 @@ public class ChaseState : State
         enemy.ChangeToAttack();
     }
 
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
-
 }
