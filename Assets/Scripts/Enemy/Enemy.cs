@@ -6,9 +6,8 @@ using Mirror;
 
 public class Enemy : MonoBehaviour
 {    
-    public float minErrorWayPoint = 0.5f;   //순찰 지점거리의 최소 오차    
+    public float minErrorWayPoint = 0.5f;   //순찰 지점거리의 최소 오차
     
-
     [Range(0, 360)] [SerializeField] private float viewAngle;
     [SerializeField] private float viewRadius;
     private float dis;   //플레이어와의 거리  
@@ -62,18 +61,18 @@ public class Enemy : MonoBehaviour
     
     public void InitializeAll()
     {        
-        findTargetVision = false;
-        findTargetSound = false;
-        navMeshAgent.speed = 0.5f;
-        visibleTargets.Clear();
-        target = null;
+        findTargetVision = false;       //센서 초기화
+        findTargetSound = false;        //센서 초기화
+        navMeshAgent.speed = 0.5f;      //속도 초기화
+        visibleTargets.Clear();         //타겟 리스트 초기화
+        target = null;                  //타겟 초기화
     }
 
     //플레이어 타겟의 위치로 이동합니다.
     public void MoveToTarget()
     {
         navMeshAgent.speed += navMeshAgent.speed * 0.0005f;     //에너미의 속도를 점차 증가시킵니다.
-        anim.SetBlnedTree(navMeshAgent.speed);
+        anim.SetBlnedTree(navMeshAgent.speed);                  //블랜드 트리 값 변경
         navMeshAgent.SetDestination(target.position);
     }
 
@@ -81,6 +80,7 @@ public class Enemy : MonoBehaviour
     public void MoveToWayPoint()
     {
         randomIndex = Random.Range(0, 26);
+        anim.SetBlnedTree(navMeshAgent.speed);      //Blend Tree 초기화
         navMeshAgent.SetDestination(wayPoint[randomIndex].position);
     }
 
