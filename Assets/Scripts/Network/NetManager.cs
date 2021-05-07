@@ -38,7 +38,7 @@ public class NetManager : NetworkRoomManager
 
     public static NetManager instance;
 
-    public string roomID;
+    public string RoomName;
 
     public string PlayerName;
     private string clientPlayerName;

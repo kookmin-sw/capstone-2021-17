@@ -30,6 +30,8 @@ public class NetRoomServer : RoomServer
     {
         if (MS.Mst.Client.Rooms.ForceClientMode) return;
 
+        OnRoomServerRegisteredEvent += OnSetRoomName;
+
         // Start listening to OnServerStartedEvent of our MirrorNetworkManager
         if (RoomNetworkManager is NetManager manager)
         {
@@ -59,4 +61,11 @@ public class NetRoomServer : RoomServer
             Connection.Connect(masterIp, masterPort);
         }
     }
+
+    void OnSetRoomName()
+    {
+        NetManager.instance.RoomName = roomOptions.Name;
+    }
+
+    
 }
