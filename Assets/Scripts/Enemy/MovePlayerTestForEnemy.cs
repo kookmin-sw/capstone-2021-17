@@ -45,6 +45,7 @@ public class MovePlayerTestForEnemy : MonoBehaviour
 
     AudioSource soundSources;
     AnimationSoundEvent animationSoundEvent;
+    
     //Player State
     public enum State
     {
@@ -60,7 +61,7 @@ public class MovePlayerTestForEnemy : MonoBehaviour
     public State state = State.Idle;
     bool isPlayWalk = false;    
     void Start()
-    {        
+    {                
         soundSources = GetComponent<AudioSource>();
         playerAnimator = GetComponent<Animator>();
         transition = playerAnimator.GetBehaviour<TransitionSound>();
@@ -306,17 +307,17 @@ public class MovePlayerTestForEnemy : MonoBehaviour
         }
     }
 
-    /*public void OnTriggerEnter(Collider other)
+    public void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Enemy"))
-        {
-            Vector3 reactVec ;
-            reactVec = 10 * Vector3.back;
-            reactVec += 5 * Vector3.up;
-            playerRigidbody.AddRelativeForce(reactVec/2, ForceMode.Impulse);            
+        {            
+            Vector3 reactVec  = (transform.position - other.transform.position);            
+            reactVec.z = 5*Mathf.Abs(reactVec.z) / reactVec.z;
+            reactVec.y =1f;
+            playerRigidbody.AddRelativeForce(reactVec, ForceMode.Impulse);
         }
     }
-
+    /*
     IEnumerator OnDamage(Vector3 reactVec)
     {
         
