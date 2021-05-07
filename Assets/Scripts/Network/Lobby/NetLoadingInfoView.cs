@@ -23,7 +23,7 @@ public class NetLoadingInfoView : LoadingInfoView
                 Owner.Show();
                 break;
             case ConnectionStatus.Disconnected:
-                SetLables("Disconnected Server");
+                SetLables("Start Connecting Server");
                 Owner.Show();
                 break;
             case ConnectionStatus.Connecting:
