@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: abd4581e92d67ea4ca000d123386c818
+guid: 086e5f85279e5bc4da5f5a9c22b0a360
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Mutant Swiping
+    second: Standing Melee Attack 360 Low
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -30,7 +30,7 @@ ModelImporter:
     importAnimatedCustomProperties: 0
     importConstraints: 0
     animationCompression: 3
-    animationRotationError: 0.5
+    animationRotationError: 0
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
@@ -38,11 +38,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Mutant Swiping
+      name: Standing Melee Attack 360 Low
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 80
+      lastFrame: 75
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
