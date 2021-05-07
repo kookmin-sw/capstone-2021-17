@@ -4661,6 +4661,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 834816111}
+        m_TargetAssemblyTypeName: MasterServerToolkit.MasterServer.ConnectionHelper`1[[MasterServerToolkit.MasterServer.ClientToMasterConnector,
+          MasterServerToolkit
+        m_MethodName: StartConnection
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1615230089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6440,7 +6453,7 @@ MonoBehaviour:
   _allPlayersReady: 0
   roomSlots: []
   clientIndex: 0
-  roomID: 
+  RoomName: 
   PlayerName: 
   loadingManagerPrefab: {fileID: 3825596481130646103, guid: f8df0c5ba34cebb4ebdc953c12376662,
     type: 3}
