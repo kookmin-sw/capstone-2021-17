@@ -23,7 +23,10 @@ public class NetGamePlayer : NetworkBehaviour
     [SyncVar]
     public ThirdPersonCharacter.State State;
 
-    
+    [SyncVar]
+    public bool escape = false;
+
+
     public ThirdCamera ThirdCamera;
     
     public ThirdPersonCharacter Character;
