@@ -219,14 +219,13 @@ public class NetManager : NetworkRoomManager
     }
 
     public override void OnClientChangeScene(string newSceneName, SceneOperation sceneOperation, bool customHandling)
-    {
-        
+    {        
         if (newSceneName == GameplayScene)
         {
             OnChangeGamePlayScene();
         }
         startPositionIndex = 0;
-        startPositions.Clear();
+        startPositions.Clear();     
         //base.OnClientChangeScene(newSceneName, sceneOperation, customHandling);
         //LoadScene(newSceneName);
 
@@ -249,14 +248,13 @@ public class NetManager : NetworkRoomManager
 
         return true;
     }
-    /*public override void OnClientLoadScene()
+    public override void OnClientLoadScene()
     {
-        //LoadingManager loadingManager = Instantiate(loadingManagerPrefab).GetComponent<LoadingManager>();
-        //loadingManager.SetAsyncOperation(loadingSceneAsync);
-
-
+        
+        LoadingManager loadingManager = Instantiate(loadingManagerPrefab).GetComponent<LoadingManager>();
+        loadingManager.SetAsyncOperation(loadingSceneAsync);
     }
-    */
+    
     void OnReturnToRoom()
     {
         foreach (NetworkRoomPlayer roomPlayer in roomSlots)
