@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 1008380061}
   - component: {fileID: 1008380060}
   - component: {fileID: 1008380059}
+  - component: {fileID: 1008380062}
   m_Layer: 0
   m_Name: -- MIRROR_NETWORK_MANAGER
   m_TagString: Untagged
@@ -294,7 +295,7 @@ MonoBehaviour:
   _allPlayersReady: 0
   roomSlots: []
   clientIndex: 0
-  roomID: 
+  RoomName: 
   PlayerName: 
   loadingManagerPrefab: {fileID: 3825596481130646103, guid: f8df0c5ba34cebb4ebdc953c12376662,
     type: 3}
@@ -313,6 +314,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1008380062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008380058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showGUI: 1
+  offsetX: 0
+  offsetY: 0
 --- !u!1 &1215334756
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,7 +415,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 268.69092, y: 150.94995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1372211975
@@ -704,7 +720,7 @@ MonoBehaviour:
   masterPort: 5000
   allowGuestUsers: 1
   autoStartInEditor: 1
-  startServerAsHost: 1
+  startServerAsHost: 0
 --- !u!4 &1824107730
 Transform:
   m_ObjectHideFlags: 0

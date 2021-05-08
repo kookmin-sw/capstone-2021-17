@@ -159,20 +159,7 @@ public class NetManager : NetworkRoomManager
         }
     }
 
-    public override GameObject OnRoomServerCreateGamePlayer(NetworkConnection conn, GameObject roomPlayer)
-    {
-        Transform startPos = GetStartPosition();
-        GameObject gamePlayer = startPos != null
-            ? Instantiate(playerPrefab, startPos.position, startPos.rotation)
-            : Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-
-        NetGamePlayer netGamePlayer = gamePlayer.GetComponent<NetGamePlayer>();
-        NetRoomPlayer netRoomPlayer = roomPlayer.GetComponent<NetRoomPlayer>();
-        netGamePlayer.Nickname = netRoomPlayer.Nickname;
-        netGamePlayer.isLeader = netRoomPlayer.IsLeader;
-
-        return netGamePlayer.gameObject;
-    }
+   
 
 
     public override void ServerChangeScene(string newSceneName)
@@ -195,9 +182,7 @@ public class NetManager : NetworkRoomManager
 
         Transport.activeTransport.enabled = false;
 
-        
-
-        LoadScene(newSceneName);
+        loadingSceneAsync = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(newSceneName);
 
         // ServerChangeScene can be called when stopping the server
         // when this happens the server is not active so does not need to tell clients about the change
@@ -207,16 +192,35 @@ public class NetManager : NetworkRoomManager
             NetworkServer.SendToAll(new SceneMessage
             {
                 sceneName = newSceneName,
-                customHandling = true
+                customHandling = false
             });
         }
+        
 
         startPositionIndex = 0;
         startPositions.Clear();
     }
 
+    public override GameObject OnRoomServerCreateGamePlayer(NetworkConnection conn, GameObject roomPlayer)
+    {
+        
+        Transform startPos = GetStartPosition();
+        GameObject gamePlayer = startPos != null
+            ? Instantiate(playerPrefab, startPos.position, startPos.rotation)
+            : Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+
+        NetGamePlayer netGamePlayer = gamePlayer.GetComponent<NetGamePlayer>();
+        NetRoomPlayer netRoomPlayer = roomPlayer.GetComponent<NetRoomPlayer>();
+        netGamePlayer.Nickname = netRoomPlayer.Nickname;
+        netGamePlayer.isLeader = netRoomPlayer.IsLeader;
+
+        return netGamePlayer.gameObject;
+        
+    }
+
     public override void OnClientChangeScene(string newSceneName, SceneOperation sceneOperation, bool customHandling)
     {
+        
         if (newSceneName == GameplayScene)
         {
             OnChangeGamePlayScene();
@@ -224,13 +228,14 @@ public class NetManager : NetworkRoomManager
         startPositionIndex = 0;
         startPositions.Clear();
         //base.OnClientChangeScene(newSceneName, sceneOperation, customHandling);
-        LoadScene(newSceneName);
+        //LoadScene(newSceneName);
 
     }
     public override void OnRoomServerSceneChanged(string sceneName)
     {
         if(sceneName == GameplayScene)
         {
+            
             inGameMgr = GameMgr.instance;
             inGameMgr.Init();
 
@@ -238,16 +243,20 @@ public class NetManager : NetworkRoomManager
             enemySpawnManager.Init();
         }
     }
-    void LoadScene(string newSceneName)
+
+    public override bool OnRoomServerSceneLoadedForPlayer(NetworkConnection conn, GameObject roomPlayer, GameObject gamePlayer)
     {
-        LoadingManager loadingManager = Instantiate(loadingManagerPrefab).GetComponent<LoadingManager>();
 
-        loadingSceneAsync = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(newSceneName);
-
-        loadingManager.SetAsyncOperation(loadingSceneAsync);
-
-        loadingManager.StartLoading();
+        return true;
     }
+    /*public override void OnClientLoadScene()
+    {
+        //LoadingManager loadingManager = Instantiate(loadingManagerPrefab).GetComponent<LoadingManager>();
+        //loadingManager.SetAsyncOperation(loadingSceneAsync);
+
+
+    }
+    */
     void OnReturnToRoom()
     {
         foreach (NetworkRoomPlayer roomPlayer in roomSlots)

@@ -842,6 +842,8 @@ namespace Mirror
                     break;
             }
 
+            OnClientLoadScene();
+
             // don't change the client's current networkSceneName when loading additive scene content
             if (sceneOperation == SceneOperation.Normal)
                 networkSceneName = newSceneName;
@@ -1310,5 +1312,7 @@ namespace Mirror
 
         /// <summary>This is called when a host is stopped.</summary>
         public virtual void OnStopHost() {}
+
+        public virtual void OnClientLoadScene() { }
     }
 }
