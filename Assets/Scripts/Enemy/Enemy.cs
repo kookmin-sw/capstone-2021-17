@@ -5,8 +5,7 @@ using UnityEngine.AI;
 using Mirror;
 
 public class Enemy : MonoBehaviour
-{    
-    public float minErrorWayPoint = 0.5f;   //순찰 지점거리의 최소 오차
+{        
     
     [Range(0, 360)] [SerializeField] private float viewAngle;
     [SerializeField] private float viewRadius;
@@ -30,6 +29,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private NavMeshAgent navMeshAgent;   //AI    
     [SerializeField] private Transform target;            //타겟의 위치    
     [SerializeField] private Transform memTarget;
+    [SerializeField] private Collider collider;
 
     private StateMachine enemyStateMachine;    
     private PatrolState patrol;
@@ -94,16 +94,17 @@ public class Enemy : MonoBehaviour
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
 
-    /*public void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        if (CompareTag("Bullet"))
+        if (other.CompareTag("Bullet"))
         {
             ChangeToDizzy();
         }
-    }*/
+    }
 
     public void ChangeToIdle()
     {
+        navMeshAgent.ResetPath();
         enemyStateMachine.ChangeState(idle);
     }
 
@@ -143,6 +144,11 @@ public class Enemy : MonoBehaviour
         findTargetSound = true;
     }
 
+    public void SetCollider()
+    {
+        collider.isTrigger = collider.isTrigger ? false : true;
+    }
+
     public float DistanceXZ()
     {
         Vector3 enemyPos = transform.position;
@@ -162,15 +168,6 @@ public class Enemy : MonoBehaviour
         return hasDestination;
     }
 
-    public void SetIsChasing(bool run)
-    {
-        isChasing = run;
-    }
-
-    public bool GetIsChasing()
-    {
-        return isChasing;
-    }
     #endregion
 
     #region Private Methods

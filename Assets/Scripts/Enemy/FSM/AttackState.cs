@@ -14,7 +14,7 @@ public class AttackState : State
         base.Enter();
         enemy.SirenStop();
         enemy.InitializeAll();  //변수 초기화               
-        anim.PlayAttAnim();      //공격 애니메이션 재생        
+        anim.PlayAttAnim();      //공격 애니메이션 재생  
     }
 
     public override void LogicUpdate()
@@ -31,5 +31,6 @@ public class AttackState : State
     public override void Exit()
     {
         base.Exit();
+        enemy.SetCollider();
     }
 }
