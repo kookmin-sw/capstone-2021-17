@@ -164,7 +164,15 @@ public class IngameUIManager : MonoBehaviour
     private void MissionCount()
     {
         GameMgr mg = new GameMgr();
-        int missionProgress = (mg.GetMissionClearCount() / mg.GetMissionSpawnPoint());
+        int missionProgress;
+        if (mg.GetMissionSpawnPoint() != 0) // Fixed DivideByZero Error
+        {
+            missionProgress = (mg.GetMissionClearCount() / mg.GetMissionSpawnPoint());
+        }
+        else
+        {
+            missionProgress = 0;
+        }
         missionCount.value = missionProgress;
         missionText.text = missionProgress*100 + "%";
     }
