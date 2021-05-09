@@ -45,7 +45,7 @@ public class MovePlayerTestForEnemy : MonoBehaviour
 
     AudioSource soundSources;
     AnimationSoundEvent animationSoundEvent;
-    
+    float timer = 0.0f;
     //Player State
     public enum State
     {
@@ -314,14 +314,8 @@ public class MovePlayerTestForEnemy : MonoBehaviour
             Vector3 reactVec  = (transform.position - other.transform.position);            
             reactVec.z = 5*Mathf.Abs(reactVec.z) / reactVec.z;
             reactVec.y =1f;
-            playerRigidbody.AddRelativeForce(reactVec, ForceMode.Impulse);
+            playerRigidbody.AddRelativeForce(reactVec, ForceMode.Impulse);            
+            Debug.Log(reactVec);
         }
-    }
-    /*
-    IEnumerator OnDamage(Vector3 reactVec)
-    {
-        
-        yield return new WaitForSeconds(2.0f);        
-    }
-    */
+    }    
 }

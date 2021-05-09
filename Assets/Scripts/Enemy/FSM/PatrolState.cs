@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 public class PatrolState : State
 {
-    private Vector3 patrolPos;    
-
+    private Vector3 patrolPos;
+    private float minErrorWayPoint = 0.5f;   //순찰 지점거리의 최소 오차
     public PatrolState(Enemy enemy) : base(enemy)
     {
     }
@@ -29,7 +29,7 @@ public class PatrolState : State
         base.LogicUpdate();        
         enemy.FindTargets();
         //일정 거리에 들어오면 다시 순찰 포인트 설정
-        if (enemy.DistanceXZ() <= enemy.minErrorWayPoint)
+        if (enemy.DistanceXZ() <= minErrorWayPoint)
         {
             enemy.ChangeToPatrol();
         }
