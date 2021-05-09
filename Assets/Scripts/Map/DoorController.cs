@@ -64,7 +64,7 @@ public class DoorController : MonoBehaviour
 
         if (CharKeyOpen == true)
         {
-            if ((isClosing == false) && useKeyToOpen && enterTrigger)
+            if ((isClosing == false) && useKeyToOpen) // && enterTrigger
             {
                 pressKey = true;
             }
