@@ -16,6 +16,6 @@ public class EscapeDoor : MonoBehaviour
     public void Escape (GameObject player)
     {
         NetGamePlayer netGamePlayer = player.GetComponentInParent<NetGamePlayer>();
-        netGamePlayer.escape = true;
+        netGamePlayer.Escape();
     }
 }

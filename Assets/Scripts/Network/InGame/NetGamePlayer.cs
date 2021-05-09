@@ -24,8 +24,7 @@ public class NetGamePlayer : NetworkBehaviour
     public ThirdPersonCharacter.State State;
 
     [SyncVar]
-    public bool escape = false;
-
+    public bool IsEscape = false;
 
     public ThirdCamera ThirdCamera;
     
@@ -184,5 +183,19 @@ public class NetGamePlayer : NetworkBehaviour
     {
         GameObject createdObject = Instantiate(spawnPrefab , position , rotation);
         NetworkServer.Spawn(createdObject);
+    }
+
+    
+    public void Escape()
+    {
+        if (isLocalPlayer)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Ending");
+        }
+        else
+        {
+            IsEscape = true;
+            Character.gameObject.SetActive(false);
+        }
     }
 }

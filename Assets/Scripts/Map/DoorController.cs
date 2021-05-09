@@ -62,6 +62,11 @@ public class DoorController : MonoBehaviour
             CharKeyOpen = true;
         }
 
+        if(doorNet !=null && doorNet.IsOpen)
+        {
+            CharKeyOpen = true;
+        }
+
         if (CharKeyOpen == true)
         {
             if ((isClosing == false) && useKeyToOpen) // && enterTrigger
