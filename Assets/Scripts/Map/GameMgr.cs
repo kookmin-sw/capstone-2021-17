@@ -125,12 +125,19 @@ public class GameMgr : MonoBehaviour
         return missionSpawnCount;
     }
 
+    [Server]
     //GameMgrNetBehaviour�κ��� �۵��˴ϴ�
     public void ActiveExitDoor()
     {
         GetRandomInt(exitCount, exitCount.Length - 1);
-        exitLever[exitCount[0]].gameObject.layer = LayerMask.NameToLayer("Interact");
+        gameMgrNet.RpcChangeLeverLayer(exitCount[0]);
         Debug.Log("Active Lever : " + exitCount[0]);
+    }
+
+    [Client]
+    public void ChangeLeverLayer(int i)
+    {
+        exitLever[i].gameObject.layer = LayerMask.NameToLayer("Interact");
     }
 
 

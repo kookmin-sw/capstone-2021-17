@@ -23,16 +23,22 @@ public class GameMgrNetBehaviour : NetworkBehaviour
     public void CmdAddMissionClearCount()
     {
         missionClearCount++;
+
+        if (missionClearCount == gameMgr.missionSpawnCount)
+        {
+            gameMgr.ActiveExitDoor();
+        }
+    }
+
+    [ClientRpc]
+    public void RpcChangeLeverLayer(int i)
+    {
+        gameMgr.ChangeLeverLayer(i);
     }
 
     void OnClearCountChanged(int oldValue, int newValue) // SyncVar가 바뀔 때마다 호출됨
     {
         missionClearCount = newValue;
         gameMgr.missionClearCount = missionClearCount;
-
-        if(missionClearCount == gameMgr.missionSpawnCount)
-        {
-            gameMgr.ActiveExitDoor();
-        }
     } 
 }

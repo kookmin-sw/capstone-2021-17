@@ -3958,7 +3958,7 @@ MonoBehaviour:
   missionSpawnCount: 14
   gameMgrNet: {fileID: 1093545863}
   exitLever:
-  - {fileID: 0}
+  - {fileID: 2085147090}
   missionClearCount: 0
 --- !u!4 &714816586
 Transform:
