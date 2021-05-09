@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1708461108072665400
+--- !u!1 &2651649388680956106
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5699964052937375524}
-  - component: {fileID: 377769902680292919}
-  - component: {fileID: 407717195878131183}
-  - component: {fileID: 5779333428125608726}
+  - component: {fileID: 2651649388680956109}
+  - component: {fileID: 2651649388680956108}
+  - component: {fileID: 2651649388680956107}
+  - component: {fileID: 2651649388680956110}
   m_Layer: 0
-  m_Name: (Debug Only) NetworkManager
+  m_Name: -- MIRROR_NETWORK_MANAGER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5699964052937375524
+--- !u!4 &2651649388680956109
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708461108072665400}
+  m_GameObject: {fileID: 2651649388680956106}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1513.6248, y: -648.8422, z: -334.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &377769902680292919
+--- !u!114 &2651649388680956108
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708461108072665400}
+  m_GameObject: {fileID: 2651649388680956106}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1eae106d70c0fe84786724b84d1cedc7, type: 3}
+  m_Script: {fileID: 11500000, guid: 84dac87ca7c5dd541af6d2d549a62f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
@@ -52,9 +52,9 @@ MonoBehaviour:
   serverTickRate: 30
   serverBatching: 1
   serverBatchInterval: 0
-  offlineScene: Assets/Scenes/GamePlay.unity
-  onlineScene: Assets/Scenes/GamePlay.unity
-  transport: {fileID: 407717195878131183}
+  offlineScene: Assets/Scenes/Start.unity
+  onlineScene: Assets/Scenes/WaitingRoom.unity
+  transport: {fileID: 2651649388680956107}
   networkAddress: localhost
   maxConnections: 4
   disconnectInactiveConnections: 0
@@ -71,13 +71,27 @@ MonoBehaviour:
   - {fileID: 6690388454592023288, guid: 09641a87d806be54798b18c2da9c0c37, type: 3}
   - {fileID: 363627462034149909, guid: 1894a3520ed13f94997ef7f9488d14db, type: 3}
   - {fileID: 1544027838506993895, guid: 7e164e273bfc85b4084b9ab7f7ffc32c, type: 3}
---- !u!114 &407717195878131183
+  showRoomGUI: 0
+  minPlayers: 1
+  roomPlayerPrefab: {fileID: 5801046964974653843, guid: 104f3e730f7e3a245a4de0f19f3b9df2,
+    type: 3}
+  RoomScene: Assets/Scenes/WaitingRoom.unity
+  GameplayScene: Assets/Scenes/GamePlay.unity
+  _allPlayersReady: 0
+  roomSlots: []
+  clientIndex: 0
+  RoomName: 
+  PlayerName: 
+  loadingManagerPrefab: {fileID: 3825596481130646103, guid: f8df0c5ba34cebb4ebdc953c12376662,
+    type: 3}
+  logLevel: 3
+--- !u!114 &2651649388680956107
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708461108072665400}
+  m_GameObject: {fileID: 2651649388680956106}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7424c1070fad4ba2a7a96b02fbeb4bb, type: 3}
@@ -95,13 +109,13 @@ MonoBehaviour:
   clientMaxReceivesPerTick: 1000
   clientSendQueueLimit: 10000
   clientReceiveQueueLimit: 10000
---- !u!114 &5779333428125608726
+--- !u!114 &2651649388680956110
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708461108072665400}
+  m_GameObject: {fileID: 2651649388680956106}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}

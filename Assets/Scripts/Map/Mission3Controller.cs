@@ -197,7 +197,14 @@ public class Mission3Controller : MonoBehaviour
         {
             stateTime.text = "Mission Clear!";
             ValidStageClear();
-            UnableMission();
+            if (missionNet != null)
+            {
+                missionNet.UnableMission();
+            }
+            else
+            {
+                UnableMission();
+            }
             Invoke("CloseMission", 1.0f);
         }
     }

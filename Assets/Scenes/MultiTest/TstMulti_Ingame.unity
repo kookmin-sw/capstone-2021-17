@@ -494,8 +494,12 @@ MonoBehaviour:
   - {fileID: 494621102}
   menu_UI: {fileID: 2036925072}
   game_clear: {fileID: 408101801}
-  clearText: {fileID: 1434098963}
   menuinfo: {fileID: 1059103789}
+  reCheck_UI: {fileID: 0}
+  missionCount: {fileID: 0}
+  clearText: {fileID: 1434098963}
+  missionText: {fileID: 0}
+  checktext: {fileID: 0}
 --- !u!114 &36035607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3941,6 +3945,7 @@ MonoBehaviour:
   mission:
   - {fileID: 6690388454592023288, guid: 09641a87d806be54798b18c2da9c0c37, type: 3}
   - {fileID: 363627462034149909, guid: 1894a3520ed13f94997ef7f9488d14db, type: 3}
+  - {fileID: 1544027838506993895, guid: 7e164e273bfc85b4084b9ab7f7ffc32c, type: 3}
   missionObjectSpawnPoints: {fileID: 481450276}
   missionSpawnCount: 14
   gameMgrNet: {fileID: 1093545863}
@@ -4008,7 +4013,7 @@ MonoBehaviour:
   - {fileID: 372638048}
   - {fileID: 433604572}
   - {fileID: 608975079}
-  EnemyPrefab: {fileID: 5834168737704926764, guid: 6b338324bbf044f4bbc176251bbaf035,
+  enemyPrefab: {fileID: 5834168737704926764, guid: 6b338324bbf044f4bbc176251bbaf035,
     type: 3}
 --- !u!1 &721222056
 GameObject:
@@ -12510,7 +12515,7 @@ PrefabInstance:
     - target: {fileID: 6533142168501272728, guid: 590e1211705302e48871a02a2ed1a7ea,
         type: 3}
       propertyPath: spawnPrefabs.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6533142168501272728, guid: 590e1211705302e48871a02a2ed1a7ea,
         type: 3}
@@ -12541,6 +12546,12 @@ PrefabInstance:
       propertyPath: spawnPrefabs.Array.data[4]
       value: 
       objectReference: {fileID: 363627462034149909, guid: 1894a3520ed13f94997ef7f9488d14db,
+        type: 3}
+    - target: {fileID: 6533142168501272728, guid: 590e1211705302e48871a02a2ed1a7ea,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 1544027838506993895, guid: 7e164e273bfc85b4084b9ab7f7ffc32c,
         type: 3}
     - target: {fileID: 6533142168501272730, guid: 590e1211705302e48871a02a2ed1a7ea,
         type: 3}

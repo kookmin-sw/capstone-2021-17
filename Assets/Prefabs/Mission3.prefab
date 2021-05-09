@@ -345,8 +345,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   IsUsing: 0
-  missionController: {fileID: 6588118566319327146, guid: 1894a3520ed13f94997ef7f9488d14db,
-    type: 3}
+  missionController: {fileID: 1850923478267409078}
 --- !u!1 &1727938641112634347
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,8 +1614,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5446394852006692334}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1244.3082, y: 425.8919, z: 13.469543}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7616450083895966491}
   m_RootOrder: 2
@@ -1670,7 +1669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 423b9108f0866524599dd2fa6bde150e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missionObject: {fileID: 0}
+  missionObject: {fileID: 1544027838506993895}
 --- !u!1 &6702015546621537605
 GameObject:
   m_ObjectHideFlags: 0
