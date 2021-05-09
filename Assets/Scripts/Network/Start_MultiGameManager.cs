@@ -14,9 +14,7 @@ using UnityEngine.Events;
 public class Start_MultiGameManager: MonoBehaviour
 {
     public TMP_InputField nameField;
-    public TMP_InputField addressField;
-
-    public MasterServerConnectRoom connectRoom;
+    public TMP_InputField roomNameField;
 
     private NetManager netManager;
     private void Start() // Awake할때는 instance 못부름
@@ -29,11 +27,16 @@ public class Start_MultiGameManager: MonoBehaviour
         {
             Debug.Log("Client Start");
         }
+
+        if (Mst.Server.IsConnected)
+        {
+            OnServerAlreadyConnected.Invoke();
+        }
     }
 
     public void SaveAddress()
     {
-        string address = addressField.text;
+        string address = roomNameField.text;
         if (address == "") address = "localhost";
         netManager.networkAddress = address;
     }
@@ -63,6 +66,7 @@ public class Start_MultiGameManager: MonoBehaviour
     public UnityEvent OnRoomCreate;
     public UnityEvent OnRoomJoin;
     public UnityEvent OnServerCantConnect;
+    public UnityEvent OnServerAlreadyConnected;
 
     public void  JoinDedicatedRoom()
     {
@@ -96,7 +100,7 @@ public class Start_MultiGameManager: MonoBehaviour
     {
         if(MatchmakingBehaviour.Instance is NetMatchmakingBehaviour netMatchmaking)
         {
-            netMatchmaking.StartMatchByName(addressField.text);
+            netMatchmaking.StartMatchByName(roomNameField.text);
         }
         else
         {
@@ -113,4 +117,12 @@ public class Start_MultiGameManager: MonoBehaviour
     {
         PlayerPrefs.SetString("PlayerName", nameField.text);
     }
+
+
+    public void OnAlreadyServerConnected()
+    {
+        OnServerAlreadyConnected.Invoke();
+    }
+
+    
 }

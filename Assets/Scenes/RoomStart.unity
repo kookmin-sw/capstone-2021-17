@@ -268,7 +268,7 @@ MonoBehaviour:
   serverTickRate: 30
   serverBatching: 1
   serverBatchInterval: 0
-  offlineScene: Assets/Scenes/RoomStart.unity
+  offlineScene: Assets/Scenes/Start.unity
   onlineScene: Assets/Scenes/WaitingRoom.unity
   transport: {fileID: 1008380059}
   networkAddress: localhost

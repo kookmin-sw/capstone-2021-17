@@ -3,12 +3,13 @@ using UnityEngine;
 using MasterServerToolkit.Games;
 using MasterServerToolkit.MasterServer;
 using MasterServerToolkit.Networking;
+using UnityEngine.Events;
 
 public class NetMatchmakingBehaviour : MatchmakingBehaviour
 {
     public delegate void FindMatchCallback(GameInfoPacket game);
 
-
+    public UnityEvent OnJoinRoomFail;
     private string roomName;
 
     public void SetRoomName(string roomName)
@@ -18,6 +19,11 @@ public class NetMatchmakingBehaviour : MatchmakingBehaviour
 
     public override void StartMatch(GameInfoPacket gameInfo)
     {
+        if(gameInfo == null)
+        {
+            OnJoinRoomFail.Invoke();
+        }
+
         // Save room Id in buffer, may be very helpful
         Mst.Options.Set(MstDictKeys.ROOM_ID, gameInfo.Id);
         // Save max players to buffer, may be very helpful
