@@ -26756,7 +26756,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -56598,9 +56598,11 @@ MonoBehaviour:
   menu_UI: {fileID: 6737879}
   game_clear: {fileID: 922606212}
   menuinfo: {fileID: 226993239}
+  reCheck_UI: {fileID: 0}
   missionCount: {fileID: 395507407}
   clearText: {fileID: 1139013348}
   missionText: {fileID: 316210599}
+  checktext: {fileID: 0}
 --- !u!114 &1638196645
 MonoBehaviour:
   m_ObjectHideFlags: 0
