@@ -163,18 +163,19 @@ public class IngameUIManager : MonoBehaviour
     //미션 수행도 진행바
     private void MissionCount()
     {
-        GameMgr mg = new GameMgr();
-        int missionProgress;
+        GameMgr mg = GameMgr.instance;
+        float missionProgress;
         if (mg.GetMissionSpawnPoint() != 0) // Fixed DivideByZero Error
         {
-            missionProgress = (mg.GetMissionClearCount() / mg.GetMissionSpawnPoint());
+            missionProgress = ((float)mg.GetMissionClearCount() / mg.GetMissionSpawnPoint());
         }
         else
         {
             missionProgress = 0;
         }
+
         missionCount.value = missionProgress;
-        missionText.text = missionProgress*100 + "%";
+        missionText.text = (int)(missionProgress*100) + "%";
     }
 
     //게임 종료시 다시 물어보는 UI (ex : 정말로 나가시겠습니까?)
