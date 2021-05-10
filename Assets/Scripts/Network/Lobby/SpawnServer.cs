@@ -50,7 +50,7 @@ public class SpawnServer : MonoBehaviour
 
     private string GetRoomCode()
     {
-        string sample = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        string sample = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var builder = new StringBuilder();
         for(int i = 0; i < 4; i++)
         {
