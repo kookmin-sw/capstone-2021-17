@@ -1670,6 +1670,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionObject: {fileID: 1544027838506993895}
+  screen: {fileID: 4871288185565812979}
+  screenRenderer: {fileID: 0}
 --- !u!1 &6702015546621537605
 GameObject:
   m_ObjectHideFlags: 0

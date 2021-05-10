@@ -7,6 +7,8 @@ using keypadSystem;
 public class MissionController : MonoBehaviour
 {
     [SerializeField] private GameObject missionObject;
+    [SerializeField] private GameObject screen;
+    [SerializeField] private Renderer screenRenderer;
     [SerializeField] public Mission1Controller mission1Controller { get; private set; }
     [SerializeField] public Mission2Controller mission2Controller { get; private set; }
     [SerializeField] public Mission3Controller mission3Controller { get; private set; }
@@ -14,6 +16,7 @@ public class MissionController : MonoBehaviour
     void Awake()
     {
         missionObject = transform.parent.gameObject;
+        screenRenderer = screen.GetComponent<Renderer>();
         if(missionObject.name == "Mission1(Clone)")
         {
             mission1Controller = gameObject.GetComponent<Mission1Controller>();
@@ -67,14 +70,27 @@ public class MissionController : MonoBehaviour
         if (missionObject.name == "Mission1(Clone)")
         {
             mission1Controller.UnableMission();
+            ScreenColorChange();
         }
         if (missionObject.name == "Mission2(Clone)")
         {
             mission2Controller.UnableMission();
+            ScreenColorChange();
         }
         if (missionObject.name == "Mission3(Clone)")
         {
             mission3Controller.UnableMission();
+            ScreenColorChange();
+        }
+    }
+
+    private void ScreenColorChange()
+    {
+        if (missionObject.layer == 0)
+        {
+            Debug.Log("color change");
+            screenRenderer.material.color = Color.black;
+            screenRenderer.material.SetColor("_EmissionColor", Color.black);
         }
     }
 }
