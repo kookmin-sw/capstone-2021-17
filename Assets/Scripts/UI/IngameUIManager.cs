@@ -173,7 +173,11 @@ public class IngameUIManager : MonoBehaviour
         {
             missionProgress = 0;
         }
-
+        
+        if (missionProgress > 1)
+        {
+            missionProgress = 1; // 100% 안넘어가게끔
+        }
         missionCount.value = missionProgress;
         missionText.text = (int)(missionProgress*100) + "%";
     }
