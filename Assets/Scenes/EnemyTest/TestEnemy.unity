@@ -45632,10 +45632,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.8
-  m_Height: 2.7
+  m_Radius: 0.7814252
+  m_Height: 2.7000003
   m_Direction: 1
-  m_Center: {x: 0, y: 1.3, z: 0}
+  m_Center: {x: 0.01933058, y: 1.3, z: 0.1599992}
 --- !u!114 &1533231828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45690,7 +45690,7 @@ MonoBehaviour:
   navMeshAgent: {fileID: 1533231831}
   target: {fileID: 0}
   memTarget: {fileID: 0}
-  collider: {fileID: 1533231823}
+  enemyCollider: {fileID: 1533231823}
 --- !u!114 &1533231829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45707,7 +45707,7 @@ MonoBehaviour:
   clips:
   - {fileID: 8300000, guid: 7c174b007b91f694c9d2b85294169bdf, type: 3}
   - {fileID: 8300000, guid: 8a72c00452d4b2c4598537d7f2276bc9, type: 3}
-  - {fileID: 8300000, guid: 0f02fda8c2eab9d4d9cb2f15e4ca4273, type: 3}
+  - {fileID: 8300000, guid: 2c172ad6840fa7741b9fc5bf9897f66a, type: 3}
   boxCollider: {fileID: 1533231833}
 --- !u!114 &1533231830
 MonoBehaviour:
@@ -46592,7 +46592,6 @@ MonoBehaviour:
   playerAudioSource: {fileID: 1572419078}
   playerAudioClip:
   - {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
-  enemy: {fileID: 1533231828}
 --- !u!114 &1572419080
 MonoBehaviour:
   m_ObjectHideFlags: 0
