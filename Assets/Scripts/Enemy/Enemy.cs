@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     
     [Range(0, 360)] [SerializeField] private float viewAngle;
     [SerializeField] private float viewRadius;
-    private float dis;   //플레이어와의 거리  
+    [SerializeField] private float dis;   //플레이어와의 거리  
     private bool hasDestination = false;   //Walk 애니메이션을 사용하기 위한 조건    
     private bool findTargetVision = false;   //시야에 적이 들어왔는지 체크
     private bool findTargetSound = false;    //오디오 센서에 적이 감지 됐는지      
