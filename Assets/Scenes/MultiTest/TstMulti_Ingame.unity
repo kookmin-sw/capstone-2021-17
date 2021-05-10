@@ -1923,7 +1923,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296642921}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.5, y: 1, z: -34}
+  m_LocalPosition: {x: 5.4, y: -0.74, z: 3.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13513,6 +13513,12 @@ PrefabInstance:
       propertyPath: offlineScene
       value: Assets/Scenes/MultiTest/TstMulti_Ingame.unity
       objectReference: {fileID: 0}
+    - target: {fileID: 377769902680292919, guid: 590e1211705302e48871a02a2ed1a7ea,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 3399244542748218395, guid: 4e508b0696a0a444f9758ed786a17348,
+        type: 3}
     - target: {fileID: 6533142168501272728, guid: 590e1211705302e48871a02a2ed1a7ea,
         type: 3}
       propertyPath: playerPrefab
