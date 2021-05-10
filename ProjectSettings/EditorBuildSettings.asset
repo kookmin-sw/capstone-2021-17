@@ -9,21 +9,21 @@ EditorBuildSettings:
     path: Assets/Scenes/Start.unity
     guid: 459059284b0bbbc40bc7eb3e33160cca
   - enabled: 1
-    path: Assets/Scenes/Loading.unity
-    guid: e0f454d138f05da48b9f8b6f4980a2c7
-  - enabled: 1
-    path: Assets/Scenes/GamePlay.unity
-    guid: 480becc14b40b4441890b77f80434ee1
-  - enabled: 1
-    path: Assets/Scenes/WaitingRoom.unity
-    guid: 3cc45eddb547f8146b763f1c6d42d2f6
-  - enabled: 0
-    path: Assets/Scenes/UI/InGameUITest.unity
-    guid: b557e2c8e4288cc44ba557c37859d568
-  - enabled: 1
     path: Assets/Scenes/RoomStart.unity
     guid: 44072d7b32dbb0843a745552b0bf8d37
   - enabled: 1
+    path: Assets/Scenes/Loading.unity
+    guid: e0f454d138f05da48b9f8b6f4980a2c7
+  - enabled: 1
+    path: Assets/Scenes/WaitingRoom.unity
+    guid: 3cc45eddb547f8146b763f1c6d42d2f6
+  - enabled: 1
+    path: Assets/Scenes/GamePlay.unity
+    guid: 480becc14b40b4441890b77f80434ee1
+  - enabled: 0
+    path: Assets/Scenes/UI/InGameUITest.unity
+    guid: b557e2c8e4288cc44ba557c37859d568
+  - enabled: 0
     path: Assets/Scenes/MasterServer.unity
     guid: 54bd8fb3b1914be43b38752482145460
   m_configObjects: {}

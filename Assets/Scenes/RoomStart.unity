@@ -237,7 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logLevel: 0
   initModulesAtStart: 1
-  masterIp: 127.0.0.1
+  masterIp: 13.125.161.129
   masterPort: 5000
   roomConnectionTimeout: 10
   autoStartInEditor: 1
