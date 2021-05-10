@@ -6867,7 +6867,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 213782677}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 17.8, y: -1.2, z: -6}
+  m_LocalPosition: {x: 17.9, y: -1.2, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1038677584}
@@ -32211,7 +32211,7 @@ GameObject:
   - component: {fileID: 954335637}
   - component: {fileID: 954335636}
   - component: {fileID: 954335638}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Power Lever1
   m_TagString: Lever
   m_Icon: {fileID: 0}
@@ -43323,7 +43323,7 @@ GameObject:
   - component: {fileID: 1279526827}
   - component: {fileID: 1279526826}
   - component: {fileID: 1279526828}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Power Lever1
   m_TagString: Lever
   m_Icon: {fileID: 0}
@@ -45602,7 +45602,7 @@ GameObject:
   - component: {fileID: 1353447888}
   - component: {fileID: 1353447887}
   - component: {fileID: 1353447889}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Power Lever1
   m_TagString: Lever
   m_Icon: {fileID: 0}
@@ -49840,7 +49840,7 @@ GameObject:
   - component: {fileID: 1464901084}
   - component: {fileID: 1464901083}
   - component: {fileID: 1464901085}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Power Lever1
   m_TagString: Lever
   m_Icon: {fileID: 0}
