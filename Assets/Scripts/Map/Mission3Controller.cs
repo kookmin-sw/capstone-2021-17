@@ -209,10 +209,15 @@ public class Mission3Controller : MonoBehaviour
         }
     }
 
+    bool stageClearValid = true; // 버튼 두번 눌릴경우 Clear는 한번만 Invoke 하게끔
     //미션클리어 카운트 증가
     void ValidStageClear()
     {
-        GameMgr.instance.MissionClear();
+        if (stageClearValid)
+        {
+            GameMgr.instance.MissionClear();
+            stageClearValid = false; 
+        }
     }
     public void SetMissionTime()
     {
