@@ -190,6 +190,13 @@ public class NetGamePlayer : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
+            EndingPlayerMessage msg = new EndingPlayerMessage()
+            {
+                PlayerName = Nickname,
+                endingState = PlayerEndingState.Live
+            };
+            NetworkServer.SendToAll(msg);
+
             UnityEngine.SceneManagement.SceneManager.LoadScene("Ending");
         }
         else

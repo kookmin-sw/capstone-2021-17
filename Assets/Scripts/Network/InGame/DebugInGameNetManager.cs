@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 /*  인게임중에서의 NetManger입니다. 디버깅용입니다.
  *  
@@ -21,11 +22,23 @@ using System;
  *  
  *  
  *  
- */ 
+ */
 public class DebugInGameNetManager : NetworkManager
 {
     private GameMgr gameMgr;
     private EnemySpawnManager enemySpawnManager;
+
+    [Scene]
+    public string endingScene;
+
+    public List<EndingPlayerMessage> EndingMessages;
+
+    public override void Awake()
+    {
+        EndingMessages = new List<EndingPlayerMessage>();
+
+        base.Awake();
+    }
 
     public override void OnStartServer()
     {
@@ -49,8 +62,26 @@ public class DebugInGameNetManager : NetworkManager
             enemySpawnManager.Init();
         }
 
+
+        NetworkClient.RegisterHandler<EndingPlayerMessage>(EndingPlayerMessageHandler);
         base.OnStartServer();
 
     }
 
+
+    /// <summary>
+    /// Invokes when client requested to create player on mirror server
+    /// </summary>
+    /// <param name="arg1"></param>
+    /// <param name="arg2"></param>
+    void EndingPlayerMessageHandler(EndingPlayerMessage message)
+    {
+
+        EndingMessages.Add(message);
+
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == endingScene)
+        {
+            EndingManager.instance.UpdatePlayers();
+        }
+    }
 }

@@ -9,6 +9,7 @@ using Mirror;
 using MasterServerToolkit.Logging;
 using MasterServerToolkit.MasterServer;
 using MasterServerToolkit.Utils;
+using UnityEngine.SceneManagement;
 /*   NetManager는 NetworkRoomManager 클래스를 상속하였습니다.
 *   Start - WaitingRoom - GamePlay 씬으로 이어지는 대부분의 네트워크 과정을 처리하며
 *   씬 전환도 합니다.
@@ -43,6 +44,11 @@ public class NetManager : NetworkRoomManager
     public string PlayerName;
     private string clientPlayerName;
 
+    public List<EndingPlayerMessage> EndingMessages;
+
+    [Scene]
+    public string endingScene;
+
     [SerializeField]
     [FormerlySerializedAs("LoadingManagerPrefab")]
     private GameObject loadingManagerPrefab;
@@ -66,6 +72,8 @@ public class NetManager : NetworkRoomManager
         {
             instance = this;
         }
+
+        EndingMessages = new List<EndingPlayerMessage>();
 
         base.Awake();
     }
@@ -118,7 +126,6 @@ public class NetManager : NetworkRoomManager
         //PlayerName = PlayerNameSave.instance.PlayerName;
         PlayerName = PlayerPrefs.GetString("PlayerName");
         conn.Send(new CreateRoomPlayerMessage { name = PlayerName });
-        Debug.Log(PlayerName);
     }
 
 
@@ -287,6 +294,17 @@ public class NetManager : NetworkRoomManager
             {
                 roomPlayer.Rect_Trans.gameObject.SetActive(false);
             }
+        }
+    }
+
+    void EndingPlayerMessageHandler(EndingPlayerMessage message)
+    {
+
+        EndingMessages.Add(message);
+
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == endingScene)
+        {
+            EndingManager.instance.UpdatePlayers();
         }
     }
 

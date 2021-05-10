@@ -6,33 +6,68 @@ using Mirror;
 
 public class EndingManager : MonoBehaviour
 {
+
+    public static EndingManager instance;
     public Text[] nickname;
     public Text gameClear;
-
-    public List<NetGamePlayer> Players = new List<NetGamePlayer>(NetManager.PLAYER_MAXNUM);
-    private List<string> names = new List<string>();
-    private List<ThirdPersonCharacter.State> states = new List<ThirdPersonCharacter.State>();
-    private List<string> networkTimes = new List<string>();
-
     
+    public List<EndingPlayerMessage> messages;
+
+    [SerializeField]
+    private List<SkinnedMeshRenderer> heads;
+    [SerializeField]
+    private List<SkinnedMeshRenderer> bodys;
+
+
+
     private bool isclear; //게임 클리어 여부
 
-    void Start()
+    void Awake()
     {
+        instance = this;
         
         isclear = true;
+
+        messages = new List<EndingPlayerMessage>();
+
+
+        UpdatePlayers(); 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdatePlayers()
     {
-        if (NetworkClient.active || NetworkServer.active)
+        if (NetworkManager.singleton is NetManager netManager)
         {
-            Players = InGame_MultiGameManager.Players;
-            names = InGame_MultiGameManager.GetPlayersNickname();
-            networkTimes = InGame_MultiGameManager.GetPlayersNetworkTime(); 
+            messages = netManager.EndingMessages;
+        }
+        else if (NetworkManager.singleton is DebugInGameNetManager debugInGameManager)
+        {
+            messages = debugInGameManager.EndingMessages;
+        }
+
+        //다른 플레이어들이 게임을 클리어할경우 EndingMessage가 NetManager.ending
+        ShowPlayers();
+        ShowPlayerText();
+    }
+
+    private void ShowPlayers()
+    {
+        for (int id = 0; id < messages.Count; id++)
+        {
+            heads[id].gameObject.SetActive(true);
+            bodys[id].gameObject.SetActive(true);
+        }
+        for (int id = messages.Count; id < 4; id++)
+        {
+            heads[id].gameObject.SetActive(false);
+            bodys[id].gameObject.SetActive(false);
         }
     }
+   
+
+
+
+    
 
     //캐릭터 모델 로드 후 캐릭터 상태에 따라 EndingPlayerManager의 islive or lsdead 호출
 
@@ -52,9 +87,9 @@ public class EndingManager : MonoBehaviour
 
     private void ShowPlayerText() //플레이어캐들 닉네임 출력
     {
-        for(int id = 0; id<Players.Count; id++)
+        for(int id = 0; id<messages.Count; id++)
         {
-            nickname[id].text = names[id];
+            nickname[id].text = messages[id].PlayerName;
         } //왼쪽에서부터 id 순으로 닉네임 출력
     }
 }
