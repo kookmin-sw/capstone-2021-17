@@ -32,6 +32,8 @@ public class Start_MultiGameManager: MonoBehaviour
         {
             OnServerAlreadyConnected.Invoke();
         }
+
+        roomNameField.onValueChanged.AddListener(delegate { SetRoomNameUpperCase(); });
     }
 
     public void SaveAddress()
@@ -122,6 +124,22 @@ public class Start_MultiGameManager: MonoBehaviour
     public void OnAlreadyServerConnected()
     {
         OnServerAlreadyConnected.Invoke();
+    }
+
+    void SetRoomNameUpperCase()
+    {
+        string roomNameText = roomNameField.text;
+        string upperText = roomNameText.ToUpper();
+        
+        
+        if(upperText.Length > 4)
+        {
+            roomNameField.text = upperText.Substring(0, 4);
+        }
+        else
+        {
+            roomNameField.text = upperText;
+        }
     }
 
     
