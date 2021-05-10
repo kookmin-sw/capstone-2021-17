@@ -10,8 +10,7 @@ public class Enemy : MonoBehaviour
     [Range(0, 360)] [SerializeField] private float viewAngle;
     [SerializeField] private float viewRadius;
     private float dis;   //플레이어와의 거리  
-    private bool hasDestination = false;   //Walk 애니메이션을 사용하기 위한 조건
-    private bool isChasing = false;        //Run 애니메이션을 사용하기 위한 조건
+    private bool hasDestination = false;   //Walk 애니메이션을 사용하기 위한 조건    
     private bool findTargetVision = false;   //시야에 적이 들어왔는지 체크
     private bool findTargetSound = false;    //오디오 센서에 적이 감지 됐는지      
     private int randomIndex;
@@ -29,7 +28,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private NavMeshAgent navMeshAgent;   //AI    
     [SerializeField] private Transform target;            //타겟의 위치    
     [SerializeField] private Transform memTarget;
-    [SerializeField] private Collider collider;
+    [SerializeField] private Collider enemyCollider;
 
     private StateMachine enemyStateMachine;    
     private PatrolState patrol;
@@ -84,16 +83,6 @@ public class Enemy : MonoBehaviour
         navMeshAgent.SetDestination(wayPoint[randomIndex].position);
     }
 
-    //Scene에서 시야각과 적의 위치를 잇는 선을 긋는다.
-    public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
-    {
-        if (!angleIsGlobal)
-        {
-            angleInDegrees += transform.eulerAngles.y;
-        }
-        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
-    }
-
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Bullet"))
@@ -146,7 +135,7 @@ public class Enemy : MonoBehaviour
 
     public void SetCollider()
     {
-        collider.isTrigger = collider.isTrigger ? false : true;
+        enemyCollider.isTrigger = enemyCollider.isTrigger ? false : true;
     }
 
     public float DistanceXZ()
@@ -255,8 +244,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         animationEvent = FindObjectsOfType<AnimationSoundEvent>();
-        animationEventLength = animationEvent.Length;
-        Debug.Log(animationEventLength);
+        animationEventLength = animationEvent.Length;        
         enemyStateMachine = new StateMachine();
         idle = new IdleState(this);
         patrol = new PatrolState(this);
