@@ -369,7 +369,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3313260697537336772}
-  - component: {fileID: 8070176955278491223}
   m_Layer: 0
   m_Name: Robot_RightArm
   m_TagString: Enemy
@@ -392,19 +391,6 @@ Transform:
   m_Father: {fileID: 8273342516250462628}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8070176955278491223
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1266102469129583116}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.68280643, y: 0.25490555, z: 0.20238489}
-  m_Center: {x: 0.19059819, y: 0.002410589, z: 0}
 --- !u!1 &1412950686897722643
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,7 +431,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 759990201350443654}
-  - component: {fileID: 8070176953871034278}
   m_Layer: 0
   m_Name: Robot_LeftHand
   m_TagString: Untagged
@@ -470,19 +455,6 @@ Transform:
   m_Father: {fileID: 3034096201005975108}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8070176953871034278
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665269676981556798}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.3209902, y: 0.17834084, z: 0.16976926}
-  m_Center: {x: -0.13993795, y: -0.0013716127, z: -0.0034217967}
 --- !u!1 &3023810785812801593
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +464,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6909518758618412551}
-  - component: {fileID: 8070176955172635542}
   m_Layer: 0
   m_Name: Robot_LeftArm
   m_TagString: Enemy
@@ -515,19 +486,6 @@ Transform:
   m_Father: {fileID: 7471117363553592926}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8070176955172635542
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3023810785812801593}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.68280643, y: 0.20503227, z: 0.20238489}
-  m_Center: {x: -0.241, y: -0.00047975514, z: -0.0000000010442902}
 --- !u!1 &3198582357386507616
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +584,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4118561350111546685}
-  - component: {fileID: 8070176954561921466}
   m_Layer: 0
   m_Name: Robot_RightForeArm
   m_TagString: Untagged
@@ -649,19 +606,6 @@ Transform:
   m_Father: {fileID: 3313260697537336772}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8070176954561921466
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3370969429269702602}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5032826, y: 0.16153711, z: 0.20238489}
-  m_Center: {x: 0.20513257, y: 0.0067479205, z: 0}
 --- !u!1 &3483940203269943688
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,7 +768,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3034096201005975108}
-  - component: {fileID: 8070176954617469631}
   m_Layer: 0
   m_Name: Robot_LeftForeArm
   m_TagString: Untagged
@@ -847,19 +790,6 @@ Transform:
   m_Father: {fileID: 6909518758618412551}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8070176954617469631
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4103729818491134724}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.42552245, y: 0.16153711, z: 0.15444179}
-  m_Center: {x: -0.22462727, y: 0.006747951, z: -0.0017770231}
 --- !u!1 &4219406288024330841
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,7 +832,7 @@ GameObject:
   - component: {fileID: 8070176954017773797}
   m_Layer: 0
   m_Name: Robot_RightHand
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1258,6 +1188,7 @@ GameObject:
   - component: {fileID: -2215940318900153342}
   - component: {fileID: -914068528616323694}
   - component: {fileID: 3860478368707668699}
+  - component: {fileID: 77704215078104661}
   m_Layer: 0
   m_Name: MultiTest_Enemy
   m_TagString: Enemy
@@ -1450,7 +1381,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67728d1a768c95044b8dea5b08e1a8af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minErrorWayPoint: 2
   viewAngle: 75
   viewRadius: 10
   targetMask:
@@ -1467,6 +1397,7 @@ MonoBehaviour:
   navMeshAgent: {fileID: 8070176954867844904}
   target: {fileID: 0}
   memTarget: {fileID: 0}
+  enemyCollider: {fileID: 77704215078104661}
 --- !u!82 &-914068528616323694
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1485,12 +1416,12 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 125
+  Priority: 50
   DopplerLevel: 1
-  MinDistance: 3
-  MaxDistance: 5
+  MinDistance: 1
+  MaxDistance: 5.05
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1498,23 +1429,41 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.19801979
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -5.05202
+      outSlope: -5.05202
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      time: 0.39823684
+      value: 0.6992798
+      inSlope: -1.263005
+      outSlope: -1.263005
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.7898819
+      value: 0.50109863
+      inSlope: -0.31575125
+      outSlope: -0.31575125
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.9867554
+      value: 0.39565164
+      inSlope: -0.19809864
+      outSlope: -0.19809864
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -1575,7 +1524,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17a6e083445b834e8e74f9d95265e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkAudio: {fileID: -914068528616323694}
+  audioSource: {fileID: -914068528616323694}
+  clips:
+  - {fileID: 8300000, guid: 7c174b007b91f694c9d2b85294169bdf, type: 3}
+  - {fileID: 8300000, guid: 8a72c00452d4b2c4598537d7f2276bc9, type: 3}
+  - {fileID: 8300000, guid: 2c172ad6840fa7741b9fc5bf9897f66a, type: 3}
+  boxCollider: {fileID: 8070176954017773797}
+--- !u!136 &77704215078104661
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5834168737704926764}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.8
+  m_Height: 2.7
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.3, z: 0}
 --- !u!1 &5903313292908563015
 GameObject:
   m_ObjectHideFlags: 0

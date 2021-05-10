@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 6375489128231356037}
   - component: {fileID: 2112200877598259296}
   - component: {fileID: 1689867080596699477}
+  - component: {fileID: 1246528896242782767}
   m_Layer: 2
   m_Name: Chibi_boy
   m_TagString: Player
@@ -222,7 +223,6 @@ MonoBehaviour:
   IsHit: 0
   IsDie: 0
   NetPlayer: {fileID: 6708225584575804860}
-  soundSource: {fileID: 2112200877598259296}
   state: 0
 --- !u!114 &6375489128231356037
 MonoBehaviour:
@@ -237,6 +237,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 2
+  HealPortion: {fileID: 0}
+  CountHeal: 0
   NetPlayer: {fileID: 6708225584575804860}
 --- !u!82 &2112200877598259296
 AudioSource:
@@ -248,18 +250,18 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: af5c8f44db3a22842b6009d3a5cd8e12, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.62
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 125
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 3
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -294,7 +296,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -353,6 +355,21 @@ MonoBehaviour:
   - {fileID: 0}
   SlotManager: {fileID: 0}
   netPlayer: {fileID: 6708225584575804860}
+--- !u!114 &1246528896242782767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3044512612950390390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb0843200620198459b9b03706525beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAudioSource: {fileID: 2112200877598259296}
+  playerAudioClip:
+  - {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
 --- !u!1 &3044521090428568344
 GameObject:
   m_ObjectHideFlags: 0
@@ -2964,6 +2981,7 @@ MonoBehaviour:
   Nickname: 
   isLeader: 0
   State: 0
+  IsEscape: 0
   ThirdCamera: {fileID: 3046158139356025099}
   Character: {fileID: 3157909130021106838}
   ThirdControl: {fileID: 3157104715050250688}
