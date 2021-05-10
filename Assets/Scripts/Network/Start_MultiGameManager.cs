@@ -117,6 +117,10 @@ public class Start_MultiGameManager: MonoBehaviour
 
     public void SetPlayerName()
     {
+        //Instantiate(Resources.Load("PlayerNameSave"));
+
+        //PlayerNameSave.instance.PlayerName = nameField.text;
+
         PlayerPrefs.SetString("PlayerName", nameField.text);
     }
 

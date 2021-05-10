@@ -115,6 +115,8 @@ public class NetManager : NetworkRoomManager
     public override void OnRoomClientConnect(NetworkConnection conn)
     {
         base.OnRoomClientConnect(conn);
+        //PlayerName = PlayerNameSave.instance.PlayerName;
+        PlayerName = PlayerPrefs.GetString("PlayerName");
         conn.Send(new CreateRoomPlayerMessage { name = PlayerName });
         Debug.Log(PlayerName);
     }
