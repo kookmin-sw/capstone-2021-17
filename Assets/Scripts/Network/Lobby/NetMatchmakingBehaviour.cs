@@ -12,6 +12,8 @@ public class NetMatchmakingBehaviour : MatchmakingBehaviour
     public UnityEvent OnJoinRoomFail;
     private string roomName;
 
+    bool isStartMyMatch = false;
+
     public void SetRoomName(string roomName)
     {
         this.roomName = roomName;
@@ -21,8 +23,18 @@ public class NetMatchmakingBehaviour : MatchmakingBehaviour
     {
         if(gameInfo == null)
         {
-            OnJoinRoomFail.Invoke();
+            if (isStartMyMatch == true)
+            {
+                StartMyMatch(); // Find Again if Create Room
+            }
+            else
+            {
+                OnJoinRoomFail.Invoke();
+            }
+
+            return;
         }
+        
 
         // Save room Id in buffer, may be very helpful
         Mst.Options.Set(MstDictKeys.ROOM_ID, gameInfo.Id);
@@ -87,6 +99,7 @@ public class NetMatchmakingBehaviour : MatchmakingBehaviour
 
     public void StartMyMatch()
     {
+        isStartMyMatch = true;
         StartMatchByName(roomName);
     }
 
