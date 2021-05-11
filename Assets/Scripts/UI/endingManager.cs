@@ -14,8 +14,9 @@ public class EndingManager : MonoBehaviour
     public List<EndingPlayerMessage> messages;
 
     [SerializeField]
+    private List<GameObject> Players;
+
     private List<SkinnedMeshRenderer> heads;
-    [SerializeField]
     private List<SkinnedMeshRenderer> bodys;
 
 
@@ -30,11 +31,25 @@ public class EndingManager : MonoBehaviour
 
         messages = new List<EndingPlayerMessage>();
 
+        foreach(GameObject player in Players) // 플레이어간 동작을 맞추기 위해 플레이어들의 Mesh를 이용함
+        {
+            heads.Add(player.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>());
+            bodys.Add(player.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>());
+        }
+
 
         UpdatePlayers(); 
     }
 
-    public void UpdatePlayers()
+    public void DisconnectRoom()
+    {
+        if (NetworkManager.singleton)
+        {
+            NetworkManager.singleton.StopClient(); // 시작으로 돌아감
+        }
+    }
+
+    public void UpdatePlayers() // EndingMessage에는 플레이어 이름, 깼는지 죽었는지 상태가 포함됨.
     {
         if (NetworkManager.singleton is NetManager netManager)
         {
@@ -45,12 +60,12 @@ public class EndingManager : MonoBehaviour
             messages = debugInGameManager.EndingMessages;
         }
 
-        //다른 플레이어들이 게임을 클리어할경우 EndingMessage가 NetManager.ending
+        //다른 플레이어들이 게임을 클리어할경우 EndingMessage가 NetManager.endingmessage로 데이터가 전달됨
         ShowPlayers();
         ShowPlayerText();
     }
 
-    private void ShowPlayers()
+    private void ShowPlayers() // 접속된 플레이어들 까지만 Mesh가 보이도록 함
     {
         for (int id = 0; id < messages.Count; id++)
         {
@@ -63,6 +78,8 @@ public class EndingManager : MonoBehaviour
             bodys[id].gameObject.SetActive(false);
         }
     }
+
+
    
 
 

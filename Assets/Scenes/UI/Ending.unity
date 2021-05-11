@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &74981466
 RectTransform:
   m_ObjectHideFlags: 0
@@ -414,12 +414,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131893355}
   m_CullTransparentMesh: 1
---- !u!137 &181727449 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 137293930933838344, guid: 416af391d44a9f745889399554e08f1e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1558159281}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &216170379
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,12 +493,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Nickname
---- !u!137 &317070943 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 137354272670622668, guid: 416af391d44a9f745889399554e08f1e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1570319020}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &354605809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -514,7 +502,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1803917066866746, guid: 416af391d44a9f745889399554e08f1e, type: 3}
       propertyPath: m_Name
-      value: Chibi_boy (2)
+      value: Chibi_boy (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1803917066866746, guid: 416af391d44a9f745889399554e08f1e, type: 3}
       propertyPath: m_IsActive
@@ -522,7 +510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4269983556564406, guid: 416af391d44a9f745889399554e08f1e, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4269983556564406, guid: 416af391d44a9f745889399554e08f1e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -754,7 +742,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 588420053}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f88ba98a1eb6d54a89d95e1ec0ffe3d, type: 3}
   m_Name: 
@@ -765,16 +753,11 @@ MonoBehaviour:
   - {fileID: 216170382}
   - {fileID: 1884250852}
   gameClear: {fileID: 0}
-  heads:
-  - {fileID: 2030522962}
-  - {fileID: 317070943}
-  - {fileID: 1894246813}
-  - {fileID: 1905512404}
-  bodys:
-  - {fileID: 181727449}
-  - {fileID: 1640106084}
-  - {fileID: 1445393529}
-  - {fileID: 1917294275}
+  Players:
+  - {fileID: 631297383}
+  - {fileID: 1825284570}
+  - {fileID: 1026268588}
+  - {fileID: 1077230468}
 --- !u!1 &621152238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1590,7 +1573,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1803917066866746, guid: 416af391d44a9f745889399554e08f1e, type: 3}
       propertyPath: m_Name
-      value: Chibi_boy (3)
+      value: Chibi_boy
       objectReference: {fileID: 0}
     - target: {fileID: 1803917066866746, guid: 416af391d44a9f745889399554e08f1e, type: 3}
       propertyPath: m_IsActive
@@ -1598,7 +1581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4269983556564406, guid: 416af391d44a9f745889399554e08f1e, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4269983556564406, guid: 416af391d44a9f745889399554e08f1e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1756,12 +1739,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343073093}
   m_CullTransparentMesh: 1
---- !u!137 &1445393529 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 137293930933838344, guid: 416af391d44a9f745889399554e08f1e,
-    type: 3}
-  m_PrefabInstance: {fileID: 354605809}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1447638638
 GameObject:
   m_ObjectHideFlags: 0
@@ -2407,7 +2384,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1803917066866746, guid: 416af391d44a9f745889399554e08f1e, type: 3}
       propertyPath: m_Name
-      value: Chibi_boy
+      value: Chibi_boy (3)
       objectReference: {fileID: 0}
     - target: {fileID: 1803917066866746, guid: 416af391d44a9f745889399554e08f1e, type: 3}
       propertyPath: m_IsActive
@@ -2415,7 +2392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4269983556564406, guid: 416af391d44a9f745889399554e08f1e, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4269983556564406, guid: 416af391d44a9f745889399554e08f1e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2503,7 +2480,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1803917066866746, guid: 416af391d44a9f745889399554e08f1e, type: 3}
       propertyPath: m_Name
-      value: Chibi_boy (1)
+      value: Chibi_boy (2)
       objectReference: {fileID: 0}
     - target: {fileID: 1803917066866746, guid: 416af391d44a9f745889399554e08f1e, type: 3}
       propertyPath: m_IsActive
@@ -2515,7 +2492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4269983556564406, guid: 416af391d44a9f745889399554e08f1e, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4269983556564406, guid: 416af391d44a9f745889399554e08f1e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2618,12 +2595,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.000001, y: 0.25000018, z: 10.000001}
   m_Center: {x: 0, y: -0.12500009, z: 0}
---- !u!137 &1640106084 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 137293930933838344, guid: 416af391d44a9f745889399554e08f1e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1570319020}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1650038404
 GameObject:
   m_ObjectHideFlags: 0
@@ -3155,9 +3126,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1681763570}
-        m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
-        m_MethodName: ChangeStartScene
+      - m_Target: {fileID: 588420057}
+        m_TargetAssemblyTypeName: EndingManager, Assembly-CSharp
+        m_MethodName: DisconnectRoom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3496,24 +3467,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Nickname
---- !u!137 &1894246813 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 137354272670622668, guid: 416af391d44a9f745889399554e08f1e,
-    type: 3}
-  m_PrefabInstance: {fileID: 354605809}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &1905512404 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 137354272670622668, guid: 416af391d44a9f745889399554e08f1e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1218288548}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &1917294275 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 137293930933838344, guid: 416af391d44a9f745889399554e08f1e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1218288548}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1948868841
 GameObject:
   m_ObjectHideFlags: 0
@@ -3593,12 +3546,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1948868841}
   m_CullTransparentMesh: 1
---- !u!137 &2030522962 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 137354272670622668, guid: 416af391d44a9f745889399554e08f1e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1558159281}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2067961439
 GameObject:
   m_ObjectHideFlags: 0
@@ -3614,7 +3561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2067961440
 RectTransform:
   m_ObjectHideFlags: 0
