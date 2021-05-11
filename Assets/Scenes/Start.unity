@@ -1930,7 +1930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logLevel: 0
-  serverIP: 13.125.161.129
+  serverIP: 127.0.0.1
   serverPort: 5000
   minTimeToConnect: 5
   maxTimeToConnect: 5
@@ -4800,7 +4800,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1518220241
 MonoBehaviour:
