@@ -82,6 +82,7 @@ MonoBehaviour:
   clientIndex: 0
   RoomName: 
   PlayerName: 
+  endingScene: Assets/Scenes/UI/Ending.unity
   loadingManagerPrefab: {fileID: 3825596481130646103, guid: f8df0c5ba34cebb4ebdc953c12376662,
     type: 3}
   logLevel: 3
