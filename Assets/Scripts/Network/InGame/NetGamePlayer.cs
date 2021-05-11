@@ -11,7 +11,7 @@ using Mirror;
 
 public class NetGamePlayer : NetworkBehaviour
 {
-    [SyncVar]
+    [SyncVar(hook =nameof(OnHealthChanged))]
     public int Health;
 
     [SyncVar]
@@ -191,6 +191,14 @@ public class NetGamePlayer : NetworkBehaviour
         NetworkServer.Spawn(createdObject);
     }
 
+    void OnHealthChanged(int oldVal, int newVal)
+    {
+        if(newVal == 0)
+        {
+            Die();
+        }
+    }
+
     
     public void Escape()
     {
@@ -213,6 +221,23 @@ public class NetGamePlayer : NetworkBehaviour
         {
             IsEscape = true;
             gameObject.SetActive(false);
+        }
+    }
+
+    public void Die()
+    {
+        if (isLocalPlayer)
+        {
+            EndingPlayerMessage msg = new EndingPlayerMessage()
+            {
+                PlayerName = Nickname,
+                endingState = PlayerEndingState.Dead
+            };
+
+
+            NetworkClient.Send(msg);
+
+            //UnityEngine.SceneManagement.SceneManager.LoadScene("Ending");
         }
     }
 }

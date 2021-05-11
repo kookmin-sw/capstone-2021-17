@@ -78,12 +78,14 @@ public class DebugInGameNetManager : NetworkManager
     {
         NetworkServer.SendToAll(message);
 
-        SceneMessage sceneMsg = new SceneMessage
+        if(message.endingState == PlayerEndingState.Live)
         {
-            sceneName = endingScene,
-        };
-        conn.Send(sceneMsg);
-
+            SceneMessage sceneMsg = new SceneMessage
+            {
+                sceneName = endingScene,
+            };
+            conn.Send(sceneMsg);
+        }
     }
 
     void EndingPlayerMessageClientHandler(EndingPlayerMessage message)
