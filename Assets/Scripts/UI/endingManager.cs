@@ -29,6 +29,9 @@ public class EndingManager : MonoBehaviour
         
         isclear = true;
 
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         messages = new List<EndingPlayerMessage>();
         heads = new List<SkinnedMeshRenderer>();
         bodys = new List<SkinnedMeshRenderer>();
