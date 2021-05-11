@@ -113,5 +113,10 @@ public class EndingManager : MonoBehaviour
         {
             nickname[id].text = messages[id].PlayerName;
         } //왼쪽에서부터 id 순으로 닉네임 출력
+
+        for(int id= messages.Count; id < 4; id++)
+        {
+            nickname[id].text = "";
+        } // 없는 플레이어들은 닉네임 표시 안함
     }
 }
