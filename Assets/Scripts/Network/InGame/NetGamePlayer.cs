@@ -27,6 +27,8 @@ public class NetGamePlayer : NetworkBehaviour
     public bool IsEscape = false;
 
     public ThirdCamera ThirdCamera;
+
+    public Canvas Canvas;
     
     public ThirdPersonCharacter Character;
     
@@ -62,8 +64,12 @@ public class NetGamePlayer : NetworkBehaviour
 
             if (ThirdCamera.gameObject != null)
             {
-                ThirdCamera.gameObject.SetActive(true);
-                
+                ThirdCamera.gameObject.SetActive(true);               
+            }
+
+            if (Canvas.gameObject != null)
+            {
+                Canvas.gameObject.SetActive(true);
             }
             keypadSystem.KPDisableManager disableManager = keypadSystem.KPDisableManager.instance;
             disableManager.player = this.gameObject;

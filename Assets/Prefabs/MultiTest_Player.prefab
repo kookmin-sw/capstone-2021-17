@@ -2983,6 +2983,7 @@ MonoBehaviour:
   State: 0
   IsEscape: 0
   ThirdCamera: {fileID: 3046158139356025099}
+  Canvas: {fileID: 2230632436763779092}
   Character: {fileID: 3157909130021106838}
   ThirdControl: {fileID: 3157104715050250688}
   PlayerHealth: {fileID: 6375489128231356037}
@@ -3069,6 +3070,10 @@ PrefabInstance:
     - target: {fileID: 1000014045512670, guid: 5cebf6c4a6f75d24d964647ff6d8ea1c, type: 3}
       propertyPath: m_Layer
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000014045512670, guid: 5cebf6c4a6f75d24d964647ff6d8ea1c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000011905570344, guid: 5cebf6c4a6f75d24d964647ff6d8ea1c,
         type: 3}
@@ -3165,6 +3170,12 @@ PrefabInstance:
 --- !u!224 &2231326790980891270 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224000011905570344, guid: 5cebf6c4a6f75d24d964647ff6d8ea1c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2156253584695157934}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &2230632436763779092 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 223000010599302330, guid: 5cebf6c4a6f75d24d964647ff6d8ea1c,
     type: 3}
   m_PrefabInstance: {fileID: 2156253584695157934}
   m_PrefabAsset: {fileID: 0}
