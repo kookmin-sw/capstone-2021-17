@@ -72,6 +72,11 @@ public class IngameUIManager : MonoBehaviour
             if(menu_UI.activeSelf == false)
             {
                 menu_UI.SetActive(true);
+                ingame_sound.SetActive(false);
+                ingame_howto[0].SetActive(false);
+                ingame_howto[1].SetActive(false);
+                ingame_quit.SetActive(false);
+                menuinfo.SetActive(true);
             }
             else
             {

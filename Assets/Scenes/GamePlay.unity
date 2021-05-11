@@ -57799,7 +57799,7 @@ MonoBehaviour:
   - {fileID: 332845764}
   - {fileID: 2009305451}
   sprites:
-  - {fileID: 21300000, guid: f408d3bab0311dc419aedd3d350ac5cb, type: 3}
+  - {fileID: 2708265281016112118, guid: 041ee6d92b0409840ab12c6eca56f221, type: 3}
   - {fileID: 0}
   Cursor: {fileID: 136999097}
   inventory: {fileID: 0}
