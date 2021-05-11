@@ -30,6 +30,8 @@ public class EndingManager : MonoBehaviour
         isclear = true;
 
         messages = new List<EndingPlayerMessage>();
+        heads = new List<SkinnedMeshRenderer>();
+        bodys = new List<SkinnedMeshRenderer>();
 
         foreach(GameObject player in Players) // 플레이어간 동작을 맞추기 위해 플레이어들의 Mesh를 이용함
         {
