@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using Mirror;
 
 /* 이 스크립트는 GamePlayer에 네트워크 기능을 다룹니다.
@@ -37,6 +38,8 @@ public class NetGamePlayer : NetworkBehaviour
     public PlayerHealth PlayerHealth;
 
     public PlayerInventory PlayerInventory;
+
+    public TMP_Text NicknameUI;
 
     private InGame_MultiGameManager MultigameManager;
 
@@ -77,7 +80,13 @@ public class NetGamePlayer : NetworkBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
+            NicknameUI.text = "";
         }
+        else
+        {
+            NicknameUI.text = Nickname;
+        }
+        
     }
 
     public override void OnStopClient()
