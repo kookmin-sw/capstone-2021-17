@@ -82,7 +82,39 @@ public class NetManager : NetworkRoomManager
     {
         base.OnRoomStartServer();
         NetworkServer.RegisterHandler<CreateRoomPlayerMessage>(CreateRoomPlayerRequestHandler);
+        NetworkServer.RegisterHandler<EndingPlayerMessage>(EndingPlayerMessageServerHandler);
     }
+
+    public override void OnRoomStartClient()
+    {
+        OnClientStartedEvent?.Invoke();
+
+        NetworkClient.RegisterHandler<EndingPlayerMessage>(EndingPlayerMessageClientHandler);
+    }
+
+    void EndingPlayerMessageServerHandler(NetworkConnection conn , EndingPlayerMessage message)
+    {
+        NetworkServer.SendToAll(message);
+
+        SceneMessage sceneMsg = new SceneMessage
+        {
+            sceneName = endingScene,
+        };
+        conn.Send(sceneMsg);
+        
+    }
+
+    void EndingPlayerMessageClientHandler(EndingPlayerMessage message)
+    {
+
+        EndingMessages.Add(message);
+
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().path == endingScene)
+        {
+            EndingManager.instance.UpdatePlayers();
+        }
+    }
+
 
     /// <summary>
     /// Invokes when client requested to create player on mirror server
@@ -297,16 +329,7 @@ public class NetManager : NetworkRoomManager
         }
     }
 
-    void EndingPlayerMessageHandler(EndingPlayerMessage message)
-    {
-
-        EndingMessages.Add(message);
-
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == endingScene)
-        {
-            EndingManager.instance.UpdatePlayers();
-        }
-    }
+    
 
 
     [Header("Mirror Network Manager Settings"), SerializeField]
@@ -402,11 +425,7 @@ public class NetManager : NetworkRoomManager
         OnHostStopEvent?.Invoke();
     }
 
-    public override void OnRoomStartClient()
-    {
-        OnClientStartedEvent?.Invoke();
-    }
-
+    
     public override void OnRoomStopClient()
     {
         OnClientStoppedEvent?.Invoke();

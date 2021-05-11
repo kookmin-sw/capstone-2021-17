@@ -378,6 +378,7 @@ MonoBehaviour:
   - {fileID: 322308546107684143, guid: 9c3c4b96ac9faf942a027efa95050500, type: 3}
   - {fileID: 6690388454592023288, guid: 09641a87d806be54798b18c2da9c0c37, type: 3}
   - {fileID: 363627462034149909, guid: 1894a3520ed13f94997ef7f9488d14db, type: 3}
+  - {fileID: 1544027838506993895, guid: 7e164e273bfc85b4084b9ab7f7ffc32c, type: 3}
   showRoomGUI: 0
   minPlayers: 1
   roomPlayerPrefab: {fileID: 5801046964974653843, guid: 104f3e730f7e3a245a4de0f19f3b9df2,
@@ -387,8 +388,9 @@ MonoBehaviour:
   _allPlayersReady: 0
   roomSlots: []
   clientIndex: 0
-  roomID: 
+  RoomName: 
   PlayerName: 
+  endingScene: Assets/Scenes/UI/Ending.unity
   loadingManagerPrefab: {fileID: 3825596481130646103, guid: f8df0c5ba34cebb4ebdc953c12376662,
     type: 3}
   logLevel: 3

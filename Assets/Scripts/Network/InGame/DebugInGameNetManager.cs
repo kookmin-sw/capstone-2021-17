@@ -63,24 +63,37 @@ public class DebugInGameNetManager : NetworkManager
         }
 
 
-        NetworkClient.RegisterHandler<EndingPlayerMessage>(EndingPlayerMessageHandler);
+        NetworkServer.RegisterHandler<EndingPlayerMessage>(EndingPlayerMessageServerHandler);
         base.OnStartServer();
 
     }
 
+    public override void OnStartClient()
+    {
 
-    /// <summary>
-    /// Invokes when client requested to create player on mirror server
-    /// </summary>
-    /// <param name="arg1"></param>
-    /// <param name="arg2"></param>
-    void EndingPlayerMessageHandler(EndingPlayerMessage message)
+        NetworkClient.RegisterHandler<EndingPlayerMessage>(EndingPlayerMessageClientHandler);
+    }
+
+    void EndingPlayerMessageServerHandler(NetworkConnection conn, EndingPlayerMessage message)
+    {
+        NetworkServer.SendToAll(message);
+
+        SceneMessage sceneMsg = new SceneMessage
+        {
+            sceneName = endingScene,
+        };
+        conn.Send(sceneMsg);
+
+    }
+
+    void EndingPlayerMessageClientHandler(EndingPlayerMessage message)
     {
 
         EndingMessages.Add(message);
 
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == endingScene)
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().path == endingScene)
         {
+           
             EndingManager.instance.UpdatePlayers();
         }
     }

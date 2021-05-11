@@ -13505,6 +13505,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 377769902680292919, guid: 590e1211705302e48871a02a2ed1a7ea,
         type: 3}
+      propertyPath: endingScene
+      value: Assets/Scenes/UI/Ending.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 377769902680292919, guid: 590e1211705302e48871a02a2ed1a7ea,
+        type: 3}
       propertyPath: onlineScene
       value: Assets/Scenes/MultiTest/TstMulti_Ingame.unity
       objectReference: {fileID: 0}

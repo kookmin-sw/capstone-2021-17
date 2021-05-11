@@ -201,14 +201,18 @@ public class NetGamePlayer : NetworkBehaviour
                 PlayerName = Nickname,
                 endingState = PlayerEndingState.Live
             };
-            NetworkServer.SendToAll(msg);
+
+           
+            NetworkClient.Send(msg);
 
             UnityEngine.SceneManagement.SceneManager.LoadScene("Ending");
+
+
         }
         else
         {
             IsEscape = true;
-            Character.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 }
