@@ -162,7 +162,13 @@ public class PlayerInventory : MonoBehaviour
     {
         if(Items[idx] != null)
         {
+
+            if(Items[idx].GetType().Name == "HealPack")
+            {
+                netPlayer.SetActiveHandItem(0, false);
+            }
             Items[idx] = null;
+            
             SlotManager.RemoveItem(idx);
         }
     }
