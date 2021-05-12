@@ -21,11 +21,14 @@ public class IngameUIManager : MonoBehaviour
     bool gameClear;
     float loadingTime = 5; 
     private int check_state; // 게임 종료인지, 중간 종료인지 등 상태 체크용 int
+
+    bool isMenuOpend;
     
     void Start()
     {
         loadingTime = 5f;
         gameClear = false;
+        isMenuOpend = false;
     }
 
     void Update()
@@ -69,6 +72,19 @@ public class IngameUIManager : MonoBehaviour
         //if(Input.GetKeyDown(KeyCode.Escape) && !GameMgr.lockKey)
         if(Input.GetKeyDown(KeyCode.F1) && !GameMgr.lockKey) //esc키로 메뉴창 열고닫기
         {//에디터 오류 방지위해 임시 f1키
+            if (isMenuOpend == false) // 메뉴가 켜져있지 않다면 - 마우스 커서 키는 식
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                isMenuOpend = true;
+            }
+            else // 메뉴창 닫을 때는 커서 닫음
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                isMenuOpend = false;
+            }
+
             if(menu_UI.activeSelf == false)
             {
                 menu_UI.SetActive(true);
