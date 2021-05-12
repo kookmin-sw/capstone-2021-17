@@ -1024,7 +1024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkAni: {fileID: 6083480639271355770}
-  enemyNet: {fileID: 0}
+  enemyNet: {fileID: -4724263047623150032}
 --- !u!195 &2987109740920278314
 NavMeshAgent:
   m_ObjectHideFlags: 0

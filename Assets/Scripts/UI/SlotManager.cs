@@ -13,6 +13,7 @@ public class SlotManager : MonoBehaviour
 
     public GameObject Cursor; //아이템 선택 이미지
     private int itemTarget; //커서가 위치해있는 아이템슬롯
+    private bool[] onTarget = new bool[4]; // 아이템 타겟팅 여부
 
     public static SlotManager instance;
 
@@ -27,6 +28,7 @@ public class SlotManager : MonoBehaviour
             color[i] = slot[i].color;
             color[i].a = 0; // 인벤토리 빈 상태로 보이도록
             slot[i].color = color[i];
+            onTarget[i] = false; // 타겟팅 초기화
         }
         instance = this;
     }
@@ -43,27 +45,31 @@ public class SlotManager : MonoBehaviour
         {
             Debug.Log("1 click"); //디버그용으로 삭제해도 무관
             itemTarget = 0;
+            Targeting(0);
             moveCursor(itemTarget);
             inventory.ActiveHandItem(0);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) // 2
+        else if (Input.GetKeyDown(KeyCode.Alpha2)) // 2
         {
             Debug.Log("2 click");
             itemTarget = 1;
+            Targeting(1);
             moveCursor(itemTarget);
             inventory.ActiveHandItem(1);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3)) // 3
+        else if (Input.GetKeyDown(KeyCode.Alpha3)) // 3
         {
             Debug.Log("3 click");
             itemTarget = 2;
+            Targeting(2);
             moveCursor(itemTarget);
             inventory.ActiveHandItem(2);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha4)) // 4
+        else if (Input.GetKeyDown(KeyCode.Alpha4)) // 4
         {
             Debug.Log("4 click");
             itemTarget = 3;
+            Targeting(3);
             moveCursor(itemTarget);
             inventory.ActiveHandItem(3);
         }
@@ -95,12 +101,42 @@ public class SlotManager : MonoBehaviour
          Cursor.transform.localPosition = position;
 
     }
+//아이템 타겟팅
+    private void Targeting(int target)
+    {
+        for(int i=0; i<4; i++)
+        {
+            if(i==target)
+            {
+                onTarget[target]=true;
+            }
+            else
+            {
+                onTarget[i]=false;
+            }
+            
+        }
+    }
 
     private void ItemAction()
-    { //클릭으로 사용, Q키로 아이템 버리기
-        if (Input.GetMouseButtonDown(0))
+    { //같은 번호 2번 누를 시 사용, Q키로 아이템 버리기
+        //커서의 위치와 누른 번호가 일치할 경우 아이템이 사용됨
+
+        if(Input.GetKeyDown(KeyCode.Alpha1) && onTarget[0]==true)
         {
-            inventory.UseItem(itemTarget); //아이템 사용
+            inventory.UseItem(0);
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha2) && onTarget[1]==true)
+        {
+            inventory.UseItem(1);
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha3) && onTarget[2]==true)
+        {
+            inventory.UseItem(2);
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha4) && onTarget[3]==true)
+        {
+            inventory.UseItem(3);
         }
         else if(Input.GetKeyDown(KeyCode.Q))
         {

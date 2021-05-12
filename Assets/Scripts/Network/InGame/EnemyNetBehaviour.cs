@@ -26,13 +26,13 @@ public class EnemyNetBehaviour : NetworkBehaviour
     [Server]
     public void SetAttAnim()
     {
-        netAni.SetTrigger("Attack");
+        enemyAnimation.SetAttAnim();        
     }
 
     [Server]
     public void SetDizzyAnim()
     {
-        netAni.SetTrigger("Dizzy");
+        enemyAnimation.SetDizzyAnim();
     }
 
 }
