@@ -189,18 +189,18 @@ public class IngameUIManager : MonoBehaviour
         float missionProgress;
         if (mg.GetMissionSpawnPoint() != 0) // Fixed DivideByZero Error
         {
-            missionProgress = 0.8f * ((float)mg.GetMissionClearCount() / mg.GetMissionSpawnPoint());
+            missionProgress = ((float)mg.GetMissionClearCount() / mg.GetMissionSpawnPoint());
         }
         else
         {
-            missionProgress = 0.2f;
+            missionProgress = 0;
         }
         
         if (missionProgress > 1)
         {
             missionProgress = 1; // 100% 안넘어가게끔
         }
-        missionCount.value = 0.2f + missionProgress;
+        missionCount.value = missionProgress;
         missionText.text = (int)(missionProgress*100) + "%";
     }
 

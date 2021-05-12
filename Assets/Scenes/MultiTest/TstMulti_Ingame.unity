@@ -4574,7 +4574,7 @@ MonoBehaviour:
   - {fileID: 372638048}
   - {fileID: 433604572}
   - {fileID: 608975079}
-  enemyPrefab: {fileID: 3399244542748218395, guid: 4e508b0696a0a444f9758ed786a17348,
+  enemyPrefab: {fileID: 5834168737704926764, guid: 6b338324bbf044f4bbc176251bbaf035,
     type: 3}
 --- !u!1 &723082874
 GameObject:

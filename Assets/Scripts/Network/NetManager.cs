@@ -432,8 +432,6 @@ public class NetManager : NetworkRoomManager
     public override void OnRoomStopClient()
     {
         OnClientStoppedEvent?.Invoke();
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
     }
 
     public override void OnRoomServerDisconnect(NetworkConnection conn)

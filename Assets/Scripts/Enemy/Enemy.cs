@@ -20,17 +20,17 @@ public class Enemy : MonoBehaviour
     //적의 판단 근거, 장애물인지 플레이어인지
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private LayerMask obstacleMask;
-    [SerializeField] private Transform[] wayPoint;        //WayPoint - public EnemySpawnManager에서 동적 할당이 이루어져야됨.
-    [SerializeField] private AnimationSoundEvent[] animationEvent;  //오디오 센서를 위한 애니메이션 이벤트
+    [SerializeField] private Transform[] wayPoint;        //WayPoint - public EnemySpawnManager에서 동적 할당이 이루어져야됨. 
+    [SerializeField] private AnimationSoundEvent[] animationEvent;  //오디오 센서를 위한 애니메이션 이벤트        
     [SerializeField] private EnemyNetBehaviour enemyNet;
     [SerializeField] private EnemyAnimation anim;       //에너미의 에니메이션을 컨트롤하는 클래스
     [SerializeField] private AudioSource siren;           //사이렌 오디오 소스
-    [SerializeField] private NavMeshAgent navMeshAgent;   //AI
+    [SerializeField] private NavMeshAgent navMeshAgent;   //AI    
     [SerializeField] private Transform target;            //타겟의 위치    
     [SerializeField] private Transform memTarget;
     [SerializeField] private Collider enemyCollider;
 
-    private StateMachine enemyStateMachine;
+    private StateMachine enemyStateMachine;    
     private PatrolState patrol;
     private List<Transform> visibleTargets = new List<Transform>();  //시야에 들어온 적들의 List        
     private IdleState idle;

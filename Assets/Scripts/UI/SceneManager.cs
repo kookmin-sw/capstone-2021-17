@@ -75,21 +75,6 @@ public class SceneManager : MonoBehaviour
         ShowOnly(6);
     }
 
-    public void ShowMainMenu()
-    {
-        for (int i = 0; i < obj.Length; i++)
-        {
-            if (i == 1 || i== 2)
-            {
-                obj[i].SetActive(true);
-            }
-            else
-            {
-                obj[i].SetActive(false);
-            }
-        }
-    }
-
 
 
 }
