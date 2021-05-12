@@ -97,10 +97,24 @@ public class SlotManager : MonoBehaviour
     }
 
     private void ItemAction()
-    { //클릭으로 사용, Q키로 아이템 버리기
-        if (Input.GetMouseButtonDown(0))
+    { //같은 번호 2번 누를 시 사용, Q키로 아이템 버리기
+        //커서의 위치와 누른 번호가 일치할 경우 아이템이 사용됨
+
+        if(Input.GetKeyDown(KeyCode.Alpha1 && itemTarget==0)
         {
-            inventory.UseItem(itemTarget); //아이템 사용
+            inventory.UseItem(0);
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha2 && itemTarget==1)
+        {
+            inventory.UseItem(1);
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha3 && itemTarget==2)
+        {
+            inventory.UseItem(2);
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha4 && itemTarget==3)
+        {
+            inventory.UseItem(3);
         }
         else if(Input.GetKeyDown(KeyCode.Q))
         {
