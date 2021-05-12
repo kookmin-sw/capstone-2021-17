@@ -200,6 +200,24 @@ public class NetGamePlayer : NetworkBehaviour
         NetworkServer.Spawn(createdObject);
     }
 
+    public void SetActiveHandItem(int item_idx, bool isActive)
+    {
+        CmdSetActiveHandItem( item_idx, isActive);
+    }
+
+    [Command]
+    private void CmdSetActiveHandItem( int item_idx,bool isActive)
+    {
+        
+        RpcSetActiveHandItem(item_idx, isActive);
+    }
+
+    [ClientRpc]
+    private void RpcSetActiveHandItem(int item_idx, bool isActive)
+    {
+        PlayerInventory.ActiveHandItemFromNet(item_idx,isActive);
+    }
+
     void OnHealthChanged(int oldVal, int newVal)
     {
         if(newVal == 0)

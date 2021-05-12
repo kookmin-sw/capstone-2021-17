@@ -7,9 +7,13 @@ public class PlayerInventory : MonoBehaviour
 {
     public Item[] Items = new Item[4];
 
+
+
+    public GameObject[] HandItems = new GameObject[2]; // 0 Heal, 1 Gun
+
+    [HideInInspector]
     public SlotManager SlotManager; // Assigned in NetGamePlayer OnStartClient
 
-    
 
     [SerializeField]
     private NetGamePlayer netPlayer;
@@ -107,6 +111,28 @@ public class PlayerInventory : MonoBehaviour
         }
 
     }
+
+    public void ActiveHandItem(int idx)
+    {
+        Item targetItem = Items[idx];
+
+        if (targetItem == null)
+        {
+            netPlayer.SetActiveHandItem(0, false);
+            netPlayer.SetActiveHandItem(1, false);
+        }
+        else if (targetItem.GetType().Name == "HealPack")
+        {
+            netPlayer.SetActiveHandItem(0, true);
+            netPlayer.SetActiveHandItem(1, false);
+        }   
+    }
+
+    public void ActiveHandItemFromNet(int idx, bool isActive)
+    {
+        HandItems[idx].SetActive(isActive);
+    }
+
     public void RemoveItem()
     {
         for(int idx = 3; idx >= 0; idx--)

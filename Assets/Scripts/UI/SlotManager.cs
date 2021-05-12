@@ -44,25 +44,28 @@ public class SlotManager : MonoBehaviour
             Debug.Log("1 click"); //디버그용으로 삭제해도 무관
             itemTarget = 0;
             moveCursor(itemTarget);
+            inventory.ActiveHandItem(0);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2)) // 2
         {
             Debug.Log("2 click");
             itemTarget = 1;
             moveCursor(itemTarget);
-
+            inventory.ActiveHandItem(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3)) // 3
         {
             Debug.Log("3 click");
             itemTarget = 2;
             moveCursor(itemTarget);
+            inventory.ActiveHandItem(2);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4)) // 4
         {
             Debug.Log("4 click");
             itemTarget = 3;
             moveCursor(itemTarget);
+            inventory.ActiveHandItem(3);
         }
         
         if(isEmpty[itemTarget]==false)
