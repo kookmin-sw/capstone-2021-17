@@ -27,6 +27,7 @@ public class PlayerHealth : MonoBehaviour
         PlayerAnimator = GetComponent<Animator>();
         HealthChange();
     }
+    /*
     void Update()
     {
         //왼쪽 마우스 버튼을 클릭하면 & 힐아이템이 활성화가 되면 힐을 한다. 
@@ -35,7 +36,7 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine("Healing");
         }
     }
-
+    */
     public void Hit()
     {
         Health -= 1;
