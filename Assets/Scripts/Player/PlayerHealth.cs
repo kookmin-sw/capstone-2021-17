@@ -1,89 +1,80 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(ThirdPersonUserControl))]
+
 public class PlayerHealth : MonoBehaviour
 {
-    public const int MAXHP = 2;
-    public int Health = 2;
-    private GameObject Player;
-    private ThirdPersonUserControl PlayerHealthCheck;
-    private ThirdPersonCharacter PlayerHealthState;
-    private PlayerItem PlayerHealItem;
-    Animator PlayerAnimator;
+    private MovePlayerTestForEnemy playerHealthState; // A reference to the MovePlayerTestForEnemy on the object
+    private PlayerItem playerHealItem;                // A reference to the  PlayerItem on the object
+    private Animator playerAnimator;                  //Animation
 
-    public GameObject HealPortion;
-    public int CountHeal;
+    public const int MAXHP = 2;  //Maximum health setting
+    public int health = 2;       //Current health setting
 
     [SerializeField]
     private NetGamePlayer NetPlayer;
-    // Start is called before the first frame update
+
     void Start()
     {
-        Player=GameObject.Find("Chibi_boy");
-        PlayerHealthCheck=Player.GetComponent<ThirdPersonUserControl>();
-        PlayerHealthState=Player.GetComponent<ThirdPersonCharacter>();
-        PlayerHealItem = Player.GetComponent<PlayerItem>();
-        PlayerAnimator = GetComponent<Animator>();
-        HealthChange();
+        playerHealthState=GetComponent<MovePlayerTestForEnemy>();
+        playerHealItem = GetComponent<PlayerItem>();
+        playerAnimator = GetComponent<Animator>();
     }
-    /*
-    void Update()
+    public void Hit() //Player hit
     {
-        //왼쪽 마우스 버튼을 클릭하면 & 힐아이템이 활성화가 되면 힐을 한다. 
-        if (Input.GetMouseButtonUp(0) && HealPortion.activeSelf == true)
+        health -= 1; // Health minus
+        if (NetPlayer != null) //Net Player
         {
-            StartCoroutine("Healing");
+            NetPlayer.ChangeHealth(health);
         }
-    }
-    */
-    public void Hit()
-    {
-        Health -= 1;
-
-        if(NetPlayer != null)
+        if(health == 1) //If Health is 1, player hit
         {
-            NetPlayer.ChangeHealth(Health);
+            playerHealthState.isHit=true;
         }
-        if(Health==1)
-        {
-            HealthChange();
-            PlayerHealthState.IsHit=true;            
-        }
-        else if (Health==0)
+        else if (health == 0) //If Health is 0, player die
         {
             Die();
-        }        
-    }
-
-    public void Heal()
-    {
-        Health += 1;
-        if (NetPlayer != null)
-        {
-            NetPlayer.ChangeHealth(Health);
         }
-        HealthChange();
-        PlayerHealthState.IsHit=false;
     }
-
-    public void Die()
+    public void Heal() //Player heal
     {
-        HealthChange();
-        PlayerHealthState.IsDie=true;
-
+        //You can heal only when health is 1
+        if (health == 1) 
+        {
+            if (NetPlayer != null) //Net Player
+            {
+                NetPlayer.ChangeHealth(health);
+            }
+            StartCoroutine("Healing");
+            playerHealthState.isHit = false;
+        }
     }
-    public void HealthChange()
+    
+    public void Die() //Player is dead
     {
-        PlayerHealthCheck.HealthCheck=Health;
+        playerHealthState.isDie=true;
     }
-    IEnumerator Healing()
+    void OnTriggerEnter(Collider other)//When entering the trigger
     {
-        PlayerAnimator.SetBool("Heal", true);
-        Heal();
-        yield return new WaitForSeconds(4);
-        PlayerHealItem.hasWeapons[1] = false;
-        PlayerHealItem.Weapons[1].SetActive(false);
-        PlayerAnimator.SetBool("Heal", false);
+        //When the tag is attack
+        if (other.tag == "Attack")
+        {
+            //It is attacked continuously. So use coroutines.
+            StartCoroutine("Hiting");
+        }
+    }
+    IEnumerator Hiting() //Set Hiting Coroutine
+    {
+        Hit();
+        yield return new WaitForSeconds(1); //
+    }
+    IEnumerator Healing() //Set Healing Coroutine
+    {
+        playerAnimator.SetBool("Heal", true);//Heal animation start 
+        yield return new WaitForSeconds(4); //Until the animation ends
+        health += 1; // Health plus
+        playerHealItem.hasItems[1] = false; //Do not have an item
+        playerHealItem.Items[1].SetActive(false); //Deactivate items in the user's hand
+        playerAnimator.SetBool("Heal", false);//Heal animation end
     }
 }

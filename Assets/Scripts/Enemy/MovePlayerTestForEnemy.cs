@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(CapsuleCollider))]
-[RequireComponent(typeof(Animator))]
-
 public class MovePlayerTestForEnemy : MonoBehaviour
 {    
     [SerializeField] float movingTurnSpeed = 600;
@@ -78,7 +74,6 @@ public class MovePlayerTestForEnemy : MonoBehaviour
 
     public void Move(Vector3 move, bool crouch, bool jump)
     {
-        int oneShotId = -1;
 
         if (presentMove != move && crouch == false && isGrounded)
         {
@@ -103,7 +98,7 @@ public class MovePlayerTestForEnemy : MonoBehaviour
         {
             state = State.Jump;
         }
-        else if (isHit == true)
+        else if (isHit == true && isDie == false)
         {
             isPlayWalk = false;
             state = State.Hit;

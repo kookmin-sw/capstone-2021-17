@@ -2,25 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
-
-[RequireComponent(typeof(MovePlayerTestForEnemy))]
 public class PlayerControlForEnemy : MonoBehaviour
 {
-    private MovePlayerTestForEnemy character; // A reference to the ThirdPersonCharacter on the object
+    private MovePlayerTestForEnemy character; // A reference to the MovePlayerTestForEnemy on the object
     public Transform cam;                  // A reference to the main camera in the scenes transform
-    public Vector3 camForward;
-    public int healthCheck;             // The current forward direction of the camera
+    public Vector3 camForward;            // The current forward direction of the camera
     private Vector3 move;
-    private bool jump;
-    // the world-relative desired move direction, calculated from the camForward and user input.
+    private bool jump;                   //jump
     private bool isAttacked = false;
-
     [SerializeField]
     private NetGamePlayer netPlayer;
 
     private void Start()
     {
-        // get the third person character ( this should never be null due to require component )
         character = GetComponent<MovePlayerTestForEnemy>();
     }
     public void SetIsAttacked(bool isAttacked)
@@ -28,11 +22,7 @@ public class PlayerControlForEnemy : MonoBehaviour
         this.isAttacked = isAttacked;
     }
 
-    private void Update()
-    {                
-        LookAround();
-    }
-
+    //Set the direction according to the movement of the mouse
     private void LookAround()
     {
         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
@@ -53,13 +43,14 @@ public class PlayerControlForEnemy : MonoBehaviour
     // Fixed update is called in sync with physics
     private void FixedUpdate()
     {
+        LookAround();
         if (!isAttacked)
         {
+            //Press space to change the jump to true
             if (!jump)
             {
                 jump = Input.GetKeyDown(KeyCode.Space);
             }
-
             // read inputs
             float h = CrossPlatformInputManager.GetAxis("Horizontal");
             float v = CrossPlatformInputManager.GetAxis("Vertical");
@@ -68,9 +59,6 @@ public class PlayerControlForEnemy : MonoBehaviour
             // calculate move direction to pass to character
             if (cam != null)
             {
-
-                // calculate camera relative direction to move:
-                // m_CamForward = new Vector3(m_Cam.forward.x, 0, m_Cam.forward.z).normalized;
                 camForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
                 move = v * camForward + h * cam.right;
             }
@@ -78,8 +66,6 @@ public class PlayerControlForEnemy : MonoBehaviour
             {
                 // we use world-relative directions in the case of no main camera
                 move = v * Vector3.forward + h * Vector3.right;
-                Debug.Log(v);
-
             }
 
             // walk speed multiplier
@@ -88,25 +74,35 @@ public class PlayerControlForEnemy : MonoBehaviour
                 move *= 0.7f;
             }
 
-            if (Input.GetKeyUp(KeyCode.B))
-            {
-                GetComponent<PlayerHealth>().Hit();
-
-            }
-
             // pass all parameters to the character control script
-
-            if (netPlayer != null)
+            if (netPlayer != null && character.isDie == false)
             {
                 netPlayer.MoveCharacter(move, crouch, jump);
             }
             else
             {
-                character.Move(move, crouch, jump);
+                //Can't move after Die
+                if (character.isDie == true)
+                {
+                    move *= 0;
+                    character.Move(move, false, false);
+                }
+                
+                else
+                {
+                    //Can't jump when it's a hit
+                    if (character.isHit == true)
+                    {
+                        character.Move(move, crouch, false);
+                    }
+                    else
+                    {
+                        character.Move(move, crouch, jump);
+                    }
+                }
             }
-
+            //Jump false after moving
             jump = false;
         }
     }
-
 }

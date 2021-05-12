@@ -45,7 +45,7 @@ public class NetGamePlayer : NetworkBehaviour
 
     private void Awake()
     {
-        Health = PlayerHealth.Health;
+        Health = PlayerHealth.health;
         State = Character.state;
         MultigameManager = InGame_MultiGameManager.instance;
     }
