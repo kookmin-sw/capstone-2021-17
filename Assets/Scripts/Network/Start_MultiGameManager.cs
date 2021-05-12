@@ -17,6 +17,9 @@ public class Start_MultiGameManager: MonoBehaviour
     public TMP_InputField roomNameField;
 
     private NetManager netManager;
+
+    [SerializeField]
+    private SceneManager sceneManager;
     private void Start() // Awake할때는 instance 못부름
     {
         netManager = NetManager.instance;
@@ -34,6 +37,15 @@ public class Start_MultiGameManager: MonoBehaviour
         }
 
         roomNameField.onValueChanged.AddListener(delegate { SetRoomNameUpperCase(); });
+
+        ClientToMasterConnector.Instance.OnConnectedEvent.AddListener(sceneManager.ShowMainMenu);
+        ClientToMasterConnector.Instance.OnDisconnectedEvent.AddListener(sceneManager.ShowServerFail);
+
+        if(NetClientToMasterConnector.Instance is NetClientToMasterConnector connector)
+        {
+            if (connector.isDisconnected) sceneManager.ShowServerFail(); 
+        }
+
     }
 
     public void SaveAddress()
@@ -128,6 +140,11 @@ public class Start_MultiGameManager: MonoBehaviour
     public void OnAlreadyServerConnected()
     {
         OnServerAlreadyConnected.Invoke();
+    }
+
+    public void ReconnectServer()
+    {
+        NetClientToMasterConnector.Instance.StartConnection();
     }
 
     void SetRoomNameUpperCase()
