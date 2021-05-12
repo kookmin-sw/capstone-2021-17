@@ -186,17 +186,29 @@ public class NetGamePlayer : NetworkBehaviour
         // Character.soundSources-> Character.soundSource
     }
 
-    GameObject spawnPrefab;
+
     public void SpawnObject(GameObject prefab, Vector3 position, Quaternion rotation)
     {
-        spawnPrefab = prefab;
-        CmdSpawnObject(position, rotation);
+
+        NetworkManager networkManager = NetworkManager.singleton;
+        for(int i = 0; i < networkManager.spawnPrefabs.Count; i++)
+        {
+            if(prefab == networkManager.spawnPrefabs[i])
+            {
+                CmdSpawnObject(i, position, rotation);
+                return;
+            }
+        }
+
+        Debug.LogError("NOT Found prefab");
     }
 
     [Command]
-    private void CmdSpawnObject(Vector3 position, Quaternion rotation)
+    private void CmdSpawnObject(int prefabIdx, Vector3 position, Quaternion rotation)
     {
-        GameObject createdObject = Instantiate(spawnPrefab , position , rotation);
+        NetworkManager networkManager = NetworkManager.singleton;
+
+        GameObject createdObject = Instantiate(networkManager.spawnPrefabs[prefabIdx] , position , rotation);
         NetworkServer.Spawn(createdObject);
     }
 
