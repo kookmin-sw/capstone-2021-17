@@ -57,15 +57,6 @@ public class EnemyAnimation : MonoBehaviour
         ani.SetBool("Walk", false);
     }
 
-    public void SetRun()
-    {
-        ani.SetBool("Run", true);
-    }
-
-    public void UnsetRun()
-    {
-        ani.SetBool("Run", false);
-    }
     public void PlayAttAnim()
     {
         if (enemyNet != null)
@@ -79,7 +70,7 @@ public class EnemyAnimation : MonoBehaviour
     }
     public void SetAttAnim()
     {
-        ani.SetTrigger("Attack");
+        ani.SetBool("Attack", ani.GetBool("Attack")? false:true);
     }
     public void PlayDizzyAnim()
     {
@@ -95,6 +86,6 @@ public class EnemyAnimation : MonoBehaviour
     
     public void SetDizzyAnim()
     {
-        ani.SetTrigger("Dizzy");
+        ani.SetBool("Dizzy", ani.GetBool("Dizzy") ? false : true);
     }
 }
