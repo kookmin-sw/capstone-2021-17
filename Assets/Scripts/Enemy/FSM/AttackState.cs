@@ -31,7 +31,6 @@ public class AttackState : State
 
     public override void Exit()
     {
-        base.Exit();
-        enemy.SetCollider();
+        base.Exit();        
     }
 }
