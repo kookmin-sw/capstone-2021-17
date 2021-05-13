@@ -86,6 +86,10 @@ public class GameMgr : MonoBehaviour
         {
             singleChar = numbers[UnityEngine.Random.Range(0, numbers.Length)];
             codeSB.Append(singleChar);
+            if(codeSB[0] == '0')
+            {
+                codeSB[0] = (char)Random.Range(1,9);
+            }
         }
         return codeSB.ToString();
     }
