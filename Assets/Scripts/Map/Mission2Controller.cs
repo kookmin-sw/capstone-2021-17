@@ -22,6 +22,8 @@ public class Mission2Controller : MonoBehaviour
     public Text[] state;
     //미션 클리어 여부
     private bool clearMission = false;
+    //버튼을 저장하는 배열
+    public Button[] button;
 
 
     public void CheckCode()
@@ -32,6 +34,7 @@ public class Mission2Controller : MonoBehaviour
         }
         if (clearMission == true)
         {
+            ButtonFalse();
             state[0].text = "Clear";
             if(missionNet != null)
             {
@@ -148,6 +151,15 @@ public class Mission2Controller : MonoBehaviour
         {
             num = 0;
             state[n].text = num.ToString();
+        }
+    }
+
+    //미션클리어후 버튼을 막기위한 함수
+    public void ButtonFalse()
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            button[i].interactable = false;
         }
     }
 

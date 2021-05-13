@@ -29,6 +29,8 @@ public class Mission3Controller : MonoBehaviour
     public int second;
     //코루틴 제어에 사용
     public bool[] corutineRunning = { false };
+    //버튼을 저장하는 배열
+    public Button[] button;
 
     //미션 오브젝트 비활성화
     public void UnableMission()
@@ -195,6 +197,7 @@ public class Mission3Controller : MonoBehaviour
         }
         if(correctHour == hour && correctMinute == minute && correctSecond == second)
         {
+            ButtonFalse();
             stateTime.text = "Mission Clear!";
             ValidStageClear();
             if (missionNet != null)
@@ -219,6 +222,16 @@ public class Mission3Controller : MonoBehaviour
             stageClearValid = false; 
         }
     }
+
+    //미션 클리어후 버튼을 막기위한 함수
+    public void ButtonFalse()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            button[i].interactable = false;
+        }
+    }
+
     public void SetMissionTime()
     {
         Debug.Log("setTime");

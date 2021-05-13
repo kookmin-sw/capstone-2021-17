@@ -1645,6 +1645,11 @@ MonoBehaviour:
   minute: 0
   second: 0
   corutineRunning: 000000
+  button:
+  - {fileID: 1099228406733075294}
+  - {fileID: 5325925467841213021}
+  - {fileID: 5295035202368967020}
+  - {fileID: 7745302193526553700}
 --- !u!114 &681312702721610422
 MonoBehaviour:
   m_ObjectHideFlags: 0
