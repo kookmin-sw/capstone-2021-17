@@ -31,7 +31,7 @@ public class EnemySpawnManager : MonoBehaviour
         {
             GameObject enemyObject = Instantiate(enemyPrefab, spawnPoints[i].position, Quaternion.identity);
             Enemy enemy = enemyObject.GetComponent<Enemy>();
-
+            enemy.SetAgentPriority(50 + 10 * i);
             // 동적으로 Waypoint 할당
             enemy.SetWayPoints(wayPoints);
 
