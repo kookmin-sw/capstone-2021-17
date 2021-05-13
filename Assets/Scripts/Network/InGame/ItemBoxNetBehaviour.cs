@@ -76,6 +76,27 @@ public class ItemBoxNetBehaviour : NetworkBehaviour
         keypadController.UnableKeypad();
     }
 
+    [SerializeField]
+    GameObject item;
+
+    public void SetActive(bool isActive)
+    {
+        CmdSetActive(isActive);
+    }
+
+
+    [Command(requiresAuthority = false)]
+    private void CmdSetActive(bool isActive)
+    {
+        RpcSetActive(isActive);
+    }
+
+    [ClientRpc]
+    private void RpcSetActive(bool isActive)
+    {
+        item.SetActive(isActive);
+    }
+
 
 
 }

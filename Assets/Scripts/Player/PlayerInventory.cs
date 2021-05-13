@@ -18,36 +18,19 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     private NetGamePlayer netPlayer;
 
+    [SerializeField]
+    private PlayerHealth playerHealth;
+
     private NetworkManager netManager;
 
-    private GameObject healPackPrefab;
+    public GameObject HealPackPrefab;
 
     private void Awake()
     {
-        SlotManager = SlotManager.instance;
-        if (SlotManager != null)
-        {
-            SlotManager.inventory = this;
-        }
-        else
-        {
-            Debug.LogError("SlotManager not detected! - PlayerInventory");
-        }
+
 
         netManager = NetworkManager.singleton;
 
-        foreach (GameObject prefab in netManager.spawnPrefabs)
-        {
-            if (prefab.TryGetComponent(out HealPack healpack))
-            {
-                healPackPrefab = prefab;
-            }
-        }
-
-        if(healPackPrefab == null)
-        {
-            Debug.Log("You should assign prefabs at NetworkManager in Editor - HeeunAn");
-        }
         
     }
 
@@ -59,7 +42,6 @@ public class PlayerInventory : MonoBehaviour
             if(Items[idx] == null)
             {
                 Items[idx] = newItem;
-                newItem.OwnedPlayer = this.gameObject;
 
                 if (SlotManager != null)
                 {
@@ -80,14 +62,19 @@ public class PlayerInventory : MonoBehaviour
         {
             // nothing works..
         }
-        else if(targetItem.GetType().Name == "HealPack")
+        else if(targetItem is HealPack)
         {
-            HealPack healPack = targetItem.GetComponent<HealPack>();
-            if (healPack.CanUse())
+            if (playerHealth.health >= PlayerHealth.MAXHP)
             {
-                healPack.Use();
+                Debug.Log("아이템 사용 불가 - 체력이 가득찬 상태");
+                return;
+            }
+            else
+            {
+                playerHealth.Heal();
                 RemoveItem(idx);
             }
+            
         }
     }
     public void DropItem(int idx)
@@ -103,11 +90,16 @@ public class PlayerInventory : MonoBehaviour
         if (targetItem == null)
         {
             // nothing works..
+            Debug.Log("NULL");
         }
-        else if (targetItem.GetType().Name == "HealPack")
+        else if (targetItem is HealPack healPack)
         {
-            netPlayer.SpawnObject(healPackPrefab, position , rotation);
+            netPlayer.SpawnObject(healPack, position , rotation);
             RemoveItem(idx);
+        }
+        else
+        {
+            Debug.Log("WA");
         }
 
     }
@@ -118,13 +110,11 @@ public class PlayerInventory : MonoBehaviour
 
         if (targetItem == null)
         {
-            netPlayer.SetActiveHandItem(0, false);
-            netPlayer.SetActiveHandItem(1, false);
+            netPlayer.CmdSetActiveHandItem(-1);
         }
-        else if (targetItem.GetType().Name == "HealPack")
+        else if (targetItem is HealPack)
         {
-            netPlayer.SetActiveHandItem(0, true);
-            netPlayer.SetActiveHandItem(1, false);
+            netPlayer.CmdSetActiveHandItem(0);
         }   
     }
 
@@ -163,10 +153,9 @@ public class PlayerInventory : MonoBehaviour
         if(Items[idx] != null)
         {
 
-            if(Items[idx].GetType().Name == "HealPack")
-            {
-                netPlayer.SetActiveHandItem(0, false);
-            }
+            
+            netPlayer.SetActiveHandItem(null);
+            
             Items[idx] = null;
             
             SlotManager.RemoveItem(idx);

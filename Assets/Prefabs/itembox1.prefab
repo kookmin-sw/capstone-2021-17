@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 1342203139322882420}
   - component: {fileID: 1781761736595930365}
   - component: {fileID: 5672679051307758516}
-  - component: {fileID: 5308438611539808658}
   m_Layer: 8
   m_Name: itembox1
   m_TagString: ItemBox
@@ -150,21 +149,7 @@ MonoBehaviour:
   validCode: 
   boxContoller: {fileID: 1342203139322882420}
   keypadController: {fileID: 1011932981951100438}
---- !u!114 &5308438611539808658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1038162653935764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a2feb20d90c1994aa504509f9e50123, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  Item: {fileID: 3022784893901122685}
+  item: {fileID: 4461884695284995262}
 --- !u!1 &1392504987974012
 GameObject:
   m_ObjectHideFlags: 0
@@ -2844,7 +2829,7 @@ GameObject:
   - component: {fileID: 204247993177802167}
   - component: {fileID: 8741670376669404573}
   - component: {fileID: 5117932977840940807}
-  - component: {fileID: 3022784893901122685}
+  - component: {fileID: 4771624381166583089}
   m_Layer: 8
   m_Name: HealPack
   m_TagString: ItemHeal
@@ -2944,7 +2929,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.05, y: 0.3, z: 0.16}
   m_Center: {x: 6.950107e-11, y: 0.2029493, z: -0.035177723}
---- !u!114 &3022784893901122685
+--- !u!114 &4771624381166583089
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2953,10 +2938,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4461884695284995262}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8012a8f3aa6f53438d1655b76f5328c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a2feb20d90c1994aa504509f9e50123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNet: {fileID: 5308438611539808658}
+  itemBoxNet: {fileID: 5672679051307758516}
 --- !u!1 &4522783046302754478
 GameObject:
   m_ObjectHideFlags: 0

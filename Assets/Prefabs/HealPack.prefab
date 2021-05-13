@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 4271523371811333158}
   - component: {fileID: 4666427901335026700}
   - component: {fileID: 9121004733343172246}
-  - component: {fileID: 1180448120807378412}
   - component: {fileID: 3504157732761948090}
-  - component: {fileID: -5199197067213865794}
+  - component: {fileID: 2487899495809396177}
   m_Layer: 8
   m_Name: HealPack
   m_TagString: ItemHeal
@@ -115,20 +114,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.05, y: 0.3, z: 0.16}
   m_Center: {x: 6.950107e-11, y: 0.2029493, z: -0.035177723}
---- !u!114 &1180448120807378412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322308546107684143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8012a8f3aa6f53438d1655b76f5328c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 1180448120807378412}
-  itemNet: {fileID: -5199197067213865794}
 --- !u!114 &3504157732761948090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +131,7 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
---- !u!114 &-5199197067213865794
+--- !u!114 &2487899495809396177
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,9 +140,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 322308546107684143}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a2feb20d90c1994aa504509f9e50123, type: 3}
+  m_Script: {fileID: 11500000, guid: c9dd278a29fc8b348b6910be17c382f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  Item: {fileID: 1180448120807378412}
