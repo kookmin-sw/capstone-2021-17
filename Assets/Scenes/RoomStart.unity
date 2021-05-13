@@ -206,131 +206,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1008380058
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1008380061}
-  - component: {fileID: 1008380060}
-  - component: {fileID: 1008380059}
-  - component: {fileID: 1008380062}
-  m_Layer: 0
-  m_Name: -- MIRROR_NETWORK_MANAGER
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1008380059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008380058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7424c1070fad4ba2a7a96b02fbeb4bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  port: 7777
-  NoDelay: 1
-  SendTimeout: 5000
-  ReceiveTimeout: 30000
-  serverMaxMessageSize: 16384
-  serverMaxReceivesPerTick: 10000
-  serverSendQueueLimitPerConnection: 10000
-  serverReceiveQueueLimitPerConnection: 10000
-  clientMaxMessageSize: 16384
-  clientMaxReceivesPerTick: 1000
-  clientSendQueueLimit: 10000
-  clientReceiveQueueLimit: 10000
---- !u!114 &1008380060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008380058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84dac87ca7c5dd541af6d2d549a62f68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dontDestroyOnLoad: 1
-  PersistNetworkManagerToOfflineScene: 0
-  runInBackground: 1
-  autoStartServerBuild: 1
-  serverTickRate: 30
-  serverBatching: 1
-  serverBatchInterval: 0
-  offlineScene: Assets/Scenes/Start.unity
-  onlineScene: Assets/Scenes/WaitingRoom.unity
-  transport: {fileID: 1008380059}
-  networkAddress: localhost
-  maxConnections: 4
-  disconnectInactiveConnections: 0
-  disconnectInactiveTimeout: 60
-  authenticator: {fileID: 0}
-  playerPrefab: {fileID: 3046158139560815345, guid: 73b6118cd2f5e994eb2d0a543ee95023,
-    type: 3}
-  autoCreatePlayer: 1
-  playerSpawnMethod: 1
-  spawnPrefabs:
-  - {fileID: 1038162653935764, guid: 0462052c0393d654185c9da4c8e6e072, type: 3}
-  - {fileID: 322308546107684143, guid: 9c3c4b96ac9faf942a027efa95050500, type: 3}
-  - {fileID: 6690388454592023288, guid: 09641a87d806be54798b18c2da9c0c37, type: 3}
-  - {fileID: 363627462034149909, guid: 1894a3520ed13f94997ef7f9488d14db, type: 3}
-  - {fileID: 1544027838506993895, guid: 7e164e273bfc85b4084b9ab7f7ffc32c, type: 3}
-  - {fileID: 3399244542748218395, guid: 4e508b0696a0a444f9758ed786a17348, type: 3}
-  showRoomGUI: 0
-  minPlayers: 1
-  roomPlayerPrefab: {fileID: 5801046964974653843, guid: 104f3e730f7e3a245a4de0f19f3b9df2,
-    type: 3}
-  RoomScene: Assets/Scenes/WaitingRoom.unity
-  GameplayScene: Assets/Scenes/GamePlay.unity
-  _allPlayersReady: 0
-  roomSlots: []
-  clientIndex: 0
-  RoomName: 
-  PlayerName: 
-  endingScene: Assets/Scenes/UI/Ending.unity
-  loadingManagerPrefab: {fileID: 3825596481130646103, guid: f8df0c5ba34cebb4ebdc953c12376662,
-    type: 3}
-  logLevel: 3
---- !u!4 &1008380061
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008380058}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1513.6248, y: -648.8422, z: -334.75}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1008380062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008380058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showGUI: 1
-  offsetX: 0
-  offsetY: 0
 --- !u!1 &1215334756
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,3 +705,87 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &2103834762
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2651649388680956106, guid: f8ce1125b40e4c445b9709c3cf962722,
+        type: 3}
+      propertyPath: m_Name
+      value: -- MIRROR_NETWORK_MANAGER
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651649388680956109, guid: f8ce1125b40e4c445b9709c3cf962722,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651649388680956109, guid: f8ce1125b40e4c445b9709c3cf962722,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9875
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651649388680956109, guid: f8ce1125b40e4c445b9709c3cf962722,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9875
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651649388680956109, guid: f8ce1125b40e4c445b9709c3cf962722,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9875
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651649388680956109, guid: f8ce1125b40e4c445b9709c3cf962722,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1889.4545
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651649388680956109, guid: f8ce1125b40e4c445b9709c3cf962722,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -418.7317
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651649388680956109, guid: f8ce1125b40e4c445b9709c3cf962722,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -330.56564
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651649388680956109, guid: f8ce1125b40e4c445b9709c3cf962722,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651649388680956109, guid: f8ce1125b40e4c445b9709c3cf962722,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651649388680956109, guid: f8ce1125b40e4c445b9709c3cf962722,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651649388680956109, guid: f8ce1125b40e4c445b9709c3cf962722,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651649388680956109, guid: f8ce1125b40e4c445b9709c3cf962722,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651649388680956109, guid: f8ce1125b40e4c445b9709c3cf962722,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651649388680956109, guid: f8ce1125b40e4c445b9709c3cf962722,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f8ce1125b40e4c445b9709c3cf962722, type: 3}

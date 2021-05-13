@@ -81,4 +81,37 @@ public class NetRoomClient : RoomClient
         }
         base.JoinTheRoom();
     }
+
+    public override void SetPort(int port)
+    {
+        if (Transport.activeTransport is kcp2k.KcpTransport kcp)
+        {
+            kcp.Port = (ushort)port;
+        }
+        else if (Transport.activeTransport is TelepathyTransport tcp)
+        {
+            tcp.port = (ushort)port;
+        }
+        else
+        {
+            Debug.LogError("Transport is not found");
+        }
+    }
+
+    public override int GetPort()
+    {
+        if (Transport.activeTransport is kcp2k.KcpTransport kcp)
+        {
+            return kcp.Port;
+        }
+        else if (Transport.activeTransport is TelepathyTransport tcp)
+        {
+            return tcp.port;
+        }
+        else
+        {
+            Debug.LogError("Transport is not found");
+            return 0;
+        }
+    }
 }
