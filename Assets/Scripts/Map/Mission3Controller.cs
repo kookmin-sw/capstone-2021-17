@@ -141,12 +141,15 @@ public class Mission3Controller : MonoBehaviour
         {
             StopCoroutine("ChangeTimeDownFast");
             corutineRunning[0] = false;
+            button[0].interactable = true;
         }
         if (corutineRunning[2])
         {
             StopCoroutine("ChangeTimeUpFast");
             corutineRunning[2] = false;
+            button[3].interactable = true;
         }
+        button[2].interactable = false;
         StartCoroutine("ChangeTimeUpSlow");
     }
     public void TimeUpCoFast()
@@ -155,12 +158,15 @@ public class Mission3Controller : MonoBehaviour
         {
             StopCoroutine("ChangeTimeDownFast");
             corutineRunning[0] = false;
+            button[0].interactable = true;
         }
         if (corutineRunning[1])
         {
             StopCoroutine("ChangeTimeUpSlow");
             corutineRunning[1] = false;
+            button[2].interactable = true;
         }
+        button[3].interactable = false;
         StartCoroutine("ChangeTimeUpFast");
     }
     public void TimeDownCoFast()
@@ -169,12 +175,15 @@ public class Mission3Controller : MonoBehaviour
         {
             StopCoroutine("ChangeTimeUpSlow");
             corutineRunning[1] = false;
+            button[2].interactable = true;
         }
         if (corutineRunning[2])
         {
             StopCoroutine("ChangeTimeUpFast");
             corutineRunning[2] = false;
+            button[3].interactable = true;
         }
+        button[0].interactable = false;
         StartCoroutine("ChangeTimeDownFast");
     }
     //시간 증가를 멈추고 답과 일치하는지 비교합니다
@@ -184,16 +193,19 @@ public class Mission3Controller : MonoBehaviour
         {
             StopCoroutine("ChangeTimeUpSlow");
             corutineRunning[1] = false;
+            button[2].interactable = true;
         }
         if (corutineRunning[2])
         {
             StopCoroutine("ChangeTimeUpFast");
             corutineRunning[2] = false;
+            button[3].interactable = true;
         }
         if (corutineRunning[0])
         {
             StopCoroutine("ChangeTimeDownFast");
             corutineRunning[0] = false;
+            button[0].interactable = true;
         }
         if(correctHour == hour && correctMinute == minute && correctSecond == second)
         {
