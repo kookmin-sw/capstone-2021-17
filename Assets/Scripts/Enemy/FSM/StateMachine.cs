@@ -4,7 +4,23 @@ using UnityEngine;
 
 public class StateMachine 
 {
-    public State currentState { get; private set; }
+    private State memState;
+    public State currentState 
+    {
+        get; 
+        private set; 
+    }
+    public State latestState 
+    { 
+        get 
+        {
+            return memState;
+        }
+        set 
+        {
+            memState = currentState;
+        }        
+    }
 
     //스테이트 초기화
     public void Initialize(State startingState)
@@ -17,7 +33,7 @@ public class StateMachine
     public void ChangeState(State newState)
     {
         currentState.Exit();
-
+        memState = currentState;
         currentState = newState;
         newState.Enter();
     }
