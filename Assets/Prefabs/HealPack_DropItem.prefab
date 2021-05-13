@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3504157732761948090}
   - component: {fileID: 2487899495809396177}
   m_Layer: 8
-  m_Name: HealPack
+  m_Name: HealPack_DropItem
   m_TagString: ItemHeal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

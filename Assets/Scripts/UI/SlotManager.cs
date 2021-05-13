@@ -183,6 +183,10 @@ public class SlotManager : MonoBehaviour
         {
             thisImage = sprites[0];
         }
+        else if(itemName == "Gun")
+        {
+            thisImage = sprites[1];
+        }
     }
 
     //아이템 삭제

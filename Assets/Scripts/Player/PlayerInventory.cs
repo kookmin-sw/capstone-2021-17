@@ -21,17 +21,21 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     private PlayerHealth playerHealth;
 
+    
     private NetworkManager netManager;
 
     public GameObject HealPackPrefab;
+    public GameObject GunPrefab;
+
+    private Animator playerAnimator;
+    private GunControl gunControl;
 
     private void Awake()
     {
-
-
         netManager = NetworkManager.singleton;
+        playerAnimator = GetComponent<Animator>();
+        gunControl = HandItems[1].GetComponent<GunControl>();
 
-        
     }
 
 
@@ -73,8 +77,15 @@ public class PlayerInventory : MonoBehaviour
             {
                 playerHealth.Heal();
                 RemoveItem(idx);
+                netPlayer.ChangeHandItem = false;
             }
             
+        }
+        else if (targetItem is Gun)
+        {
+            //gunControl.Shoot();
+            //netPlayer.ChangeHandItem = false;
+
         }
     }
     public void DropItem(int idx)
@@ -96,37 +107,42 @@ public class PlayerInventory : MonoBehaviour
             netPlayer.SpawnObject(healPack, position , rotation);
             RemoveItem(idx);
         }
+        else if (targetItem is Gun gun)
+        {
+            netPlayer.SpawnObject(gun, position, rotation);
+            RemoveItem(idx);
 
+            DeactivateGun();
+        }
+
+    }
+    public void DeactivateHealPack()
+    {
+        Debug.Log("DEAC");
+        netPlayer.ChangeHandItem = true;
+        netPlayer.SetActiveHandItem(null);
+        
+    }
+
+
+    public void DeactivateGun()
+    {
+        playerAnimator.SetBool("Gun", false); //gun animation end
+        gunControl.Head.SetActive(true);
+        gunControl.CountBullet = 0;
+        netPlayer.ChangeHandItem = true;
+        netPlayer.SetActiveHandItem(null);
+        
     }
 
     public void ActiveHandItem(int idx)
     {
         Item targetItem = Items[idx];
+        netPlayer.SetActiveHandItem(targetItem);
 
-        if (targetItem == null)
+        if(targetItem is Gun)
         {
-            netPlayer.CmdSetActiveHandItem(-1);
-        }
-        else if (targetItem is HealPack)
-        {
-            netPlayer.CmdSetActiveHandItem(0);
-        }   
-    }
-
-    public void ActiveHandItemFromNet(int idx, bool isActive)
-    {
-        HandItems[idx].SetActive(isActive);
-    }
-
-    public void RemoveItem()
-    {
-        for(int idx = 3; idx >= 0; idx--)
-        {
-            if(Items[idx] != null)
-            {
-                Items[idx] = null;
-                SlotManager.RemoveItem(idx);
-            }
+            playerAnimator.SetBool("Gun", true); //gun animation start
         }
     }
 
@@ -134,12 +150,8 @@ public class PlayerInventory : MonoBehaviour
     {
         for (int idx = 0; idx < Items.Length; idx++)
         {
-            if (Items[idx] == targetItem)
-            {
-                Items[idx] = null;
-                SlotManager.RemoveItem(idx);
-                return;
-            }
+            RemoveItem(idx);
+            return;
         }
     }
 
@@ -149,7 +161,7 @@ public class PlayerInventory : MonoBehaviour
         {
 
             
-            netPlayer.SetActiveHandItem(null);
+            //netPlayer.SetActiveHandItem(null);
             
             Items[idx] = null;
             

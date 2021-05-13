@@ -80,6 +80,7 @@ public class PlayerHealth : MonoBehaviour
         if(NetPlayer != null)
         {
             NetPlayer.ChangeHealth(health);
+            NetPlayer.PlayerInventory.DeactivateHealPack();
         }
         if(playerHealItem != null)
         {
@@ -87,5 +88,7 @@ public class PlayerHealth : MonoBehaviour
             playerHealItem.Items[1].SetActive(false); //Deactivate items in the user's hand
         }
         playerAnimator.SetBool("Heal", false);//Heal animation end
+
+        
     }
 }

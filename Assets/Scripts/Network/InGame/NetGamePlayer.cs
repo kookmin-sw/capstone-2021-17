@@ -46,8 +46,6 @@ public class NetGamePlayer : NetworkBehaviour
 
     private InGame_MultiGameManager MultigameManager;
 
-    public GameObject[] HandItems = new GameObject[2]; 
-
     private void Awake()
     {
         Health = PlayerHealth.health;
@@ -197,11 +195,13 @@ public class NetGamePlayer : NetworkBehaviour
 
     public void SpawnObject(Item item, Vector3 position, Quaternion rotation)
     {
-        int idx = 0;
         if(item is HealPack)
         {
-            idx = 0;
             CmdSpawnObject(0, position, rotation);
+        }
+        else if(item is Gun)
+        {
+            CmdSpawnObject(1, position, rotation);
         }
         
     }
@@ -213,10 +213,19 @@ public class NetGamePlayer : NetworkBehaviour
             GameObject createdObject = Instantiate( PlayerInventory.HealPackPrefab, position, rotation);
             NetworkServer.Spawn(createdObject);
         }
+        else if (idx == 1)
+        {
+            GameObject createdObject = Instantiate(PlayerInventory.GunPrefab, position, rotation);
+            NetworkServer.Spawn(createdObject);
+        }
     }
+
+    public bool ChangeHandItem = true;
 
     public void SetActiveHandItem(Item item)
     {
+        if (!ChangeHandItem) return;
+
         if(item == null)
         {
             CmdSetActiveHandItem(-1);
@@ -225,11 +234,15 @@ public class NetGamePlayer : NetworkBehaviour
         {
             CmdSetActiveHandItem(0);
         }
-
+        else if(item is Gun)
+        {
+            CmdSetActiveHandItem(1);
+        }
+        
     }
 
     [Command]
-    public void CmdSetActiveHandItem( int item_idx)
+    private void CmdSetActiveHandItem( int item_idx)
     {
         handItemidx = item_idx;
     }
@@ -240,6 +253,7 @@ public class NetGamePlayer : NetworkBehaviour
         PlayerInventory.HandItems[oldItem].SetActive(false);
         if(newItem >= 0 )
         PlayerInventory.HandItems[newItem].SetActive(true);
+
     }
 
     void OnHealthChanged(int oldVal, int newVal)

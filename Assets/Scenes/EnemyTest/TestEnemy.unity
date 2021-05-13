@@ -58911,6 +58911,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 34371439}
     m_Modifications:
+    - target: {fileID: -5992065107798303068, guid: 42b9a50c04628b648ad7621ab604f17e,
+        type: 3}
+      propertyPath: sceneId
+      value: 4251807924
+      objectReference: {fileID: 0}
     - target: {fileID: 8796574196194025287, guid: 42b9a50c04628b648ad7621ab604f17e,
         type: 3}
       propertyPath: m_RootOrder
@@ -58971,5 +58976,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -6158559653786872731, guid: 42b9a50c04628b648ad7621ab604f17e, type: 3}
+    - {fileID: -5992065107798303068, guid: 42b9a50c04628b648ad7621ab604f17e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 42b9a50c04628b648ad7621ab604f17e, type: 3}
