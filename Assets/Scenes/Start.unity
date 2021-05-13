@@ -1794,8 +1794,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f7600eb19fd4c74faf805e11898a827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logLevel: 3
-  serverIP: 127.0.0.1
+  logLevel: 0
+  serverIP: 13.209.73.28
   serverPort: 5000
   minTimeToConnect: 5
   maxTimeToConnect: 20
@@ -2648,7 +2648,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1091927448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a273e02c0ec9624c9798f910304c706, type: 3}
+  m_Script: {fileID: 11500000, guid: 844d1a111dc9bbe44b7acd1d5833d632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lables:
