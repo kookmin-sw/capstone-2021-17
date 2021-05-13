@@ -20,6 +20,14 @@ public class PlayerHealth : MonoBehaviour
         playerHealItem = GetComponent<PlayerItem>();
         playerAnimator = GetComponent<Animator>();
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Hit();
+        }
+    }
     public void Hit() //Player hit
     {
         health -= 1; // Health minus
