@@ -34,7 +34,7 @@ public class NetGamePlayer : NetworkBehaviour
 
     public Canvas Canvas;
     
-    public ThirdPersonCharacter Character;
+    public MovePlayerTestForEnemy Character;
     
     public ThirdPersonUserControl ThirdControl;
     
@@ -51,7 +51,7 @@ public class NetGamePlayer : NetworkBehaviour
     private void Awake()
     {
         Health = PlayerHealth.health;
-        State = Character.state;
+        State = (ThirdPersonCharacter.State)Character.state;
         MultigameManager = InGame_MultiGameManager.instance;
     }
 

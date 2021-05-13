@@ -90,16 +90,11 @@ public class PlayerInventory : MonoBehaviour
         if (targetItem == null)
         {
             // nothing works..
-            Debug.Log("NULL");
         }
         else if (targetItem is HealPack healPack)
         {
             netPlayer.SpawnObject(healPack, position , rotation);
             RemoveItem(idx);
-        }
-        else
-        {
-            Debug.Log("WA");
         }
 
     }

@@ -41,10 +41,6 @@ public class PlayerHealth : MonoBehaviour
         //You can heal only when health is 1
         if (health == 1) 
         {
-            if (NetPlayer != null) //Net Player
-            {
-                NetPlayer.ChangeHealth(health);
-            }
             StartCoroutine("Healing");
             playerHealthState.isHit = false;
         }
@@ -73,8 +69,15 @@ public class PlayerHealth : MonoBehaviour
         playerAnimator.SetBool("Heal", true);//Heal animation start 
         yield return new WaitForSeconds(4); //Until the animation ends
         health += 1; // Health plus
-        playerHealItem.hasItems[1] = false; //Do not have an item
-        playerHealItem.Items[1].SetActive(false); //Deactivate items in the user's hand
+        if(NetPlayer != null)
+        {
+            NetPlayer.ChangeHealth(health);
+        }
+        if(playerHealItem != null)
+        {
+            playerHealItem.hasItems[1] = false; //Do not have an item
+            playerHealItem.Items[1].SetActive(false); //Deactivate items in the user's hand
+        }
         playerAnimator.SetBool("Heal", false);//Heal animation end
     }
 }
