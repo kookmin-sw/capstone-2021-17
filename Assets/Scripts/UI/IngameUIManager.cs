@@ -201,7 +201,7 @@ public class IngameUIManager : MonoBehaviour
             missionProgress = 1; // 100% 안넘어가게끔
         }
         missionCount.value = 0.2f + missionProgress;
-        missionText.text = (int)(missionProgress*100) + "%";
+        missionText.text = (int)(missionProgress*125) + "%";
     }
 
     //게임 종료시 다시 물어보는 UI (ex : 정말로 나가시겠습니까?)
