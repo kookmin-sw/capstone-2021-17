@@ -13,7 +13,7 @@ public class DizzyState : State
     {
         base.Enter();
         enemy.SirenStop();
-        enemy.InitializeAll();  //변수 초기화                
+        enemy.InitializeAll();  //변수 초기화
         anim.PlayDizzyAnim();    //Dizzy 애니메이션 실행
         enemy.ChangeToIdle();
     }
@@ -33,6 +33,5 @@ public class DizzyState : State
     public override void Exit()
     {
         base.Exit();
-    }
-   
+    }   
 }
