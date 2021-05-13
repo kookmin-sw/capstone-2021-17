@@ -92,6 +92,7 @@ namespace keypadSystem
 
         public void CloseKeypad()
         {
+            GameMgr.lockKey = false;
             if (itemBoxNet != null)
             {
                 itemBoxNet.SetUsing(false);
