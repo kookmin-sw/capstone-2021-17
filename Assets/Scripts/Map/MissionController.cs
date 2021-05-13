@@ -34,6 +34,7 @@ public class MissionController : MonoBehaviour
     //미션창 활성화
     public void ShowMission()
     {
+        GameMgr.lockKey = true;
         if (missionObject.name == "Mission1(Clone)")
         {
             mission1Controller.ShowMission();
@@ -51,6 +52,7 @@ public class MissionController : MonoBehaviour
     //미션창 비활성화
     public void CloseMission()
     {
+        GameMgr.lockKey = false;
         if (missionObject.name == "Mission1(Clone)")
         {
             mission1Controller.CloseMission();
@@ -67,6 +69,7 @@ public class MissionController : MonoBehaviour
 
     public void UnableMission()
     {
+        GameMgr.lockKey = false;
         if (missionObject.name == "Mission1(Clone)")
         {
             mission1Controller.UnableMission();

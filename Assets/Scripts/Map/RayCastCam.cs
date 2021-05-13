@@ -69,13 +69,11 @@ public class RayCastCam : MonoBehaviour
 
                 if (Input.GetKeyDown("e"))
                 {
-                    GameMgr.lockKey = true;
                     rayCastedKeypad = raycasted_obj.GetComponent<KeypadItemController>();
                     rayCastedKeypad.ShowKeypad();
                 }
                 else if (Input.GetKeyDown("escape"))
                 {
-                    GameMgr.lockKey = false;
                     rayCastedKeypad = raycasted_obj.GetComponent<KeypadItemController>();
                     rayCastedKeypad.CloseKeypad();
                 }
@@ -108,13 +106,11 @@ public class RayCastCam : MonoBehaviour
 
                 if (Input.GetKeyDown("e"))
                 {
-                    GameMgr.lockKey = true;
                     MissionController missionController = raycasted_obj.GetComponentInChildren<MissionController>();
                     missionController.ShowMission();
                 }
                 else if (Input.GetKeyDown("escape"))
                 {
-                    GameMgr.lockKey = false;
                     MissionController missionController = raycasted_obj.GetComponentInChildren<MissionController>();
                     missionController.CloseMission();
                 }
