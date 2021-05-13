@@ -152,7 +152,7 @@ namespace kcp2k
             if (time >= lastReceiveTime + TIMEOUT)
             {
                 Log.Warning($"KCP: Connection timed out after not receiving any message for {TIMEOUT}ms. Disconnecting.");
-                Disconnect();
+                //Disconnect();
             }
         }
 
