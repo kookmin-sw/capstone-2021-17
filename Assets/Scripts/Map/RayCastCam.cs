@@ -86,11 +86,14 @@ public class RayCastCam : MonoBehaviour
 
                 if (Input.GetKeyDown("e"))
                 {
-                    HealPack healPack = raycasted_obj.GetComponent<HealPack>();
+                    MapItemBehaviour itemBehaviour = raycasted_obj.GetComponent<MapItemBehaviour>();
+                    DroppedItemNetBehaviour droppedItemBehaviour = raycasted_obj.GetComponent<DroppedItemNetBehaviour>();
+                    HealPack healPack = new HealPack();
                     if (!inventory.IsFull())
                     {
                         inventory.AddItem(healPack);
-                        healPack.DeactivateObj();
+                        if (itemBehaviour != null) itemBehaviour.SetActive(false);
+                        else if (droppedItemBehaviour != null) droppedItemBehaviour.SetActive(false);
                     }
                     else
                     {
