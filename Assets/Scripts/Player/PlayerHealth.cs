@@ -80,7 +80,7 @@ public class PlayerHealth : MonoBehaviour
         if(NetPlayer != null)
         {
             NetPlayer.ChangeHealth(health);
-            NetPlayer.PlayerInventory.DeactivateHealPack();
+            NetPlayer.PlayerInventory.RemoveHealPack();
         }
         if(playerHealItem != null)
         {

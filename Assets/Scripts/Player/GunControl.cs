@@ -21,7 +21,6 @@ public class GunControl : MonoBehaviour
             StartCoroutine("Shot");
         }
     }
-
     public void Shoot()
     {
         StopCoroutine("Shot");
@@ -37,7 +36,7 @@ public class GunControl : MonoBehaviour
 
         if(playerInventory != null)
         {
-            playerInventory.DeactivateGun();
+            playerInventory.RemoveGun();
         }
 
         yield return null;

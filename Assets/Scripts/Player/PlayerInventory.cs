@@ -58,15 +58,20 @@ public class PlayerInventory : MonoBehaviour
         return false;
     }
 
+    int lastUsedItemIdx = -1;
+
     public void UseItem(int idx)
     {
         Item targetItem = Items[idx];
 
         if (targetItem == null)
         {
-            // nothing works..
+            return;
         }
-        else if(targetItem is HealPack)
+
+        lastUsedItemIdx = idx;
+
+        if (targetItem is HealPack)
         {
             if (playerHealth.health >= PlayerHealth.MAXHP)
             {
@@ -75,17 +80,15 @@ public class PlayerInventory : MonoBehaviour
             }
             else
             {
+                netPlayer.IsItemUsing = true;
                 playerHealth.Heal();
-                RemoveItem(idx);
-                netPlayer.ChangeHandItem = false;
-            }
-            
+            } 
         }
         else if (targetItem is Gun)
         {
-            //gunControl.Shoot();
-            //netPlayer.ChangeHandItem = false;
-
+            netPlayer.IsItemUsing = true;
+            gunControl.Shoot();
+          
         }
     }
     public void DropItem(int idx)
@@ -105,32 +108,48 @@ public class PlayerInventory : MonoBehaviour
         else if (targetItem is HealPack healPack)
         {
             netPlayer.SpawnObject(healPack, position , rotation);
+            DeActivateHealPack();
             RemoveItem(idx);
         }
         else if (targetItem is Gun gun)
         {
             netPlayer.SpawnObject(gun, position, rotation);
+            DeActivateGun();
             RemoveItem(idx);
-
-            DeactivateGun();
         }
 
     }
-    public void DeactivateHealPack()
+
+    public void DeActivateHealPack()
     {
-        netPlayer.ChangeHandItem = true;
         netPlayer.SetActiveHandItem(null);
-        
     }
 
-
-    public void DeactivateGun()
+    public void DeActivateGun()
     {
         playerAnimator.SetBool("Gun", false); //gun animation end
         gunControl.Head.SetActive(true);
         gunControl.CountBullet = 0;
-        netPlayer.ChangeHandItem = true;
+
         netPlayer.SetActiveHandItem(null);
+    }
+    public void RemoveHealPack()
+    {
+        if (netPlayer.IsItemUsing == false) return;
+        netPlayer.IsItemUsing = false;
+
+        DeActivateHealPack();
+        RemoveItem(lastUsedItemIdx);
+    }
+
+
+    public void RemoveGun()
+    {
+        if (netPlayer.IsItemUsing == false) return;
+        netPlayer.IsItemUsing = false;
+
+        DeActivateGun();
+        RemoveItem(lastUsedItemIdx);
         
     }
 
@@ -142,6 +161,10 @@ public class PlayerInventory : MonoBehaviour
         if(targetItem is Gun)
         {
             playerAnimator.SetBool("Gun", true); //gun animation start
+        }
+        else
+        {
+            playerAnimator.SetBool("Gun", false); //gun animation start
         }
     }
 

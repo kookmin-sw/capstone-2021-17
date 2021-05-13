@@ -220,11 +220,11 @@ public class NetGamePlayer : NetworkBehaviour
         }
     }
 
-    public bool ChangeHandItem = true;
+    public bool IsItemUsing = false;
 
     public void SetActiveHandItem(Item item)
     {
-        if (!ChangeHandItem) return;
+        if (IsItemUsing) return;
 
         if(item == null)
         {
