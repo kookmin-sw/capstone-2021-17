@@ -113,8 +113,8 @@ public class Mission1Controller : MonoBehaviour
         {
             missionNet.SetUsing(false);
         }
-
-        stage = 0;
+        StopCoroutine("ShowQuiz");
+        //stage = 0;
         KPDisableManager.instance.DisablePlayer(false);
         missionCanvas.SetActive(false);
     }
@@ -184,12 +184,12 @@ public class Mission1Controller : MonoBehaviour
         ButtonFalse();
         for (int i = 0; i < length; i++)
         {
-            yield return new WaitForSecondsRealtime(0.3f);
+            yield return new WaitForSecondsRealtime(0.2f);
             state.gameObject.SetActive(false);
             num = int.Parse(correctCode[stage].Substring(i, 1)) - 1;
             Invoke("ButtonTurnYellow", 0f);
             Invoke("ButtonTurnGray", 0.15f);
-            yield return new WaitForSecondsRealtime(0.3f);
+            yield return new WaitForSecondsRealtime(0.2f);
         }
         ButtonActive();
     }
