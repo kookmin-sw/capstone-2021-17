@@ -71,10 +71,10 @@ public class Mission3Controller : MonoBehaviour
     //시간 변경 함수들
     public void ChangeTimeUp()
     {
-        if (second == 60)
+        if (second == 59)
         {
             second = 0;
-            if (minute == 60)
+            if (minute == 59)
             {
                 minute = 0;
                 hour += 1;
