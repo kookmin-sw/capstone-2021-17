@@ -118,7 +118,6 @@ public class PlayerInventory : MonoBehaviour
     }
     public void DeactivateHealPack()
     {
-        Debug.Log("DEAC");
         netPlayer.ChangeHandItem = true;
         netPlayer.SetActiveHandItem(null);
         

@@ -2989,7 +2989,7 @@ MonoBehaviour:
   ThirdCamera: {fileID: 3046158139356025099}
   Canvas: {fileID: 2230632436763779092}
   Character: {fileID: 6438295330049302892}
-  ThirdControl: {fileID: 0}
+  ThirdControl: {fileID: 809615085360455373}
   PlayerHealth: {fileID: 6375489128231356037}
   PlayerInventory: {fileID: 1689867080596699477}
   NicknameUI: {fileID: 5422931671716129255}

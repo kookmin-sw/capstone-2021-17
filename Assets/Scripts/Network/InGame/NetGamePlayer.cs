@@ -36,7 +36,7 @@ public class NetGamePlayer : NetworkBehaviour
     
     public MovePlayerTestForEnemy Character;
     
-    public ThirdPersonUserControl ThirdControl;
+    public PlayerControlForEnemy ThirdControl;
     
     public PlayerHealth PlayerHealth;
 
