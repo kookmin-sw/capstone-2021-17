@@ -128,7 +128,7 @@ public class Mission3Controller : MonoBehaviour
     IEnumerator ChangeTimeUpFast()
     {
         corutineRunning[2] = true;
-        yield return new WaitForSecondsRealtime(0.05f);
+        yield return new WaitForSecondsRealtime(0.01f);
         ChangeTimeUp();
         StartCoroutine("ChangeTimeUpFast");
     }
