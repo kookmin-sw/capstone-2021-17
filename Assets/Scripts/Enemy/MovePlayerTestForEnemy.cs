@@ -305,7 +305,7 @@ public class MovePlayerTestForEnemy : MonoBehaviour
     public void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Enemy"))
-        {            
+        {
             Vector3 reactVec  = (transform.position - other.transform.position);
             reactVec.z = 5*Mathf.Abs(reactVec.z) / reactVec.z;
             reactVec.y =1f;

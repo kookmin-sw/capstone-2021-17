@@ -57,7 +57,7 @@ public class PlayerHealth : MonoBehaviour
     void OnTriggerEnter(Collider other)//When entering the trigger
     {
         //When the tag is attack
-        if (other.tag == "Attack")
+        if (other.tag == "Enemy")
         {
             //It is attacked continuously. So use coroutines.
             StartCoroutine("Hiting");
@@ -71,6 +71,7 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator Healing() //Set Healing Coroutine
     {
         playerAnimator.SetBool("Heal", true);//Heal animation start 
+        playerHealItem.Items[1].SetActive(true); //items in the user's hand
         yield return new WaitForSeconds(4); //Until the animation ends
         health += 1; // Health plus
         playerHealItem.hasItems[1] = false; //Do not have an item
