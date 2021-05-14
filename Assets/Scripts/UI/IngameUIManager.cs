@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using keypadSystem;
 
 public class IngameUIManager : MonoBehaviour
 {
@@ -24,7 +25,6 @@ public class IngameUIManager : MonoBehaviour
 
     private int scene;
 
-    bool isMenuOpend;
 
     public static IngameUIManager instance;
 
@@ -37,7 +37,6 @@ public class IngameUIManager : MonoBehaviour
     {
         loadingTime = 5f;
         gameClear = false;
-        isMenuOpend = false;
     }
 
     void Update()
@@ -81,19 +80,7 @@ public class IngameUIManager : MonoBehaviour
         //if(Input.GetKeyDown(KeyCode.Escape) && !GameMgr.lockKey)
         if(Input.GetKeyDown(KeyCode.F1) && !GameMgr.lockKey) //esc키로 메뉴창 열고닫기
         {//에디터 오류 방지위해 임시 f1키
-            if (isMenuOpend == false) // 메뉴가 켜져있지 않다면 - 마우스 커서 키는 식
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-                isMenuOpend = true;
-            }
-            else // 메뉴창 닫을 때는 커서 닫음
-            {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-                isMenuOpend = false;
-            }
-
+            
             if(menu_UI.activeSelf == false)
             {
                 menu_UI.SetActive(true);
@@ -102,10 +89,14 @@ public class IngameUIManager : MonoBehaviour
                 ingame_howto[1].SetActive(false);
                 ingame_quit.SetActive(false);
                 menuinfo.SetActive(true);
+
+                KPDisableManager.instance.DisablePlayer(true);
             }
             else
             {
                 menu_UI.SetActive(false);
+
+                KPDisableManager.instance.DisablePlayer(false);
             }
         }
 
@@ -212,7 +203,7 @@ public class IngameUIManager : MonoBehaviour
             {
                 reCheck_UI.SetActive(false);
             }
-        }//버튼 안먹는 오류 고쳐야함
+        }//버튼 안먹는 오류 고침
     }
 
     //미션 수행도 진행바

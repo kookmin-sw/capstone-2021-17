@@ -108,7 +108,7 @@ public class HPManager : MonoBehaviour
             IngameUIManager ui = IngameUIManager.instance;
             gameOver.SetActive(true);
             //ui.OpenMenu();
-            //keypadSystem.KPDisableManager.instance.DisablePlayer(true) 할시 플레이어 동작 정지 가능함.
+            keypadSystem.KPDisableManager.instance.DisablePlayer(true);
             //로비, 시작창, 게임 종료 중 선택 가능
             
             if(Input.GetKeyDown(KeyCode.S))
