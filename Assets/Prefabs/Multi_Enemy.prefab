@@ -1535,7 +1535,7 @@ GameObject:
   - component: {fileID: 3727495889362441849}
   m_Layer: 0
   m_Name: Robot_RightHand
-  m_TagString: Enemy
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
