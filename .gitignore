@@ -63,3 +63,6 @@ crashlytics-build.properties
 UserSettings/EditorUserSettings.asset
 Assets/Log.txt
 Assets/Log.txt.meta
+Assets/MasterServerToolkitTemplates/MiniSurvival/MiniSurvivalAssets/CartoonLowPolyCityLite/CartoonLowPolyCityLite_URP_2019.3.unitypackage.meta
+Assets/MasterServerToolkitTemplates/MiniSurvival/MiniSurvivalAssets/CartoonLowPolyCityLite/CartoonLowPolyCityLite_LWRP_2018.3.unitypackage.meta
+Assets/MasterServerToolkitTemplates/MiniSurvival/MiniSurvivalAssets/CartoonLowPolyCityLite/CartoonLowPolyCityLite_HDRP_2018.3.unitypackage.meta
