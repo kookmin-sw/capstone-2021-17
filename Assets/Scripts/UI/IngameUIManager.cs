@@ -22,8 +22,17 @@ public class IngameUIManager : MonoBehaviour
     float loadingTime = 5; 
     private int check_state; // 게임 종료인지, 중간 종료인지 등 상태 체크용 int
 
+    private int scene;
+
     bool isMenuOpend;
-    
+
+    public static IngameUIManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         loadingTime = 5f;
@@ -180,6 +189,30 @@ public class IngameUIManager : MonoBehaviour
                 }
             }
         }
+
+        if (reCheck_UI.activeSelf == true) // ReCheck 메뉴창이 열려있을 때 Action
+        {
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                if (scene == 1)
+                {
+                    SceneManager.ChangeLobbyScene();
+                }
+                else if (scene == 2)
+                {
+                    SceneManager.ChangeStartScene();
+                }
+                else if (scene == 3)
+                {
+                    SceneManager.GameExit();
+                }
+
+            }
+            else if (Input.GetKeyDown(KeyCode.N))
+            {
+                reCheck_UI.SetActive(false);
+            }
+        }//버튼 안먹는 오류 고쳐야함
     }
 
     //미션 수행도 진행바
@@ -221,46 +254,21 @@ public class IngameUIManager : MonoBehaviour
         {
             case 1:
                 checktext.text = "로비로 돌아갈 경우, 현재 방의 플레이어들과 다시 게임을 진행하게 됩니다.\n로비로 돌아가시겠습니까?\n(Y/N)";
-                MoveScene(1);
+                scene = 1;
                 break;
             case 2:
                 checktext.text = "시작창으로 돌아갈 경우, 새로운 방을 찾아 게임을 진행해야 합니다.\n시작창으로 돌아가시겠습니까?\n(Y/N)";
-                MoveScene(2);
+                scene = 2;
                 break;
             case 3:
                 checktext.text = "게임이 완전히 종료됩니다. 종료하시겠습니까?\n(Y/N)";
-                MoveScene(3);
+                scene = 3;
                 break;
             default:
                 checktext.text = "정말로 게임에서 나가시겠습니까?\n(Y/N)";
-                MoveScene(2);
+                scene = 4;
                 break;
         }
     }
-    private void MoveScene(int scene)
-    {//입력된 int 값에 따라 scene 이동 (로비 : 1 / 시작 : 2, 종료 : 3)
-        if(reCheck_UI.activeSelf==true)
-        {
-            if(Input.GetKeyDown(KeyCode.Y))
-            {
-                if(scene==1)
-                {
-                    SceneManager.ChangeLobbyScene();
-                }
-                else if(scene==2)
-                {
-                    SceneManager.ChangeStartScene();
-                }
-                else if(scene==3)
-                {
-                    SceneManager.GameExit();
-                }
-                
-            }
-            else if(Input.GetKeyDown(KeyCode.N))
-            {
-                reCheck_UI.SetActive(false);
-            }
-        }//버튼 안먹는 오류 고쳐야함
-    }
+    
 }

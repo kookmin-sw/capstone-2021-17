@@ -105,15 +105,13 @@ public class HPManager : MonoBehaviour
     //체력 0일 시 게임오버창 출력
         if(IsDead(localPlayerIdx)==true)
         {
-            IngameUIManager ui = new IngameUIManager();
+            IngameUIManager ui = IngameUIManager.instance;
             gameOver.SetActive(true);
+            //ui.OpenMenu();
             //keypadSystem.KPDisableManager.instance.DisablePlayer(true) 할시 플레이어 동작 정지 가능함.
             //로비, 시작창, 게임 종료 중 선택 가능
-            if(Input.GetKeyDown(KeyCode.R))
-            {
-                ui.SetCheckText(1);
-            }
-            else if(Input.GetKeyDown(KeyCode.S))
+            
+            if(Input.GetKeyDown(KeyCode.S))
             {
                 ui.SetCheckText(2);
             }
