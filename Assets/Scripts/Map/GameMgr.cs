@@ -75,7 +75,7 @@ public class GameMgr : MonoBehaviour
         }
     }
 
-    //미션2와 아이템박스에 사용되는 코드 생성
+    // 아이템박스에 사용되는 코드 생성
     public static string GeneratePassword(int length)
     {
         StringBuilder codeSB = new StringBuilder(10);
@@ -90,6 +90,20 @@ public class GameMgr : MonoBehaviour
             {
                 codeSB[0] = (char)Random.Range(1,9);
             }
+        }
+        return codeSB.ToString();
+    }
+    //미션2에 사용되는 코드 생성
+    public static string GenerateFourNumbers(int length)
+    {
+        StringBuilder codeSB = new StringBuilder(10);
+        char singleChar;
+        string numbers = "0123456789";
+
+        while (codeSB.Length < length)
+        {
+            singleChar = numbers[UnityEngine.Random.Range(0, numbers.Length)];
+            codeSB.Append(singleChar);
         }
         return codeSB.ToString();
     }

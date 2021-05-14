@@ -167,8 +167,8 @@ public class Mission2Controller : MonoBehaviour
     public void SetStageCode()
     {
         int length = 4;
-        correctCode = GameMgr.GeneratePassword(length);
-        randomCode = GameMgr.GeneratePassword(length);
+        correctCode = GameMgr.GenerateFourNumbers(length);
+        randomCode = GameMgr.GenerateFourNumbers(length);
         state[0].text = correctCode;
         state[1].text = randomCode[0].ToString();
         state[2].text = randomCode[1].ToString();

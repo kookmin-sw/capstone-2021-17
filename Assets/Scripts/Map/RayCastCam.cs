@@ -24,6 +24,10 @@ public class RayCastCam : MonoBehaviour
 
     private bool canPull = true;
     private KeypadItemController rayCastedKeypad;
+    private MissionController missionController;
+
+    private bool isKeypad = false;
+    private bool isMission = false;
 
     void Awake()
     {
@@ -56,7 +60,6 @@ public class RayCastCam : MonoBehaviour
 
                 if (Input.GetKeyDown("e") && canPull)
                 {
-
                     LeverController leverController = raycasted_obj.GetComponent<LeverScript>().leverController;
                     leverController.doorNet.CmdPullDownLever(raycasted_obj);
                     StartCoroutine(Timer(1.0f));
@@ -69,12 +72,13 @@ public class RayCastCam : MonoBehaviour
 
                 if (Input.GetKeyDown("e"))
                 {
+                    isKeypad = true;
                     rayCastedKeypad = raycasted_obj.GetComponent<KeypadItemController>();
                     rayCastedKeypad.ShowKeypad();
                 }
                 else if (Input.GetKeyDown("escape"))
                 {
-                    rayCastedKeypad = raycasted_obj.GetComponent<KeypadItemController>();
+                    isKeypad = false;
                     rayCastedKeypad.CloseKeypad();
                 }
             }
@@ -102,7 +106,6 @@ public class RayCastCam : MonoBehaviour
                 }
             }
 
-
             else if (hit.collider.CompareTag("Gun"))
             {
                 raycasted_obj = hit.collider.gameObject;
@@ -125,9 +128,7 @@ public class RayCastCam : MonoBehaviour
                     }
                 }
             }
-
-            
-
+       
             else if (hit.collider.CompareTag("Mission"))
             {
                 raycasted_obj = hit.collider.gameObject;
@@ -135,20 +136,29 @@ public class RayCastCam : MonoBehaviour
 
                 if (Input.GetKeyDown("e"))
                 {
-                    MissionController missionController = raycasted_obj.GetComponentInChildren<MissionController>();
+                    isMission = true;
+                    missionController = raycasted_obj.GetComponentInChildren<MissionController>();
                     missionController.ShowMission();
                 }
                 else if (Input.GetKeyDown("escape"))
                 {
-                    MissionController missionController = raycasted_obj.GetComponentInChildren<MissionController>();
+                    isMission = false;
                     missionController.CloseMission();
                 }
-            }
+            }           
         }
-
+        
         else
         {
             CrosshairNormal();
+            if (isKeypad && Input.GetKeyDown("escape"))
+            {
+                rayCastedKeypad.CloseKeypad();
+            }
+            if (isMission && Input.GetKeyDown("escape"))
+            {
+                missionController.CloseMission();
+            }
         }
     }
 
