@@ -36,9 +36,9 @@ namespace keypadSystem
             
             if (disable)
             {
-                animator.SetFloat("forward", 0.0f);
-                animator.SetTrigger("Exit");
-                animator.Rebind();
+                animator.SetFloat("Forward", 0.0f);
+                animator.SetFloat("JumpLeg", 0.0f);
+                animator.SetBool("isPlayWalk", false);
                 //animator.speed = 0.0f;
                 playerBehaviour.enabled = false;
                 Cursor.lockState = CursorLockMode.None;
