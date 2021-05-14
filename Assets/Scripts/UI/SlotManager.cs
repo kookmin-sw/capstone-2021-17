@@ -13,7 +13,7 @@ public class SlotManager : MonoBehaviour
 
     public GameObject Cursor; //아이템 선택 이미지
     private int itemTarget; //커서가 위치해있는 아이템슬롯
-    private bool[] onTarget = new bool[4]; // 아이템 타겟팅 여부
+    private int[] onTarget = new int[4]; // 아이템 타겟팅 여부
 
     public static SlotManager instance;
 
@@ -28,7 +28,7 @@ public class SlotManager : MonoBehaviour
             color[i] = slot[i].color;
             color[i].a = 0; // 인벤토리 빈 상태로 보이도록
             slot[i].color = color[i];
-            onTarget[i] = false; // 타겟팅 초기화
+            onTarget[i] = 0; // 타겟팅 초기화
         }
         instance = this;
     }
@@ -61,7 +61,7 @@ public class SlotManager : MonoBehaviour
         {
             Debug.Log("3 click");
             itemTarget = 2;
-            Targeting(2);
+            //Targeting(2);
             moveCursor(itemTarget);
             inventory.ActiveHandItem(2);
         }
@@ -78,6 +78,7 @@ public class SlotManager : MonoBehaviour
         {
             ItemAction();
         }
+        
     }
 
 
@@ -108,11 +109,11 @@ public class SlotManager : MonoBehaviour
         {
             if(i==target)
             {
-                onTarget[target]=true;
+                onTarget[target]+=1;
             }
             else
             {
-                onTarget[i]=false;
+                onTarget[i] = 0;
             }
             
         }
@@ -122,21 +123,27 @@ public class SlotManager : MonoBehaviour
     { //같은 번호 2번 누를 시 사용, Q키로 아이템 버리기
         //커서의 위치와 누른 번호가 일치할 경우 아이템이 사용됨
 
-        if(Input.GetKeyDown(KeyCode.Alpha1) && onTarget[0]==true)
+        if(Input.GetKeyDown(KeyCode.Alpha1) && onTarget[0] > 1) // 타게팅을 두번하면 됨
         {
-            inventory.UseItem(0);
+            inventory.UseItem(0); 
+            
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha2) && onTarget[1]==true)
+        else if(Input.GetKeyDown(KeyCode.Alpha2) && onTarget[1] > 1)
         {
+            
             inventory.UseItem(1);
+            
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha3) && onTarget[2]==true)
+        else if(Input.GetKeyDown(KeyCode.Alpha3) && onTarget[2] > 1)
         {
+
             inventory.UseItem(2);
+            
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha4) && onTarget[3]==true)
+        else if(Input.GetKeyDown(KeyCode.Alpha4) && onTarget[3] > 1)
         {
             inventory.UseItem(3);
+
         }
         else if(Input.GetKeyDown(KeyCode.Q))
         {
@@ -182,6 +189,10 @@ public class SlotManager : MonoBehaviour
         if(itemName == "HealPack")
         {
             thisImage = sprites[0];
+        }
+        else if(itemName == "Gun")
+        {
+            thisImage = sprites[1];
         }
     }
 

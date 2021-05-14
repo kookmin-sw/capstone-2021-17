@@ -72,6 +72,7 @@ public class EnemyAnimation : MonoBehaviour
     {
         ani.SetBool("Attack", ani.GetBool("Attack")? false:true);
     }
+    
     public void PlayDizzyAnim()
     {
         if(enemyNet != null)
@@ -86,6 +87,7 @@ public class EnemyAnimation : MonoBehaviour
     
     public void SetDizzyAnim()
     {
+        ani.SetBool("Attack", false);
         ani.SetBool("Dizzy", ani.GetBool("Dizzy") ? false : true);
     }
 }

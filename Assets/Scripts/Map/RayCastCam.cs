@@ -86,11 +86,14 @@ public class RayCastCam : MonoBehaviour
 
                 if (Input.GetKeyDown("e"))
                 {
-                    HealPack healPack = raycasted_obj.GetComponent<HealPack>();
+                    MapItemBehaviour itemBehaviour = raycasted_obj.GetComponent<MapItemBehaviour>();
+                    DroppedItemNetBehaviour droppedItemBehaviour = raycasted_obj.GetComponent<DroppedItemNetBehaviour>();
+                    HealPack healPack = new HealPack();
                     if (!inventory.IsFull())
                     {
                         inventory.AddItem(healPack);
-                        healPack.DeactivateObj();
+                        if (itemBehaviour != null) itemBehaviour.SetActive(false);
+                        else if (droppedItemBehaviour != null) droppedItemBehaviour.SetActive(false);
                     }
                     else
                     {
@@ -98,6 +101,32 @@ public class RayCastCam : MonoBehaviour
                     }
                 }
             }
+
+
+            else if (hit.collider.CompareTag("Gun"))
+            {
+                raycasted_obj = hit.collider.gameObject;
+                CrosshairActive();
+
+                if (Input.GetKeyDown("e"))
+                {
+                    MapItemBehaviour itemBehaviour = raycasted_obj.GetComponent<MapItemBehaviour>();
+                    DroppedItemNetBehaviour droppedItemBehaviour = raycasted_obj.GetComponent<DroppedItemNetBehaviour>();
+                    Gun gun = new Gun();
+                    if (!inventory.IsFull())
+                    {
+                        inventory.AddItem(gun);
+                        if (itemBehaviour != null) itemBehaviour.SetActive(false);
+                        else if (droppedItemBehaviour != null) droppedItemBehaviour.SetActive(false);
+                    }
+                    else
+                    {
+                        Debug.Log("Inventory is Full");
+                    }
+                }
+            }
+
+            
 
             else if (hit.collider.CompareTag("Mission"))
             {

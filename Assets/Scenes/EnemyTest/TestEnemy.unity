@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
-    agentHeight: 2.5
+    agentRadius: 0.7
+    agentHeight: 2
     agentSlope: 45
-    agentClimb: 0.26
+    agentClimb: 0.6
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.23333333
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -3238,6 +3238,10 @@ PrefabInstance:
     - target: {fileID: 1615906193826840, guid: ca44357dd987f3c4eb129834a7cd4695, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1615906193826840, guid: ca44357dd987f3c4eb129834a7cd4695, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4267566273201828, guid: ca44357dd987f3c4eb129834a7cd4695, type: 3}
       propertyPath: m_RootOrder
@@ -58907,6 +58911,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 34371439}
     m_Modifications:
+    - target: {fileID: -5992065107798303068, guid: 42b9a50c04628b648ad7621ab604f17e,
+        type: 3}
+      propertyPath: sceneId
+      value: 4251807924
+      objectReference: {fileID: 0}
     - target: {fileID: 8796574196194025287, guid: 42b9a50c04628b648ad7621ab604f17e,
         type: 3}
       propertyPath: m_RootOrder
@@ -58967,5 +58976,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -6158559653786872731, guid: 42b9a50c04628b648ad7621ab604f17e, type: 3}
+    - {fileID: -5992065107798303068, guid: 42b9a50c04628b648ad7621ab604f17e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 42b9a50c04628b648ad7621ab604f17e, type: 3}

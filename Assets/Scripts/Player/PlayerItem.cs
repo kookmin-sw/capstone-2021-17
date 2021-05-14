@@ -35,6 +35,7 @@ public class PlayerItem : MonoBehaviour
             else if(nearObject.tag =="HealPotion") //When the tag is a healpotion
             {
                 hasItems[1]=true; //have a healpotion
+
             }
             Destroy(nearObject); //Object disappears
         } 

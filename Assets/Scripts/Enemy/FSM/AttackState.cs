@@ -13,15 +13,15 @@ public class AttackState : State
     {
         base.Enter();
         enemy.SirenStop();
-        enemy.InitializeAll();  //변수 초기화               
-        anim.PlayAttAnim();      //공격 애니메이션 재생
+        enemy.InitializeAll();
+        anim.PlayAttAnim();      //공격 애니메이션 재생              
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
         timer += Time.deltaTime;    //타이머로 딜레이 부여
-        if (timer > 1f)
+        if (timer > 1.5f)
         {
             timer = 0.0f;
             anim.PlayAttAnim();

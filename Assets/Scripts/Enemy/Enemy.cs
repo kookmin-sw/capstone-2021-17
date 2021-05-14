@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     
     [Range(0, 360)] [SerializeField] private float viewAngle;
     [SerializeField] private float viewRadius;
-    [SerializeField] private float dis;   //플레이어와의 거리  
+    [SerializeField] private float dis = 1000f;   //플레이어와의 거리  
     private bool hasDestination = false;   //Walk 애니메이션을 사용하기 위한 조건    
     private bool findTargetVision = false;   //시야에 적이 들어왔는지 체크
     private bool findTargetSound = false;    //오디오 센서에 적이 감지 됐는지      
@@ -53,26 +53,34 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void SetAgentPriority(int priority)
+    {
+        navMeshAgent.avoidancePriority = priority;
+    }
     public void SetWayPoints(Transform[] wayPoints)
     {
         wayPoint = wayPoints;
     }
     
+    public void SetNavMeshAgent()
+    {
+        navMeshAgent.isStopped = navMeshAgent.isStopped ? false : true;
+    }
     public void InitializeAll()
-    {        
+    {                
         findTargetVision = false;       //센서 초기화
         findTargetSound = false;        //센서 초기화
         navMeshAgent.speed = 0.5f;      //속도 초기화
         visibleTargets.Clear();         //타겟 리스트 초기화
-        target = null;                  //타겟 초기화
+        target = null;                  //타겟 초기화        
     }
 
     //플레이어 타겟의 위치로 이동합니다.
     public void MoveToTarget()
-    {
+    {        
         navMeshAgent.speed += navMeshAgent.speed * 0.0005f;     //에너미의 속도를 점차 증가시킵니다.
         anim.SetBlnedTree(navMeshAgent.speed);                  //블랜드 트리 값 변경
-        navMeshAgent.SetDestination(target.position);
+        navMeshAgent.SetDestination(target.position);        
     }
 
     //순찰 시 사용하는 웨이포인트로 이동합니다.
@@ -94,12 +102,13 @@ public class Enemy : MonoBehaviour
     public void ChangeToIdle()
     {
         navMeshAgent.ResetPath();
-        enemyStateMachine.ChangeState(idle);
+        enemyStateMachine.ChangeState(idle);  
     }
 
     public void ChangeToPatrol()
     {        
         enemyStateMachine.ChangeState(patrol);
+
     }
 
     public void ChangeToChase()
@@ -112,7 +121,7 @@ public class Enemy : MonoBehaviour
         if (dis <= 1.5f)
         {
             enemyStateMachine.ChangeState(attack);
-        }
+        }        
     }
 
     public void SirenPlay()
@@ -157,6 +166,20 @@ public class Enemy : MonoBehaviour
         return hasDestination;
     }
 
+    public void MemoState() //이전 스테이트를 기억합니다.
+    {
+        enemyStateMachine.latestState = enemyStateMachine.currentState;
+    }
+
+    public bool IsLatestStateAtt()
+    {
+        return enemyStateMachine.latestState == attack;
+    }
+
+    public bool IsLatestStateDizzy()
+    {
+        return enemyStateMachine.latestState == dizzy;
+    }
     #endregion
 
     #region Private Methods
@@ -182,11 +205,11 @@ public class Enemy : MonoBehaviour
                 targetIndex = i;
             }
         }
-        target = visibleTargets[targetIndex];
+        target = visibleTargets[targetIndex];        
         if (target != memTarget)
         {
-            ChangeToChase();
-        }
+            ChangeToChase();            
+        }        
     }
 
     private void FindVisibleTargets()     //시야에 플레이어가 있는지 없는지 찾는다.

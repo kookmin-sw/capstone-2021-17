@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 public class PatrolState : State
-{
-    private Vector3 patrolPos;
+{    
     private float minErrorWayPoint = 0.5f;   //순찰 지점거리의 최소 오차
     public PatrolState(Enemy enemy) : base(enemy)
     {
@@ -35,8 +34,4 @@ public class PatrolState : State
         }
     }
 
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }    
 }

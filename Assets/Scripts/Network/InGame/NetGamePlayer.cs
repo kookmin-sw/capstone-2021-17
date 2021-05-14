@@ -27,13 +27,16 @@ public class NetGamePlayer : NetworkBehaviour
     [SyncVar]
     public bool IsEscape = false;
 
+    [SyncVar(hook = nameof(OnHandItemChanged))]
+    public int handItemidx = -1;
+
     public ThirdCamera ThirdCamera;
 
     public Canvas Canvas;
     
-    public ThirdPersonCharacter Character;
+    public MovePlayerTestForEnemy Character;
     
-    public ThirdPersonUserControl ThirdControl;
+    public PlayerControlForEnemy ThirdControl;
     
     public PlayerHealth PlayerHealth;
 
@@ -46,7 +49,7 @@ public class NetGamePlayer : NetworkBehaviour
     private void Awake()
     {
         Health = PlayerHealth.health;
-        State = Character.state;
+        State = (ThirdPersonCharacter.State)Character.state;
         MultigameManager = InGame_MultiGameManager.instance;
     }
 
@@ -79,6 +82,9 @@ public class NetGamePlayer : NetworkBehaviour
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+
+            SlotManager.instance.inventory = PlayerInventory;
+            PlayerInventory.SlotManager = SlotManager.instance;
 
             NicknameUI.text = "";
         }
@@ -187,47 +193,67 @@ public class NetGamePlayer : NetworkBehaviour
     }
 
 
-    public void SpawnObject(GameObject prefab, Vector3 position, Quaternion rotation)
+    public void SpawnObject(Item item, Vector3 position, Quaternion rotation)
     {
-
-        NetworkManager networkManager = NetworkManager.singleton;
-        for(int i = 0; i < networkManager.spawnPrefabs.Count; i++)
+        if(item is HealPack)
         {
-            if(prefab == networkManager.spawnPrefabs[i])
-            {
-                CmdSpawnObject(i, position, rotation);
-                return;
-            }
+            CmdSpawnObject(0, position, rotation);
         }
-
-        Debug.LogError("NOT Found prefab");
-    }
-
-    [Command]
-    private void CmdSpawnObject(int prefabIdx, Vector3 position, Quaternion rotation)
-    {
-        NetworkManager networkManager = NetworkManager.singleton;
-
-        GameObject createdObject = Instantiate(networkManager.spawnPrefabs[prefabIdx] , position , rotation);
-        NetworkServer.Spawn(createdObject);
-    }
-
-    public void SetActiveHandItem(int item_idx, bool isActive)
-    {
-        CmdSetActiveHandItem( item_idx, isActive);
-    }
-
-    [Command]
-    private void CmdSetActiveHandItem( int item_idx,bool isActive)
-    {
+        else if(item is Gun)
+        {
+            CmdSpawnObject(1, position, rotation);
+        }
         
-        RpcSetActiveHandItem(item_idx, isActive);
     }
 
-    [ClientRpc]
-    private void RpcSetActiveHandItem(int item_idx, bool isActive)
+    [Command]
+    private void CmdSpawnObject(int idx, Vector3 position, Quaternion rotation)
     {
-        PlayerInventory.ActiveHandItemFromNet(item_idx,isActive);
+        if (idx ==0) {
+            GameObject createdObject = Instantiate( PlayerInventory.HealPackPrefab, position, rotation);
+            NetworkServer.Spawn(createdObject);
+        }
+        else if (idx == 1)
+        {
+            GameObject createdObject = Instantiate(PlayerInventory.GunPrefab, position, rotation);
+            NetworkServer.Spawn(createdObject);
+        }
+    }
+
+    public bool IsItemUsing = false;
+
+    public void SetActiveHandItem(Item item)
+    {
+        if (IsItemUsing) return;
+
+        if(item == null)
+        {
+            CmdSetActiveHandItem(-1);
+        }
+        if (item is HealPack)
+        {
+            CmdSetActiveHandItem(0);
+        }
+        else if(item is Gun)
+        {
+            CmdSetActiveHandItem(1);
+        }
+        
+    }
+
+    [Command]
+    private void CmdSetActiveHandItem( int item_idx)
+    {
+        handItemidx = item_idx;
+    }
+
+    void OnHandItemChanged(int oldItem, int newItem)
+    {
+        if(oldItem >= 0)
+        PlayerInventory.HandItems[oldItem].SetActive(false);
+        if(newItem >= 0 )
+        PlayerInventory.HandItems[newItem].SetActive(true);
+
     }
 
     void OnHealthChanged(int oldVal, int newVal)
