@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using keypadSystem;
+using Mirror;
 
 public class IngameUIManager : MonoBehaviour
 {
@@ -69,7 +70,7 @@ public class IngameUIManager : MonoBehaviour
         
         if(loadingTime<=0)
         {
-            SceneManager.ChangeStartScene();
+            ChangeToStartScene();
         }
     }
 
@@ -240,12 +241,21 @@ public class IngameUIManager : MonoBehaviour
         }
         else if (scene == 2)
         {
-            SceneManager.ChangeStartScene();
+            ChangeToStartScene();
         }
         else if (scene == 3)
         {
             SceneManager.GameExit();
         }
+    }
+
+    public void ChangeToStartScene()
+    {
+        NetworkManager.singleton.StopClient();
+    }
+    public void ExitGame()
+    {
+        SceneManager.GameExit();
     }
 
     //게임 종료시 다시 물어보는 UI (ex : 정말로 나가시겠습니까?)
