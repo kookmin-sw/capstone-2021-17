@@ -16,7 +16,7 @@ public class EnemyAnimation : MonoBehaviour
     }
 
     // 경로가 있으면 애니메이션 시작.
-    void Update()
+    void FixedUpdate()
     {       
         if (checkAni.GetHasDestination())
         {
