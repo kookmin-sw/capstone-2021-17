@@ -6,25 +6,26 @@ public class AnimationSoundEvent : MonoBehaviour
 {
     [SerializeField] private AudioSource playerAudioSource;
     [SerializeField] private AudioClip[] playerAudioClip;
-    private Enemy[] enemy;
+    [SerializeField] private Enemy[] enemy;
     private int enemyLength;
     private Transform[] enemyPos = new Transform[3];
     //범위 안에 있는지 확인하는 변수
-    private bool isInArea = false;
+    public bool isInArea;
 
-    public void Start()
+    public void Awake()
     {
         enemy = FindObjectsOfType<Enemy>();
         enemyLength = enemy.Length;
+        Debug.Log(enemyLength);
         for(int i=0; i<enemyLength; i++)
         {
             enemyPos[i] = enemy[i].transform;
+            enemy[i].AddAnimationSoundEvent(GetComponent<AnimationSoundEvent>());
         }        
     }
     public void MakeEventWalk()
     {
-        ActiveSoundSensor();
-        playerAudioSource.Play();
+        ActiveSoundSensor();       
     }
 
     public void MakeEventCrouch()
@@ -41,20 +42,20 @@ public class AnimationSoundEvent : MonoBehaviour
     {
         return isInArea;
     }
-
+    public void SetInArea(bool tf) 
+    {
+        isInArea = tf;
+    }
     public void ActiveSoundSensor()
     {
-        for(int i=0; i<enemyLength; i++)
+        playerAudioSource.Play();
+        for (int i=0; i<enemyLength; i++)
         {
             if (Vector3.Distance(transform.position, enemyPos[i].position) <= 5f)
-            {
+            {                                
+                SetInArea(true);
                 enemy[i].SoundSensorDetect();
-                isInArea = true;
-            }
-            else
-            {
-                isInArea = false;
-            }
-        }
+            }            
+        }        
     }
 }

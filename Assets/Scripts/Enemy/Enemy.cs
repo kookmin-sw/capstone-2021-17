@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private LayerMask obstacleMask;
     [SerializeField] private Transform[] wayPoint;        //WayPoint - public EnemySpawnManager에서 동적 할당이 이루어져야됨.
-    [SerializeField] private AnimationSoundEvent[] animationEvent;  //오디오 센서를 위한 애니메이션 이벤트
+    [SerializeField] private List<AnimationSoundEvent> animationEvent = new List<AnimationSoundEvent>();  //오디오 센서를 위한 애니메이션 이벤트
     [SerializeField] private EnemyNetBehaviour enemyNet;
     [SerializeField] private EnemyAnimation anim;       //에너미의 에니메이션을 컨트롤하는 클래스
     [SerializeField] private AudioSource siren;           //사이렌 오디오 소스
@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
 
     private StateMachine enemyStateMachine;
     private PatrolState patrol;
-    private List<Transform> visibleTargets = new List<Transform>();  //시야에 들어온 적들의 List        
+    [SerializeField] private List<Transform> visibleTargets = new List<Transform>();  //시야에 들어온 적들의 List        
     private IdleState idle;
     private AttackState attack;
     private DizzyState dizzy;
@@ -40,6 +40,10 @@ public class Enemy : MonoBehaviour
     private Collider[] targetsInViewRadius = new Collider[4];   //OverlapSphereNonAlloc을 위한 어레이
 
     #region Public Methods
+    public void AddAnimationSoundEvent(AnimationSoundEvent animationSoundEvent)
+    {
+        animationEvent.Add(animationSoundEvent);
+    }
     public void FindTargets()   //사운드 센서와 시야로 플레이어를 찾는다.
     {
         //센서들을 작동
@@ -191,10 +195,10 @@ public class Enemy : MonoBehaviour
         memTarget = target;
         //타겟을 정하기 위한 인덱스 변수
         int targetIndex = 0;
-
+        Debug.Log(9);
         //타겟들의 거리 값
         dis = Vector3.Distance(transform.position, visibleTargets[0].position);
-
+        Debug.Log(10);
         //가장 짧은 거리를 찾기 위한 for문
         for (int i = 1; i < visibleTargets.Count; i++)
         {
@@ -205,6 +209,7 @@ public class Enemy : MonoBehaviour
                 targetIndex = i;
             }
         }
+        Debug.Log(12);
         target = visibleTargets[targetIndex];        
         if (target != memTarget)
         {
@@ -242,14 +247,16 @@ public class Enemy : MonoBehaviour
     {
         //오디오 이벤트가 발생하면
         if (findTargetSound)
-        {
+        {            
             //타겟리스트에 추가 -> 임시 구현 (여러 플레이어의 사운드를 탐지)
-            for (int i = 0; i < animationEventLength; i++)
+            for (int i = 0; i < animationEvent.Count; i++)
             {
+                Debug.Log(i);Debug.Log( "3" + animationEvent[i].CheckInArea());
                 if (animationEvent[i].CheckInArea())
-                {
+                {                    
                     Transform target = animationEvent[i].transform;
                     visibleTargets.Add(target);
+                    findTargetSound = true;
                 }
             }
         }
@@ -266,8 +273,9 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        animationEvent = FindObjectsOfType<AnimationSoundEvent>();
-        animationEventLength = animationEvent.Length;        
+        /*animationEvent = FindObjectsOfType<AnimationSoundEvent>();*/
+        animationEventLength = animationEvent.Count;
+        Debug.Log(animationEventLength);
         enemyStateMachine = new StateMachine();
         idle = new IdleState(this);
         patrol = new PatrolState(this);
