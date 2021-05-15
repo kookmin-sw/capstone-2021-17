@@ -993,6 +993,7 @@ MonoBehaviour:
   target: {fileID: 0}
   memTarget: {fileID: 0}
   enemyCollider: {fileID: 8784683268814308348}
+  visibleTargets: []
 --- !u!114 &6304954181184092415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1568,8 +1569,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3357756, y: 0.17834084, z: 0.16976926}
-  m_Center: {x: 0.15320463, y: -0.0013716508, z: -0.0034218328}
+  m_Size: {x: 0.69306415, y: 0.36243582, z: 0.3330871}
+  m_Center: {x: 0.069265485, y: -0.010566445, z: -0.014958378}
 --- !u!1 &4996177268857071726
 GameObject:
   m_ObjectHideFlags: 0
