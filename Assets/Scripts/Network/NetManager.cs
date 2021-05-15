@@ -96,15 +96,6 @@ public class NetManager : NetworkRoomManager
     {
         NetworkServer.SendToAll(message);
 
-        if (message.endingState == PlayerEndingState.Live)
-        {
-            SceneMessage sceneMsg = new SceneMessage
-            {
-                sceneName = endingScene,
-            };
-            conn.Send(sceneMsg);
-        }
-
     }
 
     void EndingPlayerMessageClientHandler(EndingPlayerMessage message)
@@ -284,6 +275,8 @@ public class NetManager : NetworkRoomManager
 
             enemySpawnManager = EnemySpawnManager.instance;
             enemySpawnManager.Init();
+
+            EndingMessages.Clear();
         }
     }
 

@@ -18,6 +18,7 @@ public class EndingManager : MonoBehaviour
 
     private List<SkinnedMeshRenderer> heads;
     private List<SkinnedMeshRenderer> bodys;
+    private List<EndingPlayerManager> endingPlayerManagers;
 
 
 
@@ -35,15 +36,17 @@ public class EndingManager : MonoBehaviour
         messages = new List<EndingPlayerMessage>();
         heads = new List<SkinnedMeshRenderer>();
         bodys = new List<SkinnedMeshRenderer>();
+        endingPlayerManagers = new List<EndingPlayerManager>();
 
         foreach(GameObject player in Players) // 플레이어간 동작을 맞추기 위해 플레이어들의 Mesh를 이용함
         {
             heads.Add(player.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>());
             bodys.Add(player.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>());
+            endingPlayerManagers.Add(player.GetComponent<EndingPlayerManager>());
         }
 
 
-        UpdatePlayers(); 
+        //UpdatePlayers(); 
     }
 
     public void DisconnectRoom()
@@ -76,6 +79,18 @@ public class EndingManager : MonoBehaviour
         {
             heads[id].gameObject.SetActive(true);
             bodys[id].gameObject.SetActive(true);
+            
+            
+            if(messages[id].endingState == PlayerEndingState.Dead)
+            {
+                endingPlayerManagers[id].isDead();
+            }
+            else
+            {
+                endingPlayerManagers[id].isLive();
+            }
+            
+            
         }
         for (int id = messages.Count; id < 4; id++)
         {

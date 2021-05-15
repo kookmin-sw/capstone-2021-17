@@ -272,12 +272,11 @@ public class NetGamePlayer : NetworkBehaviour
             EndingPlayerMessage msg = new EndingPlayerMessage()
             {
                 PlayerName = Nickname,
-                endingState = PlayerEndingState.Live
+                endingState = PlayerEndingState.Live,
             };
 
            
             NetworkClient.Send(msg);
-
             UnityEngine.SceneManagement.SceneManager.LoadScene("Ending");
 
 
