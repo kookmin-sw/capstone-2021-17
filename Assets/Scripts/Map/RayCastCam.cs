@@ -25,27 +25,29 @@ public class RayCastCam : MonoBehaviour
     private bool canPull = true;
     private KeypadItemController rayCastedKeypad;
     private MissionController missionController;
+    private MovePlayerTestForEnemy movePlayerTestForEnemy;
 
-    private bool isKeypad = false;
-    private bool isMission = false;
+    [SerializeField] private bool isKeypad = false;
+    [SerializeField] private bool isMission = false;
+    [SerializeField] private bool hitByEnemy = false;
 
     void Awake()
     {
         if (player_obj == null)
         {
             player_obj = transform.parent.gameObject;
-
         }
         if (cam == null)
         {
             cam = Camera.main;
         }
+        movePlayerTestForEnemy = gameObject.GetComponentInChildren<MovePlayerTestForEnemy>();
     }
 
     void Update()
     {
         RaycastHit hit;
-
+        hitByEnemy = movePlayerTestForEnemy.isHit;
         Vector3 camPos = cam.transform.position;
         Vector3 camDir = cam.transform.forward;
         //player_obj = transform.parent.gameObject;
@@ -53,7 +55,20 @@ public class RayCastCam : MonoBehaviour
         Debug.DrawRay(camPos, camDir * 4, Color.red);
         if (Physics.Raycast(camPos, camDir, out hit, rayLength*2, layerMaskInteract.value))
         {
-            if (hit.collider.CompareTag("Lever"))
+            if (hitByEnemy)
+            {
+                if (isKeypad)
+                {
+                    isKeypad = false;
+                    rayCastedKeypad.CloseKeypad();
+                }
+                else if (isMission)
+                {
+                    isMission = false;
+                    missionController.CloseMission();
+                }
+            }
+            else if (hit.collider.CompareTag("Lever"))
             {
                 raycasted_obj = hit.collider.gameObject;
                 CrosshairActive();
@@ -151,12 +166,16 @@ public class RayCastCam : MonoBehaviour
         else
         {
             CrosshairNormal();
-            if (isKeypad && Input.GetKeyDown("escape"))
+            if (isKeypad)
             {
+                if(Input.GetKeyDown("escape") || hitByEnemy)
+                isKeypad = false;
                 rayCastedKeypad.CloseKeypad();
             }
-            if (isMission && Input.GetKeyDown("escape"))
+            else if (isMission && Input.GetKeyDown("escape"))
             {
+                if (Input.GetKeyDown("escape") || hitByEnemy)
+                isMission = false;
                 missionController.CloseMission();
             }
         }
