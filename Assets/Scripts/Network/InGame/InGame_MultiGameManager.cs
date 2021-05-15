@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class InGame_MultiGameManager : MonoBehaviour
 {
-    public static List<NetGamePlayer> Players = new List<NetGamePlayer>(NetManager.PLAYER_MAXNUM);
+    public static List<NetGamePlayer> Players;
 
-    private static List<int> healths = new List<int>();
+    private static List<int> healths;
 
-    private static List<string> names = new List<string>();
+    private static List<string> names;
 
-    private static List<ThirdPersonCharacter.State> states = new List<ThirdPersonCharacter.State>();
+    private static List<ThirdPersonCharacter.State> states;
 
-    private static List<string> networkTimes = new List<string>();
+    private static List<string> networkTimes; 
 
     public static InGame_MultiGameManager instance;
 
@@ -24,6 +24,12 @@ public class InGame_MultiGameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        Players = new List<NetGamePlayer>(NetManager.PLAYER_MAXNUM);
+        healths = new List<int>();
+        names =  new List<string>();
+        states = new List<ThirdPersonCharacter.State>();
+        networkTimes = new List<string>();
+
     }
     public static bool IsLocalPlayer(int index)
     {
