@@ -26,10 +26,12 @@ public class RayCastCam : MonoBehaviour
     private KeypadItemController rayCastedKeypad;
     private MissionController missionController;
     private MovePlayerTestForEnemy movePlayerTestForEnemy;
+    private PlayerHealth playerHealth;
 
     [SerializeField] private bool isKeypad = false;
     [SerializeField] private bool isMission = false;
     [SerializeField] private bool hitByEnemy = false;
+    [SerializeField] private bool needHeal = false;
 
     void Awake()
     {
@@ -42,33 +44,42 @@ public class RayCastCam : MonoBehaviour
             cam = Camera.main;
         }
         movePlayerTestForEnemy = gameObject.GetComponentInChildren<MovePlayerTestForEnemy>();
+        playerHealth = gameObject.GetComponent<PlayerHealth>();
     }
 
     void Update()
     {
         RaycastHit hit;
-        hitByEnemy = movePlayerTestForEnemy.isHit;
         Vector3 camPos = cam.transform.position;
         Vector3 camDir = cam.transform.forward;
         //player_obj = transform.parent.gameObject;
 
         Debug.DrawRay(camPos, camDir * 4, Color.red);
+
+        if (movePlayerTestForEnemy.isHit && !hitByEnemy && !needHeal)
+        {
+            hitByEnemy = true;
+            needHeal = true;
+        }
+
+        if (hitByEnemy)
+        {
+            if (isKeypad)
+            {
+                isKeypad = false;
+                rayCastedKeypad.CloseKeypad();
+                hitByEnemy = false;
+            }
+            else if (isMission)
+            {
+                isMission = false;
+                missionController.CloseMission();
+                hitByEnemy = false;
+            }
+        }
         if (Physics.Raycast(camPos, camDir, out hit, rayLength*2, layerMaskInteract.value))
         {
-            if (hitByEnemy)
-            {
-                if (isKeypad)
-                {
-                    isKeypad = false;
-                    rayCastedKeypad.CloseKeypad();
-                }
-                else if (isMission)
-                {
-                    isMission = false;
-                    missionController.CloseMission();
-                }
-            }
-            else if (hit.collider.CompareTag("Lever"))
+            if (hit.collider.CompareTag("Lever"))
             {
                 raycasted_obj = hit.collider.gameObject;
                 CrosshairActive();
@@ -182,6 +193,16 @@ public class RayCastCam : MonoBehaviour
                     missionController.CloseMission();
                 }
             }
+        }
+
+        if (hitByEnemy && needHeal)
+        {
+            hitByEnemy = false;
+        }
+
+        if (playerHealth.health == 2)
+        {
+            needHeal = false;
         }
     }
 
