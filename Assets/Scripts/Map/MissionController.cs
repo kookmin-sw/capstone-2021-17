@@ -91,7 +91,7 @@ public class MissionController : MonoBehaviour
     {
         if (missionObject.layer == 0)
         {
-            Debug.Log("color change");
+            //Debug.Log("color change");
             screenRenderer.material.color = Color.black;
             screenRenderer.material.SetColor("_EmissionColor", Color.black);
         }

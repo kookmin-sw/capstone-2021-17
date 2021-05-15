@@ -56,12 +56,12 @@ public class GameMgr : MonoBehaviour
             arr[j] = temp;
         }
     }
-    
+    //스폰포인트 목록을 불러옴
     public Transform[] GetSpwanPoints(GameObject spawnPoinst)
     {
         return spawnPoinst.GetComponentsInChildren<Transform>();
     }
-    
+    //스폰포인트를 받아 지정한 오브젝트 소환
     private void SpawnObject(GameObject[] gameObject, Transform[] spawnPoints, int[] spawnCount, int objCount, int randomRange)
     {
         for (int i = 0; i < objCount; i++)
@@ -127,10 +127,10 @@ public class GameMgr : MonoBehaviour
         return code.Substring(0, length);
     }
 
-    //missionClearCount�� �̿��� ������ �̼��� ���� �Ϸ����� �Ǵ��ϰ� Ż�ⱸ�� �۵���Ŵ
+    //missionClearCount를 증가시킴
     public void MissionClear()
     {
-        gameMgrNet.AddMissionClearCount(); //GameMgr.missionClearCount�� ���� �ö󰩴ϴ�!
+        gameMgrNet.AddMissionClearCount(); //GameMgr.missionClearCount를 증가
     }
 
     //missionClearCount 전달
@@ -159,7 +159,7 @@ public class GameMgr : MonoBehaviour
         exitLever[i].gameObject.layer = LayerMask.NameToLayer("Interact");
     }
 
-
+    //미션3에 사용
     public static string GenerateMissionTime()
     {
         StringBuilder codeSB = new StringBuilder(10);
