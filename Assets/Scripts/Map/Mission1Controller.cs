@@ -179,7 +179,7 @@ public class Mission1Controller : MonoBehaviour
     //실행되는 동안 버튼 비활성화됨 실행 완료후 버튼 활성화
     IEnumerator ShowQuiz()
     {
-        Debug.Log("ShowQuiz Start");
+        //Debug.Log("ShowQuiz Start");
         int length = stage + 4;
         ButtonFalse();
         for (int i = 0; i < length; i++)

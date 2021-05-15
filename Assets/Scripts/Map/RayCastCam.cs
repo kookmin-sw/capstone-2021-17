@@ -174,7 +174,7 @@ public class RayCastCam : MonoBehaviour
                     rayCastedKeypad.CloseKeypad();
                 }
             }
-            else if (isMission && Input.GetKeyDown("escape"))
+            else if (isMission)
             {
                 if (Input.GetKeyDown("escape") || hitByEnemy)
                 {
