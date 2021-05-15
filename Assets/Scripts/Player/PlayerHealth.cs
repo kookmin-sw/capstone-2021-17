@@ -44,6 +44,7 @@ public class PlayerHealth : MonoBehaviour
         else if (health == 0) //If Health is 0, player die
         {
             Die();
+            
         }
     }
     public void Heal() //Player heal
@@ -59,11 +60,13 @@ public class PlayerHealth : MonoBehaviour
     public void Die() //Player is dead
     {
         playerHealthState.isDie=true;
+        playerAnimator.SetBool("Die", true);
+        gameObject.layer = 8;           //layer 변경해서 장애물로 판단하게 함
     }
     void OnTriggerEnter(Collider other)//When entering the trigger
     {
         //When the tag is attack
-        if (other.tag == "Attack")
+        if (other.CompareTag("Attack"))
         {
             //It is attacked continuously. So use coroutines.
             StartCoroutine("Hiting");

@@ -205,8 +205,7 @@ public class MovePlayerTestForEnemy : MonoBehaviour
         playerAnimator.SetFloat("Forward", forwardAmount, 0.1f, Time.deltaTime);
         playerAnimator.SetBool("Crouch", crouching);
         playerAnimator.SetBool("OnGround", isGrounded);
-        playerAnimator.SetBool("Hit", isHit);
-        playerAnimator.SetBool("Die", isDie);
+        playerAnimator.SetBool("Hit", isHit);        
         playerAnimator.SetBool("isPlayWalk", isPlayWalk);
         if (!isGrounded)
         {
