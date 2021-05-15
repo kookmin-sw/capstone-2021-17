@@ -99,10 +99,6 @@ public class NetGamePlayer : NetworkBehaviour
     {
         InGame_MultiGameManager.DisablePlayer(this);
     }
-    public string GetConnState()
-    {
-        return ""+ Math.Round(NetworkTime.rtt * 1000)+"ms";
-    }
     
     public void ChangeHealth(int h)
     {

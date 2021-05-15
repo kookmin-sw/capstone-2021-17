@@ -12,7 +12,6 @@ public class TeamManager : MonoBehaviour
     private List<int> healths = new List<int>();
     private List<string> names = new List<string>();
     private List<ThirdPersonCharacter.State> states = new List<ThirdPersonCharacter.State>();
-    private List<string> networkTimes = new List<string>();
 
 
     void Update()
@@ -23,7 +22,6 @@ public class TeamManager : MonoBehaviour
             names = InGame_MultiGameManager.GetPlayersNickname();
             healths = InGame_MultiGameManager.GetPlayersHealth();
             states = InGame_MultiGameManager.GetPlayersState();
-            networkTimes = InGame_MultiGameManager.GetPlayersNetworkTime(); // RTT 시간
         }
         ShowText();
     }
@@ -43,12 +41,12 @@ public class TeamManager : MonoBehaviour
             if(InGame_MultiGameManager.isPlayerLeader(id))
             {
                 UI[otherIdx].text = "Name : " + names[id] + "\nHP : " + healths[id] + "\n" 
-            + states[id] + "\n RTT : " + networkTimes[id]+  "\n < Leader";
+            + states[id] +  "\n < Leader";
             }
             else
             {
                 UI[otherIdx].text = "Name : " + names[id] + "\nHP : " + healths[id] + "\n"
-                + states[id] + "\n RTT : " + networkTimes[id];
+                + states[id] ;
             }
             otherIdx++;
         }

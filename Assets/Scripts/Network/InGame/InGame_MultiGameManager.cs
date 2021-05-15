@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class InGame_MultiGameManager : MonoBehaviour
 {
@@ -12,8 +13,6 @@ public class InGame_MultiGameManager : MonoBehaviour
     private static List<string> names;
 
     private static List<ThirdPersonCharacter.State> states;
-
-    private static List<string> networkTimes; 
 
     public static InGame_MultiGameManager instance;
 
@@ -28,7 +27,6 @@ public class InGame_MultiGameManager : MonoBehaviour
         healths = new List<int>();
         names =  new List<string>();
         states = new List<ThirdPersonCharacter.State>();
-        networkTimes = new List<string>();
 
     }
     public static bool IsLocalPlayer(int index)
@@ -46,7 +44,7 @@ public class InGame_MultiGameManager : MonoBehaviour
         healths.Add(newPlayer.Health);
         names.Add(newPlayer.Nickname);
         states.Add(newPlayer.State);
-        networkTimes.Add(newPlayer.GetConnState());
+        
     }
     public static void DisablePlayer(NetGamePlayer targetPlayer)
     {
@@ -91,17 +89,6 @@ public class InGame_MultiGameManager : MonoBehaviour
         }
         return states;
     }
-
-    public static List<string> GetPlayersNetworkTime()
-    {
-        for (int index = 0; index < Players.Count; index++)
-        {
-            networkTimes[index] = Players[index].GetConnState();
-        }
-
-        return networkTimes;
-    }
-
 
     // 누가 방장인지 알려주는 기능. 필요할지?
     public static bool isPlayerLeader(int index)
