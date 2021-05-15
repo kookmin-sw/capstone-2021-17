@@ -105,50 +105,16 @@ public class IngameUIManager : MonoBehaviour
         {   //볼륨조절창
             if(Input.GetKeyDown(KeyCode.S))
             {
-                if(ingame_sound.activeSelf==false)
-                {
-                    ingame_sound.SetActive(true);
-                    ingame_quit.SetActive(false);
-                    ingame_howto[0].SetActive(false);
-                    ingame_howto[1].SetActive(false);
-                    menuinfo.SetActive(false);
-                }
-                else
-                {
-                    ingame_sound.SetActive(false);
-                }
+                ShowSound();
             }
             else if(Input.GetKeyDown(KeyCode.E))
             {//게임종료 선택창
-                if(ingame_quit.activeSelf==false)
-                {
-                    ingame_quit.SetActive(true);
-                    ingame_sound.SetActive(false);
-                    ingame_howto[0].SetActive(false);
-                    ingame_howto[1].SetActive(false);
-                    menuinfo.SetActive(false);
-                }
-                else
-                {
-                    ingame_quit.SetActive(false);
-                }
+                ShowInGameQuit();
             }
 
             else if(Input.GetKeyDown(KeyCode.H))
             {//How to 창 열기
-                if(ingame_howto[0].activeSelf==false)
-                {
-                    ingame_howto[0].SetActive(true);
-                    ingame_quit.SetActive(false);
-                    ingame_sound.SetActive(false);
-                    ingame_howto[1].SetActive(false);
-                    menuinfo.SetActive(false);
-                }
-                else
-                {
-                    ingame_howto[0].SetActive(false);
-                    ingame_howto[1].SetActive(false);
-                }
+                ShowHowTo();
             }
 
             if(ingame_quit.activeSelf==true)
@@ -185,18 +151,7 @@ public class IngameUIManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Y))
             {
-                if (scene == 1)
-                {
-                    SceneManager.ChangeLobbyScene();
-                }
-                else if (scene == 2)
-                {
-                    SceneManager.ChangeStartScene();
-                }
-                else if (scene == 3)
-                {
-                    SceneManager.GameExit();
-                }
+                ReCheckUIYesButton();
 
             }
             else if (Input.GetKeyDown(KeyCode.N))
@@ -226,6 +181,71 @@ public class IngameUIManager : MonoBehaviour
         }
         missionCount.value = 0.2f + missionProgress;
         missionText.text = (int)(missionProgress*125) + "%";
+    }
+
+    public void ShowSound()
+    {
+        if (ingame_sound.activeSelf == false)
+        {
+            ingame_sound.SetActive(true);
+            ingame_quit.SetActive(false);
+            ingame_howto[0].SetActive(false);
+            ingame_howto[1].SetActive(false);
+            menuinfo.SetActive(false);
+        }
+        else
+        {
+            ingame_sound.SetActive(false);
+        }
+    }
+
+    public void ShowInGameQuit()
+    {
+        if (ingame_quit.activeSelf == false)
+        {
+            ingame_quit.SetActive(true);
+            ingame_sound.SetActive(false);
+            ingame_howto[0].SetActive(false);
+            ingame_howto[1].SetActive(false);
+            menuinfo.SetActive(false);
+        }
+        else
+        {
+            ingame_quit.SetActive(false);
+        }
+    }
+
+    public void ShowHowTo()
+    {
+        if (ingame_howto[0].activeSelf == false)
+        {
+            ingame_howto[0].SetActive(true);
+            ingame_quit.SetActive(false);
+            ingame_sound.SetActive(false);
+            ingame_howto[1].SetActive(false);
+            menuinfo.SetActive(false);
+        }
+        else
+        {
+            ingame_howto[0].SetActive(false);
+            ingame_howto[1].SetActive(false);
+        }
+    }
+
+    public void ReCheckUIYesButton()
+    {
+        if (scene == 1)
+        {
+            SceneManager.ChangeLobbyScene();
+        }
+        else if (scene == 2)
+        {
+            SceneManager.ChangeStartScene();
+        }
+        else if (scene == 3)
+        {
+            SceneManager.GameExit();
+        }
     }
 
     //게임 종료시 다시 물어보는 UI (ex : 정말로 나가시겠습니까?)
