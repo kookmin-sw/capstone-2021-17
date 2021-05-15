@@ -28,10 +28,10 @@ public class IdleState : State
         }
         if (timer > 5f)
         {
-            /*if (enemy.IsLatestStateAtt() || enemy.IsLatestStateDizzy())
+            if (enemy.IsLatestStateAtt() || enemy.IsLatestStateDizzy())
             {
                 enemy.SetNavMeshAgent();
-            }*/
+            }
             timer = 0.0f;            
             enemy.ChangeToPatrol();
         }

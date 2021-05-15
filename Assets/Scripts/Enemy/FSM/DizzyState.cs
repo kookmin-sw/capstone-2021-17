@@ -14,8 +14,8 @@ public class DizzyState : State
         base.Enter();
         enemy.SirenStop();
         enemy.InitializeAll();  //변수 초기화
-        anim.PlayDizzyAnim();    //Dizzy 애니메이션 실행
-        enemy.ChangeToIdle();
+        anim.PlayDizzyAnim();    //Dizzy 애니메이션 실행        
+        enemy.SetNavMeshAgent();
     }
 
     public override void LogicUpdate()

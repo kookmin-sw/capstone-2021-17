@@ -15,6 +15,7 @@ public class AttackState : State
         enemy.SirenStop();
         enemy.InitializeAll();
         anim.PlayAttAnim();      //공격 애니메이션 재생              
+        enemy.SetNavMeshAgent();
     }
 
     public override void LogicUpdate()
