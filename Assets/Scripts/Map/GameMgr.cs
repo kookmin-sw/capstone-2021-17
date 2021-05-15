@@ -81,14 +81,15 @@ public class GameMgr : MonoBehaviour
         StringBuilder codeSB = new StringBuilder(10);
         char singleChar;
         string numbers = "0123456789";
-
+        bool firstGen = true;
         while (codeSB.Length < length)
         {
             singleChar = numbers[UnityEngine.Random.Range(0, numbers.Length)];
             codeSB.Append(singleChar);
-            if(codeSB[0] == '0')
+            if(firstGen)
             {
-                codeSB[0] = (char)Random.Range(1,9);
+                codeSB.Replace('0', numbers[UnityEngine.Random.Range(1, numbers.Length)]);
+                firstGen = false;
             }
         }
         return codeSB.ToString();

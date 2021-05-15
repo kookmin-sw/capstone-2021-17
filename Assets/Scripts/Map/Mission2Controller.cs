@@ -174,7 +174,7 @@ public class Mission2Controller : MonoBehaviour
         state[2].text = randomCode[1].ToString();
         state[3].text = randomCode[2].ToString();
         state[4].text = randomCode[3].ToString();
-        Debug.Log(correctCode);
-        Debug.Log(randomCode);
+        //Debug.Log(correctCode);
+        //Debug.Log(randomCode);
     }
 }
