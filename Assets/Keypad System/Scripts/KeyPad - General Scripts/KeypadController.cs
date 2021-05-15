@@ -133,8 +133,8 @@ namespace keypadSystem
             int resultNum = 0;
             int randomCase=0;
             randomCase = Random.Range(0, 2);
-            plusNum = Random.Range(0, quizInt);
-            minusNum = Random.Range(0, 999 - quizInt);
+            plusNum = Random.Range(10, quizInt - 100);
+            minusNum = Random.Range(10, 999 - quizInt);
             
             switch (randomCase)
             {
