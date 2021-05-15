@@ -168,15 +168,19 @@ public class RayCastCam : MonoBehaviour
             CrosshairNormal();
             if (isKeypad)
             {
-                if(Input.GetKeyDown("escape") || hitByEnemy)
-                isKeypad = false;
-                rayCastedKeypad.CloseKeypad();
+                if (Input.GetKeyDown("escape") || hitByEnemy)
+                {
+                    isKeypad = false;
+                    rayCastedKeypad.CloseKeypad();
+                }
             }
             else if (isMission && Input.GetKeyDown("escape"))
             {
                 if (Input.GetKeyDown("escape") || hitByEnemy)
-                isMission = false;
-                missionController.CloseMission();
+                {
+                    isMission = false;
+                    missionController.CloseMission();
+                }
             }
         }
     }
