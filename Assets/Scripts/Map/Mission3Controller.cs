@@ -65,6 +65,7 @@ public class Mission3Controller : MonoBehaviour
         {
             missionNet.SetUsing(false);
         }
+        StopCo();
         KPDisableManager.instance.DisablePlayer(false);
         missionCanvas.SetActive(false);
     }
