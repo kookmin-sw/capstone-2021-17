@@ -204,6 +204,20 @@ public class RayCastCam : MonoBehaviour
         {
             needHeal = false;
         }
+
+        if(playerHealth.health == 0)
+        {
+            if (isKeypad)
+            {
+                isKeypad = false;
+                rayCastedKeypad.CloseKeypad();
+            }
+            if (isMission)
+            {
+                isMission = false;
+                missionController.CloseMission();
+            }
+        }
     }
 
     void CrosshairActive()
