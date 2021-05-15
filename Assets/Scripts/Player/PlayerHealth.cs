@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using keypadSystem;
 public class PlayerHealth : MonoBehaviour
 {
     private MovePlayerTestForEnemy playerHealthState; // A reference to the MovePlayerTestForEnemy on the object
@@ -30,6 +30,8 @@ public class PlayerHealth : MonoBehaviour
     }
     public void Hit() //Player hit
     {
+        KPDisableManager.instance.DisablePlayer(false);
+
         health -= 1; // Health minus
         if (NetPlayer != null) //Net Player
         {
