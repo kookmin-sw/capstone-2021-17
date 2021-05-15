@@ -107,8 +107,8 @@ public class HPManager : MonoBehaviour
         {
             IngameUIManager ui = IngameUIManager.instance;
             gameOver.SetActive(true);
-            //ui.OpenMenu();
-            keypadSystem.KPDisableManager.instance.DisablePlayer(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             //로비, 시작창, 게임 종료 중 선택 가능
             
             if(Input.GetKeyDown(KeyCode.S))
