@@ -61,7 +61,7 @@ public class SlotManager : MonoBehaviour
         {
             Debug.Log("3 click");
             itemTarget = 2;
-            //Targeting(2);
+            Targeting(2);
             moveCursor(itemTarget);
             inventory.ActiveHandItem(2);
         }
