@@ -74,13 +74,21 @@ public class Start_MultiGameManager: MonoBehaviour
     public UnityEvent OnRoomJoin;
     public UnityEvent OnServerCantConnect;
     public UnityEvent OnServerAlreadyConnected;
+    public UnityEvent OnPlayerNameError;
 
     public void  JoinDedicatedRoom()
     {
+        if(nameField.text.Length ==0 || nameField.text.Length > 10)
+        {
+            OnPlayerNameError.Invoke();
+            return;
+        }
+
         if (ClientToMasterConnector.Instance.Connection.IsConnected)
         {
             SetPlayerName();
             OnRoomJoin?.Invoke();
+            sceneManager.ShowLoadingInfo();
         }
         else
         {
@@ -92,10 +100,16 @@ public class Start_MultiGameManager: MonoBehaviour
 
     public void CreateDedicatedRoom()
     {
+        if (nameField.text.Length == 0 || nameField.text.Length > 10)
+        {
+            OnPlayerNameError.Invoke();
+            return;
+        }
         if (ClientToMasterConnector.Instance.Connection.IsConnected)
         {
             SetPlayerName();
             OnRoomCreate?.Invoke();
+            sceneManager.ShowLoadingInfo();
         }
         else
         {
