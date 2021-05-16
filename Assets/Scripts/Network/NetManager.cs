@@ -56,6 +56,8 @@ public class NetManager : NetworkRoomManager
     private GameMgr inGameMgr;
     private EnemySpawnManager enemySpawnManager;
 
+    private LoadingManager loadingManager;
+
     //singleton
     public override void Awake() 
     {
@@ -90,12 +92,17 @@ public class NetManager : NetworkRoomManager
         OnClientStartedEvent?.Invoke();
 
         NetworkClient.RegisterHandler<EndingPlayerMessage>(EndingPlayerMessageClientHandler);
+        NetworkClient.RegisterHandler<CreateGamePlayerMessage>(CreateGamePlayerMessageClientHandler);
     }
 
     void EndingPlayerMessageServerHandler(NetworkConnection conn , EndingPlayerMessage message)
     {
         NetworkServer.SendToAll(message);
 
+    }
+    public void CreateGamePlayerMessageClientHandler(CreateGamePlayerMessage msg)
+    {
+        loadingManager.gameObject.SetActive(false);
     }
 
     void EndingPlayerMessageClientHandler(EndingPlayerMessage message)
@@ -119,9 +126,6 @@ public class NetManager : NetworkRoomManager
     {
 
         clientPlayerName = message.name;
-        Debug.Log(clientPlayerName);
-
-        Debug.Log("CREATE ROOMPLAYER REQUEST HANDLER");
         // Try to get old player
         GameObject oldPlayer = null;
 
@@ -249,6 +253,8 @@ public class NetManager : NetworkRoomManager
         netGamePlayer.Nickname = netRoomPlayer.Nickname;
         netGamePlayer.isLeader = netRoomPlayer.IsLeader;
 
+        conn.Send(new CreateGamePlayerMessage());
+
         return netGamePlayer.gameObject;
         
     }
@@ -265,6 +271,16 @@ public class NetManager : NetworkRoomManager
         //LoadScene(newSceneName);
 
     }
+
+    public override void OnRoomClientSceneChanged(NetworkConnection conn)
+    {
+        if (IsSceneActive(GameplayScene))
+        {
+            loadingManager = Instantiate(loadingManagerPrefab).GetComponent<LoadingManager>();
+        }
+    }
+    
+
     public override void OnRoomServerSceneChanged(string sceneName)
     {
         if(sceneName == GameplayScene)
@@ -280,16 +296,12 @@ public class NetManager : NetworkRoomManager
         }
     }
 
-    public override bool OnRoomServerSceneLoadedForPlayer(NetworkConnection conn, GameObject roomPlayer, GameObject gamePlayer)
-    {
-
-        return true;
-    }
+    
     public override void OnClientLoadScene()
     {
-        
-        LoadingManager loadingManager = Instantiate(loadingManagerPrefab).GetComponent<LoadingManager>();
-        loadingManager.SetAsyncOperation(loadingSceneAsync);
+       
+        //LoadingManager loadingManager = Instantiate(loadingManagerPrefab).GetComponent<LoadingManager>();
+        //loadingManager.SetAsyncOperation(loadingSceneAsync);
     }
     
     void OnReturnToRoom()
@@ -316,6 +328,8 @@ public class NetManager : NetworkRoomManager
 
     private void OnChangeGamePlayScene()
     {
+
+        Mst.Events.Invoke(MstEventKeys.showLoadingInfo, "Loading Client Scene...");
         foreach (NetRoomPlayer roomPlayer in roomSlots)
         {
             if (roomPlayer.gameObject != null)
