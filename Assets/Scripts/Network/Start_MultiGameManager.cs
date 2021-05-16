@@ -23,13 +23,6 @@ public class Start_MultiGameManager: MonoBehaviour
     private void Start() // Awake할때는 instance 못부름
     {
         netManager = NetManager.instance;
-        if (Application.isBatchMode)
-        {
-            Debug.Log("Server Starting! -- Heeun An");
-        }
-        {
-            Debug.Log("Client Start");
-        }
 
         if (Mst.Server.IsConnected)
         {
@@ -144,7 +137,8 @@ public class Start_MultiGameManager: MonoBehaviour
 
     public void ReconnectServer()
     {
-        NetClientToMasterConnector.Instance.StartConnection();
+        var loadingInfo =  FindObjectOfType<ClientLoadingInfoBehaivour>();
+        loadingInfo.Initialize();
     }
 
     void SetRoomNameUpperCase()

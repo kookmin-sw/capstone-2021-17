@@ -9,7 +9,7 @@ public class NetClientToMasterConnector : ClientToMasterConnector
     protected override void Awake()
     {
         base.Awake();
-        OnConnectedEvent.AddListener(OnServerDisconnected);
+        OnDisconnectedEvent.AddListener(OnServerDisconnected);
     }
 
     void OnServerDisconnected()
