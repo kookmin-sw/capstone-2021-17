@@ -104,31 +104,7 @@ public class IngameUIManager : MonoBehaviour
         //메뉴탕이 열려있을 때 액션
         if(menu_UI.activeSelf == true)
         {   //볼륨조절창
-            if(Input.GetKeyDown(KeyCode.S))
-            {
-                ShowSound();
-            }
-            else if(Input.GetKeyDown(KeyCode.E))
-            {//게임종료 선택창
-                ShowInGameQuit();
-            }
-
-            else if(Input.GetKeyDown(KeyCode.H))
-            {//How to 창 열기
-                ShowHowTo();
-            }
-
-            if(ingame_quit.activeSelf==true)
-            {
-                if(Input.GetKeyDown(KeyCode.Z)) //시작창으로 돌아가기
-                {
-                    SetCheckText(2);
-                }
-                else if(Input.GetKeyDown(KeyCode.X))
-                {
-                    SetCheckText(3); // 게임 종료하기
-                }
-            }
+            
 
             if(ingame_howto[0].activeSelf==true)
             {
@@ -147,19 +123,6 @@ public class IngameUIManager : MonoBehaviour
                 }
             }
         }
-
-        if (reCheck_UI.activeSelf == true) // ReCheck 메뉴창이 열려있을 때 Action
-        {
-            if (Input.GetKeyDown(KeyCode.Y))
-            {
-                ReCheckUIYesButton();
-
-            }
-            else if (Input.GetKeyDown(KeyCode.N))
-            {
-                reCheck_UI.SetActive(false);
-            }
-        }//버튼 안먹는 오류 고침
     }
 
     //미션 수행도 진행바

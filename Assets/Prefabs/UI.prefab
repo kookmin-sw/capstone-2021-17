@@ -751,7 +751,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: No(N)
+  m_Text: No
 --- !u!1 &6543367402758683998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,7 +1515,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Go to Start (Z)
+  m_Text: 'Go to Start '
 --- !u!1 &6543367402927189956
 GameObject:
   m_ObjectHideFlags: 0
@@ -3039,7 +3039,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Game Exit (X)
+  m_Text: 'Game Exit '
 --- !u!1 &6543367403385840259
 GameObject:
   m_ObjectHideFlags: 0
@@ -3272,7 +3272,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: How to (H)
+  m_Text: 'How to '
 --- !u!1 &6543367403478664077
 GameObject:
   m_ObjectHideFlags: 0
@@ -4477,7 +4477,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Yes(Y)
+  m_Text: Yes
 --- !u!1 &6543367403964552680
 GameObject:
   m_ObjectHideFlags: 0
@@ -4667,7 +4667,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sound (S)
+  m_Text: 'Sound '
 --- !u!1 &6543367404016481008
 GameObject:
   m_ObjectHideFlags: 0
@@ -6549,7 +6549,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Exit (E)
+  m_Text: Exit
 --- !u!1 &6543367404424593720
 GameObject:
   m_ObjectHideFlags: 0
