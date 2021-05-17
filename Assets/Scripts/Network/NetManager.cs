@@ -116,6 +116,15 @@ public class NetManager : NetworkRoomManager
         }
     }
 
+    public override void OnClientSceneChanged(NetworkConnection conn)
+    {
+        base.OnClientSceneChanged(conn);
+        if (IsSceneActive(endingScene))
+        {
+            EndingManager.instance.UpdatePlayers();
+        }
+    }
+
 
     /// <summary>
     /// Invokes when client requested to create player on mirror server

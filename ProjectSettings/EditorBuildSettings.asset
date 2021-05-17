@@ -5,31 +5,31 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Start.unity
     guid: 459059284b0bbbc40bc7eb3e33160cca
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/RoomStart.unity
     guid: 44072d7b32dbb0843a745552b0bf8d37
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Loading.unity
     guid: e0f454d138f05da48b9f8b6f4980a2c7
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/WaitingRoom.unity
     guid: 3cc45eddb547f8146b763f1c6d42d2f6
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GamePlay.unity
     guid: 480becc14b40b4441890b77f80434ee1
+  - enabled: 1
+    path: Assets/Scenes/UI/Ending.unity
+    guid: cb4c85f21c8cf2349ae41c8808ce9ed3
   - enabled: 0
     path: Assets/Scenes/UI/InGameUITest.unity
     guid: b557e2c8e4288cc44ba557c37859d568
   - enabled: 0
     path: Assets/Scenes/MasterServer.unity
     guid: 54bd8fb3b1914be43b38752482145460
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MultiTest/TstMulti_Ingame.unity
     guid: 45839ef3d618b93489ebf474e3919252
-  - enabled: 1
-    path: Assets/Scenes/UI/Ending.unity
-    guid: cb4c85f21c8cf2349ae41c8808ce9ed3
   m_configObjects: {}

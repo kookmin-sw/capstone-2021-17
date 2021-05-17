@@ -83,11 +83,15 @@ public class DebugInGameNetManager : NetworkManager
     {
 
         EndingMessages.Add(message);
+    }
 
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().path == endingScene)
+    public override void OnClientSceneChanged(NetworkConnection conn)
+    {
+        base.OnClientSceneChanged(conn);
+        if (IsSceneActive(endingScene)) 
         {
             EndingManager.instance.UpdatePlayers();
         }
-
+        
     }
 }
