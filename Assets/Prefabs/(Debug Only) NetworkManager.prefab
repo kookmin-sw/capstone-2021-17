@@ -73,6 +73,7 @@ MonoBehaviour:
   - {fileID: 1544027838506993895, guid: 7e164e273bfc85b4084b9ab7f7ffc32c, type: 3}
   - {fileID: 4490318794312091599, guid: 6a2be1c66c08d6844aeda2a363ab6a87, type: 3}
   - {fileID: 949588291846636778, guid: 4c6723f4cc178c44bae59ab030721ed8, type: 3}
+  - {fileID: 5165317053400381913, guid: 6250d4b2b3824c04db89a176628d0ba5, type: 3}
   endingScene: Assets/Scenes/UI/Ending.unity
 --- !u!114 &5779333428125608726
 MonoBehaviour:

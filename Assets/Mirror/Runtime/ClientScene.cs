@@ -15,6 +15,11 @@ namespace Mirror
             set { NetworkClient.localPlayer = value; }
         }
 
+        public static void RegisterSpawnHandler(GameObject bullet, Func<SpawnMessage, GameObject> spawnBulletHandler, Action<GameObject> unSpawnBulletHandler)
+        {
+            throw new NotImplementedException();
+        }
+
         [Obsolete("ClientScene.ready was moved to NetworkClient.ready")]
         public static bool ready
         {
