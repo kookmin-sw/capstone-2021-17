@@ -5,15 +5,30 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
+    public static GameObject LobbyBackGroundMusicObject;
+
     public AudioSource[] audioSource;
     public Slider[] volume_slider;
+
+
 
     //0번 : 배경음악
     //1번 : 효과음(버튼 등)
     //2번 : 캐릭터 & 에너미 음
 
+    private void Awake()
+    {
+        
+        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GamePlay")
+        {
+            if (LobbyBackGroundMusicObject) Destroy(LobbyBackGroundMusicObject);
+        }
+    }
 
-//음악 재생
+
+
+
+    //음악 재생
     public void PlaySound(int num)
     {;
         audioSource[num].Play();
@@ -34,6 +49,11 @@ public class SoundManager : MonoBehaviour
     public void SetCharacterVolume(float volume)
     {
         audioSource[2].volume = volume;
+    }
+
+    public void DestroyLobbyBackGroundMusic()
+    {
+        //Destroy(LobbyBackGroundMusicObject);
     }
 
 }

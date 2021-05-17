@@ -330,6 +330,9 @@ public class NetManager : NetworkRoomManager
     {
 
         Mst.Events.Invoke(MstEventKeys.showLoadingInfo, "Loading Client Scene...");
+
+        
+
         foreach (NetRoomPlayer roomPlayer in roomSlots)
         {
             if (roomPlayer.gameObject != null)
