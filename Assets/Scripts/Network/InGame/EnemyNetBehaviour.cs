@@ -11,25 +11,25 @@ public class EnemyNetBehaviour : NetworkBehaviour
     [SerializeField]
     NetworkAnimator netAni;
 
-    [Server]
+    [ServerCallback]
     public void SetWalk()
     {
         enemyAnimation.SetWalk();
     }
 
-    [Server]
+    [ServerCallback]
     public void UnsetWalk()
     {
         enemyAnimation.UnsetWalk();
     }
 
-    [Server]
+    [ServerCallback]
     public void SetAttAnim()
     {
         enemyAnimation.SetAttAnim();        
     }
 
-    [Server]
+    [ServerCallback]
     public void SetDizzyAnim()
     {
         enemyAnimation.SetDizzyAnim();
