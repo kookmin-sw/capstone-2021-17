@@ -130,6 +130,18 @@ public class Enemy : MonoBehaviour
 
     public void SirenPlay()
     {
+        if(enemyNet != null)
+        {
+            enemyNet.SirenPlay();
+        }
+        else
+        {
+            SirenPlaySync();
+        }
+    }
+
+    public void SirenPlaySync()
+    {
         if (!siren.isPlaying)
         {
             siren.Play();
@@ -137,6 +149,18 @@ public class Enemy : MonoBehaviour
     }
 
     public void SirenStop()
+    {
+        if (enemyNet != null)
+        {
+            enemyNet.SirenStop();
+        }
+        else
+        {
+            SirenStopSync();
+        }
+    }
+
+    public void SirenStopSync()
     {
         siren.Stop();
     }

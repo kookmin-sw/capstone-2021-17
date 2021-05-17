@@ -1140,6 +1140,7 @@ MonoBehaviour:
   syncInterval: 0.1
   enemyAnimation: {fileID: 333940203455674019}
   netAni: {fileID: -5289904972605466623}
+  enemy: {fileID: 6083480639271355770}
 --- !u!1 &3460393988686838570
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,9 @@ public class EnemyNetBehaviour : NetworkBehaviour
     [SerializeField]
     NetworkAnimator netAni;
 
+    [SerializeField]
+    Enemy enemy;
+
     [ServerCallback]
     public void SetWalk()
     {
@@ -34,5 +37,31 @@ public class EnemyNetBehaviour : NetworkBehaviour
     {
         enemyAnimation.SetDizzyAnim();
     }
+
+    public void SirenPlay()
+    {
+        RpcSirenPlay(); 
+    }
+
+    
+
+    [ClientRpc]
+    void RpcSirenPlay()
+    {
+        enemy.SirenPlaySync();
+        Debug.Log("RPCSIRENPLAY");
+    }
+
+    public void SirenStop()
+    {
+        RpcSirenStop();
+    }
+
+    [ClientRpc]
+    void RpcSirenStop()
+    {
+        enemy.SirenStopSync();
+    }
+
 
 }
