@@ -29,6 +29,8 @@ public class Start_MultiGameManager: MonoBehaviour
             OnServerAlreadyConnected.Invoke();
         }
 
+        nameField.onValueChanged.AddListener(delegate { SetLengthLimit(); });
+        
         roomNameField.onValueChanged.AddListener(delegate { SetRoomNameUpperCase(); });
 
         ClientToMasterConnector.Instance.OnConnectedEvent.AddListener(sceneManager.ShowMainMenu);
@@ -169,6 +171,21 @@ public class Start_MultiGameManager: MonoBehaviour
         {
             roomNameField.text = upperText;
         }
+    }
+
+    void SetLengthLimit()
+    {
+        string playerNameText = nameField.text;
+
+        if (playerNameText.Length > 10)
+        {
+            nameField.text = playerNameText.Substring(0, 10);
+        }
+        else
+        {
+            nameField.text = playerNameText;
+        }
+
     }
 
     
