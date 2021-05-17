@@ -6,7 +6,17 @@ public class LobbyBackGroundSound : MonoBehaviour
 {
     private void Awake()
     {
-        DontDestroyOnLoad(this);
-        SoundManager.LobbyBackGroundMusicObject = gameObject;
+        if(SoundManager.LobbyBackGroundMusicObject == null)
+        {
+            DontDestroyOnLoad(this);
+            SoundManager.LobbyBackGroundMusicObject = gameObject;
+
+        }
+        else
+        {
+            Destroy(this);
+        }
+
+        
     }
 }
