@@ -31,6 +31,7 @@ public class MovePlayerTestForEnemy : MonoBehaviour
 
     public bool isHit;
     public bool isDie;
+    public bool isHeal;
 
     bool crouching;
     Vector3 presentMove;
@@ -117,7 +118,7 @@ public class MovePlayerTestForEnemy : MonoBehaviour
         if (netPlayer != null)
         {
             //NetPlayer.ChangeState(state);
-            if (isPlayWalk)
+            if (isPlayWalk && !isHeal)
             {
                 netPlayer.PlaySound();
             }
