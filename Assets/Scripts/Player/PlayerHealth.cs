@@ -68,19 +68,13 @@ public class PlayerHealth : MonoBehaviour
         if (other.CompareTag("Attack"))
         {
             //It is attacked continuously. So use coroutines.
-            if (playerHealthState.isHeal)
-            {
-                playerAnimator.SetBool("Heal", false);
-                StartCoroutine("Hiting");
-            }
-            else
-            {
-                StartCoroutine("Hiting");
-            }
+            StartCoroutine("Hiting");           
         }
     }
     IEnumerator Hiting() //Set Hiting Coroutine
     {
+        playerHealthState.isHeal = false;
+        playerAnimator.SetBool("Heal", false);
         Hit();
         yield return new WaitForSeconds(1); //
     }
@@ -89,18 +83,17 @@ public class PlayerHealth : MonoBehaviour
         playerAnimator.SetBool("Heal", true);//Heal animation start 
         playerHealthState.isHeal = true;
         health += 1; // Health plus
-        yield return new WaitForSeconds(2); //Until the animation ends
-        if(NetPlayer != null)
+        if (NetPlayer != null)
         {
             NetPlayer.ChangeHealth(health);
             NetPlayer.PlayerInventory.RemoveHealPack();
         }
-        if(playerHealItem != null)
+        yield return new WaitForSeconds(2f); //Until the animation ends
+        if (playerHealItem != null)
         {
             playerHealItem.hasItems[1] = false; //Do not have an item
             playerHealItem.Items[1].SetActive(false); //Deactivate items in the user's hand
         }
-        
         playerAnimator.SetBool("Heal", false);//Heal animation end
         playerHealthState.isHeal = false;      
     }
