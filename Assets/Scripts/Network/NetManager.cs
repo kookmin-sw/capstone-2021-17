@@ -99,6 +99,13 @@ public class NetManager : NetworkRoomManager
     {
         NetworkServer.SendToAll(message);
 
+        SceneMessage sceneMessage = new SceneMessage
+        {
+            sceneName = endingScene,
+            sceneOperation = SceneOperation.Normal
+        };
+        conn.Send(sceneMessage);
+
     }
     public void CreateGamePlayerMessageClientHandler(CreateGamePlayerMessage msg)
     {

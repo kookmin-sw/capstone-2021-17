@@ -13,12 +13,9 @@ public class EndingManager : MonoBehaviour
     
     public List<EndingPlayerMessage> messages;
 
-    [SerializeField]
-    private List<GameObject> Players;
-
-    private List<SkinnedMeshRenderer> heads;
-    private List<SkinnedMeshRenderer> bodys;
-    private List<EndingPlayerManager> endingPlayerManagers;
+    public List<SkinnedMeshRenderer> heads;
+    public List<SkinnedMeshRenderer> bodys;
+    public List<EndingPlayerManager> endingPlayerManagers;
 
 
 
@@ -33,20 +30,20 @@ public class EndingManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-        messages = new List<EndingPlayerMessage>();
-        heads = new List<SkinnedMeshRenderer>();
-        bodys = new List<SkinnedMeshRenderer>();
-        endingPlayerManagers = new List<EndingPlayerManager>();
-
-        foreach(GameObject player in Players) // 플레이어간 동작을 맞추기 위해 플레이어들의 Mesh를 이용함
+        if (NetworkManager.singleton is NetManager netManager)
         {
-            heads.Add(player.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>());
-            bodys.Add(player.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>());
-            endingPlayerManagers.Add(player.GetComponent<EndingPlayerManager>());
+            //messages = netManager.EndingMessages;
+        }
+        else if (NetworkManager.singleton is DebugInGameNetManager debugInGameManager)
+        {
+            debugInGameManager.EndingManager = this;
         }
 
+        messages = new List<EndingPlayerMessage>();
+       
 
-        //UpdatePlayers(); 
+
+        UpdatePlayers(); 
     }
 
     public void DisconnectRoom()

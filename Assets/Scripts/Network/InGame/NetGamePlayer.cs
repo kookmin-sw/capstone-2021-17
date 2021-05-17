@@ -273,7 +273,6 @@ public class NetGamePlayer : NetworkBehaviour
 
            
             NetworkClient.Send(msg);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Ending");
 
 
         }

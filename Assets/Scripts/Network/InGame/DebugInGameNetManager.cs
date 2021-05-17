@@ -33,6 +33,9 @@ public class DebugInGameNetManager : NetworkManager
 
     public List<EndingPlayerMessage> EndingMessages;
 
+    [HideInInspector]
+    public EndingManager EndingManager;
+
     public override void Awake()
     {
         EndingMessages = new List<EndingPlayerMessage>();
@@ -77,21 +80,25 @@ public class DebugInGameNetManager : NetworkManager
     void EndingPlayerMessageServerHandler(NetworkConnection conn, EndingPlayerMessage message)
     {
         NetworkServer.SendToAll(message);
+
+        SceneMessage sceneMessage = new SceneMessage
+        {
+            sceneName = endingScene,
+            sceneOperation = SceneOperation.Normal
+        };
+        conn.Send(sceneMessage);
     }
 
     void EndingPlayerMessageClientHandler(EndingPlayerMessage message)
     {
 
         EndingMessages.Add(message);
+
+        if (EndingManager)
+        {
+            EndingManager.UpdatePlayers();
+        }
     }
 
-    public override void OnClientSceneChanged(NetworkConnection conn)
-    {
-        base.OnClientSceneChanged(conn);
-        if (IsSceneActive(endingScene)) 
-        {
-            EndingManager.instance.UpdatePlayers();
-        }
-        
-    }
+    
 }
