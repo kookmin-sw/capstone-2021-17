@@ -43,8 +43,7 @@ public class PlayerHealth : MonoBehaviour
         }
         else if (health == 0) //If Health is 0, player die
         {
-            Die();
-            
+            Die();           
         }
     }
     public void Heal() //Player heal
@@ -69,7 +68,15 @@ public class PlayerHealth : MonoBehaviour
         if (other.CompareTag("Attack"))
         {
             //It is attacked continuously. So use coroutines.
-            StartCoroutine("Hiting");
+            if (playerHealthState.isHeal)
+            {
+                playerAnimator.SetBool("Heal", false);
+                StartCoroutine("Hiting");
+            }
+            else
+            {
+                StartCoroutine("Hiting");
+            }
         }
     }
     IEnumerator Hiting() //Set Hiting Coroutine
@@ -81,8 +88,8 @@ public class PlayerHealth : MonoBehaviour
     {
         playerAnimator.SetBool("Heal", true);//Heal animation start 
         playerHealthState.isHeal = true;
-        yield return new WaitForSeconds(4); //Until the animation ends
         health += 1; // Health plus
+        yield return new WaitForSeconds(2); //Until the animation ends
         if(NetPlayer != null)
         {
             NetPlayer.ChangeHealth(health);
@@ -95,8 +102,6 @@ public class PlayerHealth : MonoBehaviour
         }
         
         playerAnimator.SetBool("Heal", false);//Heal animation end
-        playerHealthState.isHeal = false;
-
-        
+        playerHealthState.isHeal = false;      
     }
 }
