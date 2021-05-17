@@ -125,29 +125,34 @@ public class SlotManager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Alpha1) && onTarget[0] > 1) // 타게팅을 두번하면 됨
         {
-            inventory.UseItem(0); 
+            inventory.UseItem(0);
+            onTarget[0] = 0;
             
         }
         else if(Input.GetKeyDown(KeyCode.Alpha2) && onTarget[1] > 1)
         {
             
             inventory.UseItem(1);
-            
+            onTarget[1] = 0;
+
         }
         else if(Input.GetKeyDown(KeyCode.Alpha3) && onTarget[2] > 1)
         {
 
             inventory.UseItem(2);
-            
+            onTarget[2] = 0;
+
         }
         else if(Input.GetKeyDown(KeyCode.Alpha4) && onTarget[3] > 1)
         {
             inventory.UseItem(3);
+            onTarget[3] = 0;
 
         }
         else if(Input.GetKeyDown(KeyCode.Q))
         {
             inventory.DropItem(itemTarget);
+            onTarget[itemTarget] = 0;
         }
     }
 
