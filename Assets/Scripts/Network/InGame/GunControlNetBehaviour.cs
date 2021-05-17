@@ -30,7 +30,8 @@ public class GunControlNetBehaviour : NetworkBehaviour
         GameObject Bullet = Instantiate(BulletPrefab, gunControl.BulletPos.position, gunControl.BulletPos.rotation);
         NetworkServer.Spawn(Bullet);
         Rigidbody BulletRigid = Bullet.GetComponent<Rigidbody>(); //Rigidbody creation
-        BulletRigid.velocity = gunControl.BulletPos.forward * 15;
+        Vector3 forward = gunControl.BulletPos.forward;
+        BulletRigid.velocity = new Vector3(forward.x,0,forward.z) * 15;
 
     }
     
@@ -38,7 +39,8 @@ public class GunControlNetBehaviour : NetworkBehaviour
     {
         GameObject Bullet = Instantiate(BulletPrefab, msg.position, msg.rotation);
         Rigidbody BulletRigid = Bullet.GetComponent<Rigidbody>(); //Rigidbody creation
-        BulletRigid.velocity = gunControl.BulletPos.forward * 15;
+        Vector3 forward = gunControl.BulletPos.forward;
+        BulletRigid.velocity = new Vector3(forward.x, 0, forward.z) * 15;
         return Bullet;
     }
 
