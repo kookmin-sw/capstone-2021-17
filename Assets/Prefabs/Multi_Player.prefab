@@ -825,6 +825,7 @@ MonoBehaviour:
   isGrounded: 0
   isHit: 0
   isDie: 0
+  isHeal: 0
   netPlayer: {fileID: 8434543643066341693}
   state: 0
 --- !u!114 &181708962700378306
@@ -961,7 +962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0.7
   target: {fileID: 2539886900118930995}
   clientAuthority: 1
   syncVelocity: 1

@@ -1801,7 +1801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logLevel: 3
-  serverIP: 127.0.0.1
+  serverIP: 13.209.73.28
   serverPort: 5000
   minTimeToConnect: 5
   maxTimeToConnect: 20
