@@ -30,7 +30,11 @@ public class PlayerHealth : MonoBehaviour
     }
     public void Hit() //Player hit
     {
-        KPDisableManager.instance.DisablePlayer(false);
+        if (NetPlayer.isLocalPlayer)
+        {
+            KPDisableManager.instance.DisablePlayer(false);
+        }
+        
 
         health -= 1; // Health minus
         if (NetPlayer != null) //Net Player

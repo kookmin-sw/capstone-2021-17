@@ -98,7 +98,6 @@ public class NetGamePlayer : NetworkBehaviour
 
     public override void OnStopClient()
     {
-        
         InGame_MultiGameManager.DisablePlayer(this);
     }
     
