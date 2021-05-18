@@ -31,6 +31,7 @@ public class SlotManager : MonoBehaviour
             onTarget[i] = 0; // 타겟팅 초기화
         }
         instance = this;
+        itemTarget = 3;
     }
 
     void Update()
@@ -184,6 +185,14 @@ public class SlotManager : MonoBehaviour
             color[i].a = 1f;
             slot[i].color = color[i];
             isEmpty[i] = false;
+
+
+            if(itemTarget == i)
+            {
+                Targeting(i);
+                inventory.ActiveHandItem(i);
+            }
+            
         }
     }
 
