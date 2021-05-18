@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 using MasterServerToolkit.MasterServer;
@@ -7,6 +8,7 @@ using TMPro;
 using MasterServerToolkit.Networking;
 using MasterServerToolkit.Games;
 using UnityEngine.Events;
+
 /*
 * NetManager를 이용합니다
 * StartScene에서의 GameObject를 다루는 Manager 객체입니다 
@@ -29,9 +31,9 @@ public class Start_MultiGameManager: MonoBehaviour
             OnServerAlreadyConnected.Invoke();
         }
 
-        nameField.onValueChanged.AddListener(delegate { SetLengthLimit(); });
+        nameField.onValueChanged.AddListener(delegate { SetPlayerNameValid(); });
         
-        roomNameField.onValueChanged.AddListener(delegate { SetRoomNameUpperCase(); });
+        roomNameField.onValueChanged.AddListener(delegate { SetRoomNameValid(); });
 
         ClientToMasterConnector.Instance.OnConnectedEvent.AddListener(sceneManager.ShowMainMenu);
         ClientToMasterConnector.Instance.OnDisconnectedEvent.AddListener(sceneManager.ShowServerFail);
@@ -157,7 +159,7 @@ public class Start_MultiGameManager: MonoBehaviour
         loadingInfo.Initialize();
     }
 
-    void SetRoomNameUpperCase()
+    void SetRoomNameValid()
     {
         string roomNameText = roomNameField.text;
         string upperText = roomNameText.ToUpper();
@@ -173,17 +175,26 @@ public class Start_MultiGameManager: MonoBehaviour
         }
     }
 
-    void SetLengthLimit()
+    void SetPlayerNameValid()
     {
         string playerNameText = nameField.text;
+        string OnlyAsciiText = "";
+
+        foreach(char c in playerNameText)
+        {
+            if(33<=c && c <= 126)
+            {
+                OnlyAsciiText += c;
+            }
+        }
 
         if (playerNameText.Length > 10)
         {
-            nameField.text = playerNameText.Substring(0, 10);
+            nameField.text = OnlyAsciiText.Substring(0, 10);
         }
         else
         {
-            nameField.text = playerNameText;
+            nameField.text = OnlyAsciiText;
         }
 
     }
