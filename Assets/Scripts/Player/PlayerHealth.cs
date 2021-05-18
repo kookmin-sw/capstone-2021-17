@@ -67,13 +67,24 @@ public class PlayerHealth : MonoBehaviour
         ChangeLayersRecursively(transform, "Interact");
         //gameObject.layer = 8;           //layer 변경해서 장애물로 판단하게 함
     }
+    bool isHitRoutine = false;
+
     void OnTriggerEnter(Collider other)//When entering the trigger
     {
         //When the tag is attack
         if (other.CompareTag("Attack"))
         {
+            if(isHitRoutine)
+            {
+                return; // 
+            }
+            else
+            {
+                isHitRoutine = true;
+                StartCoroutine("Hiting");
+            }
             //It is attacked continuously. So use coroutines.
-            StartCoroutine("Hiting");           
+
         }
     }
     IEnumerator Hiting() //Set Hiting Coroutine
@@ -82,6 +93,7 @@ public class PlayerHealth : MonoBehaviour
         playerAnimator.SetBool("Heal", false);
         Hit();
         yield return new WaitForSeconds(1); //
+        isHitRoutine = false;
     }
     IEnumerator Healing() //Set Healing Coroutine
     {
