@@ -31,14 +31,9 @@ public class DebugInGameNetManager : NetworkManager
     [Scene]
     public string endingScene;
 
-    public List<EndingPlayerMessage> EndingMessages;
-
-    [HideInInspector]
-    public EndingController EndingManager;
-
     public override void Awake()
     {
-        EndingMessages = new List<EndingPlayerMessage>();
+
 
         base.Awake();
     }
@@ -65,66 +60,11 @@ public class DebugInGameNetManager : NetworkManager
             enemySpawnManager.Init();
         }
 
-
-        NetworkServer.RegisterHandler<EndingPlayerMessage>(EndingPlayerMessageServerHandler);
         base.OnStartServer();
 
     }
 
-    public override void OnStartClient()
-    {
-
-        NetworkClient.RegisterHandler<EndingPlayerMessage>(EndingPlayerMessageClientHandler);
-    }
-
-    void EndingPlayerMessageServerHandler(NetworkConnection conn, EndingPlayerMessage message)
-    {
-        NetworkServer.SendToAll(message);
-
-        if(message.endingState== PlayerEndingState.Dead)
-        {
-            return;
-        }
-
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Ending" , LoadSceneMode.Additive);
-
-        SceneMessage sceneMessage = new SceneMessage
-        {
-            sceneName = endingScene,
-            sceneOperation = SceneOperation.LoadAdditive
-        };
-
-        conn.Send(sceneMessage);
-
-        GameObject player = conn.identity.gameObject;
-        player.transform.position = new Vector3(0, 301, 0);
-
-        Scene subScene = UnityEngine.SceneManagement.SceneManager.GetSceneByPath(endingScene);
-        UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(player, subScene);
-    }
-
-    void EndingPlayerMessageClientHandler(EndingPlayerMessage message)
-    {
-
-        EndingMessages.Add(message);
-
-        if (EndingManager)
-        {
-            EndingManager.UpdatePlayers();
-        }
-    }
-
-    public override void OnClientSceneChanged(NetworkConnection conn)
-    {
-        base.OnClientSceneChanged(conn);
-
-        
-
-        if (EndingManager)
-        {
-            EndingManager.UpdatePlayers();
-        }
-    }
+    
 
 
 }

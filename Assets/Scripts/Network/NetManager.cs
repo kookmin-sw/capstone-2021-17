@@ -44,8 +44,6 @@ public class NetManager : NetworkRoomManager
     public string PlayerName;
     private string clientPlayerName;
 
-    public List<EndingPlayerMessage> EndingMessages;
-
     [Scene]
     public string endingScene;
 
@@ -58,10 +56,6 @@ public class NetManager : NetworkRoomManager
 
     private GameMgr inGameMgr;
     private EnemySpawnManager enemySpawnManager;
-
-    
-    [HideInInspector]
-    public EndingController EndingController;
 
     //singleton
     public override void Awake() 
@@ -80,8 +74,6 @@ public class NetManager : NetworkRoomManager
             instance = this;
         }
 
-        EndingMessages = new List<EndingPlayerMessage>();
-
         base.Awake();
     }
 
@@ -89,52 +81,12 @@ public class NetManager : NetworkRoomManager
     {
         base.OnRoomStartServer();
         NetworkServer.RegisterHandler<CreateRoomPlayerMessage>(CreateRoomPlayerRequestHandler);
-        NetworkServer.RegisterHandler<EndingPlayerMessage>(EndingPlayerMessageServerHandler);
     }
 
     public override void OnRoomStartClient()
     {
         OnClientStartedEvent?.Invoke();
-
-        NetworkClient.RegisterHandler<EndingPlayerMessage>(EndingPlayerMessageClientHandler);
         NetworkClient.RegisterHandler<CreateGamePlayerMessage>(CreateGamePlayerMessageClientHandler);
-    }
-
-    void EndingPlayerMessageServerHandler(NetworkConnection conn, EndingPlayerMessage message)
-    {
-        NetworkServer.SendToAll(message);
-
-        if (message.endingState == PlayerEndingState.Dead)
-        {
-            return;
-        }
-
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Ending", LoadSceneMode.Additive);
-
-        SceneMessage sceneMessage = new SceneMessage
-        {
-            sceneName = endingScene,
-            sceneOperation = SceneOperation.LoadAdditive
-        };
-
-        conn.Send(sceneMessage);
-
-        GameObject player = conn.identity.gameObject;
-        player.transform.position = new Vector3(0, 301, 0);
-
-        Scene subScene = UnityEngine.SceneManagement.SceneManager.GetSceneByPath(endingScene);
-        UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(player, subScene);
-    }
-
-    void EndingPlayerMessageClientHandler(EndingPlayerMessage message)
-    {
-
-        EndingMessages.Add(message);
-
-        if (EndingController)
-        {
-            EndingController.UpdatePlayers();
-        }
     }
     public void CreateGamePlayerMessageClientHandler(CreateGamePlayerMessage msg)
     {
@@ -299,11 +251,7 @@ public class NetManager : NetworkRoomManager
 
     public override void OnRoomClientSceneChanged(NetworkConnection conn)
     {
-        if (EndingController)
-        {
-            EndingController.UpdatePlayers();
-        }
-        else if (IsSceneActive(GameplayScene))
+        if (IsSceneActive(GameplayScene))
         {
             loadingManager = Instantiate(loadingManagerPrefab).GetComponent<LoadingManager>();
         }
@@ -320,8 +268,6 @@ public class NetManager : NetworkRoomManager
 
             enemySpawnManager = EnemySpawnManager.instance;
             enemySpawnManager.Init();
-
-            EndingMessages.Clear();
         }
     }
     

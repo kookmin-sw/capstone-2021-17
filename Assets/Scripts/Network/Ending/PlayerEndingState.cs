@@ -4,7 +4,7 @@ using UnityEngine;
 public enum PlayerEndingState
 {
     None,
-    Live,
+    Escape,
     Dead,
     Disconnected
 }

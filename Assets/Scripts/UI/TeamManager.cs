@@ -38,7 +38,7 @@ public class TeamManager : MonoBehaviour
             }
             NameUI[otherIdx].text = names[id];
 
-            if(Players[id].EndState == PlayerEndingState.Live)
+            if(Players[id].EndState == PlayerEndingState.Escape)
             {
                 EndUI[otherIdx].text = "ESCAPED!";
             }

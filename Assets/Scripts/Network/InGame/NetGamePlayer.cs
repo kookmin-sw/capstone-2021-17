@@ -24,7 +24,7 @@ public class NetGamePlayer : NetworkBehaviour
     [SyncVar]
     public ThirdPersonCharacter.State State;
 
-    [SyncVar]
+    [SyncVar(hook = nameof(OnEndStateChanged))]
     public PlayerEndingState EndState;
 
     [SyncVar(hook = nameof(OnHandItemChanged))]
@@ -98,7 +98,12 @@ public class NetGamePlayer : NetworkBehaviour
 
     public override void OnStopClient()
     {
-        InGame_MultiGameManager.DisablePlayer(this);
+        CmdChangeHealth(0);
+        CmdChangeState(ThirdPersonCharacter.State.Die);
+        if (EndState != PlayerEndingState.Escape)
+        {
+            CmdSetEndingState(PlayerEndingState.Disconnected);
+        }
     }
     
     public void ChangeHealth(int h)
@@ -266,48 +271,24 @@ public class NetGamePlayer : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            EndingPlayerMessage msg = new EndingPlayerMessage()
-            {
-                PlayerName = Nickname,
-                endingState = PlayerEndingState.Live,
-            };
-
             //ThirdCamera.gameObject.child(0).GetComponent<AudioListener>().enabled = false;
-            CmdSetEndingState(PlayerEndingState.Live);
+            CmdSetEndingState(PlayerEndingState.Escape);
 
             foreach(var audio in GameObject.FindObjectsOfType<AudioSource>())
             {
                 audio.volume = 0;
             }
-
-            NetworkClient.Send(msg);
-
-            
-
-            gameObject.SetActive(false);
-            
-
-        }
-        else
-        {
+            EndingManager.instance.StartEnding();
             gameObject.SetActive(false);
         }
+        
     }
 
     public void Die()
     {
         if (isLocalPlayer)
         {
-            EndingPlayerMessage msg = new EndingPlayerMessage()
-            {
-                PlayerName = Nickname,
-                endingState = PlayerEndingState.Dead
-            };
-
             CmdSetEndingState(PlayerEndingState.Dead);
-
-            NetworkClient.Send(msg);
-            
             //UnityEngine.SceneManagement.SceneManager.LoadScene("Ending");
         }
     }
@@ -317,4 +298,20 @@ public class NetGamePlayer : NetworkBehaviour
     {
         EndState = endingState;
     }
+
+    void OnEndStateChanged(PlayerEndingState oldState, PlayerEndingState newState)
+    {
+        EndingManager endingManager = EndingManager.instance;
+        if(newState == PlayerEndingState.Escape || newState == PlayerEndingState.Dead ||
+            (oldState != PlayerEndingState.Dead && newState == PlayerEndingState.Disconnected) )       
+        {
+            endingManager.players.Add(this);
+        }
+
+        if(newState == PlayerEndingState.Escape)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
 }

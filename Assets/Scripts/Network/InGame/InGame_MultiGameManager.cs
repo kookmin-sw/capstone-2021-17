@@ -46,18 +46,7 @@ public class InGame_MultiGameManager : MonoBehaviour
         states.Add(newPlayer.State);
         
     }
-    public static void DisablePlayer(NetGamePlayer targetPlayer)
-    {
-        foreach(NetGamePlayer player in Players)
-        {
-            if(player == targetPlayer)
-            {
-                player.Health = 0;
-                player.State = ThirdPersonCharacter.State.Die;
-                player.EndState = PlayerEndingState.Disconnected;
-            }
-        }
-    }
+    
     // 체력 전달
     public static List<int> GetPlayersHealth()
     {
