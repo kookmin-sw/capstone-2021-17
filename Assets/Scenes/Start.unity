@@ -1801,7 +1801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logLevel: 3
-  serverIP: 13.209.73.28
+  serverIP: 3.36.43.62
   serverPort: 5000
   minTimeToConnect: 5
   maxTimeToConnect: 20
@@ -6991,6 +6991,7 @@ MonoBehaviour:
   endingScene: 
   loadingManagerPrefab: {fileID: 3825596481130646103, guid: f8df0c5ba34cebb4ebdc953c12376662,
     type: 3}
+  EndingManager: {fileID: 0}
   logLevel: 3
 --- !u!4 &2124268454
 Transform:
