@@ -53,11 +53,13 @@ public class NetManager : NetworkRoomManager
     [FormerlySerializedAs("LoadingManagerPrefab")]
     private GameObject loadingManagerPrefab;
 
+    public LoadingManager loadingManager;
+
+
     private GameMgr inGameMgr;
     private EnemySpawnManager enemySpawnManager;
 
-    private LoadingManager loadingManager;
-
+    
     [HideInInspector]
     public EndingManager EndingManager;
 
@@ -295,7 +297,10 @@ public class NetManager : NetworkRoomManager
 
         if(newSceneName == endingScene)
         {
-            loadingManager.gameObject.SetActive(true);
+            if (loadingManager)
+            {
+                loadingManager.gameObject.SetActive(false);
+            }
         }
 
     }

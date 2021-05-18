@@ -283,6 +283,12 @@ public class NetGamePlayer : NetworkBehaviour
 
             NetworkClient.Send(msg);
 
+            if (NetManager.instance.loadingManager)
+            {
+                NetManager.instance.loadingManager.gameObject.SetActive(true);
+            }
+            
+
             gameObject.SetActive(false);
             
 
