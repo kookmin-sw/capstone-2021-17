@@ -65,7 +65,14 @@ public class PlayerHealth : MonoBehaviour
         playerHealthState.isDie=true;
         playerAnimator.SetBool("Die", true);
         ChangeLayersRecursively(transform, "Interact");
+        StartCoroutine("PlayerDisappear");
         //gameObject.layer = 8;           //layer 변경해서 장애물로 판단하게 함
+    }
+
+    IEnumerator PlayerDisappear()
+    {
+        yield return new WaitForSeconds(20);
+        gameObject.SetActive(false);
     }
     bool isHitRoutine = false;
 
