@@ -22,10 +22,11 @@ public class GunControlNetBehaviour : NetworkBehaviour
 
     public void SpawnBullet()
     {
-        CmdSpawnBullet();
+
+        CmdSpawnBullet(gunControl.BulletPos.position, gunControl.BulletPos.rotation);
     }
     [Command]
-    public void CmdSpawnBullet()
+    public void CmdSpawnBullet(Vector3 position, Quaternion rotation)
     {
         GameObject Bullet = Instantiate(BulletPrefab, gunControl.BulletPos.position, gunControl.BulletPos.rotation);
         
