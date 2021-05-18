@@ -873,7 +873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0
   clientAuthority: 1
   animator: {fileID: 2498241401432879491}
 --- !u!114 &8434543643066341693
@@ -889,12 +889,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0
   Health: 0
   Nickname: 
   isLeader: 0
   State: 0
-  IsEscape: 0
+  EndState: 0
   handItemidx: -1
   ThirdCamera: {fileID: 2594068195166703364}
   Canvas: {fileID: 1679024168289648155}
@@ -946,7 +946,7 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
-  compressRotation: 0
+  compressRotation: 1
   interpolateScale: 1
   syncScale: 1
 --- !u!114 &2684887872364013303
@@ -962,7 +962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.7
+  syncInterval: 0.1
   target: {fileID: 2539886900118930995}
   clientAuthority: 1
   syncVelocity: 1
