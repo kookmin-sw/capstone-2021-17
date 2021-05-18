@@ -25,7 +25,7 @@ public class NetGamePlayer : NetworkBehaviour
     public ThirdPersonCharacter.State State;
 
     [SyncVar]
-    public bool IsEscape = false;
+    public PlayerEndingState EndState;
 
     [SyncVar(hook = nameof(OnHandItemChanged))]
     public int handItemidx = -1;
@@ -50,6 +50,7 @@ public class NetGamePlayer : NetworkBehaviour
     {
         Health = PlayerHealth.health;
         State = (ThirdPersonCharacter.State)Character.state;
+        EndState = PlayerEndingState.None;
         MultigameManager = InGame_MultiGameManager.instance;
     }
 
@@ -97,6 +98,7 @@ public class NetGamePlayer : NetworkBehaviour
 
     public override void OnStopClient()
     {
+        
         InGame_MultiGameManager.DisablePlayer(this);
     }
     
@@ -272,6 +274,7 @@ public class NetGamePlayer : NetworkBehaviour
             };
 
             //ThirdCamera.gameObject.child(0).GetComponent<AudioListener>().enabled = false;
+            CmdSetEndingState(PlayerEndingState.Live);
 
             foreach(var audio in GameObject.FindObjectsOfType<AudioSource>())
             {
@@ -286,7 +289,6 @@ public class NetGamePlayer : NetworkBehaviour
         }
         else
         {
-            IsEscape = true;
             gameObject.SetActive(false);
         }
     }
@@ -301,9 +303,17 @@ public class NetGamePlayer : NetworkBehaviour
                 endingState = PlayerEndingState.Dead
             };
 
+            CmdSetEndingState(PlayerEndingState.Dead);
+
             NetworkClient.Send(msg);
             
             //UnityEngine.SceneManagement.SceneManager.LoadScene("Ending");
         }
+    }
+
+    [Command]
+    public void CmdSetEndingState(PlayerEndingState endingState)
+    {
+        EndState = endingState;
     }
 }

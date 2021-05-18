@@ -7,9 +7,3 @@ public struct EndingPlayerMessage : NetworkMessage
     public string PlayerName;
     public PlayerEndingState endingState;
 }
-
-public enum PlayerEndingState
-{
-    Live,
-    Dead
-}

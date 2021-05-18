@@ -53,8 +53,8 @@ public class InGame_MultiGameManager : MonoBehaviour
             if(player == targetPlayer)
             {
                 player.Health = 0;
-                player.Nickname = "Disconnected";
                 player.State = ThirdPersonCharacter.State.Die;
+                player.EndState = PlayerEndingState.Disconnected;
             }
         }
     }

@@ -6,12 +6,12 @@ using Mirror;
 
 public class TeamManager : MonoBehaviour
 {
-    public Text[] UI;
+    public Text[] NameUI;
+    public Text[] EndUI;
 
     public List<NetGamePlayer> Players = new List<NetGamePlayer>(NetManager.PLAYER_MAXNUM);
-    private List<int> healths = new List<int>();
     private List<string> names = new List<string>();
-    private List<ThirdPersonCharacter.State> states = new List<ThirdPersonCharacter.State>();
+
 
 
     void Update()
@@ -20,8 +20,6 @@ public class TeamManager : MonoBehaviour
         {
             Players = InGame_MultiGameManager.Players;
             names = InGame_MultiGameManager.GetPlayersNickname();
-            healths = InGame_MultiGameManager.GetPlayersHealth();
-            states = InGame_MultiGameManager.GetPlayersState();
         }
         ShowText();
     }
@@ -38,17 +36,27 @@ public class TeamManager : MonoBehaviour
                 continue; // Local Player =  바로 플레이어 자기자신
                           // 플레이어가 자기 자신일때는 otherIndex가 오르지 않음.
             }
-            if(InGame_MultiGameManager.isPlayerLeader(id))
+            NameUI[otherIdx].text = names[id];
+
+            if(Players[id].EndState == PlayerEndingState.Live)
             {
-                UI[otherIdx].text = "Name : " + names[id] + "\nHP : " + healths[id] + "\n" 
-            + states[id] +  "\n < Leader";
+                EndUI[otherIdx].text = "ESCAPED!";
             }
-            else
+            else if(Players[id].EndState == PlayerEndingState.Dead)
             {
-                UI[otherIdx].text = "Name : " + names[id] + "\nHP : " + healths[id] + "\n"
-                + states[id] ;
+                EndUI[otherIdx].text = "DEAD!";
+            }
+            else if(Players[id].EndState == PlayerEndingState.Disconnected)
+            {
+                EndUI[otherIdx].text = "DISCONNECTED";
             }
             otherIdx++;
+        }
+
+        for(int id = otherIdx ; id < 3; id++)
+        {
+            NameUI[id].text = "";
+            EndUI[id].text = "";
         }
     }
 /*
