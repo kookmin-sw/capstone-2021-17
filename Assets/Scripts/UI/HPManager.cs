@@ -110,15 +110,6 @@ public class HPManager : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             //로비, 시작창, 게임 종료 중 선택 가능
-            
-            if(Input.GetKeyDown(KeyCode.S))
-            {
-                ui.SetCheckText(2);
-            }
-            else if(Input.GetKeyDown(KeyCode.E))
-            {
-                ui.SetCheckText(3);
-            }
 
         }
     }
