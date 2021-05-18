@@ -97,7 +97,8 @@ public class Enemy : MonoBehaviour
         randomIndex = Random.Range(0, 26);
         anim.SetBlnedTree(navMeshAgent.speed);      //Blend Tree √ ±‚»≠        
         navMeshAgent.SetDestination(wayPoint[randomIndex].position);
-        if (!navMeshAgent.hasPath)
+        Debug.Log(navMeshAgent.pathPending);
+        if (!navMeshAgent.pathPending)
         {
             ChangeToIdle();
         }
@@ -108,7 +109,7 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Bullet"))
         {
             ChangeToDizzy();
-        }
+        }        
     }
 
     public void ChangeToIdle()

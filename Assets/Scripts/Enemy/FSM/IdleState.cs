@@ -14,6 +14,7 @@ public class IdleState : State
     {
         base.Enter();
         enemy.InitializeAll();  //변수 초기화
+        Debug.Log("Idle");
     }
 
     public override void LogicUpdate()
@@ -32,7 +33,7 @@ public class IdleState : State
             {
                 enemy.SetNavMeshAgent();
             }
-            timer = 0.0f;            
+            timer = 0.0f;
             enemy.ChangeToPatrol();
         }
     }

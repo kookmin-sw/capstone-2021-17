@@ -12,9 +12,10 @@ public class PatrolState : State
     public override void Enter()
     {
         base.Enter();
-        enemy.InitializeAll();          //변수 초기화        
+        enemy.InitializeAll();          //변수 초기화
         enemy.SetHasDestination(true);
         enemy.MoveToWayPoint();
+        Debug.Log("Patrol");
     }
 
     public override void Exit()
@@ -25,7 +26,7 @@ public class PatrolState : State
 
     public override void LogicUpdate()
     {
-        base.LogicUpdate();        
+        base.LogicUpdate();
         enemy.FindTargets();
         //일정 거리에 들어오면 다시 순찰 포인트 설정
         if (enemy.DistanceXZ() <= minErrorWayPoint)
@@ -33,5 +34,4 @@ public class PatrolState : State
             enemy.ChangeToPatrol();
         }
     }
-
 }

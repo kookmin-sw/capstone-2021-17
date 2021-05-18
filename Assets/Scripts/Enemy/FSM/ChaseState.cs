@@ -13,6 +13,7 @@ public class ChaseState : State
         base.Enter();
         enemy.SirenPlay();
         enemy.SetHasDestination(true);
+        Debug.Log("Chase");
     }
 
     public override void LogicUpdate()
@@ -27,5 +28,6 @@ public class ChaseState : State
     {
         base.Exit();
         enemy.SetHasDestination(false);
+        enemy.SirenStop();
     }
 }

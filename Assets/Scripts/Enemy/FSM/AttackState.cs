@@ -11,8 +11,7 @@ public class AttackState : State
 
     public override void Enter()
     {
-        base.Enter();
-        enemy.SirenStop();
+        base.Enter();        
         enemy.InitializeAll();
         anim.PlayAttAnim();      //공격 애니메이션 재생              
         enemy.SetNavMeshAgent();
