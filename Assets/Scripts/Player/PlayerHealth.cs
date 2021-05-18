@@ -64,7 +64,8 @@ public class PlayerHealth : MonoBehaviour
     {
         playerHealthState.isDie=true;
         playerAnimator.SetBool("Die", true);
-        gameObject.layer = 8;           //layer 변경해서 장애물로 판단하게 함
+        ChangeLayersRecursively(transform, "Interact");
+        //gameObject.layer = 8;           //layer 변경해서 장애물로 판단하게 함
     }
     void OnTriggerEnter(Collider other)//When entering the trigger
     {
@@ -101,4 +102,14 @@ public class PlayerHealth : MonoBehaviour
         playerAnimator.SetBool("Heal", false);//Heal animation end
         playerHealthState.isHeal = false;      
     }
+
+    public static void ChangeLayersRecursively(Transform trans, string name)
+    {
+        trans.gameObject.layer = LayerMask.NameToLayer(name);
+        foreach (Transform child in trans)
+        {
+            ChangeLayersRecursively(child, name);
+        }
+    }
+
 }
