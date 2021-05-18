@@ -271,9 +271,17 @@ public class NetGamePlayer : NetworkBehaviour
                 endingState = PlayerEndingState.Live,
             };
 
-           
+            //ThirdCamera.gameObject.child(0).GetComponent<AudioListener>().enabled = false;
+
+            foreach(var audio in GameObject.FindObjectsOfType<AudioSource>())
+            {
+                audio.volume = 0;
+            }
+
             NetworkClient.Send(msg);
 
+            gameObject.SetActive(false);
+            
 
         }
         else
@@ -293,9 +301,8 @@ public class NetGamePlayer : NetworkBehaviour
                 endingState = PlayerEndingState.Dead
             };
 
-
             NetworkClient.Send(msg);
-
+            
             //UnityEngine.SceneManagement.SceneManager.LoadScene("Ending");
         }
     }
