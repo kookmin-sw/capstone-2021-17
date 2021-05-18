@@ -6429,7 +6429,7 @@ MonoBehaviour:
   - {fileID: 6543367404532598882}
   sprites:
   - {fileID: 2708265281016112118, guid: 041ee6d92b0409840ab12c6eca56f221, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: e790c93b165cf8e4abb584d52498d7c1, type: 3}
   Cursor: {fileID: 6543367402718030256}
   inventory: {fileID: 0}
 --- !u!1 &6543367404284918379
