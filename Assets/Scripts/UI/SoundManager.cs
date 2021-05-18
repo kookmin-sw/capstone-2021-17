@@ -18,16 +18,11 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        
         if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GamePlay")
         {
             if (LobbyBackGroundMusicObject) Destroy(LobbyBackGroundMusicObject);
         }
     }
-
-
-
-
     //음악 재생
     public void PlaySound(int num)
     {;
@@ -51,9 +46,35 @@ public class SoundManager : MonoBehaviour
         audioSource[2].volume = volume;
     }
 
-    public void DestroyLobbyBackGroundMusic()
+    public void AudioFadeOut(AudioSource audioSoruce, float FadeTime)
     {
-        //Destroy(LobbyBackGroundMusicObject);
+        IEnumerator fadeSound = FadeOut(audioSoruce, FadeTime);
+        StartCoroutine(fadeSound);
+        StopCoroutine(fadeSound);
+    }
+
+    public void FadeOutLobbyBackGroundMusic()
+    {
+        if (LobbyBackGroundMusicObject)
+        {
+            AudioSource audioSource = LobbyBackGroundMusicObject.GetComponent<AudioSource>();
+            AudioFadeOut(audioSource, 0.5f);
+        }   
+    }
+
+    private IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
     }
 
 }
