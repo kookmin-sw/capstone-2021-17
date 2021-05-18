@@ -295,14 +295,6 @@ public class NetManager : NetworkRoomManager
         //base.OnClientChangeScene(newSceneName, sceneOperation, customHandling);
         //LoadScene(newSceneName);
 
-        if(newSceneName == endingScene)
-        {
-            if (loadingManager)
-            {
-                loadingManager.gameObject.SetActive(false);
-            }
-        }
-
     }
 
     public override void OnRoomClientSceneChanged(NetworkConnection conn)
