@@ -28,19 +28,19 @@ public class GunControlNetBehaviour : NetworkBehaviour
     public void CmdSpawnBullet()
     {
         GameObject Bullet = Instantiate(BulletPrefab, gunControl.BulletPos.position, gunControl.BulletPos.rotation);
-        NetworkServer.Spawn(Bullet);
+        
         Rigidbody BulletRigid = Bullet.GetComponent<Rigidbody>(); //Rigidbody creation
         Vector3 forward = gunControl.BulletPos.forward;
+
         BulletRigid.velocity = new Vector3(forward.x,0,forward.z) * 15;
+        NetworkServer.Spawn(Bullet);
 
     }
     
     GameObject SpawnBulletHandler(SpawnMessage msg)
     {
         GameObject Bullet = Instantiate(BulletPrefab, msg.position, msg.rotation);
-        Rigidbody BulletRigid = Bullet.GetComponent<Rigidbody>(); //Rigidbody creation
-        Vector3 forward = gunControl.BulletPos.forward;
-        BulletRigid.velocity = new Vector3(forward.x, 0, forward.z) * 15;
+        
         return Bullet;
     }
 
