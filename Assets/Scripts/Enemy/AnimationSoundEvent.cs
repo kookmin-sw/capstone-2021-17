@@ -20,7 +20,7 @@ public class AnimationSoundEvent : MonoBehaviour
         for(int i=0; i<enemyLength; i++)
         {
             enemyPos[i] = enemy[i].transform;
-            enemy[i].AddAnimationSoundEvent(GetComponent<AnimationSoundEvent>());
+            enemy[i].AddAnimationSoundEvent(this);
         }        
     }
     public void MakeEventWalk()

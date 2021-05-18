@@ -84,15 +84,23 @@ public class Enemy : MonoBehaviour
     {        
         navMeshAgent.speed += navMeshAgent.speed * 0.0005f;     //에너미의 속도를 점차 증가시킵니다.
         anim.SetBlnedTree(navMeshAgent.speed);                  //블랜드 트리 값 변경
-        navMeshAgent.SetDestination(target.position);        
+        navMeshAgent.SetDestination(target.position);
+        if (!navMeshAgent.hasPath)
+        {
+            ChangeToIdle();
+        }
     }
 
     //순찰 시 사용하는 웨이포인트로 이동합니다.
     public void MoveToWayPoint()
     {
         randomIndex = Random.Range(0, 26);
-        anim.SetBlnedTree(navMeshAgent.speed);      //Blend Tree 초기화
+        anim.SetBlnedTree(navMeshAgent.speed);      //Blend Tree 초기화        
         navMeshAgent.SetDestination(wayPoint[randomIndex].position);
+        if (!navMeshAgent.hasPath)
+        {
+            ChangeToIdle();
+        }
     }
 
     public void OnTriggerEnter(Collider other)
