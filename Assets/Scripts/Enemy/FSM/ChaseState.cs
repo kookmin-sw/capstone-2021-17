@@ -12,7 +12,7 @@ public class ChaseState : State
     {
         base.Enter();
         enemy.SirenPlay();
-        enemy.SetHasDestination(true);
+        enemy.PlayWalkAnimation();
         Debug.Log("Chase");
     }
 
@@ -27,7 +27,7 @@ public class ChaseState : State
     public override void Exit()
     {
         base.Exit();
-        enemy.SetHasDestination(false);
+        enemy.StopWalkAnimation();
         enemy.SirenStop();
     }
 }

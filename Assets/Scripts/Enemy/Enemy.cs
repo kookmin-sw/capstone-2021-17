@@ -114,7 +114,7 @@ public class Enemy : MonoBehaviour
 
     public void ChangeToIdle()
     {
-        navMeshAgent.ResetPath();
+        navMeshAgent.ResetPath();        
         enemyStateMachine.ChangeState(idle);  
     }
 
@@ -217,6 +217,23 @@ public class Enemy : MonoBehaviour
     {
         return enemyStateMachine.latestState == dizzy;
     }
+
+    public void PlayWalkAnimation()
+    {
+        anim.PlayWalkAnim();
+    }
+    public void StopWalkAnimation()
+    {
+        anim.StopWalkAnim();
+    }
+    public void PlayAttAnimation()
+    {
+        anim.PlayAttAnim();
+    }
+    public void PlayDizzyAnimation()
+    {
+        anim.PlayDizzyAnim();
+    }
     #endregion
 
     #region Private Methods
@@ -312,8 +329,8 @@ public class Enemy : MonoBehaviour
         enemyStateMachine = new StateMachine();
         idle = new IdleState(this);
         patrol = new PatrolState(this);
-        attack = new AttackState(this, anim);
-        dizzy = new DizzyState(this, anim);
+        attack = new AttackState(this);
+        dizzy = new DizzyState(this);
         chase = new ChaseState(this);
 
         enemyStateMachine.Initialize(idle);

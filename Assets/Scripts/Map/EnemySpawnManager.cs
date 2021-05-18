@@ -39,7 +39,6 @@ public class EnemySpawnManager : MonoBehaviour
             {
                 NetworkServer.Spawn(enemyObject);
             }
-        }        
-
+        }
     }
 }

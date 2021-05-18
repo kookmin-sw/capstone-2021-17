@@ -13,34 +13,7 @@ public class EnemyAnimation : MonoBehaviour
     void Awake()
     {
         ani = GetComponent<Animator>();
-    }
-
-    // 경로가 있으면 애니메이션 시작.
-    void FixedUpdate()
-    {       
-        if (checkAni.GetHasDestination())
-        {
-            if(enemyNet != null)
-            {
-                enemyNet.SetWalk();
-            }
-            else
-            {
-                SetWalk();
-            }
-        }
-        else
-        {
-            if(enemyNet != null)
-            {
-                enemyNet.UnsetWalk();
-            }
-            else
-            {
-                UnsetWalk();
-            }            
-        }
-    }
+    }        
 
     public void SetBlnedTree(float runAmount)
     {
@@ -50,6 +23,29 @@ public class EnemyAnimation : MonoBehaviour
     public void SetWalk()
     {
         ani.SetBool("Walk", true);
+    }
+
+    public void PlayWalkAnim()
+    {
+        if (enemyNet != null)
+        {
+            enemyNet.SetWalk();
+        }
+        else
+        {
+            SetWalk();
+        }
+    }
+    public void StopWalkAnim()
+    {
+        if (enemyNet != null)
+        {
+            enemyNet.UnsetWalk();
+        }
+        else
+        {
+            UnsetWalk();
+        }
     }
 
     public void UnsetWalk()

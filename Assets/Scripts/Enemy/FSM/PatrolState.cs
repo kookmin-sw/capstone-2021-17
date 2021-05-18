@@ -13,7 +13,7 @@ public class PatrolState : State
     {
         base.Enter();
         enemy.InitializeAll();          //변수 초기화
-        enemy.SetHasDestination(true);
+        enemy.PlayWalkAnimation();
         enemy.MoveToWayPoint();
         Debug.Log("Patrol");
     }
@@ -21,7 +21,7 @@ public class PatrolState : State
     public override void Exit()
     {
         base.Exit();
-        enemy.SetHasDestination(false);
+        enemy.StopWalkAnimation();
     }
 
     public override void LogicUpdate()

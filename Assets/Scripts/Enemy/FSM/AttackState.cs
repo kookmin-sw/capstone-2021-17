@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class AttackState : State
 {
     float timer;
-    public AttackState(Enemy enemy, EnemyAnimation anim) : base(enemy, anim)
+    public AttackState(Enemy enemy) : base(enemy)
     {
     }
 
@@ -13,7 +13,7 @@ public class AttackState : State
     {
         base.Enter();        
         enemy.InitializeAll();
-        anim.PlayAttAnim();      //공격 애니메이션 재생              
+        enemy.PlayAttAnimation();      //공격 애니메이션 재생              
         enemy.SetNavMeshAgent();
     }
 
@@ -24,7 +24,7 @@ public class AttackState : State
         if (timer > 1.5f)
         {
             timer = 0.0f;
-            anim.PlayAttAnim();
+            enemy.PlayAttAnimation();
             enemy.ChangeToIdle();
         }
     }

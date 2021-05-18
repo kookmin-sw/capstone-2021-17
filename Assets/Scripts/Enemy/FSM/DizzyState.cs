@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class DizzyState : State
 {
     float timer;
-    public DizzyState(Enemy enemy, EnemyAnimation anim) : base(enemy, anim)
+    public DizzyState(Enemy enemy) : base(enemy)
     {
     }    
 
@@ -13,7 +13,7 @@ public class DizzyState : State
     {
         base.Enter();        
         enemy.InitializeAll();  //변수 초기화
-        anim.PlayDizzyAnim();    //Dizzy 애니메이션 실행
+        enemy.PlayDizzyAnimation();    //Dizzy 애니메이션 실행
         enemy.SetNavMeshAgent();
     }
 
@@ -24,7 +24,7 @@ public class DizzyState : State
         if (timer > 4f)
         {
             timer = 0.0f;
-            anim.PlayDizzyAnim();
+            enemy.PlayDizzyAnimation();
             enemy.ChangeToIdle();
         }
     }
