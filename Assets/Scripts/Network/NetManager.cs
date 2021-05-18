@@ -58,6 +58,9 @@ public class NetManager : NetworkRoomManager
 
     private LoadingManager loadingManager;
 
+    [HideInInspector]
+    public EndingManager EndingManager;
+
     //singleton
     public override void Awake() 
     {
@@ -95,21 +98,30 @@ public class NetManager : NetworkRoomManager
         NetworkClient.RegisterHandler<CreateGamePlayerMessage>(CreateGamePlayerMessageClientHandler);
     }
 
-    void EndingPlayerMessageServerHandler(NetworkConnection conn , EndingPlayerMessage message)
+    void EndingPlayerMessageServerHandler(NetworkConnection conn, EndingPlayerMessage message)
     {
         NetworkServer.SendToAll(message);
+
+        if (message.endingState == PlayerEndingState.Dead)
+        {
+            return;
+        }
+
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Ending", LoadSceneMode.Additive);
 
         SceneMessage sceneMessage = new SceneMessage
         {
             sceneName = endingScene,
-            sceneOperation = SceneOperation.Normal
+            sceneOperation = SceneOperation.LoadAdditive
         };
+
         conn.Send(sceneMessage);
 
-    }
-    public void CreateGamePlayerMessageClientHandler(CreateGamePlayerMessage msg)
-    {
-        loadingManager.gameObject.SetActive(false);
+        GameObject player = conn.identity.gameObject;
+        player.transform.position = new Vector3(0, 301, 0);
+
+        Scene subScene = UnityEngine.SceneManagement.SceneManager.GetSceneByPath(endingScene);
+        UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(player, subScene);
     }
 
     void EndingPlayerMessageClientHandler(EndingPlayerMessage message)
@@ -117,19 +129,14 @@ public class NetManager : NetworkRoomManager
 
         EndingMessages.Add(message);
 
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().path == endingScene)
+        if (EndingManager)
         {
-            EndingManager.instance.UpdatePlayers();
+            EndingManager.UpdatePlayers();
         }
     }
-
-    public override void OnClientSceneChanged(NetworkConnection conn)
+    public void CreateGamePlayerMessageClientHandler(CreateGamePlayerMessage msg)
     {
-        base.OnClientSceneChanged(conn);
-        if (IsSceneActive(endingScene))
-        {
-            EndingManager.instance.UpdatePlayers();
-        }
+        loadingManager.gameObject.SetActive(false);
     }
 
 
@@ -286,6 +293,11 @@ public class NetManager : NetworkRoomManager
         //base.OnClientChangeScene(newSceneName, sceneOperation, customHandling);
         //LoadScene(newSceneName);
 
+        if(newSceneName == endingScene)
+        {
+            loadingManager.gameObject.SetActive(true);
+        }
+
     }
 
     public override void OnRoomClientSceneChanged(NetworkConnection conn)
@@ -294,14 +306,19 @@ public class NetManager : NetworkRoomManager
         {
             loadingManager = Instantiate(loadingManagerPrefab).GetComponent<LoadingManager>();
         }
+
+        if (IsSceneActive(endingScene))
+        {
+            EndingManager.instance.UpdatePlayers();
+        }
     }
-    
+
 
     public override void OnRoomServerSceneChanged(string sceneName)
     {
-        if(sceneName == GameplayScene)
+        if (sceneName == GameplayScene)
         {
-            
+
             inGameMgr = GameMgr.instance;
             inGameMgr.Init();
 
@@ -310,14 +327,6 @@ public class NetManager : NetworkRoomManager
 
             EndingMessages.Clear();
         }
-    }
-
-    
-    public override void OnClientLoadScene()
-    {
-       
-        //LoadingManager loadingManager = Instantiate(loadingManagerPrefab).GetComponent<LoadingManager>();
-        //loadingManager.SetAsyncOperation(loadingSceneAsync);
     }
     
     void OnReturnToRoom()

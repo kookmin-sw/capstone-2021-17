@@ -81,12 +81,26 @@ public class DebugInGameNetManager : NetworkManager
     {
         NetworkServer.SendToAll(message);
 
+        if(message.endingState== PlayerEndingState.Dead)
+        {
+            return;
+        }
+
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Ending" , LoadSceneMode.Additive);
+
         SceneMessage sceneMessage = new SceneMessage
         {
             sceneName = endingScene,
-            sceneOperation = SceneOperation.Normal
+            sceneOperation = SceneOperation.LoadAdditive
         };
+
         conn.Send(sceneMessage);
+
+        GameObject player = conn.identity.gameObject;
+        player.transform.position = new Vector3(0, 301, 0);
+
+        Scene subScene = UnityEngine.SceneManagement.SceneManager.GetSceneByPath(endingScene);
+        UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(player, subScene);
     }
 
     void EndingPlayerMessageClientHandler(EndingPlayerMessage message)
@@ -100,5 +114,15 @@ public class DebugInGameNetManager : NetworkManager
         }
     }
 
-    
+    public override void OnClientSceneChanged(NetworkConnection conn)
+    {
+        base.OnClientSceneChanged(conn);
+
+        if (EndingManager)
+        {
+            EndingManager.UpdatePlayers();
+        }
+    }
+
+
 }
