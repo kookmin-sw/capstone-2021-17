@@ -29,7 +29,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MasterServer.unity
     guid: 54bd8fb3b1914be43b38752482145460
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MultiTest/TstMulti_Ingame.unity
     guid: 45839ef3d618b93489ebf474e3919252
   m_configObjects: {}

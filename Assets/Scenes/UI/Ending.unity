@@ -756,7 +756,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 588420053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f88ba98a1eb6d54a89d95e1ec0ffe3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 69359dc0f859dcc43ac6025e1b9ff073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nickname:
@@ -1422,7 +1422,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 588420057}
-        m_TargetAssemblyTypeName: EndingManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: EndingController, Assembly-CSharp
         m_MethodName: UpdatePlayers
         m_Mode: 1
         m_Arguments:

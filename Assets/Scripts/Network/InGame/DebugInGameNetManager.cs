@@ -34,7 +34,7 @@ public class DebugInGameNetManager : NetworkManager
     public List<EndingPlayerMessage> EndingMessages;
 
     [HideInInspector]
-    public EndingManager EndingManager;
+    public EndingController EndingManager;
 
     public override void Awake()
     {
@@ -117,6 +117,8 @@ public class DebugInGameNetManager : NetworkManager
     public override void OnClientSceneChanged(NetworkConnection conn)
     {
         base.OnClientSceneChanged(conn);
+
+        
 
         if (EndingManager)
         {

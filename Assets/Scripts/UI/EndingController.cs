@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
 
-public class EndingManager : MonoBehaviour
+public class EndingController : MonoBehaviour
 {
 
-    public static EndingManager instance;
+    public static EndingController instance;
     public Text[] nickname;
     public Text gameClear;
-    
+
     public List<EndingPlayerMessage> messages;
 
     public List<SkinnedMeshRenderer> heads;
@@ -19,12 +23,12 @@ public class EndingManager : MonoBehaviour
 
 
 
-    private bool isclear; //ê²Œì„ í´ë¦¬ì–´ ì—¬ë¶€
+    private bool isclear; //°ÔÀÓ Å¬¸®¾î ¿©ºÎ
 
     void Awake()
     {
         instance = this;
-        
+
         isclear = true;
 
         Cursor.visible = true;
@@ -32,7 +36,7 @@ public class EndingManager : MonoBehaviour
 
         if (NetworkManager.singleton is NetManager netManager)
         {
-            //messages = netManager.EndingMessages;
+            netManager.EndingController = this;
         }
         else if (NetworkManager.singleton is DebugInGameNetManager debugInGameManager)
         {
@@ -40,21 +44,21 @@ public class EndingManager : MonoBehaviour
         }
 
         messages = new List<EndingPlayerMessage>();
-       
 
 
-        UpdatePlayers(); 
+
+        UpdatePlayers();
     }
 
     public void DisconnectRoom()
     {
         if (NetworkManager.singleton)
         {
-            NetworkManager.singleton.StopClient(); // ì‹œì‘ìœ¼ë¡œ ëŒì•„ê°
+            NetworkManager.singleton.StopClient(); // ½ÃÀÛÀ¸·Î µ¹¾Æ°¨
         }
     }
 
-    public void UpdatePlayers() // EndingMessageì—ëŠ” í”Œë ˆì´ì–´ ì´ë¦„, ê¹¼ëŠ”ì§€ ì£½ì—ˆëŠ”ì§€ ìƒíƒœê°€ í¬í•¨ë¨.
+    public void UpdatePlayers() // EndingMessage¿¡´Â ÇÃ·¹ÀÌ¾î ÀÌ¸§, ²£´ÂÁö Á×¾ú´ÂÁö »óÅÂ°¡ Æ÷ÇÔµÊ.
     {
         if (NetworkManager.singleton is NetManager netManager)
         {
@@ -65,20 +69,20 @@ public class EndingManager : MonoBehaviour
             messages = debugInGameManager.EndingMessages;
         }
 
-        //ë‹¤ë¥¸ í”Œë ˆì´ì–´ë“¤ì´ ê²Œì„ì„ í´ë¦¬ì–´í• ê²½ìš° EndingMessageê°€ NetManager.endingmessageë¡œ ë°ì´í„°ê°€ ì „ë‹¬ë¨
+        //´Ù¸¥ ÇÃ·¹ÀÌ¾îµéÀÌ °ÔÀÓÀ» Å¬¸®¾îÇÒ°æ¿ì EndingMessage°¡ NetManager.endingmessage·Î µ¥ÀÌÅÍ°¡ Àü´ŞµÊ
         ShowPlayers();
         ShowPlayerText();
     }
 
-    private void ShowPlayers() // ì ‘ì†ëœ í”Œë ˆì´ì–´ë“¤ ê¹Œì§€ë§Œ Meshê°€ ë³´ì´ë„ë¡ í•¨
+    private void ShowPlayers() // Á¢¼ÓµÈ ÇÃ·¹ÀÌ¾îµé ±îÁö¸¸ Mesh°¡ º¸ÀÌµµ·Ï ÇÔ
     {
         for (int id = 0; id < messages.Count; id++)
         {
             heads[id].gameObject.SetActive(true);
             bodys[id].gameObject.SetActive(true);
-            
-            
-            if(messages[id].endingState == PlayerEndingState.Dead)
+
+
+            if (messages[id].endingState == PlayerEndingState.Dead)
             {
                 endingPlayerManagers[id].isDead();
             }
@@ -86,8 +90,8 @@ public class EndingManager : MonoBehaviour
             {
                 endingPlayerManagers[id].isLive();
             }
-            
-            
+
+
         }
         for (int id = messages.Count; id < 4; id++)
         {
@@ -97,38 +101,39 @@ public class EndingManager : MonoBehaviour
     }
 
 
-   
 
 
 
-    
 
-    //ìºë¦­í„° ëª¨ë¸ ë¡œë“œ í›„ ìºë¦­í„° ìƒíƒœì— ë”°ë¼ EndingPlayerManagerì˜ islive or lsdead í˜¸ì¶œ
 
-    private void ShowClearText() //ê²Œì„ í´ë¦¬ì–´, ê²Œì„ ì˜¤ë²„ ì—¬ë¶€ ì¶œë ¥
+
+    //Ä³¸¯ÅÍ ¸ğµ¨ ·Îµå ÈÄ Ä³¸¯ÅÍ »óÅÂ¿¡ µû¶ó EndingPlayerManagerÀÇ islive or lsdead È£Ãâ
+
+    private void ShowClearText() //°ÔÀÓ Å¬¸®¾î, °ÔÀÓ ¿À¹ö ¿©ºÎ Ãâ·Â
     {
-        //ê²Œì„ í´ë¦¬ì–´ì‹œ
-        if(isclear)
+        //°ÔÀÓ Å¬¸®¾î½Ã
+        if (isclear)
         {
             gameClear.text = "Game Clear!";
         }
-        else //ê²Œì„ ì˜¤ë²„(ì „ì› ì‚¬ë§) ì‹œ
+        else //°ÔÀÓ ¿À¹ö(Àü¿ø »ç¸Á) ½Ã
         {
             gameClear.text = "Game Over...";
         }
-        
+
     }
 
-    private void ShowPlayerText() //í”Œë ˆì´ì–´ìºë“¤ ë‹‰ë„¤ì„ ì¶œë ¥
+    private void ShowPlayerText() //ÇÃ·¹ÀÌ¾îÄ³µé ´Ğ³×ÀÓ Ãâ·Â
     {
-        for(int id = 0; id<messages.Count; id++)
+        for (int id = 0; id < messages.Count; id++)
         {
             nickname[id].text = messages[id].PlayerName;
-        } //ì™¼ìª½ì—ì„œë¶€í„° id ìˆœìœ¼ë¡œ ë‹‰ë„¤ì„ ì¶œë ¥
+        } //¿ŞÂÊ¿¡¼­ºÎÅÍ id ¼øÀ¸·Î ´Ğ³×ÀÓ Ãâ·Â
 
-        for(int id= messages.Count; id < 4; id++)
+        for (int id = messages.Count; id < 4; id++)
         {
             nickname[id].text = "";
-        } // ì—†ëŠ” í”Œë ˆì´ì–´ë“¤ì€ ë‹‰ë„¤ì„ í‘œì‹œ ì•ˆí•¨
+        } // ¾ø´Â ÇÃ·¹ÀÌ¾îµéÀº ´Ğ³×ÀÓ Ç¥½Ã ¾ÈÇÔ
     }
 }
+

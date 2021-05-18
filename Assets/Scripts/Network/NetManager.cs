@@ -61,7 +61,7 @@ public class NetManager : NetworkRoomManager
 
     
     [HideInInspector]
-    public EndingManager EndingManager;
+    public EndingController EndingController;
 
     //singleton
     public override void Awake() 
@@ -131,9 +131,9 @@ public class NetManager : NetworkRoomManager
 
         EndingMessages.Add(message);
 
-        if (EndingManager)
+        if (EndingController)
         {
-            EndingManager.UpdatePlayers();
+            EndingController.UpdatePlayers();
         }
     }
     public void CreateGamePlayerMessageClientHandler(CreateGamePlayerMessage msg)
@@ -299,14 +299,13 @@ public class NetManager : NetworkRoomManager
 
     public override void OnRoomClientSceneChanged(NetworkConnection conn)
     {
-        if (IsSceneActive(GameplayScene))
+        if (EndingController)
+        {
+            EndingController.UpdatePlayers();
+        }
+        else if (IsSceneActive(GameplayScene))
         {
             loadingManager = Instantiate(loadingManagerPrefab).GetComponent<LoadingManager>();
-        }
-
-        if (IsSceneActive(endingScene))
-        {
-            EndingManager.instance.UpdatePlayers();
         }
     }
 
