@@ -24,7 +24,7 @@ public class DizzyState : State
         if (timer > 4f)
         {
             timer = 0.0f;
-            enemy.PlayDizzyAnimation();
+            enemy.StopDizzyAnimation();
             enemy.ChangeToIdle();
         }
     }

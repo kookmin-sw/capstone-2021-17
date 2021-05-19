@@ -80,10 +80,27 @@ public class EnemyAnimation : MonoBehaviour
             SetDizzyAnim();
         }
     }
+
+    public void StopDizzyAnim()
+    {
+        if (enemyNet != null)
+        {
+            enemyNet.UnsetDizzyAnim();
+        }
+        else
+        {
+            SetDizzyAnim();
+        }
+    }
     
     public void SetDizzyAnim()
     {
         ani.SetBool("Attack", false);
-        ani.SetBool("Dizzy", ani.GetBool("Dizzy") ? false : true);
+        ani.SetBool("Dizzy", true);
+    }
+
+    public void UnsetDizzyAnim()
+    {        
+        ani.SetBool("Dizzy", false );
     }
 }
