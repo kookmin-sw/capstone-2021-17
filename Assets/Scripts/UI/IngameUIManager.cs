@@ -14,6 +14,7 @@ public class IngameUIManager : MonoBehaviour
     public GameObject game_clear;
     public GameObject menuinfo;
     public GameObject reCheck_UI;
+    public GameObject OpenGate_UI;
 
     public Slider missionCount; // 미션 게이지바
     public Text clearText;
@@ -145,6 +146,11 @@ public class IngameUIManager : MonoBehaviour
         }
         missionCount.value = 0.2f + missionProgress;
         missionText.text = (int)(missionProgress*125) + "%";
+
+        if(missionProgress == 1)
+        {
+            OpenGate_UI.SetActive(true);
+        }
     }
 
     public void ShowSound()
