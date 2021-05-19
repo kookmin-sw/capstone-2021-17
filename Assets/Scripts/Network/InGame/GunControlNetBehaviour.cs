@@ -1,6 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using Mirror;
+using System.Collections;
 
 public class GunControlNetBehaviour : NetworkBehaviour
 {
@@ -9,16 +10,7 @@ public class GunControlNetBehaviour : NetworkBehaviour
 
     public GameObject BulletPrefab;
 
-    public void Start()
-    {
-        if (isLocalPlayer)
-        {
-            NetworkClient.UnregisterPrefab(BulletPrefab);
-            NetworkClient.RegisterPrefab(BulletPrefab, SpawnBulletHandler, UnSpawnBulletHandler);
-        }
-
-
-    }
+    
 
     public void SpawnBullet()
     {
@@ -36,17 +28,14 @@ public class GunControlNetBehaviour : NetworkBehaviour
         BulletRigid.velocity = new Vector3(forward.x,0,forward.z) * 15;
         NetworkServer.Spawn(Bullet);
 
-    }
-    
-    GameObject SpawnBulletHandler(SpawnMessage msg)
-    {
-        GameObject Bullet = Instantiate(BulletPrefab, msg.position, msg.rotation);
-        
-        return Bullet;
+        StartCoroutine(Destroy(Bullet, 2.0f));
+
     }
 
-    void UnSpawnBulletHandler(GameObject spawned)
+    public IEnumerator Destroy(GameObject go, float delay)
     {
-        Destroy(spawned);
+        yield return new WaitForSeconds(delay);
+
+        NetworkServer.UnSpawn(go);
     }
 }
