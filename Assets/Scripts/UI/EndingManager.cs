@@ -57,9 +57,14 @@ public class EndingManager : MonoBehaviour
 
     public void StartEnding()
     {
+        foreach (var audio in GameObject.FindObjectsOfType<AudioSource>())
+        {
+            audio.volume = 0;
+        }
         EndingSceneObject.SetActive(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        OnChangeEndingSceneObject.Invoke();
     }
 
     void Update() // EndingMessage에는 플레이어 이름, 깼는지 죽었는지 상태가 포함됨.
