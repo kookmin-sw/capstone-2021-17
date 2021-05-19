@@ -28,7 +28,7 @@ namespace kcp2k
 
         // If we don't receive anything these many milliseconds
         // then consider us disconnected
-        public const int TIMEOUT = 10000;
+        public const int TIMEOUT = 30000;
         uint lastReceiveTime;
 
         // internal time.
@@ -152,7 +152,7 @@ namespace kcp2k
             if (time >= lastReceiveTime + TIMEOUT)
             {
                 Log.Warning($"KCP: Connection timed out after not receiving any message for {TIMEOUT}ms. Disconnecting.");
-                //Disconnect();
+                Disconnect();
             }
         }
 
