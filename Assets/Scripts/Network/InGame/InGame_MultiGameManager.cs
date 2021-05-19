@@ -29,6 +29,11 @@ public class InGame_MultiGameManager : MonoBehaviour
         states = new List<ThirdPersonCharacter.State>();
 
     }
+
+    private void OnDestroy()
+    {
+        Players.Clear();
+    }
     public static bool IsLocalPlayer(int index)
     {
         if (Players[index].isLocalPlayer)
