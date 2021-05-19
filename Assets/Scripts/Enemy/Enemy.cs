@@ -81,10 +81,17 @@ public class Enemy : MonoBehaviour
 
     //플레이어 타겟의 위치로 이동합니다.
     public void MoveToTarget()
-    {        
-        navMeshAgent.speed += navMeshAgent.speed * 0.0005f;     //에너미의 속도를 점차 증가시킵니다.
-        anim.SetBlnedTree(navMeshAgent.speed);                  //블랜드 트리 값 변경
-        navMeshAgent.SetDestination(target.position);
+    {                
+        if (target != null)
+        {
+            navMeshAgent.speed += navMeshAgent.speed * 0.0005f;     //에너미의 속도를 점차 증가시킵니다.
+            anim.SetBlnedTree(navMeshAgent.speed);                  //블랜드 트리 값 변경
+            navMeshAgent.SetDestination(target.position);
+        }
+        else
+        {
+            ChangeToIdle();
+        }
         if (!navMeshAgent.hasPath)
         {
             ChangeToIdle();
