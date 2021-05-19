@@ -37,13 +37,16 @@ public class EnemyNetBehaviour : NetworkBehaviour
     {
         enemyAnimation.SetDizzyAnim();
     }
+    [ServerCallback]
+    public void UnsetDizzyAnim()
+    {
+        enemyAnimation.UnsetDizzyAnim();
+    }
 
     public void SirenPlay()
     {
         RpcSirenPlay(); 
-    }
-
-    
+    }    
 
     [ClientRpc]
     void RpcSirenPlay()

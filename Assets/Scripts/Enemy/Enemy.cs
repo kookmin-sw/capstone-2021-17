@@ -87,15 +87,15 @@ public class Enemy : MonoBehaviour
             navMeshAgent.speed += navMeshAgent.speed * 0.0005f;     //에너미의 속도를 점차 증가시킵니다.
             anim.SetBlnedTree(navMeshAgent.speed);                  //블랜드 트리 값 변경
             navMeshAgent.SetDestination(target.position);
+            if (!navMeshAgent.hasPath)
+            {
+                ChangeToIdle();
+            }
         }
         else
         {
             ChangeToIdle();
-        }
-        if (!navMeshAgent.hasPath)
-        {
-            ChangeToIdle();
-        }
+        }        
     }
 
     //순찰 시 사용하는 웨이포인트로 이동합니다.
@@ -247,6 +247,13 @@ public class Enemy : MonoBehaviour
     {
         anim.PlayDizzyAnim();
     }
+
+    public void StopDizzyAnimation()
+    {
+        anim.StopDizzyAnim();
+    }
+
+ 
     #endregion
 
     #region Private Methods
