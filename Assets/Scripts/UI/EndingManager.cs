@@ -21,9 +21,6 @@ public class EndingManager : MonoBehaviour
     public List<string> PlayersName;
     public List<bool> PlayersIsDead;
 
-    [SerializeField]
-    private GameObject EndingSceneObject;
-
     private List<SkinnedMeshRenderer> heads;
     private List<SkinnedMeshRenderer> bodys;
 
@@ -62,7 +59,6 @@ public class EndingManager : MonoBehaviour
         {
             audio.volume = 0;
         }
-        EndingSceneObject.SetActive(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         OnChangeEndingSceneObject.Invoke();
@@ -72,10 +68,6 @@ public class EndingManager : MonoBehaviour
 
     public void UpdateEnding()
     {
-        if (!EndingSceneObject.activeSelf)
-        {
-            return;
-        }
         ShowPlayers();
         ShowPlayerText();
     }
