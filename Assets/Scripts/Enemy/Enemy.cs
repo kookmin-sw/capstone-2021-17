@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float dis = 1000f;   //플레이어와의 거리  
     private bool hasDestination = false;   //Walk 애니메이션을 사용하기 위한 조건    
     private bool findTargetVision = false;   //시야에 적이 들어왔는지 체크
-    private bool findTargetSound = false;    //오디오 센서에 적이 감지 됐는지      
+    [SerializeField]private bool findTargetSound = false;    //오디오 센서에 적이 감지 됐는지      
     private int randomIndex;
     private int targetsLength;  //타겟 리스트의 길이
     private int animationEventLength;   //AnimationSoundEvent 컴포넌트를 가진 오브젝트의 legnth        

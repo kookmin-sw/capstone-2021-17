@@ -19,7 +19,7 @@ public class AnimationSoundEvent : MonoBehaviour
         Debug.Log(enemyLength);
         for(int i=0; i<enemyLength; i++)
         {
-            enemyPos[i] = enemy[i].transform;
+            //enemyPos[i] = enemy[i].transform;
             enemy[i].AddAnimationSoundEvent(this);
         }        
     }
@@ -51,16 +51,11 @@ public class AnimationSoundEvent : MonoBehaviour
         playerAudioSource.Play();
         for (int i=0; i<enemyLength; i++)
         {
-            if (Vector3.Distance(transform.position, enemyPos[i].position) <= 5f)
+            if (enemy[i] && Vector3.Distance(transform.position, enemy[i].transform.position) <= 5f)
             {                                
-                SetInArea(true);
+                isInArea = (true);
                 enemy[i].SoundSensorDetect();
-            }
-            else
-            {
-                SetInArea(false);
-                enemy[i].SoundSensorOff();
-            }
+            }            
         }        
     }
 }
