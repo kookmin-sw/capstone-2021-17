@@ -97,6 +97,7 @@ public class Enemy : MonoBehaviour
         randomIndex = Random.Range(0, 26);
         anim.SetBlnedTree(navMeshAgent.speed);      //Blend Tree 초기화        
         navMeshAgent.SetDestination(wayPoint[randomIndex].position);
+        Debug.Log(randomIndex);
         Debug.Log(navMeshAgent.pathPending);
         if (!navMeshAgent.pathPending)
         {
@@ -300,9 +301,8 @@ public class Enemy : MonoBehaviour
         {            
             //타겟리스트에 추가 -> 임시 구현 (여러 플레이어의 사운드를 탐지)
             for (int i = 0; i < animationEvent.Count; i++)
-            {
-                Debug.Log(i);Debug.Log( "3" + animationEvent[i].CheckInArea());
-                if (animationEvent[i].CheckInArea())
+            {                
+                if (animationEvent[i] && animationEvent[i].CheckInArea())
                 {                    
                     Transform target = animationEvent[i].transform;
                     visibleTargets.Add(target);
