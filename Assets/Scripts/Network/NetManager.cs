@@ -230,10 +230,65 @@ public class NetManager : NetworkRoomManager
         netGamePlayer.Nickname = netRoomPlayer.Nickname;
         netGamePlayer.isLeader = netRoomPlayer.IsLeader;
 
-        conn.Send(new CreateGamePlayerMessage());
+        
 
         return netGamePlayer.gameObject;
         
+    }
+
+    public struct WaitingGamePlayer
+    {
+        public NetworkConnection conn;
+        public GameObject GamePlayer;
+    }
+
+    private List<WaitingGamePlayer> WaitingGamePlayers = new List<WaitingGamePlayer>();
+
+    public override bool OnRoomServerSceneLoadedForPlayer(NetworkConnection conn, GameObject roomPlayer, GameObject gamePlayer)
+    {
+        WaitingGamePlayers.Add(new WaitingGamePlayer { conn = conn, GamePlayer = gamePlayer });
+        if (CheckOtherPlayers())
+        {
+            SpawnGameObjects();
+        }
+
+        
+        return false;
+    }
+
+    public override void OnRoomServerDisconnect(NetworkConnection conn)
+    {
+        OnClientDisconnectedEvent?.Invoke(conn);
+        if (IsSceneActive(GameplayScene) && CheckOtherPlayers())
+        {
+            SpawnGameObjects();
+        }
+    }
+
+    bool CheckOtherPlayers()
+    {
+        if (WaitingGamePlayers.Count == roomSlots.Count)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    void SpawnGameObjects()
+    {
+
+        inGameMgr = GameMgr.instance;
+        inGameMgr.Init();
+
+        enemySpawnManager = EnemySpawnManager.instance;
+        enemySpawnManager.Init();
+
+
+        foreach (WaitingGamePlayer player in WaitingGamePlayers)
+        {
+            NetworkServer.ReplacePlayerForConnection(player.conn, player.GamePlayer, true);
+            player.conn.Send(new CreateGamePlayerMessage());
+        }
     }
 
     public override void OnClientChangeScene(string newSceneName, SceneOperation sceneOperation, bool customHandling)
@@ -254,20 +309,6 @@ public class NetManager : NetworkRoomManager
         if (IsSceneActive(GameplayScene))
         {
             loadingManager = Instantiate(loadingManagerPrefab).GetComponent<LoadingManager>();
-        }
-    }
-
-
-    public override void OnRoomServerSceneChanged(string sceneName)
-    {
-        if (sceneName == GameplayScene)
-        {
-
-            inGameMgr = GameMgr.instance;
-            inGameMgr.Init();
-
-            enemySpawnManager = EnemySpawnManager.instance;
-            enemySpawnManager.Init();
         }
     }
     
@@ -393,6 +434,7 @@ public class NetManager : NetworkRoomManager
     public override void OnRoomStopServer()
     {
         OnServerStoppedEvent?.Invoke();
+        WaitingGamePlayers.Clear();
     }
 
     public override void OnRoomStartHost()
@@ -413,11 +455,7 @@ public class NetManager : NetworkRoomManager
         Cursor.lockState = CursorLockMode.None;
     }
 
-    public override void OnRoomServerDisconnect(NetworkConnection conn)
-    {
-
-        OnClientDisconnectedEvent?.Invoke(conn);
-    }
+    
 
 
 
