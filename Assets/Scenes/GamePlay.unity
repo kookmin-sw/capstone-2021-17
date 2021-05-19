@@ -35373,7 +35373,6 @@ MonoBehaviour:
   boxSpawnPoints: []
   itemBox:
   - {fileID: 1038162653935764, guid: 0462052c0393d654185c9da4c8e6e072, type: 3}
-  - {fileID: 949588291846636778, guid: 4c6723f4cc178c44bae59ab030721ed8, type: 3}
   itemBoxSpawnPoints: {fileID: 1890902181}
   boxSpawnCount: 13
   missionSpawnPoints: []
