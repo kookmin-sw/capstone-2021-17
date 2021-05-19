@@ -147,7 +147,7 @@ public class IngameUIManager : MonoBehaviour
         missionCount.value = 0.2f + missionProgress;
         missionText.text = (int)(missionProgress*125) + "%";
 
-        if(missionProgress == 1)
+        if (missionCount.value == 1)
         {
             OpenGate_UI.SetActive(true);
         }
