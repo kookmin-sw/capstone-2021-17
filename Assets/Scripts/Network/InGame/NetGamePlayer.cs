@@ -286,6 +286,7 @@ public class NetGamePlayer : NetworkBehaviour
         if (isLocalPlayer)
         {
             CmdSetEndingState(PlayerEndingState.Dead);
+            CmdChangePlayerLayerInteract();
         }
         
         StartCoroutine("PlayerDisappear");
@@ -307,7 +308,7 @@ public class NetGamePlayer : NetworkBehaviour
     {
         EndingManager endingManager = EndingManager.instance;
         if(newState == PlayerEndingState.Dead ||
-            (oldState != PlayerEndingState.Dead && newState == PlayerEndingState.Disconnected) )       
+            (oldState == PlayerEndingState.Dead && newState == PlayerEndingState.Disconnected) )       
         {
             endingManager.PlayersName.Add(Nickname);
             endingManager.PlayersIsDead.Add(true);
@@ -348,6 +349,12 @@ public class NetGamePlayer : NetworkBehaviour
             child.gameObject.SetActive(false);
         }
 
+        gameObject.layer = 8;
+    }
+
+    [Command] 
+    public void CmdChangePlayerLayerInteract()
+    {
         gameObject.layer = 8;
     }
 
