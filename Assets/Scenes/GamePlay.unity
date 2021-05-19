@@ -22727,7 +22727,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 951595327}
         m_TargetAssemblyTypeName: EndingManager, Assembly-CSharp
         m_MethodName: DisconnectRoom
         m_Mode: 1
