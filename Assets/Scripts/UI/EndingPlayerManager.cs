@@ -29,7 +29,8 @@ public class EndingPlayerManager : MonoBehaviour
     {//엔딩 시 죽어있을 경우 모션
         //target = new Vector3(0, -0.4f, -6.4f);
         ending_anim.SetBool("isDead", true);
-        transform.Translate(new Vector3(0, -0.2f, 0));
+        Vector3 s = transform.localPosition;
+        transform.localPosition = new Vector3(s.x, -0.45f, s.z);
         Debug.Log("click dead");
     }
 }
