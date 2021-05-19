@@ -66,15 +66,16 @@ public class EndingManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         OnChangeEndingSceneObject.Invoke();
+
+        UpdateEnding();
     }
 
-    void Update() // EndingMessage에는 플레이어 이름, 깼는지 죽었는지 상태가 포함됨.
+    public void UpdateEnding()
     {
         if (!EndingSceneObject.activeSelf)
         {
             return;
         }
-                //다른 플레이어들이 게임을 클리어할경우 EndingMessage가 NetManager.endingmessage로 데이터가 전달됨
         ShowPlayers();
         ShowPlayerText();
     }

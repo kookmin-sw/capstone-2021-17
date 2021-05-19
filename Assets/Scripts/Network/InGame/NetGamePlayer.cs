@@ -311,6 +311,7 @@ public class NetGamePlayer : NetworkBehaviour
         {
             endingManager.PlayersName.Add(Nickname);
             endingManager.PlayersIsDead.Add(true);
+            endingManager.UpdateEnding();
         }
 
         if(newState == PlayerEndingState.Escape)
@@ -318,6 +319,7 @@ public class NetGamePlayer : NetworkBehaviour
             DeActivatePlayermodel();
             endingManager.PlayersName.Add(Nickname);
             endingManager.PlayersIsDead.Add(false);
+            endingManager.UpdateEnding();
         }
     }
 
