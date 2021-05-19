@@ -332,6 +332,23 @@ public class NetGamePlayer : NetworkBehaviour
         }
 
         gameObject.layer = 8;
+
+        if (isLocalPlayer)
+        {
+            CmdDeactivePlayerModel();
+        }
+    }
+
+    [Command]
+    public void CmdDeactivePlayerModel()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Transform child = transform.GetChild(i);
+            child.gameObject.SetActive(false);
+        }
+
+        gameObject.layer = 8;
     }
 
 }
