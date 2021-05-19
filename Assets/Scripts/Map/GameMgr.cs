@@ -39,7 +39,7 @@ public class GameMgr : MonoBehaviour
     {
         GetRandomInt(boxCount, boxCount.Length - 1);
         boxSpawnPoints = GetSpwanPoints(itemBoxSpawnPoints);
-        SpawnObject(itemBox, boxSpawnPoints, boxCount, boxSpawnCount, 1);
+        SpawnObject(itemBox, boxSpawnPoints, boxCount, boxSpawnCount, 2);
         GetRandomInt(missionCount, missionCount.Length - 1);
         missionSpawnPoints = GetSpwanPoints(missionObjectSpawnPoints);
         SpawnObject(mission, missionSpawnPoints, missionCount, missionSpawnCount, 3);
