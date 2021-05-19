@@ -25,7 +25,10 @@ public class PlayerHealth : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            Hit();
+            if (NetPlayer.isLocalPlayer)
+            {
+                Hit();
+            }
         }
     }
     public void Hit() //Player hit
