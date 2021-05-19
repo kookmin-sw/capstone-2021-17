@@ -306,15 +306,18 @@ public class NetGamePlayer : NetworkBehaviour
     void OnEndStateChanged(PlayerEndingState oldState, PlayerEndingState newState)
     {
         EndingManager endingManager = EndingManager.instance;
-        if(newState == PlayerEndingState.Escape || newState == PlayerEndingState.Dead ||
+        if(newState == PlayerEndingState.Dead ||
             (oldState != PlayerEndingState.Dead && newState == PlayerEndingState.Disconnected) )       
         {
-            endingManager.players.Add(this);
+            endingManager.PlayersName.Add(Nickname);
+            endingManager.PlayersIsDead.Add(true);
         }
 
         if(newState == PlayerEndingState.Escape)
         {
             DeActivatePlayermodel();
+            endingManager.PlayersName.Add(Nickname);
+            endingManager.PlayersIsDead.Add(false);
         }
     }
 

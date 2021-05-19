@@ -18,7 +18,8 @@ public class EndingManager : MonoBehaviour
 
     public List<EndingPlayerManager> endingPlayerManagers;
 
-    public List<NetGamePlayer> players;
+    public List<string> PlayersName;
+    public List<bool> PlayersIsDead;
 
     [SerializeField]
     private GameObject EndingSceneObject;
@@ -80,13 +81,13 @@ public class EndingManager : MonoBehaviour
 
     private void ShowPlayers() // 접속된 플레이어들 까지만 Mesh가 보이도록 함
     {
-        for (int id = 0; id < players.Count; id++)
+        for (int id = 0; id < PlayersName.Count; id++)
         {
             heads[id].gameObject.SetActive(true);
             bodys[id].gameObject.SetActive(true);
 
 
-            if (players[id].EndState == PlayerEndingState.Escape)
+            if (PlayersIsDead[id] == false)
             {
                 endingPlayerManagers[id].isLive();
             }
@@ -97,7 +98,7 @@ public class EndingManager : MonoBehaviour
 
 
         }
-        for (int id = players.Count; id < 4; id++)
+        for (int id = PlayersName.Count; id < 4; id++)
         {
             heads[id].gameObject.SetActive(false);
             bodys[id].gameObject.SetActive(false);
@@ -122,12 +123,12 @@ public class EndingManager : MonoBehaviour
 
     private void ShowPlayerText() //플레이어캐들 닉네임 출력
     {
-        for (int id = 0; id < players.Count; id++)
+        for (int id = 0; id < PlayersName.Count; id++)
         {
-            nickname[id].text = players[id].Nickname;
+            nickname[id].text = PlayersName[id];
         } //왼쪽에서부터 id 순으로 닉네임 출력
 
-        for (int id = players.Count; id < 4; id++)
+        for (int id = PlayersName.Count; id < 4; id++)
         {
             nickname[id].text = "";
         } // 없는 플레이어들은 닉네임 표시 안함
