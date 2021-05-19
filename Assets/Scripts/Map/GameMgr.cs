@@ -170,7 +170,7 @@ public class GameMgr : MonoBehaviour
         {
             if (i == 0)
             {
-                singleChar = numbers[UnityEngine.Random.Range(0, numbers.Length - 2)];
+                singleChar = numbers[UnityEngine.Random.Range(1, numbers.Length - 2)];
                 codeSB.Append(singleChar);
             }
             singleChar = numbers[UnityEngine.Random.Range(0, numbers.Length)];
