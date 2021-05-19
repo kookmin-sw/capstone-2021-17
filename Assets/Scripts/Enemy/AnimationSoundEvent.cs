@@ -55,7 +55,12 @@ public class AnimationSoundEvent : MonoBehaviour
             {                                
                 SetInArea(true);
                 enemy[i].SoundSensorDetect();
-            }            
+            }
+            else
+            {
+                SetInArea(false);
+                enemy[i].SoundSensorOff();
+            }
         }        
     }
 }

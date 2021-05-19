@@ -180,6 +180,11 @@ public class Enemy : MonoBehaviour
         findTargetSound = true;
     }
 
+    public void SoundSensorOff()
+    {
+        findTargetSound = false;
+    }
+
     public void SetCollider()
     {
         enemyCollider.isTrigger = enemyCollider.isTrigger ? false : true;
