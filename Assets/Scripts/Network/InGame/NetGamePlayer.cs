@@ -98,11 +98,11 @@ public class NetGamePlayer : NetworkBehaviour
 
     public override void OnStopClient()
     {
-        CmdChangeHealth(0);
-        CmdChangeState(ThirdPersonCharacter.State.Die);
+        Health = 0;
+        State = ThirdPersonCharacter.State.Die;
         if (EndState != PlayerEndingState.Escape)
         {
-            CmdSetEndingState(PlayerEndingState.Disconnected);
+            EndState = PlayerEndingState.Disconnected;
         }
     }
     
@@ -274,12 +274,9 @@ public class NetGamePlayer : NetworkBehaviour
             //ThirdCamera.gameObject.child(0).GetComponent<AudioListener>().enabled = false;
             CmdSetEndingState(PlayerEndingState.Escape);
 
-            foreach(var audio in GameObject.FindObjectsOfType<AudioSource>())
-            {
-                audio.volume = 0;
-            }
+            
             EndingManager.instance.StartEnding();
-            gameObject.SetActive(false);
+            DeActivatePlayermodel();
         }
         
     }
@@ -289,8 +286,15 @@ public class NetGamePlayer : NetworkBehaviour
         if (isLocalPlayer)
         {
             CmdSetEndingState(PlayerEndingState.Dead);
-            //UnityEngine.SceneManagement.SceneManager.LoadScene("Ending");
         }
+        
+        StartCoroutine("PlayerDisappear");
+    }
+
+    IEnumerator PlayerDisappear()
+    {
+        yield return new WaitForSeconds(20);
+        DeActivatePlayermodel();
     }
 
     [Command]
@@ -310,8 +314,19 @@ public class NetGamePlayer : NetworkBehaviour
 
         if(newState == PlayerEndingState.Escape)
         {
-            gameObject.SetActive(false);
+            DeActivatePlayermodel();
         }
+    }
+
+    public void DeActivatePlayermodel()
+    {
+        for(int i=0; i< transform.childCount; i++)
+        {
+            Transform child = transform.GetChild(i);
+            child.gameObject.SetActive(false);
+        }
+
+        gameObject.layer = 8;
     }
 
 }
