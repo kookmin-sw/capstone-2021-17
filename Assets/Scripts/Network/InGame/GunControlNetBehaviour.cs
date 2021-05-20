@@ -15,7 +15,7 @@ public class GunControlNetBehaviour : NetworkBehaviour
     public void SpawnBullet()
     {
 
-        CmdSpawnBullet(gunControl.BulletPos.position, gunControl.BulletPos.rotation);
+        CmdSpawnBullet(gunControl.BulletPos.position, transform.rotation);
     }
     [Command]
     public void CmdSpawnBullet(Vector3 position, Quaternion rotation)
