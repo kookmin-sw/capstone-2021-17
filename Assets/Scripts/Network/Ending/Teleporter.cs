@@ -131,7 +131,7 @@ public class Teleporter : MonoBehaviour
     public void FadeIn(float FadeTime)
     {
 
-        if (isPlaying == true) //중복재생방지
+        if (isPlaying == true) 
 
         {
 
