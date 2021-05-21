@@ -82,11 +82,11 @@ public class EndingManager : MonoBehaviour
 
             if (PlayersIsDead[id] == false)
             {
-                endingPlayerManagers[id].isLive();
+                //endingPlayerManagers[id].isLive();
             }
             else
             {
-                endingPlayerManagers[id].isDead();
+                //endingPlayerManagers[id].isDead();
             }
 
 

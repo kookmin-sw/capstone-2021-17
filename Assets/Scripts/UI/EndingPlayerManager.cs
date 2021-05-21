@@ -9,7 +9,7 @@ public class EndingPlayerManager : MonoBehaviour
 
     void Start()
     {
-        ending_anim.SetBool("isDead", false);
+        ending_anim.SetBool("isStop", false);
     }
 
     void Awake()
@@ -17,6 +17,12 @@ public class EndingPlayerManager : MonoBehaviour
         ending_anim = GetComponent<Animator>();
     }
 
+    public void Stop()
+    {
+        ending_anim.SetBool("isStop", true);
+    }
+
+    /*
     public void isLive()
     {//엔딩 시 살아있을 경우 모션
         ending_anim.SetBool("isDead", false);
@@ -33,4 +39,5 @@ public class EndingPlayerManager : MonoBehaviour
         transform.localPosition = new Vector3(s.x, -0.45f, s.z);
         Debug.Log("click dead");
     }
+    */
 }
