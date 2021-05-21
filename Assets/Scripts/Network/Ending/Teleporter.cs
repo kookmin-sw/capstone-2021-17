@@ -14,7 +14,7 @@ public class Teleporter : MonoBehaviour
 
     public GameObject Flare;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
 
         particleSystems = GetComponentsInChildren<ParticleSystem>();
@@ -31,8 +31,9 @@ public class Teleporter : MonoBehaviour
             Color color = main.startColor.color;
 
 
-            //main.startColor = new Color(color.r, color.g, color.b, 0);
+            main.startColor = new Color(color.r, color.g, color.b, 0);
 ;       }
+
     }
 
     EndingPlayerManager endingPlayer;
@@ -54,27 +55,31 @@ public class Teleporter : MonoBehaviour
         yield return new WaitForSeconds(1);
         SkinnedMeshRenderer[] renderers = endingPlayer.GetComponentsInChildren<SkinnedMeshRenderer>();
         Color color = renderers[0].material.color;
-        Debug.Log(color);
 
         FadeIn(1);
 
-        float wtime = 0;
+        endingPlayer.Nickname_text.gameObject.SetActive(false);
 
+        float wtime = 0;
         while (renderers[0].material.color.a > 0f)
         {
-            wtime += Time.deltaTime / 2;
+            wtime += Time.deltaTime / 1;
 
             float alpha = Mathf.Lerp(1, 0, wtime);
-            Debug.Log(alpha);
             foreach(var r in renderers)
             {
                 r.material.SetColor("_Color", new Color(color.r, color.g, color.b, alpha));
             }
-            
+
+            yield return null;
         }
 
-        
+        if (endingPlayer.isLocalPlayer)
+        {
+            yield return new WaitForSeconds(1);
 
+            EndingManager.instance.EndingCanvas.SetActive(true);
+        }
         
     }
 

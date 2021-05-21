@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UIFadeInOut : MonoBehaviour
@@ -18,6 +19,9 @@ public class UIFadeInOut : MonoBehaviour
     float fadeoutTime;
     float fadeInTime;
     float waitTime;
+
+    public UnityEvent OnFadeOut;
+    public UnityEvent OnFadeIn;
 
     public void FadeoutandIn(float fadeoutTime, float fadeInTime, float waitTime)
     {
@@ -50,6 +54,7 @@ public class UIFadeInOut : MonoBehaviour
 
             yield return null;
         }
+        OnFadeOut.Invoke();
 
         yield return new WaitForSeconds(waitTime);
 
@@ -66,6 +71,8 @@ public class UIFadeInOut : MonoBehaviour
 
             yield return null;
         }
+
+        OnFadeIn.Invoke();
 
         isPlaying = false;
     }

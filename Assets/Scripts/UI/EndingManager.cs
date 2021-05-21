@@ -17,12 +17,12 @@ public class EndingManager : MonoBehaviour
     public Text gameClear;
 
     public List<EndingPlayerManager> endingPlayerManagers;
+    public List<Teleporter> teleporters;
 
     public List<string> PlayersName;
     public List<bool> PlayersIsDead;
 
-    private List<SkinnedMeshRenderer> heads;
-    private List<SkinnedMeshRenderer> bodys;
+    public GameObject EndingCanvas;
 
     public UnityEvent OnChangeEndingSceneObject;
 
@@ -34,15 +34,6 @@ public class EndingManager : MonoBehaviour
         instance = this;
 
         isclear = true;
-
-        heads = new List<SkinnedMeshRenderer>();
-        bodys = new List<SkinnedMeshRenderer>();
-
-        foreach (var player in endingPlayerManagers)
-        { // 플레이어간 동작을 맞추기 위해 플레이어들의 Mesh를 이용함
-            heads.Add(player.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>());
-            bodys.Add(player.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>());
-        }
     }
 
     public void DisconnectRoom()
@@ -61,70 +52,46 @@ public class EndingManager : MonoBehaviour
         }
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        UIFadeInOut uiFadeInOut = UIFadeInOut.instance;
+
+        UpdateOwnEnding();
+        uiFadeInOut.OnFadeOut.AddListener(ChangeToEnding);
+        uiFadeInOut.FadeoutandIn(0.5f, 0.5f, 0.3f);
+    }
+    void ChangeToEnding()
+    {
         OnChangeEndingSceneObject.Invoke();
-
-        UpdateEnding();
+        
     }
 
-    public void UpdateEnding()
+    private int idx = 0;
+    public void UpdateEnding(string name, bool isDead)
     {
-        ShowPlayers();
-        ShowPlayerText();
-    }
+        Debug.Log("UPDATE");
 
-    private void ShowPlayers() // 접속된 플레이어들 까지만 Mesh가 보이도록 함
-    {
-        for (int id = 0; id < PlayersName.Count; id++)
+        if (!isDead)
         {
-            heads[id].gameObject.SetActive(true);
-            bodys[id].gameObject.SetActive(true);
-
-
-            if (PlayersIsDead[id] == false)
-            {
-                //endingPlayerManagers[id].isLive();
-            }
-            else
-            {
-                //endingPlayerManagers[id].isDead();
-            }
-
-
-        }
-        for (int id = PlayersName.Count; id < 4; id++)
-        {
-            heads[id].gameObject.SetActive(false);
-            bodys[id].gameObject.SetActive(false);
-        }
-    }
-
-    //캐릭터 모델 로드 후 캐릭터 상태에 따라 EndingPlayerManager의 islive or lsdead 호출
-
-    private void ShowClearText() //게임 클리어, 게임 오버 여부 출력
-    {
-        //게임 클리어시
-        if (isclear)
-        {
-            gameClear.text = "Game Clear!";
-        }
-        else //게임 오버(전원 사망) 시
-        {
-            gameClear.text = "Game Over...";
+            teleporters[idx].gameObject.SetActive(true);
+            teleporters[idx].FadeOut(1);
+            endingPlayerManagers[idx].gameObject.SetActive(true);
         }
 
+        idx++;
     }
 
-    private void ShowPlayerText() //플레이어캐들 닉네임 출력
+    void UpdateOwnEnding()
     {
-        for (int id = 0; id < PlayersName.Count; id++)
-        {
-            nickname[id].text = PlayersName[id];
-        } //왼쪽에서부터 id 순으로 닉네임 출력
 
-        for (int id = PlayersName.Count; id < 4; id++)
-        {
-            nickname[id].text = "";
-        } // 없는 플레이어들은 닉네임 표시 안함
+        Debug.Log("UPDATE OWN");
+        string PlayerName = PlayerPrefs.GetString("PlayerName");
+        teleporters[idx].gameObject.SetActive(true);
+        teleporters[idx].FadeOut(1);
+        endingPlayerManagers[idx].gameObject.SetActive(true);
+        endingPlayerManagers[idx].isLocalPlayer = true;
+
+        idx++;
     }
+    
 }
 
