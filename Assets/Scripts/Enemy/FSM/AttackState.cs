@@ -14,7 +14,7 @@ public class AttackState : State
         base.Enter();        
         enemy.InitializeAll();
         enemy.PlayAttAnimation();      //공격 애니메이션 재생              
-        enemy.SetNavMeshAgent();
+        enemy.SetNavMeshAgent(false);
     }
 
     public override void LogicUpdate()

@@ -11,10 +11,10 @@ public class DizzyState : State
 
     public override void Enter()
     {
-        base.Enter();        
+        base.Enter();
+        enemy.SetNavMeshAgent(false);
         enemy.InitializeAll();  //변수 초기화
         enemy.PlayDizzyAnimation();    //Dizzy 애니메이션 실행
-        enemy.SetNavMeshAgent();
     }
 
     public override void LogicUpdate()

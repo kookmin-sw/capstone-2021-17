@@ -89,7 +89,7 @@ public class EnemyAnimation : MonoBehaviour
         }
         else
         {
-            SetDizzyAnim();
+            UnsetDizzyAnim();
         }
     }
     
@@ -100,7 +100,8 @@ public class EnemyAnimation : MonoBehaviour
     }
 
     public void UnsetDizzyAnim()
-    {        
+    {
+        ani.SetBool("Attack", false);
         ani.SetBool("Dizzy", false );
     }
 }

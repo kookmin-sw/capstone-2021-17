@@ -69,9 +69,9 @@ public class Enemy : MonoBehaviour
     }
     
     //navmeshagent의 상태를 확인해 멈추게 하거나 움직이게 합니다.
-    public void SetNavMeshAgent()
+    public bool SetNavMeshAgent(bool tf)
     {
-        navMeshAgent.isStopped = navMeshAgent.isStopped ? false : true;
+        return navMeshAgent.isStopped = tf;
     }
     //변수 초기화
     public void InitializeAll()
@@ -105,19 +105,26 @@ public class Enemy : MonoBehaviour
     //순찰 시 사용하는 웨이포인트로 이동합니다.
     public void MoveToWayPoint()
     {
-        randomIndex = Random.Range(0, 26);
-        anim.SetBlnedTree(navMeshAgent.speed);      //Blend Tree 초기화        
-        navMeshAgent.SetDestination(wayPoint[randomIndex].position);
-        if (!navMeshAgent.pathPending)
+        if (!navMeshAgent.isStopped)
+        {
+            randomIndex = Random.Range(0, 26);
+            anim.SetBlnedTree(navMeshAgent.speed);      //Blend Tree 초기화        
+            navMeshAgent.SetDestination(wayPoint[randomIndex].position);
+            if (!navMeshAgent.pathPending)
+            {
+                ChangeToIdle();
+            }
+        }
+        else
         {
             ChangeToIdle();
-        }
+        }                        
     }
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Bullet"))
-        {
+        {            
             ChangeToDizzy();
         }        
     }
@@ -131,7 +138,6 @@ public class Enemy : MonoBehaviour
     public void ChangeToPatrol()
     {        
         enemyStateMachine.ChangeState(patrol);
-
     }
 
     public void ChangeToChase()
@@ -337,7 +343,7 @@ public class Enemy : MonoBehaviour
     //센서와 에니메이션에 사용하는 모든 것 초기화
 
     private void ChangeToDizzy()
-    {
+    {     
         enemyStateMachine.ChangeState(dizzy);
     }
 

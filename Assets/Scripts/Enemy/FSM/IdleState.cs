@@ -13,7 +13,7 @@ public class IdleState : State
     public override void Enter()
     {
         base.Enter();
-        enemy.InitializeAll();  //변수 초기화        
+        enemy.InitializeAll();  //변수 초기화      
     }
 
     public override void LogicUpdate()
@@ -23,15 +23,15 @@ public class IdleState : State
         if (timer > 2f && enemy.IsLatestStateAtt() )
         {
             enemy.SetCollider();
-            enemy.MemoState();            
+            enemy.MemoState();
         }
         if (timer > 5f)
         {
+            timer = 0.0f;
             if (enemy.IsLatestStateAtt() || enemy.IsLatestStateDizzy())
             {
-                enemy.SetNavMeshAgent();
-            }
-            timer = 0.0f;
+                enemy.SetNavMeshAgent(true);                
+            }            
             enemy.ChangeToPatrol();
         }
     }

@@ -15,8 +15,7 @@ public class AnimationSoundEvent : MonoBehaviour
     public void Awake()
     {
         enemy = FindObjectsOfType<Enemy>();
-        enemyLength = enemy.Length;
-        Debug.Log(enemyLength);
+        enemyLength = enemy.Length;        
         for(int i=0; i<enemyLength; i++)
         {
             //enemyPos[i] = enemy[i].transform;
