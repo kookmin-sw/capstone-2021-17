@@ -77,7 +77,24 @@ public class PlayerControlForEnemy : MonoBehaviour
             // pass all parameters to the character control script
             if (netPlayer != null && character.isDie == false)
             {
-                netPlayer.MoveCharacter(move, crouch, jump);
+                //Can't move after Die
+                if (character.isDie == true)
+                {
+                    move *= 0;
+                    netPlayer.MoveCharacter(move, false, false);
+                }
+                else
+                {
+                    //Can't jump when it's a hit
+                    if (character.isHit == true)
+                    {
+                        netPlayer.MoveCharacter(move, crouch, false);
+                    }
+                    else
+                    {
+                        netPlayer.MoveCharacter(move, crouch, jump);
+                    }
+                }
             }
             else
             {

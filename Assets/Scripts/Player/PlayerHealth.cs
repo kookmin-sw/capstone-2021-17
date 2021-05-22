@@ -102,7 +102,6 @@ public class PlayerHealth : MonoBehaviour
     }
     IEnumerator Healing() //Set Healing Coroutine
     {
-        playerAnimator.SetBool("Heal", true);//Heal animation start 
         playerHealthState.isHeal = true;
         health += 1; // Health plus
         if (NetPlayer != null)
@@ -116,7 +115,6 @@ public class PlayerHealth : MonoBehaviour
             playerHealItem.hasItems[1] = false; //Do not have an item
             playerHealItem.Items[1].SetActive(false); //Deactivate items in the user's hand
         }
-        playerAnimator.SetBool("Heal", false);//Heal animation end
         playerHealthState.isHeal = false;      
     }
 
