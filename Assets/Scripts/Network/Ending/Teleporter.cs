@@ -51,7 +51,16 @@ public class Teleporter : MonoBehaviour
     IEnumerator WarpPlayer()
     {
         endingPlayer.Stop();
+        
         Flare.SetActive(true);
+
+        if (endingPlayer.isLocalPlayer)
+        {
+            AudioSource warpSound = Flare.GetComponent<AudioSource>();
+            warpSound.Play();
+        }
+        
+
         yield return new WaitForSeconds(1);
         SkinnedMeshRenderer[] renderers = endingPlayer.GetComponentsInChildren<SkinnedMeshRenderer>();
         Color color = renderers[0].material.color;

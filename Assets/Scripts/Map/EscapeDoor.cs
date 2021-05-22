@@ -8,7 +8,6 @@ public class EscapeDoor : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("escape");
             Escape(other.gameObject);
         }
     }
@@ -16,6 +15,11 @@ public class EscapeDoor : MonoBehaviour
     public void Escape (GameObject player)
     {
         NetGamePlayer netGamePlayer = player.GetComponentInParent<NetGamePlayer>();
-        netGamePlayer.Escape();
+
+        if (netGamePlayer != null)
+        {
+            netGamePlayer.Escape();
+        }
+        
     }
 }

@@ -8,6 +8,8 @@ public class EndingPlayerManager : MonoBehaviour
     private Animator ending_anim;
     public TMP_Text Nickname_text;
     public bool isLocalPlayer;
+
+    private AudioSource audioSource;
     
     Vector3 target;
 
@@ -19,12 +21,24 @@ public class EndingPlayerManager : MonoBehaviour
     void Awake()
     {
         ending_anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         isLocalPlayer = false;
     }
 
     public void Stop()
     {
         ending_anim.SetBool("isStop", true);
+        StopAudio();
+    }
+
+    public void PlayAudio()
+    {
+        audioSource.Play();
+    }
+
+    public void StopAudio()
+    {
+        audioSource.Stop();
     }
 
     /*

@@ -68,7 +68,6 @@ public class EndingManager : MonoBehaviour
     private int idx = 0;
     public void UpdateEnding(string name, bool isDead)
     {
-        Debug.Log("UPDATE");
 
         if (!isDead)
         {
@@ -82,13 +81,12 @@ public class EndingManager : MonoBehaviour
 
     void UpdateOwnEnding()
     {
-
-        Debug.Log("UPDATE OWN");
         string PlayerName = PlayerPrefs.GetString("PlayerName");
         teleporters[idx].gameObject.SetActive(true);
         teleporters[idx].FadeOut(1);
         endingPlayerManagers[idx].gameObject.SetActive(true);
         endingPlayerManagers[idx].isLocalPlayer = true;
+        endingPlayerManagers[idx].PlayAudio();
 
         idx++;
     }
