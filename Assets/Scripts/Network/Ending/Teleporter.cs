@@ -87,7 +87,7 @@ public class Teleporter : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
 
-            EndingManager.instance.EndingCanvas.SetActive(true);
+            EndingManager.instance.ShowEndUI();
         }
         
     }

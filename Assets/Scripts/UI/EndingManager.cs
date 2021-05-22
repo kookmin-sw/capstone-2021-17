@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using Mirror;
 using UnityEngine.Events;
 
@@ -13,27 +14,19 @@ public class EndingManager : MonoBehaviour
 {
 
     public static EndingManager instance;
-    public Text[] nickname;
-    public Text gameClear;
+    public TMP_Text[] nicknamesUI;
+    public TMP_Text[] endstatesUI;
 
     public List<EndingPlayerManager> endingPlayerManagers;
     public List<Teleporter> teleporters;
-
-    public List<string> PlayersName;
-    public List<bool> PlayersIsDead;
 
     public GameObject EndingCanvas;
 
     public UnityEvent OnChangeEndingSceneObject;
 
-
-    private bool isclear; //게임 클리어 여부
-
     void Awake()
     {
         instance = this;
-
-        isclear = true;
     }
 
     public void DisconnectRoom()
@@ -76,7 +69,43 @@ public class EndingManager : MonoBehaviour
             endingPlayerManagers[idx].gameObject.SetActive(true);
         }
 
+        if (EndingCanvas.activeSelf)
+        {
+            ShowEndUI();
+        }
+
         idx++;
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void ShowEndUI()
+    {
+        EndingCanvas.SetActive(true);
+
+        List<NetGamePlayer> Players = InGame_MultiGameManager.Players;
+
+        for (int i =0; i< Players.Count; i++)
+        {
+            nicknamesUI[i].text = Players[i].Nickname;
+
+            PlayerEndingState endingState = Players[i].EndState;
+
+            if(endingState == PlayerEndingState.Escape)
+            {
+                endstatesUI[i].text = "<color=green> Success </color>";
+            }else if(endingState == PlayerEndingState.Dead || endingState == PlayerEndingState.Disconnected)
+            {
+                endstatesUI[i].text = "<color=red> Failed </color>";
+            }
+            else // Status None - Not Died , Not Escaped
+            {
+                endstatesUI[i].text = "<color=grey> ?? </color>";
+            }
+        }
     }
 
     void UpdateOwnEnding()

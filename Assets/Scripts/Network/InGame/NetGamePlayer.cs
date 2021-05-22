@@ -266,9 +266,12 @@ public class NetGamePlayer : NetworkBehaviour
         }
     }
 
+    private bool isEscape = false;
     
     public void Escape()
     {
+        if (isEscape) return;
+
         if (isLocalPlayer)
         {
             //ThirdCamera.gameObject.child(0).GetComponent<AudioListener>().enabled = false;
@@ -278,7 +281,8 @@ public class NetGamePlayer : NetworkBehaviour
             EndingManager.instance.StartEnding();
             DeActivatePlayermodel();
         }
-        
+
+        isEscape = true;
     }
 
     public void Die()
