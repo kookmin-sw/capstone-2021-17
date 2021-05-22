@@ -3272,12 +3272,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &83328876 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6543367403385840259, guid: e490886ff0457a943a93ce1452888658,
-    type: 3}
-  m_PrefabInstance: {fileID: 6543367402582350089}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &85467668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26830,7 +26824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4591906861939676, guid: 6f7e8ff4bd7c29d4eaddaf7d2be7920f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.8
+      value: 7.79
       objectReference: {fileID: 0}
     - target: {fileID: 4591906861939676, guid: 6f7e8ff4bd7c29d4eaddaf7d2be7920f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -36587,7 +36581,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 83328876}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -82970,6 +82964,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6543367403385840261, guid: e490886ff0457a943a93ce1452888658,
+        type: 3}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6543367403754712090, guid: e490886ff0457a943a93ce1452888658,
         type: 3}
