@@ -1416,7 +1416,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Write Your name
+  m_text: 'Write Your Name
 
 '
   m_isRightToLeft: 0
@@ -2682,7 +2682,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter text...
+  m_text: Enter Text...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 581c047ed60765249b12f37ff2895497, type: 2}
   m_sharedMaterial: {fileID: 21082280118058838, guid: 581c047ed60765249b12f37ff2895497,
@@ -3153,7 +3153,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: start
+  m_text: Start
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 194c956b3d864664890e731c63fd4a02, type: 2}
   m_sharedMaterial: {fileID: 21704438749789640, guid: 194c956b3d864664890e731c63fd4a02,
@@ -5953,7 +5953,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\uC774\uB3D9\uD0A4 : \uD0A4\uBCF4\uB4DC WASD\n\uC120\uD0DD & \uC561\uC158
-    : E, \uB9C8\uC6B0\uC2A4 \uC88C\uD074\uB9AD\n\n\uC801\uC744 \uD53C\uD558\uACE0
+    : E, \n\uC544\uC774\uD15C \uC120\uD0DD 1,2,3,4\n\n\uC801\uC744 \uD53C\uD558\uACE0
     \uD37C\uC990\uC744 \uD480\uBA70 \n\uB3D9\uB8CC\uC640 \uD611\uB3D9\uD574 \uC7A5\uC18C\uC5D0\uC11C
     \n\uD0C8\uCD9C\uD558\uC138\uC694."
 --- !u!222 &1814279769
@@ -6991,7 +6991,7 @@ MonoBehaviour:
   endingScene: 
   loadingManagerPrefab: {fileID: 3825596481130646103, guid: f8df0c5ba34cebb4ebdc953c12376662,
     type: 3}
-  EndingManager: {fileID: 0}
+  loadingManager: {fileID: 0}
   logLevel: 3
 --- !u!4 &2124268454
 Transform:
