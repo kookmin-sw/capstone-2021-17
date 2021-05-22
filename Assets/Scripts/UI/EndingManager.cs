@@ -86,6 +86,13 @@ public class EndingManager : MonoBehaviour
         idx++;
     }
 
+    public void UpdateWarpPlayer(string name)
+    {
+        EndingNames.Add(name);
+        EndingStates.Add(PlayerEndingState.Escape);
+        ShowEndUI();
+    }
+
     public void ExitGame()
     {
         Application.Quit();

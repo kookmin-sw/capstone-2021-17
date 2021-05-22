@@ -3645,20 +3645,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69359dc0f859dcc43ac6025e1b9ff073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nickname:
-  - {fileID: 1645814360}
-  - {fileID: 1920079209}
-  - {fileID: 576056099}
-  - {fileID: 1968539268}
-  gameClear: {fileID: 0}
+  nicknamesUI: []
+  endstatesUI: []
   endingPlayerManagers:
   - {fileID: 1712368600}
   - {fileID: 1769016315}
   - {fileID: 1537291654}
   - {fileID: 932405496}
-  PlayersName:
-  - adf
-  PlayersIsDead: 01
+  teleporters: []
+  EndingNames: []
+  EndingStates: 
+  EndingCanvas: {fileID: 0}
   OnChangeEndingSceneObject:
     m_PersistentCalls:
       m_Calls:
@@ -4343,6 +4340,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9034c3c0a4a33140a3838ebf82c1e73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Nickname_text: {fileID: 0}
+  isLocalPlayer: 0
 --- !u!1 &935072634
 GameObject:
   m_ObjectHideFlags: 0
@@ -4955,7 +4954,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1060630443
 Transform:
   m_ObjectHideFlags: 0
@@ -6999,6 +6998,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9034c3c0a4a33140a3838ebf82c1e73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Nickname_text: {fileID: 0}
+  isLocalPlayer: 0
 --- !u!1001 &1540073772
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8142,6 +8143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9034c3c0a4a33140a3838ebf82c1e73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Nickname_text: {fileID: 0}
+  isLocalPlayer: 0
 --- !u!1 &1719479987
 GameObject:
   m_ObjectHideFlags: 0
@@ -8605,6 +8608,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9034c3c0a4a33140a3838ebf82c1e73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Nickname_text: {fileID: 0}
+  isLocalPlayer: 0
 --- !u!1 &1773694713
 GameObject:
   m_ObjectHideFlags: 0

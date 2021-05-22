@@ -19,10 +19,9 @@ public class GunControl : MonoBehaviour
     
     public void Shoot()
     {
-        StopCoroutine("Shot");
-        StartCoroutine("Shot");
+        Shot();
     }
-    IEnumerator Shot() //Bullet Shot
+    void Shot() //Bullet Shot
     {
         gunControlNet.SpawnBullet();
         Head.SetActive(false); // Disabled because the head is a bullet
@@ -32,8 +31,6 @@ public class GunControl : MonoBehaviour
         {
             playerInventory.RemoveGun();
         }
-
-        yield return null;
     }
     
 }

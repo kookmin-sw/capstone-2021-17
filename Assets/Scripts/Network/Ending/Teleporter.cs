@@ -38,6 +38,8 @@ public class Teleporter : MonoBehaviour
 
     EndingPlayerManager endingPlayer;
 
+    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -88,12 +90,19 @@ public class Teleporter : MonoBehaviour
         EndingManager.instance.EndingNames.Add(playerName);
         EndingManager.instance.EndingStates.Add(PlayerEndingState.Escape);
 
-        if (endingPlayer.isLocalPlayer)
+        if (EndingManager.instance.EndingCanvas.activeSelf)
+        {
+            EndingManager.instance.ShowEndUI();
+        }
+
+        if (endingPlayer.isLocalPlayer )
         {
             yield return new WaitForSeconds(1);
 
             EndingManager.instance.ShowEndUI();
         }
+
+        
         
     }
 
