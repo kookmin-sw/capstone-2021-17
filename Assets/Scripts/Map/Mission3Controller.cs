@@ -246,7 +246,7 @@ public class Mission3Controller : MonoBehaviour
 
     public void SetMissionTime()
     {
-        Debug.Log("setTime");
+        //Debug.Log("setTime");
         int randomTime = Random.Range(200, 300);
         int correctTimeNum = 0;
         int randomTimeNum = 0;

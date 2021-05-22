@@ -134,7 +134,7 @@ public class Mission1Controller : MonoBehaviour
         {
             length = i + 4;
             correctCode[i] = GameMgr.GenerateMissionCode(length);
-            Debug.Log(correctCode[i]);
+            //Debug.Log(correctCode[i]);
         }
     }
 
