@@ -53,6 +53,7 @@ public class AnimationSoundEvent : MonoBehaviour
             if (enemy[i] && Vector3.Distance(transform.position, enemy[i].transform.position) <= 5f)
             {                                
                 isInArea = (true);
+                //에너미한테 적발
                 enemy[i].SoundSensorDetect();
             }            
         }        
