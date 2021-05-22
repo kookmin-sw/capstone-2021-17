@@ -314,7 +314,7 @@ public class NetGamePlayer : NetworkBehaviour
 
         EndingManager endingManager = EndingManager.instance;
         if(newState == PlayerEndingState.Dead ||
-            (oldState == PlayerEndingState.Dead && newState == PlayerEndingState.Disconnected) )       
+            (oldState != PlayerEndingState.Dead && newState == PlayerEndingState.Disconnected) )       
         {
             endingManager.UpdateEnding(Nickname,true);
         }

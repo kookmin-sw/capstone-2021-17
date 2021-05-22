@@ -8,7 +8,7 @@ public class EndingPlayerManager : MonoBehaviour
     private Animator ending_anim;
     public TMP_Text Nickname_text;
     public bool isLocalPlayer;
-
+    
     private AudioSource audioSource;
     
     Vector3 target;

@@ -20,6 +20,9 @@ public class EndingManager : MonoBehaviour
     public List<EndingPlayerManager> endingPlayerManagers;
     public List<Teleporter> teleporters;
 
+    public List<string> EndingNames;
+    public List<PlayerEndingState> EndingStates;
+
     public GameObject EndingCanvas;
 
     public UnityEvent OnChangeEndingSceneObject;
@@ -67,6 +70,12 @@ public class EndingManager : MonoBehaviour
             teleporters[idx].gameObject.SetActive(true);
             teleporters[idx].FadeOut(1);
             endingPlayerManagers[idx].gameObject.SetActive(true);
+            endingPlayerManagers[idx].Nickname_text.text = name;
+        }
+        else
+        {
+            EndingNames.Add(name);
+            EndingStates.Add(PlayerEndingState.Dead);
         }
 
         if (EndingCanvas.activeSelf)
@@ -86,13 +95,11 @@ public class EndingManager : MonoBehaviour
     {
         EndingCanvas.SetActive(true);
 
-        List<NetGamePlayer> Players = InGame_MultiGameManager.Players;
-
-        for (int i =0; i< Players.Count; i++)
+        for (int i =0; i< EndingNames.Count; i++)
         {
-            nicknamesUI[i].text = Players[i].Nickname;
+            nicknamesUI[i].text = EndingNames[i];
 
-            PlayerEndingState endingState = Players[i].EndState;
+            PlayerEndingState endingState = EndingStates[i];
 
             if(endingState == PlayerEndingState.Escape)
             {
@@ -115,6 +122,7 @@ public class EndingManager : MonoBehaviour
         teleporters[idx].FadeOut(1);
         endingPlayerManagers[idx].gameObject.SetActive(true);
         endingPlayerManagers[idx].isLocalPlayer = true;
+        endingPlayerManagers[idx].Nickname_text.text = PlayerName;
         endingPlayerManagers[idx].PlayAudio();
 
         idx++;

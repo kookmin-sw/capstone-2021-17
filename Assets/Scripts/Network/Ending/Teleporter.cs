@@ -67,6 +67,8 @@ public class Teleporter : MonoBehaviour
 
         FadeIn(1);
 
+        string playerName = endingPlayer.Nickname_text.text;
+
         endingPlayer.Nickname_text.gameObject.SetActive(false);
 
         float wtime = 0;
@@ -82,6 +84,9 @@ public class Teleporter : MonoBehaviour
 
             yield return null;
         }
+
+        EndingManager.instance.EndingNames.Add(playerName);
+        EndingManager.instance.EndingStates.Add(PlayerEndingState.Escape);
 
         if (endingPlayer.isLocalPlayer)
         {
