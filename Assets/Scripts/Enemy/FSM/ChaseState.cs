@@ -12,8 +12,7 @@ public class ChaseState : State
     {
         base.Enter();
         enemy.SirenPlay();
-        enemy.PlayWalkAnimation();
-        Debug.Log("Chase");
+        enemy.PlayWalkAnimation();        
     }
 
     public override void LogicUpdate()

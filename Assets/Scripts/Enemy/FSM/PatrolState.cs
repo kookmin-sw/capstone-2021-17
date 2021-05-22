@@ -12,10 +12,9 @@ public class PatrolState : State
     public override void Enter()
     {
         base.Enter();
-        enemy.InitializeAll();          //변수 초기화
+        enemy.InitializeAll();          
         enemy.PlayWalkAnimation();
-        enemy.MoveToWayPoint();
-        Debug.Log("Patrol");
+        enemy.MoveToWayPoint();        
     }
 
     public override void Exit()

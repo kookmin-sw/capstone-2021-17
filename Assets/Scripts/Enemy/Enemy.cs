@@ -6,16 +6,17 @@ using Mirror;
 
 public class Enemy : MonoBehaviour
 {        
-    
-    [Range(0, 360)] [SerializeField] private float viewAngle;
+    //시야 관련 변수들
+    [Range(0, 360)] 
+    [SerializeField] private float viewAngle;
     [SerializeField] private float viewRadius;
+
     [SerializeField] private float dis = 1000f;   //플레이어와의 거리  
+    [SerializeField] private bool findTargetSound = false;    //오디오 센서에 적이 감지 됐는지 
     private bool hasDestination = false;   //Walk 애니메이션을 사용하기 위한 조건    
-    private bool findTargetVision = false;   //시야에 적이 들어왔는지 체크
-    [SerializeField]private bool findTargetSound = false;    //오디오 센서에 적이 감지 됐는지      
-    private int randomIndex;
-    private int targetsLength;  //타겟 리스트의 길이
-    private int animationEventLength;   //AnimationSoundEvent 컴포넌트를 가진 오브젝트의 legnth        
+    private bool findTargetVision = false;   //시야에 적이 들어왔는지 체크         
+    private int randomIndex;    //랜덤한 순찰 지점
+    private int targetsLength;  //타겟 리스트의 길이   
     
     //적의 판단 근거, 장애물인지 플레이어인지
     [SerializeField] private LayerMask targetMask;
@@ -27,12 +28,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private AudioSource siren;           //사이렌 오디오 소스
     [SerializeField] private NavMeshAgent navMeshAgent;   //AI
     [SerializeField] private Transform target;            //타겟의 위치    
-    [SerializeField] private Transform memTarget;
-    [SerializeField] private Collider enemyCollider;
+    [SerializeField] private Transform memTarget;       //이전 타겟을 기억합니다.
+    [SerializeField] private Collider enemyCollider;    //공격 후 트리거가 작동되도록 collider를 받습니다.
+    [SerializeField] private List<Transform> visibleTargets = new List<Transform>();  //시야에 들어온 적들의 List        
 
     private StateMachine enemyStateMachine;
-    private PatrolState patrol;
-    [SerializeField] private List<Transform> visibleTargets = new List<Transform>();  //시야에 들어온 적들의 List        
+    private PatrolState patrol;    
     private IdleState idle;
     private AttackState attack;
     private DizzyState dizzy;
@@ -57,6 +58,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //좁은 길에서 겹치지 않도록 priority를 설정합니다.
     public void SetAgentPriority(int priority)
     {
         navMeshAgent.avoidancePriority = priority;
@@ -66,10 +68,12 @@ public class Enemy : MonoBehaviour
         wayPoint = wayPoints;
     }
     
+    //navmeshagent의 상태를 확인해 멈추게 하거나 움직이게 합니다.
     public void SetNavMeshAgent()
     {
         navMeshAgent.isStopped = navMeshAgent.isStopped ? false : true;
     }
+    //변수 초기화
     public void InitializeAll()
     {                
         findTargetVision = false;       //센서 초기화
@@ -104,8 +108,6 @@ public class Enemy : MonoBehaviour
         randomIndex = Random.Range(0, 26);
         anim.SetBlnedTree(navMeshAgent.speed);      //Blend Tree 초기화        
         navMeshAgent.SetDestination(wayPoint[randomIndex].position);
-        Debug.Log(randomIndex);
-        Debug.Log(navMeshAgent.pathPending);
         if (!navMeshAgent.pathPending)
         {
             ChangeToIdle();
@@ -145,6 +147,7 @@ public class Enemy : MonoBehaviour
         }        
     }
 
+    //서버에서 사이렌 플레이를 컨트롤합니다.
     public void SirenPlay()
     {
         if(enemyNet != null)
@@ -182,6 +185,7 @@ public class Enemy : MonoBehaviour
         siren.Stop();
     }
 
+    //에너미 사운드 센서
     public void SoundSensorDetect()
     {
         findTargetSound = true;
@@ -197,6 +201,7 @@ public class Enemy : MonoBehaviour
         enemyCollider.isTrigger = enemyCollider.isTrigger ? false : true;
     }
 
+    //x와 z좌표만 가지고 거리를 측정
     public float DistanceXZ()
     {
         Vector3 enemyPos = transform.position;
@@ -251,9 +256,7 @@ public class Enemy : MonoBehaviour
     public void StopDizzyAnimation()
     {
         anim.StopDizzyAnim();
-    }
-
- 
+    } 
     #endregion
 
     #region Private Methods
@@ -265,10 +268,10 @@ public class Enemy : MonoBehaviour
         memTarget = target;
         //타겟을 정하기 위한 인덱스 변수
         int targetIndex = 0;
-        Debug.Log(9);
+
         //타겟들의 거리 값
         dis = Vector3.Distance(transform.position, visibleTargets[0].position);
-        Debug.Log(10);
+
         //가장 짧은 거리를 찾기 위한 for문
         for (int i = 1; i < visibleTargets.Count; i++)
         {
@@ -279,7 +282,7 @@ public class Enemy : MonoBehaviour
                 targetIndex = i;
             }
         }
-        Debug.Log(12);
+
         target = visibleTargets[targetIndex];        
         if (target != memTarget)
         {
@@ -342,9 +345,6 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        /*animationEvent = FindObjectsOfType<AnimationSoundEvent>();*/
-        animationEventLength = animationEvent.Count;
-        Debug.Log(animationEventLength);
         enemyStateMachine = new StateMachine();
         idle = new IdleState(this);
         patrol = new PatrolState(this);
