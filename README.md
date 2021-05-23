@@ -89,12 +89,23 @@ and when you escaped, you cleared the game
 
 https://github.com/kookmin-sw/capstone-2021-17/releases/tag/1.0.0
 
-Released 에서 Raider 실행 파일 실행하면 됩니다
+Released
 
 ### 7. 기타 사진들
 
-<img width="351" alt="스타트캡처" src="https://user-images.githubusercontent.com/28583561/113883018-c0f69080-97f8-11eb-9d08-b535ea46bea8.jpg">
+<img width="351" alt="스타트캡처" src="https://user-images.githubusercontent.com/28583561/119276079-c3e7fc00-bc53-11eb-8e28-a116fdc22e80.png">
 
 
-<img width="351" alt="인게임 캡처" src="https://user-images.githubusercontent.com/28583561/113193184-a4a7a080-929a-11eb-81b9-61356e1763e1.PNG">
+<img width="351" alt="인게임 캡처" src="https://user-images.githubusercontent.com/28583561/119276735-c13ad600-bc56-11eb-89fb-3f6fd8ee43e1.jpg">
+
+<br>
+<img width="550" alt="roomNetworkDiagram" src="https://user-images.githubusercontent.com/28583561/119276785-f6dfbf00-bc56-11eb-87c0-778d9098d330.png">
+
+room network diagram
+
+
+### 8. 트렐로 페이지
+
+https://trello.com/b/tDtekjs8/game
+
 
