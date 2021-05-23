@@ -48,6 +48,8 @@ public class SceneManager : MonoBehaviour
         {
             obj[i].SetActive(true);
         }
+
+        GameNameShow();
     }
 
     public void ShowOnly(int index)
@@ -90,6 +92,29 @@ public class SceneManager : MonoBehaviour
         }
     }
 
+    public void GameNameShow()
+    {
+        bool isGameNameShow = true;
+        for(int i=0; i < obj.Length; i++)
+        {
+            if (i == 1 || i==2) continue;
+
+            if(obj[i].activeSelf)
+            {
+                Debug.Log(i);
+                isGameNameShow = false;
+            }
+        }
+
+        if (isGameNameShow)
+        {
+            obj[1].SetActive(true);
+        }
+        else
+        {
+            obj[1].SetActive(false);
+        }
+    }
 
 
 }
