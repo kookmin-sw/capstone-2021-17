@@ -11,30 +11,39 @@ https://kookmin-sw.github.io/capstone-2021-17/
 
 
 
-본 프로젝트에서는 Unity 엔진을 이용하여  **멀티플레이어 3D 게임**을 개발하고자 합니다.
+본 프로젝트에서는 Unity 엔진을 이용하여 **멀티플레이어 3D 게임**을 제작하고자 합니다.
 
-이 게임은 SF 세계관에 우주선 속에서  **4명의 플레이어 로봇**이 대항할 수 없는 **적 로봇**을 피해 미션을 수행하고 탈출하는 게임입니다.
+이 게임은 SF 세계관인 우주선 속에서 **최대 4명의 플레이어**가 협동하여 적으로부터 도망치고 미션을 수행하며 탈출하는 게임입니다.
 
-플랫폼은 **PC** 기반이고, 플레이어는 3인칭 시점의 카메라를 보며 키보드와 마우스를 이용해 캐릭터를 조종하게 됩니다. 
+게임 시작에 앞서 플레이어들은 방을 만들거나 접속하여 원하는 플레이어들과 게임을 할 수 있습니다.
 
-플레이어들은 아이템 박스로부터 아이템을 얻어 사용할 수 있습니다. 그리고 체력 시스템이 존재해 체력을 회복할 수 있는 수단도 있지만 공격을 받아 체력이 0이되면 죽게됩니다.
+게임이 시작되면 플레이어들은 3인칭 시점의 로봇을 조종하게 됩니다. 
+맵에는 미션, 아이템, 적이라는 요소가 존재하는데 
 
-게임은 플레이어가 모두 탈출하거나 모두 공격당해 죽었을 경우에 끝납니다. 
+미션은 여러가지 미니게임의 형태로 진행이 되며 모든 플레이어는 맵상에 모든 미션을 클리어 해야합니다.
+도중에 AI가 조종하는 적이 플레이어를 추적하고 공격하기 때문에 그를 피하면서 진행해야합니다.
+그리고 적으로 부터 살아남기 위해 힐팩이나 스턴건과 같이 생존에 유리한 아이템을 얻을 수 있습니다.
 
-플레이어들은 게임 시작전에 게임 대기실(로비)에서 다른 플레이어가 방에 들어오기까지 기다리게 됩니다. 게임이 시작될 경우 대기실에 있는 플레이어들이 함께 인게임으로 이동하게 됩니다. 
+모든 미션을 클리어 할 경우 탈출구를 열 수 있으며 탈출하게 되면 게임을 클리어 할 수 있게됩니다.
 
 ### 2. abstract
 
-In this project, we would like to develop **Multiplayer 3D Games** using Unity 3D Engine.
+In this project, we plan to make **Multiplayer 3D games** using the Unity 3D engine.
 
-this game has **4 player robots**. they need to avoid the **Enemy robot** and perform missions to escape from spaceship in SF
+players can connect game up to **four players** 
+and do missions, avoid enemy, and escape from a spaceship in SF world together.
 
-The platform is based on **PC**, and the players use the keyboard and mouse to control the character while looking at the third person camera.
-Players can get items from the item box and help them survive. And there is a health system, so they can recover that, but when they got attacked and health become zero, they will die
+Before the game starts, players can create or join the room to play with friends.
 
-The game ends when all players escape or dead
+When the game starts, the players control the third-person robot.
+and there are missions, items, enemies in game 
 
-Players will wait in the waiting room (lobby) for other players to enter the room before the game starts. When the game starts, the players in the waiting room will go to the in-game together.
+The mission is actually various mini-games, and all players must clear all missions on the map.
+On the way, AI-controlled enemies chase and attack the player, so you have to avoid it.
+And to survive from the enemy, you can get items that are useful to survive, such as heel packs and stun guns.
+
+If you clear all missions, you will be able to open the exit gate, 
+and when you escaped, you cleared the game
 
 
 ### 3. 소개 영상
