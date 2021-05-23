@@ -52,7 +52,6 @@ public class EnemyNetBehaviour : NetworkBehaviour
     void RpcSirenPlay()
     {
         enemy.SirenPlaySync();
-        Debug.Log("RPCSIRENPLAY");
     }
 
     public void SirenStop()

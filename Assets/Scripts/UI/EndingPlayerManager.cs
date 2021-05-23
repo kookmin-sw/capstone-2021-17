@@ -40,23 +40,4 @@ public class EndingPlayerManager : MonoBehaviour
     {
         audioSource.Stop();
     }
-
-    /*
-    public void isLive()
-    {//엔딩 시 살아있을 경우 모션
-        ending_anim.SetBool("isDead", false);
-        target = new Vector3(0, 0, -6.4f);
-        //transform.Translate(new Vector3(0, 0.4f, 0));
-        Debug.Log("click live");
-    }
-
-    public void isDead()
-    {//엔딩 시 죽어있을 경우 모션
-        //target = new Vector3(0, -0.4f, -6.4f);
-        ending_anim.SetBool("isDead", true);
-        Vector3 s = transform.localPosition;
-        transform.localPosition = new Vector3(s.x, -0.45f, s.z);
-        Debug.Log("click dead");
-    }
-    */
 }

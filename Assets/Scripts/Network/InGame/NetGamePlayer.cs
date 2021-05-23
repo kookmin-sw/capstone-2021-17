@@ -258,8 +258,6 @@ public class NetGamePlayer : NetworkBehaviour
         PlayerInventory.HandItems[oldItem].SetActive(false);
         if(newItem >= 0 )
         PlayerInventory.HandItems[newItem].SetActive(true);
-
-        Debug.Log("HADNITEM CHANGED");
     }
 
     void OnHealthChanged(int oldVal, int newVal)

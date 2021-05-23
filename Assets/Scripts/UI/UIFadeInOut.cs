@@ -25,6 +25,10 @@ public class UIFadeInOut : MonoBehaviour
 
     public void FadeoutandIn(float fadeoutTime, float fadeInTime, float waitTime)
     {
+        if (isPlaying == true)
+        {
+            return;
+        }
         this.fadeoutTime = fadeoutTime;
         this.fadeInTime = fadeInTime;
         this.waitTime = waitTime;
@@ -36,11 +40,10 @@ public class UIFadeInOut : MonoBehaviour
 
     IEnumerator fadeplay()
     {
-
+        
         isPlaying = true;
 
         float time = 0f;
-
 
         while (FadeImg.color.a< 1f)
 

@@ -168,15 +168,6 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public void RemoveItem(Item targetItem)
-    {
-        for (int idx = 0; idx < Items.Length; idx++)
-        {
-            RemoveItem(idx);
-            return;
-        }
-    }
-
     public void RemoveItem(int idx)
     {
         if(Items[idx] != null)

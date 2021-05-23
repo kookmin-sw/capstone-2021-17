@@ -74,7 +74,6 @@ public class NetMatchmakingBehaviour : MatchmakingBehaviour
 
                 foreach (GameInfoPacket game in games)
                 {
-                    Debug.Log(game.ToString());
                     if (game.Name == name)
                     {
                         foundGame = game;
