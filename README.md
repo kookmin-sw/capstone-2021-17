@@ -98,10 +98,10 @@ Released
 
 <img width="351" alt="인게임 캡처" src="https://user-images.githubusercontent.com/28583561/119276735-c13ad600-bc56-11eb-89fb-3f6fd8ee43e1.jpg">
 
-<br>
-<img width="550" alt="roomNetworkDiagram" src="https://user-images.githubusercontent.com/28583561/119276785-f6dfbf00-bc56-11eb-87c0-778d9098d330.png">
 
-room network diagram
+
+<img width="500" alt="roomNetworkDiagram" src="https://user-images.githubusercontent.com/28583561/119276785-f6dfbf00-bc56-11eb-87c0-778d9098d330.png">
+**Room Network Diagram**
 
 
 ### 8. 트렐로 페이지
