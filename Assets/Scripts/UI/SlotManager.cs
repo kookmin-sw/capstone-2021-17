@@ -44,7 +44,6 @@ public class SlotManager : MonoBehaviour
         //아이템창 활성화 & 커서이동
         if (Input.GetKeyDown(KeyCode.Alpha1)) // 1
         {
-            Debug.Log("1 click"); //디버그용으로 삭제해도 무관
             itemTarget = 0;
             Targeting(0);
             moveCursor(itemTarget);
@@ -52,7 +51,6 @@ public class SlotManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2)) // 2
         {
-            Debug.Log("2 click");
             itemTarget = 1;
             Targeting(1);
             moveCursor(itemTarget);
@@ -60,7 +58,6 @@ public class SlotManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3)) // 3
         {
-            Debug.Log("3 click");
             itemTarget = 2;
             Targeting(2);
             moveCursor(itemTarget);
@@ -68,7 +65,6 @@ public class SlotManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4)) // 4
         {
-            Debug.Log("4 click");
             itemTarget = 3;
             Targeting(3);
             moveCursor(itemTarget);

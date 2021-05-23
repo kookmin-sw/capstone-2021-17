@@ -33,7 +33,6 @@ public class SceneManager : MonoBehaviour
     //게임 종료
     public static void GameExit()
     {
-        Debug.Log("Game Exit");
         Application.Quit();
     }
 
