@@ -89,9 +89,10 @@ and when you escaped, you cleared the game
 
 https://github.com/kookmin-sw/capstone-2021-17/releases/tag/1.0.0
 
-Released
+**게임은 Released 탭에 배포되어 있는 파일을 다운받아 실행하시면 됩니다.**
 
-### 7. 기타 사진들
+
+### 7. 프로젝트 사진들
 
 <img width="351" alt="스타트캡처" src="https://user-images.githubusercontent.com/28583561/119276079-c3e7fc00-bc53-11eb-8e28-a116fdc22e80.png">
 
@@ -105,8 +106,17 @@ Released
 **Room Network Diagram**
 
 
-### 8. 트렐로 페이지
+### 8. 기타
 
+<br>
+
+**트렐로 일정관리** <br>
 https://trello.com/b/tDtekjs8/game
+
+<br>
+
+
+**서버를 직접 구동하는 법 (Unity 2020.2 버전 이상 필요)** <br>
+https://github.com/kookmin-sw/capstone-2021-17/blob/master/doc/Raider%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%84%9C%EB%B2%84%20%EA%B5%AC%EB%8F%99%EB%B2%95.pdf
 
 
