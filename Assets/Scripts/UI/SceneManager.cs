@@ -101,7 +101,6 @@ public class SceneManager : MonoBehaviour
 
             if(obj[i].activeSelf)
             {
-                Debug.Log(i);
                 isGameNameShow = false;
             }
         }
