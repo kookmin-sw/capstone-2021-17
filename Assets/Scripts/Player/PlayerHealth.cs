@@ -21,16 +21,6 @@ public class PlayerHealth : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            if (NetPlayer.isLocalPlayer)
-            {
-                Hit();
-            }
-        }
-    }
     public void Hit() //Player hit
     {
         if (NetPlayer.isLocalPlayer)
