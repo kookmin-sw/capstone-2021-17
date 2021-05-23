@@ -101,6 +101,7 @@ Released
 
 
 <img width="500" alt="roomNetworkDiagram" src="https://user-images.githubusercontent.com/28583561/119276785-f6dfbf00-bc56-11eb-87c0-778d9098d330.png">
+
 **Room Network Diagram**
 
 
