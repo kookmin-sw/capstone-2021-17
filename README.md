@@ -46,11 +46,15 @@ If you clear all missions, you will be able to open the exit gate,
 and when you escaped, you cleared the game
 
 
-### 3. 소개 영상
+### 3. 중간 소개 영상
 
 [![Alt text](http://i.ytimg.com/vi/ETcIRnatyL4/0.jpg)](https://youtu.be/ETcIRnatyL4)
 
-### 4. 팀 소개
+### 4. 최종 시연 영상
+
+[![Alt text](http://i.ytimg.com/vi/PQKoQMY7TTg/0.jpg)](https://www.youtube.com/PQKoQMY7TTg)
+
+### 5. 팀 소개
 
 ![KakaoTalk_20210222_214226176](https://user-images.githubusercontent.com/28583561/108721137-028eed00-7565-11eb-8b42-59d31da88338.jpg)
 ```
@@ -81,13 +85,13 @@ and when you escaped, you cleared the game
 게임 UI 담당
 ```
 
-### 5. 사용법
+### 6. 사용법
 
-게임 완성 시 Realesed에 빌드된 파일을 올릴 예정입니다.
+https://github.com/kookmin-sw/capstone-2021-17/releases/tag/1.0.0
 
-### 6. 기타
+Released 에서 Raider 실행 파일 실행하면 됩니다
 
-**게임 테스트 사진들**
+### 7. 기타 사진들
 
 <img width="351" alt="스타트캡처" src="https://user-images.githubusercontent.com/28583561/113883018-c0f69080-97f8-11eb-9d08-b535ea46bea8.jpg">
 
