@@ -21,10 +21,10 @@ EditorBuildSettings:
     path: Assets/Scenes/GamePlay.unity
     guid: 480becc14b40b4441890b77f80434ee1
   - enabled: 0
-    path: Assets/Scenes/UI/Ending.unity
+    path: Assets/Scenes/Ending.unity
     guid: cb4c85f21c8cf2349ae41c8808ce9ed3
   - enabled: 0
-    path: Assets/Scenes/UI/InGameUITest.unity
+    path: Assets/Scenes/InGameUITest.unity
     guid: b557e2c8e4288cc44ba557c37859d568
   - enabled: 0
     path: Assets/Scenes/MasterServer.unity
