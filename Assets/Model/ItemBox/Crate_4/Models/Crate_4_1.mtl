@@ -1,0 +1,12 @@
+newmtl wire_228184153
+Ns 100.000
+d 1.00000
+illum 2
+Kd 1.00000 1.00000 1.00000
+Ka 0.00000 0.00000 0.00000
+Ks 1.00000 1.00000 1.00000
+Ke 0.00000e+0 0.00000e+0 0.00000e+0
+map_Kd Crate_4_1_Albedo.png
+map_Ks Crate_4_1_Specular.png
+bump Crate_4_1_Height.png
+map_bump Crate_4_1_Normal.png

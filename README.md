@@ -1,77 +1,122 @@
-[![Work in Repl.it](https://classroom.github.com/assets/work-in-replit-14baed9a392b3a25080506f3b7b6d57f295ec2978f6f33ec97e36a161684cbe9.svg)](https://classroom.github.com/online_ide?assignment_repo_id=349915&assignment_repo_type=GroupAssignmentRepo)
-# Welcome to GitHub
+# Raider
 
-캡스톤 팀 생성을 축하합니다.
-
-## 팀소개 및 페이지를 꾸며주세요.
-
-- 프로젝트 소개
-  - 프로젝트 설치방법 및 데모, 사용방법, 프리뷰등을 readme.md에 작성.
-  - Api나 사용방법등 내용이 많을경우 wiki에 꾸미고 링크 추가.
-
-- 팀페이지 꾸미기
-  - 프로젝트 소개 및 팀원 소개
-  - index.md 예시보고 수정.
-
-- GitHub Pages 리파지토리 Settings > Options > GitHub Pages 
-  - Source를 marster branch
-  - Theme Chooser에서 태마선택
-  - 수정후 팀페이지 확인하여 점검.
-
-**팀페이지 주소** -> https://kookmin-sw.github.io/ '{{자신의 리파지토리 아이디}}'
-
-**예시)** 2020년 0조  https://kookmin-sw.github.io/capstone-2020-0/
-
-
-## 내용에 아래와 같은 내용들을 추가하세요.
+https://kookmin-sw.github.io/capstone-2021-17/
 
 ### 1. 프로잭트 소개
 
-프로젝트
-
-### 2. 소개 영상
-
-프로젝트 소개하는 영상을 추가하세요
-
-### 3. 팀 소개
-
-팀을 소개하세요.
-
-팀원정보 및 담당이나 사진 및 SNS를 이용하여 소개하세요.
-
-### 4. 사용법
-
-소스코드제출시 설치법이나 사용법을 작성하세요.
-
-### 5. 기타
-
-추가적인 내용은 자유롭게 작성하세요.
+<hr> 
+<div width="100%">
+<img src="https://user-images.githubusercontent.com/28583561/113183056-905da680-928e-11eb-8be8-8c97b68dc006.png" width= "500"> </img>
+</div>
 
 
-## Markdown을 사용하여 내용꾸미기
 
-Markdown은 작문을 스타일링하기위한 가볍고 사용하기 쉬운 구문입니다. 여기에는 다음을위한 규칙이 포함됩니다.
+본 프로젝트에서는 Unity 엔진을 이용하여 **멀티플레이어 3D 게임**을 제작하고자 합니다.
 
-```markdown
-Syntax highlighted code block
+이 게임은 SF 세계관인 우주선 속에서 **최대 4명의 플레이어**가 협동하여 적으로부터 도망치고 미션을 수행하며 탈출하는 게임입니다.
 
-# Header 1
-## Header 2
-### Header 3
+게임 시작에 앞서 플레이어들은 방을 만들거나 접속하여 원하는 플레이어들과 게임을 할 수 있습니다.
 
-- Bulleted
-- List
+게임이 시작되면 플레이어들은 3인칭 시점의 로봇을 조종하게 됩니다. 
+맵에는 미션, 아이템, 적이라는 요소가 존재하는데 
 
-1. Numbered
-2. List
+미션은 여러가지 미니게임의 형태로 진행이 되며 모든 플레이어는 맵상에 모든 미션을 클리어 해야합니다.
+도중에 AI가 조종하는 적이 플레이어를 추적하고 공격하기 때문에 그를 피하면서 진행해야합니다.
+그리고 적으로 부터 살아남기 위해 힐팩이나 스턴건과 같이 생존에 유리한 아이템을 얻을 수 있습니다.
 
-**Bold** and _Italic_ and `Code` text
+모든 미션을 클리어 할 경우 탈출구를 열 수 있으며 탈출하게 되면 게임을 클리어 할 수 있게됩니다.
 
-[Link](url) and ![Image](src)
+### 2. abstract
+
+In this project, we plan to make **Multiplayer 3D games** using the Unity 3D engine.
+
+players can connect game up to **four players** 
+and do missions, avoid enemy, and escape from a spaceship in SF world together.
+
+Before the game starts, players can create or join the room to play with friends.
+
+When the game starts, the players control the third-person robot.
+and there are missions, items, enemies in game 
+
+The mission is actually various mini-games, and all players must clear all missions on the map.
+On the way, AI-controlled enemies chase and attack the player, so you have to avoid it.
+And to survive from the enemy, you can get items that are useful to survive, such as heel packs and stun guns.
+
+If you clear all missions, you will be able to open the exit gate, 
+and when you escaped, you cleared the game
+
+
+### 3. 중간 소개 영상
+
+[![Alt text](http://i.ytimg.com/vi/ETcIRnatyL4/0.jpg)](https://youtu.be/ETcIRnatyL4)
+
+### 4. 최종 시연 영상
+
+[![Alt text](http://i.ytimg.com/vi/r3Jz8h9hJE4/0.jpg)](https://youtu.be/r3Jz8h9hJE4)
+
+### 5. 팀 소개
+
+![KakaoTalk_20210222_214226176](https://user-images.githubusercontent.com/28583561/108721137-028eed00-7565-11eb-8b42-59d31da88338.jpg)
+```
+권순민 (****1290)
+적 디자인, 추적 AI 담당
+```
+![KakaoTalk_20210220_105520501](https://user-images.githubusercontent.com/28583561/108721128-00c52980-7565-11eb-8cec-b41c80da7f26.jpg)
+```
+김승중 (****3096)
+맵 디자인, 맵 아이템, 맵 오브젝트 담당
+```
+![KakaoTalk_20210223_115253474](https://user-images.githubusercontent.com/28583561/108797260-233f5d00-75ce-11eb-82c7-f127b7a517bd.jpg)
+
+```
+김주연 (****1595)
+플레이어 디자인, 플레이어 움직임, 카메라 움직임 담당
+```
+![KakaoTalk_20210222_215628488](https://user-images.githubusercontent.com/28583561/108721139-0458b080-7565-11eb-9c0a-24303d9e9ab4.jpg)
+
+```
+안희운 (****1646)
+멀티플레이어 담당, 조장
+```
+![KakaoTalk_20210223_100355213](https://user-images.githubusercontent.com/28583561/108791023-719a2f00-75c1-11eb-996b-729d10f46f62.jpg)
+
+```
+이가희 (****3133)
+게임 UI 담당
 ```
 
-자세한 내용은 [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### 6. 사용법
 
-### Support or Contact
+https://github.com/kookmin-sw/capstone-2021-17/releases/tag/1.0.0
 
-readme 파일 생성에 추가적인 도움이 필요하면 [도움말](https://help.github.com/articles/about-readmes/) 이나 [contact support](https://github.com/contact) 을 이용하세요.
+**게임은 Released 탭에 배포되어 있는 파일을 다운받아 실행하시면 됩니다.**
+
+
+### 7. 프로젝트 사진들
+
+<img width="351" alt="스타트캡처" src="https://user-images.githubusercontent.com/28583561/119276079-c3e7fc00-bc53-11eb-8e28-a116fdc22e80.png">
+
+
+<img width="351" alt="인게임 캡처" src="https://user-images.githubusercontent.com/28583561/119276735-c13ad600-bc56-11eb-89fb-3f6fd8ee43e1.jpg">
+
+
+
+<img width="500" alt="roomNetworkDiagram" src="https://user-images.githubusercontent.com/28583561/119276785-f6dfbf00-bc56-11eb-87c0-778d9098d330.png">
+
+**Room Network Diagram**
+
+
+### 8. 기타
+
+<br>
+
+**트렐로 일정관리** <br>
+https://trello.com/b/tDtekjs8/game
+
+<br>
+
+
+**서버를 직접 구동하는 법 (Unity 2020.2 버전 이상 필요)** <br>
+https://github.com/kookmin-sw/capstone-2021-17/blob/master/doc/Raider%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EC%84%9C%EB%B2%84%20%EA%B5%AC%EB%8F%99%EB%B2%95.pdf
+
+
