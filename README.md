@@ -52,7 +52,7 @@ and when you escaped, you cleared the game
 
 ### 4. 최종 시연 영상
 
-[![Alt text](http://i.ytimg.com/vi/r3Jz8h9hJE4/0.jpg)]([https://youtu.be/r3Jz8h9hJE4])
+[![Alt text](http://i.ytimg.com/vi/r3Jz8h9hJE4/0.jpg)](https://youtu.be/r3Jz8h9hJE4)
 
 ### 5. 팀 소개
 
